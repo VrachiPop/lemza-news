@@ -144,4 +144,50 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 			
 			.read-more {
 				margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800;
-				font-size: 0
+				font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px;
+			}
+			.read-more span { color: #ff0033; font-size: 1.2em; }
+
+			@media (max-width: 900px) { .news-grid { grid-template-columns: 1fr; } }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+            <h1 class="page-title">{pageTitle}</h1>
+            
+			<section class="news-grid">
+				{posts.map((post) => (
+					<article class="news-card">
+						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
+							<div class="card-image">
+								<span class="card-category">
+									{post.data.tags && post.data.tags.length > 0 ? post.data.tags[0] : 'LAJME'}
+								</span>
+								{post.data.heroImage ? (
+									<Image width={400} height={250} src={post.data.heroImage} alt="" />
+								) : (
+									<div style="background:#eee; width:100%; height:100%;"></div>
+								)}
+							</div>
+							<div class="card-content">
+                                <div class="card-meta">
+                                    <svg class="meta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <FormattedDate date={post.data.pubDate} />
+                                </div>
+								<h3 class="card-title">{post.data.title}</h3>
+                                <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 1.5rem;">
+                                    {post.data.description}
+                                </p>
+								<div class="read-more">
+									LEXO MË SHUMË <span>&rarr;</span>
+								</div>
+							</div>
+						</a>
+					</article>
+				))}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
