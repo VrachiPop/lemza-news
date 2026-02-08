@@ -13,33 +13,123 @@ import { SITE_TITLE } from '../consts';
 			</div>
 		</a>
 
-		<div class="internal-links">
+		<div class="internal-links desktop-only">
 			<HeaderLink href="/">KREU</HeaderLink>
-			
-            <HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
-
+			<HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
 			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
 			<HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
 			<HeaderLink href="/tags/showbiz">SHOWBIZ</HeaderLink>
 		</div>
 
-		<div class="search-container">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+		<div class="right-actions">
+			<div class="search-container">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+			</div>
+			
+			<button class="mobile-menu-btn" aria-label="Menu" id="menu-toggle">
+				<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+			</button>
 		</div>
 	</nav>
+
+	<div class="mobile-nav-links" id="mobile-menu">
+		<a href="/">KREU</a>
+		<a href="/te-fundit">TË FUNDIT</a>
+		<a href="/tags/politike">POLITIKË</a>
+		<a href="/tags/ekonomi">EKONOMI</a>
+		<a href="/tags/showbiz">SHOWBIZ</a>
+	</div>
 </header>
 
+<script>
+	// Simple script to toggle the menu
+	const menuBtn = document.getElementById('menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+
+	menuBtn?.addEventListener('click', () => {
+		mobileMenu?.classList.toggle('open');
+	});
+</script>
+
 <style>
-	header.site-header { margin: 0; padding: 0 2rem; background-color: #343a46 !important; color: white !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-	nav { display: flex; align-items: center; justify-content: space-between; height: 80px; max-width: 1400px; margin: 0 auto; }
+	/* --- HEADER CONTAINER --- */
+	header.site-header {
+		margin: 0;
+		padding: 0 2rem;
+		background-color: #343a46 !important;
+		color: white !important;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		position: relative; /* Needed for absolute mobile menu */
+		z-index: 100;
+	}
+
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 80px;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	/* --- LOGO --- */
 	a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 12px; }
 	.logo-box { background-color: #ff0033; color: white; font-size: 28px; font-weight: 900; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 2px; line-height: 1; }
 	.logo-text { display: flex; flex-direction: column; line-height: 1; }
 	.brand-name { color: white; font-weight: 900; font-size: 22px; text-transform: uppercase; letter-spacing: -0.5px; }
 	.brand-slogan { color: #9ca3af; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 3px; }
+
+	/* --- DESKTOP LINKS --- */
 	.internal-links { display: flex; gap: 2rem; }
 	.internal-links :global(a) { color: #e5e7eb !important; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; padding: 28px 0; border-bottom: 4px solid transparent; transition: all 0.2s ease; }
 	.internal-links :global(a:hover) { color: white !important; }
 	.internal-links :global(a.active) { color: white !important; border-bottom-color: #ff0033; }
-	@media (max-width: 900px) { header.site-header { padding: 0 1rem; } nav { height: auto; padding: 1rem 0; flex-wrap: wrap; } .internal-links { order: 3; width: 100%; justify-content: center; margin-top: 1rem; gap: 10px; flex-wrap: wrap; } .logo-text { display: none; } }
+
+	/* --- RIGHT ACTIONS --- */
+	.right-actions { display: flex; align-items: center; gap: 15px; }
+	.mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0; }
+
+	/* --- MOBILE MENU (HIDDEN INITIALLY) --- */
+	.mobile-nav-links {
+		display: none; /* Hidden by default */
+		flex-direction: column;
+		background-color: #343a46; /* Match header */
+		border-top: 1px solid #4b5563;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 80px; /* Push it below header */
+		padding: 1rem 2rem;
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+	}
+
+	.mobile-nav-links a {
+		color: white;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 16px;
+		padding: 15px 0;
+		border-bottom: 1px solid #4b5563;
+		text-transform: uppercase;
+		display: block;
+	}
+	.mobile-nav-links a:last-child { border-bottom: none; }
+
+	/* Class added by JS to show menu */
+	.mobile-nav-links.open { display: flex; }
+
+	/* --- MEDIA QUERIES --- */
+	@media (max-width: 900px) {
+		header.site-header { padding: 0 1rem; }
+		
+		/* Hide Desktop Links */
+		.desktop-only { display: none; }
+		
+		/* Show Hamburger */
+		.mobile-menu-btn { display: block; }
+		
+		/* Hide Logo Text on very small screens */
+		.logo-text { display: none; }
+	}
 </style>
