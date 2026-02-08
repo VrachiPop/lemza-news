@@ -2,7 +2,7 @@
 title: 'Kineasti ngulmon se filmi që po xhiron më dramatik se jeta e vet'
 description: 'TIRANË - Edhe pse me katër produksione filmike e dhjetëra projekte televizive mbi supe, për kineastin...'
 pubDate: '2026-01-08'
-tags: ['aktualitet']
+tags: ['kulture']
 ---
 
 ![Description of the image](/images/kineasti-ngulmon.jpeg)
