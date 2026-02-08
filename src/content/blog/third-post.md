@@ -1,6 +1,6 @@
 ---
-title: 'Third post'
-description: 'Lorem ipsum dolor sit amet'
+title: 'Politikat bujqësore të Kleopatrës fundosin pataten e Kukësit'
+description: 'KUKËS - Kleopatra është lavdëruar gjerësisht nga historianët për bukurinë, zgjuarsinë dhe aftësinë për të joshur...'
 pubDate: 'Jul 22 2022'
 tags: ['aktualitet']
 ---
