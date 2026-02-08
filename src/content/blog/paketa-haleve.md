@@ -15,7 +15,7 @@ Projekt-ligji parashikon që “pronarët jo-pronarë të tualeteve” do të 
 
 Kadastra do të nisë menjëherë hartëzimin e çdo tualeti në Shqipëri, duke i klasifikuar si “zona me prioritet lirimi.” Brenda gjashtë muajve do të lançohet dhe aplikacioni që ndihmon përdoruesit të gjejnë halenë e përkryer ku të shkrehin ngacmimet e majasëllit apo virozën e fund gushtit.
 
-Sidoqoftë, shumë qytetarë shprehën shqetësim për të dërguarin e Vraçit në terren. *“Në fillim na morën malet, tani po na marrin haletë,”* tha Trimosh Fraku, banor i Zall Herrit, teksa kyçte banjën e tij me një dry magazine. Ndërsa i ati, Lesko Fraku, që numëronte tespihet në verandë, paralajmëroi kërcënueshëm : *“Nëse shteti prek furçën e sqollit, do vetëflijohem!”*
+Sidoqoftë, shumë qytetarë shprehën shqetësim për të dërguarin e Lemzës në terren. *“Në fillim na morën malet, tani po na marrin haletë,”* tha Trimosh Fraku, banor i Zall Herrit, teksa kyçte banjën e tij me një dry magazine. Ndërsa i ati, Lesko Fraku, që numëronte tespihet në verandë, paralajmëroi kërcënueshëm : *“Nëse shteti prek furçën e sqollit, do vetëflijohem!”*
 
 Megjithatë, hartuesit e ligjit mbeten optimistë. “*Shqiptarët duhet t’i shohin banjat jo si hapësira private, por si tjetër mundësi që zyrtarët të zgjerojnë territorin e tyre të nënshtrimit total mbi popullin,*” tha KM. “*Çdo shkarkim kasete është një tjetër shkelje dinjiteti e pashfrytëzuar*.”
 
