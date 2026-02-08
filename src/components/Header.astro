@@ -1,147 +1,66 @@
 ---
+import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
-
-const { pathname } = Astro.url;
-const isActive = (href) => {
-  return href === pathname || href === '/' + (pathname.split('/')[1] || '');
-};
 ---
 
 <header>
 	<nav>
-		<div class="logo-container">
-			<a href="/" class="site-logo">
-				<span class="logo-box">L</span>
-				<div class="logo-text">
-					<span class="main">Lemza News</span>
-					<span class="sub">TË PARËT TE RRENA</span>
-				</div>
-			</a>
-		</div>
-
-		<div class="internal-links desktop-only">
-			<a href="/" class={isActive('/') ? 'active' : ''}>KREU</a>
-			<a href="/blog" class={isActive('/blog') ? 'active' : ''}>AKTUALITET</a>
-			<a href="/tags/politike" class={isActive('/tags/politike') ? 'active' : ''}>POLITIKË</a>
-			<a href="/tags/ekonomi" class={isActive('/tags/ekonomi') ? 'active' : ''}>EKONOMI</a>
-			<a href="/tags/showbiz" class={isActive('/tags/showbiz') ? 'active' : ''}>SHOWBIZ</a>
-		</div>
-
-		<div class="actions">
-			<button class="search-btn" aria-label="Search">
-				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-			</button>
+		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Kreu</HeaderLink>
 			
-			<button id="menu-toggle" class="mobile-toggle" aria-label="Menu">
-				<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-			</button>
+            <HeaderLink href="/te-fundit">TË-FUNDIT</HeaderLink>
+			
+			<HeaderLink href="/about">Rreth Nesh</HeaderLink>
 		</div>
-
-		<div id="mobile-menu" class="mobile-menu hidden">
-			<a href="/" class={isActive('/') ? 'active' : ''}>KREU</a>
-			<a href="/blog" class={isActive('/blog') ? 'active' : ''}>AKTUALITET</a>
-			<a href="/tags/politike" class={isActive('/tags/politike') ? 'active' : ''}>POLITIKË</a>
-			<a href="/tags/ekonomi" class={isActive('/tags/ekonomi') ? 'active' : ''}>EKONOMI</a>
-			<a href="/tags/showbiz" class={isActive('/tags/showbiz') ? 'active' : ''}>SHOWBIZ</a>
+		<div class="social-links">
+			<a href="https://m.web.facebook.com/people/Lemza-News/61572970870932/" target="_blank">
+				<span class="sr-only">Follow Lemza on Facebook</span>
+				<svg viewBox="0 0 32 32" aria-hidden="true">
+					<path d="M32 16.098C32 7.207 24.837 0 16 0S0 7.207 0 16.098c0 8.037 5.875 14.699 13.5 15.903v-11.25h-4.063v-4.653h4.063V12.57c0-4.01 2.388-6.225 6.044-6.225 1.75 0 3.581.312 3.581.312v3.937h-2.019c-1.988 0-2.606 1.234-2.606 2.5v3.003h4.438l-.71 4.653h-3.728V32C26.125 30.797 32 24.135 32 16.098Z" />
+				</svg>
+			</a>
 		</div>
 	</nav>
 </header>
-
-<script>
-	const btn = document.getElementById('menu-toggle');
-	const menu = document.getElementById('mobile-menu');
-
-	if (btn && menu) {
-		btn.addEventListener('click', () => {
-			// Toggle the 'hidden' class to show/hide menu
-			menu.classList.toggle('hidden');
-		});
-	}
-</script>
-
 <style>
-	/* --- HEADER CONTAINER --- */
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: #343a46;
-		box-shadow: 0 2px 8px rgba(0,0,0, 0.2);
-		position: sticky;
-		top: 0;
-		z-index: 100;
+		background: white;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
 	}
 
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		max-width: 1200px;
-		margin: auto;
-		height: 80px;
-		position: relative; /* Important for absolute positioning the menu */
 	}
-
-	/* --- LOGO --- */
-	.logo-container a { display: flex; align-items: center; text-decoration: none; gap: 10px; }
-	.logo-box { background-color: #ff0033; color: white; font-weight: 900; font-size: 1.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
-	.logo-text { display: flex; flex-direction: column; line-height: 1; }
-	.logo-text .main { color: white; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; }
-	.logo-text .sub { color: #8890a0; font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; }
-
-	/* --- DESKTOP LINKS --- */
-	.internal-links { display: flex; gap: 30px; }
-	.internal-links a {
-		color: #d1d5db; text-decoration: none; font-weight: 600; font-size: 0.9rem;
-		text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s;
-		border-bottom: 2px solid transparent; padding-bottom: 4px;
-	}
-	.internal-links a:hover, .internal-links a.active { color: white; border-bottom-color: #ff0033; }
-
-	/* --- ACTIONS --- */
-	.actions { display: flex; align-items: center; gap: 15px; }
-	.search-btn, .mobile-toggle { background: none; border: none; color: white; cursor: pointer; padding: 5px; }
-	.mobile-toggle { display: none; } /* Hidden on desktop */
-
-	/* --- MOBILE MENU (The Fix) --- */
-	.mobile-menu {
-		position: absolute;
-		top: 80px; /* Pushes it exactly below the header */
-		left: -1em; /* Compensates for header padding */
-		right: -1em; /* Compensates for header padding */
-		background-color: #2c313c; /* Dark background */
-		display: flex;
-		flex-direction: column; /* Stacks links vertically */
-		padding: 0;
-		box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-		z-index: 200;
-	}
-
-	.mobile-menu.hidden {
-		display: none; /* Completely removes it when closed */
-	}
-
-	.mobile-menu a {
-		color: #d1d5db;
+	nav a {
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
 		text-decoration: none;
-		padding: 20px 2rem; /* Big clickable area */
-		border-bottom: 1px solid #3e4552;
-		font-weight: bold;
-		text-transform: uppercase;
-		display: block;
-		font-size: 1rem;
 	}
-
-	.mobile-menu a:hover, .mobile-menu a.active {
-		background-color: #3e4552;
-		color: white;
-		border-left: 5px solid #ff0033; /* Red indicator on left */
-		padding-left: calc(2rem - 5px); /* Keeps text aligned */
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
 	}
-
-	/* --- RESPONSIVE RULES --- */
-	@media (max-width: 900px) {
-		.desktop-only { display: none; } /* Hide desktop links */
-		.mobile-toggle { display: block; } /* Show sandwich button */
-		.logo-text .sub { display: none; } /* Simplify logo */
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	@media (max-width: 720px) {
+		.social-links {
+			display: none;
+		}
 	}
 </style>
