@@ -18,7 +18,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={`Aktualitet - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
-			/* --- GRID STYLES (Identical to Homepage) --- */
+			/* --- GRID STYLES --- */
 			main {
 				width: 1200px;
 				max-width: 95%;
@@ -54,7 +54,7 @@ const posts = (await getCollection('blog')).sort(
 				transition: transform 0.2s, box-shadow 0.2s;
 				text-decoration: none;
 				color: inherit;
-				position: relative; /* For positioning the badge */
+				position: relative;
 			}
 			.news-card:hover {
 				transform: translateY(-5px);
@@ -109,12 +109,14 @@ const posts = (await getCollection('blog')).sort(
                 margin-bottom: 1rem;
                 display: flex;
                 align-items: center;
-                gap: 5px;
+                gap: 6px; /* Space between icon and text */
             }
             
+            /* --- THE FIX IS HERE --- */
             .meta-icon {
-				width: 14px;
-				height: 14px;
+				width: 16px;       /* Strict Width */
+				height: 16px;      /* Strict Height */
+				min-width: 16px;   /* Prevents squishing */
 				opacity: 0.7;
 			}
 			
@@ -159,7 +161,7 @@ const posts = (await getCollection('blog')).sort(
 							</div>
 							<div class="card-content">
                                 <div class="card-meta">
-                                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <svg class="meta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                     <FormattedDate date={post.data.pubDate} />
                                 </div>
 
