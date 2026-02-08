@@ -14,8 +14,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			/* --- 1. THE MAGIC FIX (Global Reset) --- */
-			/* This ensures 100% width actually means 100% of the screen */
+			/* --- 1. GLOBAL RESET --- */
 			*, *::before, *::after {
 				box-sizing: border-box;
 			}
@@ -24,7 +23,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: 0;
 				padding: 0;
 				width: 100%;
-				overflow-x: hidden; /* Prevents side-scrolling */
+				overflow-x: hidden;
 			}
 
 			/* --- 2. MAIN CONTAINER --- */
@@ -32,7 +31,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				width: 100%;
 				max-width: 900px; 
 				margin: 0 auto;
-				/* This padding now sits INSIDE the width, so it won't overflow */
 				padding: 20px; 
 			}
 
@@ -47,25 +45,28 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: 0 auto;
 				border-radius: 8px;
 				box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-				
-				/* Force image to fit perfectly */
 				width: 100%;      
 				height: auto;     
 				object-fit: cover;
 			}
 
-			/* --- 4. TEXT TYPOGRAPHY --- */
+			/* --- 4. TYPOGRAPHY (Now Justified!) --- */
 			.prose {
 				width: 100%;
 				line-height: 1.6;
 				color: #333;
 				font-size: 1.1rem;
+				
+				/* --- THE NEW CHANGES --- */
+				text-align: justify; /* Aligns text to both Left and Right */
+				hyphens: auto;       /* Breaks long words to prevent gaps */
 			}
 			
+			/* Keep titles centered or left, don't justify them */
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
-				text-align: center;
+				text-align: center; 
 				border-bottom: 1px solid #ddd;
 			}
 			.title h1 {
@@ -92,14 +93,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			/* --- 6. MOBILE SPECIFIC --- */
 			@media (max-width: 720px) {
 				main { 
-					padding: 1rem; /* Aligns perfectly with the Header padding */
+					padding: 1rem; 
 				} 
 				.title h1 { 
-					font-size: 1.6rem; /* Slightly smaller title for phones */
+					font-size: 1.6rem; 
 				}
-				.hero-image {
-					margin-bottom: 1rem;
-				}
+				/* On very small screens, sometimes justify looks bad, 
+				   but 'hyphens: auto' usually saves it. */
 			}
 		</style>
 	</head>
