@@ -5,6 +5,8 @@ pubDate: '02-07-2026'
 tags: ['ekonomi']
 ---
 
+![Description of the image](/images/hendeku-diplomave.jpg)
+
 **TIRANË** - Zgjerohet edhe më tej hendeku mes shtresave në Shqipëri. Shifrat më të fundit të publikuara nga KOSTAT tregojnë se familjet më të pasura të vendit blejnë mesatarisht 34 diploma më shumë në vit se familjet e varfra. 
 
 *“Nuk është çudi që një familje e kamur të blejë diploma për çdo stinë të vitit, për çdo pjesëtar të familjes,”* tha Miro Grosha, sekretar i universitetit privat Luaraska. *“Një bachelor për ditë vere, një master për ditëlindje, dhe një doktoraturë për Vit të Ri. Vë bast se një pjesë e madhe e tyre kanë më shumë diploma masteri se çorape.”*
