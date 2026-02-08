@@ -39,6 +39,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         max-height: 600px;
         object-fit: cover;
 			}
+      @media (max-width: 720px) {
+      .hero-image {
+        padding: 0; /* Remove padding on phones so image is full width */
+        background: transparent;
+    }
+    .hero-image img {
+        border-radius: 8px; /* Smaller corners on phone */
+        width: 100%;
+    }
 			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
