@@ -18,7 +18,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={`Aktualitet - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
-			/* --- SAME GRID STYLES AS YOUR OTHER PAGES --- */
+			/* --- GRID STYLES (Identical to Homepage) --- */
 			main {
 				width: 1200px;
 				max-width: 95%;
@@ -54,6 +54,7 @@ const posts = (await getCollection('blog')).sort(
 				transition: transform 0.2s, box-shadow 0.2s;
 				text-decoration: none;
 				color: inherit;
+				position: relative; /* For positioning the badge */
 			}
 			.news-card:hover {
 				transform: translateY(-5px);
@@ -74,9 +75,17 @@ const posts = (await getCollection('blog')).sort(
 			
 			/* Red Category Badge */
 			.card-category {
-				position: absolute; top: 15px; left: 15px; background-color: #ff0033; color: white;
-				padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
-				border-radius: 2px; z-index: 10;
+				position: absolute; 
+				top: 15px; 
+				left: 15px; 
+				background-color: #ff0033; 
+				color: white;
+				padding: 4px 10px; 
+				font-size: 0.7rem; 
+				font-weight: bold; 
+				text-transform: uppercase;
+				border-radius: 2px; 
+				z-index: 10;
 			}
 
 			.card-content {
@@ -102,10 +111,23 @@ const posts = (await getCollection('blog')).sort(
                 align-items: center;
                 gap: 5px;
             }
+            
+            .meta-icon {
+				width: 14px;
+				height: 14px;
+				opacity: 0.7;
+			}
 			
 			.read-more {
-				margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800;
-				font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px;
+				margin-top: auto; 
+				color: #1f2937; 
+				text-decoration: none; 
+				font-weight: 800;
+				font-size: 0.8rem; 
+				text-transform: uppercase; 
+				display: flex; 
+				align-items: center; 
+				gap: 5px;
 			}
 			.read-more span { color: #ff0033; font-size: 1.2em; }
 
@@ -126,7 +148,7 @@ const posts = (await getCollection('blog')).sort(
 						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
 							<div class="card-image">
 								<span class="card-category">
-									{post.data.tags ? post.data.tags[0] : 'LAJME'}
+									{post.data.tags && post.data.tags.length > 0 ? post.data.tags[0] : 'LAJME'}
 								</span>
 								
 								{post.data.heroImage ? (
@@ -137,12 +159,16 @@ const posts = (await getCollection('blog')).sort(
 							</div>
 							<div class="card-content">
                                 <div class="card-meta">
+                                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                     <FormattedDate date={post.data.pubDate} />
                                 </div>
+
 								<h3 class="card-title">{post.data.title}</h3>
-                                <p style="font-size: 0.9rem; color: #555;">
+                                
+                                <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 1.5rem;">
                                     {post.data.description}
                                 </p>
+
 								<div class="read-more">
 									LEXO MË SHUMË <span>&rarr;</span>
 								</div>
