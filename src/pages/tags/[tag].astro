@@ -29,14 +29,15 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-// --- DICTIONARY ---
+// --- DICTIONARY: Translates computer tags to Albanian names ---
 const tagNames = {
     'politike': 'Politikë',
     'ekonomi': 'Ekonomi',
     'showbiz': 'Showbiz',
     'aktualitet': 'Aktualitet',
     'sport': 'Sport',
-    'kulture': 'Kulturë'
+    'kulture': 'Kulturë',
+    'teknologji': 'Teknologji'
 };
 
 const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
@@ -48,7 +49,6 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 	<head>
 		<BaseHead title={`${pageTitle} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
-			/* --- GRID STYLES --- */
 			main {
 				width: 1200px;
 				max-width: 95%;
@@ -84,7 +84,6 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 				transition: transform 0.2s, box-shadow 0.2s;
 				text-decoration: none;
 				color: inherit;
-				position: relative;
 			}
 			.news-card:hover {
 				transform: translateY(-5px);
@@ -103,11 +102,26 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 				object-fit: cover;
 			}
 			
-			/* Red Category Badge */
+			/* --- NEW: Container for Multiple Tags --- */
+			.tags-container {
+				position: absolute; 
+				top: 15px; 
+				left: 15px; 
+				z-index: 10;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 5px; /* Gap between buttons */
+			}
+
+			/* Individual Tag Button */
 			.card-category {
-				position: absolute; top: 15px; left: 15px; background-color: #ff0033; color: white;
-				padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
-				border-radius: 2px; z-index: 10;
+				background-color: #ff0033; 
+				color: white;
+				padding: 4px 10px; 
+				font-size: 0.7rem; 
+				font-weight: bold; 
+				text-transform: uppercase;
+				border-radius: 2px;
 			}
 
 			.card-content {
@@ -134,13 +148,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
                 gap: 6px;
             }
             
-            /* STRICT ICON SIZING */
-            .meta-icon { 
-                width: 16px; 
-                height: 16px; 
-                min-width: 16px; 
-                opacity: 0.7; 
-            }
+            .meta-icon { width: 16px; height: 16px; min-width: 16px; opacity: 0.7; }
 			
 			.read-more {
 				margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800;
@@ -161,9 +169,19 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 					<article class="news-card">
 						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
 							<div class="card-image">
-								<span class="card-category">
-									{post.data.tags && post.data.tags.length > 0 ? post.data.tags[0] : 'LAJME'}
-								</span>
+								
+								<div class="tags-container">
+									{post.data.tags && post.data.tags.length > 0 ? (
+										post.data.tags.map((t) => (
+											<span class="card-category">
+												{tagNames[t] || t}
+											</span>
+										))
+									) : (
+										<span class="card-category">LAJME</span>
+									)}
+								</div>
+
 								{post.data.heroImage ? (
 									<Image width={400} height={250} src={post.data.heroImage} alt="" />
 								) : (
