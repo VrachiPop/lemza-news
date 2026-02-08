@@ -5,7 +5,7 @@ pubDate: '02-06-2026'
 tags: ['ekonomi']
 ---
 
-![Description of the image](/images/patate-kleopatra.webp)
+![Description of the image](/images/patate-kleopatra.jpg)
 
 **KUKËS** - Kleopatra është lavdëruar gjerësisht nga historianët për bukurinë, zgjuarsinë dhe aftësinë për të joshur perandorët romakë. Mirëpo, shumë pak njihet fakti se ajo ka pasur edhe një rol të fshehtë, por shkatërrimtar, në krizën e patates së Kukësit sot.
 
