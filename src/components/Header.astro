@@ -13,7 +13,7 @@ import { SITE_TITLE } from '../consts';
 			</div>
 		</a>
 
-		<div class="internal-links desktop-only">
+		<div class="desktop-links">
 			<HeaderLink href="/">KREU</HeaderLink>
 			<HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
 			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
@@ -26,7 +26,7 @@ import { SITE_TITLE } from '../consts';
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 			</div>
 			
-			<button class="mobile-menu-btn" aria-label="Menu" id="menu-toggle">
+			<button class="mobile-menu-btn" id="menu-toggle" aria-label="Menu">
 				<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
 			</button>
 		</div>
@@ -42,7 +42,6 @@ import { SITE_TITLE } from '../consts';
 </header>
 
 <script>
-	// Simple script to toggle the menu
 	const menuBtn = document.getElementById('menu-toggle');
 	const mobileMenu = document.getElementById('mobile-menu');
 
@@ -52,84 +51,96 @@ import { SITE_TITLE } from '../consts';
 </script>
 
 <style>
-	/* --- HEADER CONTAINER --- */
+	/* --- GLOBAL RESET --- */
 	header.site-header {
 		margin: 0;
-		padding: 0 2rem;
+		padding: 0 1rem;
 		background-color: #343a46 !important;
 		color: white !important;
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		position: relative; /* Needed for absolute mobile menu */
-		z-index: 100;
+		position: relative;
+		z-index: 1000;
 	}
 
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 80px;
+		height: 70px;
 		max-width: 1400px;
 		margin: 0 auto;
 	}
 
 	/* --- LOGO --- */
-	a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 12px; }
-	.logo-box { background-color: #ff0033; color: white; font-size: 28px; font-weight: 900; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 2px; line-height: 1; }
+	a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 10px; }
+	.logo-box { background-color: #ff0033; color: white; font-size: 24px; font-weight: 900; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
 	.logo-text { display: flex; flex-direction: column; line-height: 1; }
-	.brand-name { color: white; font-weight: 900; font-size: 22px; text-transform: uppercase; letter-spacing: -0.5px; }
-	.brand-slogan { color: #9ca3af; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 3px; }
+	.brand-name { color: white; font-weight: 900; font-size: 18px; text-transform: uppercase; }
+	.brand-slogan { color: #9ca3af; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
 
-	/* --- DESKTOP LINKS --- */
-	.internal-links { display: flex; gap: 2rem; }
-	.internal-links :global(a) { color: #e5e7eb !important; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; padding: 28px 0; border-bottom: 4px solid transparent; transition: all 0.2s ease; }
-	.internal-links :global(a:hover) { color: white !important; }
-	.internal-links :global(a.active) { color: white !important; border-bottom-color: #ff0033; }
+	/* --- DESKTOP LINKS (The Center Menu) --- */
+	.desktop-links { display: flex; gap: 1.5rem; height: 100%; align-items: center; }
+	.desktop-links :global(a) { 
+		color: #e5e7eb !important; 
+		text-decoration: none; 
+		font-weight: 700; 
+		font-size: 14px; 
+		text-transform: uppercase; 
+		height: 100%;
+		display: flex;
+		align-items: center;
+		border-bottom: 4px solid transparent; 
+	}
+	.desktop-links :global(a:hover), .desktop-links :global(a.active) { color: white !important; border-bottom-color: #ff0033; }
 
 	/* --- RIGHT ACTIONS --- */
 	.right-actions { display: flex; align-items: center; gap: 15px; }
-	.mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0; }
+	
+	/* Hamburger Button: Clean, no background */
+	.mobile-menu-btn { 
+		display: none; /* Hidden on Desktop */
+		background: none; 
+		border: none; 
+		cursor: pointer; 
+		padding: 0;
+		color: white; 
+	}
 
-	/* --- MOBILE MENU (HIDDEN INITIALLY) --- */
+	/* --- MOBILE MENU DROPDOWN --- */
 	.mobile-nav-links {
 		display: none; /* Hidden by default */
 		flex-direction: column;
-		background-color: #343a46; /* Match header */
-		border-top: 1px solid #4b5563;
+		background-color: #2d333f; /* Slightly lighter than header */
 		position: absolute;
+		top: 100%; /* Push exactly below header */
 		left: 0;
 		right: 0;
-		top: 80px; /* Push it below header */
-		padding: 1rem 2rem;
-		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+		padding: 0;
+		border-top: 1px solid #4b5563;
+		box-shadow: 0 10px 15px rgba(0,0,0,0.3);
 	}
+
+	.mobile-nav-links.open { display: flex; }
 
 	.mobile-nav-links a {
 		color: white;
+		padding: 15px 20px;
 		text-decoration: none;
-		font-weight: 700;
-		font-size: 16px;
-		padding: 15px 0;
-		border-bottom: 1px solid #4b5563;
+		border-bottom: 1px solid #3e4552;
+		font-weight: bold;
 		text-transform: uppercase;
-		display: block;
 	}
-	.mobile-nav-links a:last-child { border-bottom: none; }
+	.mobile-nav-links a:hover { background-color: #3e4552; color: #ff0033; }
 
-	/* Class added by JS to show menu */
-	.mobile-nav-links.open { display: flex; }
-
-	/* --- MEDIA QUERIES --- */
+	/* --- MOBILE BREAKPOINT (Phones) --- */
 	@media (max-width: 900px) {
-		header.site-header { padding: 0 1rem; }
+		/* 1. HIDE the desktop menu */
+		.desktop-links { display: none !important; }
 		
-		/* Hide Desktop Links */
-		.desktop-only { display: none; }
-		
-		/* Show Hamburger */
+		/* 2. SHOW the hamburger */
 		.mobile-menu-btn { display: block; }
-		
-		/* Hide Logo Text on very small screens */
-		.logo-text { display: none; }
+
+		/* 3. Adjust logo text size if needed */
+		.brand-name { font-size: 16px; }
 	}
 </style>
