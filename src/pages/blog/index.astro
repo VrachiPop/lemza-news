@@ -1,17 +1,18 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
 
+// Get all posts and sort them by date (newest first)
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// --- DICTIONARY: Translates computer tags to Albanian names ---
+// --- DICTIONARY ---
 const tagNames = {
     'politike': 'Politikë',
     'ekonomi': 'Ekonomi',
@@ -26,131 +27,64 @@ const tagNames = {
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Aktualitet - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
-			/* GLOBAL RESET */
-			* { box-sizing: border-box; }
-			body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-
-			/* HERO SECTION */
-			.hero-section {
-				background-color: #343a46;
-				color: white;
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				align-items: center;
-				min-height: 500px;
-				overflow: hidden;
-				margin-bottom: 4rem;
+			/* --- GRID STYLES --- */
+			main {
+				width: 1200px;
+				max-width: 95%;
+				margin: 0 auto;
+				padding: 3rem 1rem;
 			}
-			.hero-content {
-				padding: 4rem;
+            
+            .page-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 2rem;
+                text-transform: uppercase;
+                border-bottom: 2px solid #ff0033;
+                display: inline-block;
+                padding-bottom: 5px;
+                color: #343a46;
+            }
+
+			.news-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2rem;
+			}
+
+            /* Card Styles */
+			.news-card {
+				background: white;
+				border: 1px solid #e5e7eb;
+				border-radius: 8px;
+				overflow: hidden;
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
-				z-index: 10;
-			}
-			.tag {
-				background-color: #ff0033;
-				color: white;
-				padding: 5px 10px;
-				text-transform: uppercase;
-				font-weight: bold;
-				font-size: 0.8rem;
-				width: fit-content;
-				margin-bottom: 1.5rem;
-				border-radius: 2px;
-			}
-			.hero-title {
-				color: #ffffff !important; /* Force White */
-				font-size: 4.5rem;
-				font-weight: 900;
-				line-height: 0.9;
-				margin: 0 0 1.5rem 0;
-				text-transform: uppercase;
-			}
-			.hero-title span { color: #8890a0; }
-			.hero-desc {
-				font-size: 1.1rem;
-				color: #d1d5db;
-				margin-bottom: 1.5rem;
-				max-width: 90%;
-				line-height: 1.6;
-			}
-			.hero-quote {
-				border-left: 3px solid #ff0033;
-				padding-left: 1rem;
-				font-style: italic;
-				color: #9ca3af;
-				margin-bottom: 2.5rem;
-			}
-			
-			/* BUTTONS */
-			.hero-buttons { display: flex; gap: 1rem; }
-			.btn {
-				padding: 12px 24px;
-				font-weight: bold;
-				text-transform: uppercase;
+				transition: transform 0.2s, box-shadow 0.2s;
 				text-decoration: none;
-				border-radius: 4px;
-				transition: all 0.2s;
-				display: inline-block;
-				text-align: center;
+				color: inherit;
+				position: relative;
 			}
-			.btn-primary { background-color: #ff0033; color: white; border: 2px solid #ff0033; }
-			.btn-primary:hover { background-color: #cc0029; border-color: #cc0029; }
-			.btn-outline { background-color: transparent; color: white; border: 2px solid #565e6d; }
-			.btn-outline:hover { border-color: white; }
+			.news-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+			}
 
-			/* HERO IMAGE */
-			.hero-image-container { 
-				height: 100%; 
-				width: 100%; 
-				position: relative; 
-				min-height: 500px;
+			.card-image {
+				position: relative;
+				height: 200px;
+				width: 100%;
+				background: #f3f4f6;
 			}
-			.hero-image-container img {
+			.card-image img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
-				mask-image: linear-gradient(to right, transparent, black 20%);
-				-webkit-mask-image: linear-gradient(to right, transparent, black 20%);
 			}
-
-			/* NEWS GRID SECTION */
-			main { width: 1200px; max-width: 95%; margin: 0 auto; padding: 0 1rem; }
 			
-			.section-header {
-				display: flex; justify-content: space-between; align-items: center;
-				margin-bottom: 2rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem;
-			}
-			.section-title {
-				font-size: 2rem; font-weight: 800; color: #1f2937; margin: 0;
-				padding-left: 15px; border-left: 5px solid #ff0033; line-height: 1;
-			}
-			.view-all {
-				color: #ff0033; text-decoration: none; font-weight: 700; font-size: 0.9rem;
-				display: flex; align-items: center; gap: 5px; text-transform: uppercase;
-			}
-
-			/* GRID LAYOUT */
-			.news-grid {
-				display: grid; grid-template-columns: repeat(3, 1fr);
-				gap: 2rem; margin-bottom: 4rem;
-			}
-
-			/* CARD */
-			.news-card {
-				background: white; border: 1px solid #e5e7eb; border-radius: 8px;
-				overflow: hidden; display: flex; flex-direction: column;
-				transition: transform 0.2s, box-shadow 0.2s;
-			}
-			.news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-			
-			.card-image { position: relative; height: 200px; width: 100%; background: #f3f4f6; }
-			.card-image img { width: 100%; height: 100%; object-fit: cover; }
-			
-			/* --- NEW TAG STYLES --- */
+			/* TAGS CONTAINER */
 			.tags-container {
 				position: absolute; 
 				top: 15px; 
@@ -160,83 +94,59 @@ const tagNames = {
 				flex-wrap: wrap;
 				gap: 5px;
 			}
+
+			/* Individual Tag Button */
 			.card-category {
-				background-color: #ff0033;
+				background-color: #ff0033; 
 				color: white;
-				padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
+				padding: 4px 10px; 
+				font-size: 0.7rem; 
+				font-weight: bold; 
+				text-transform: uppercase;
 				border-radius: 2px;
 			}
 
-			.card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-			
-			/* META ICONS */
-			.card-meta { display: flex; gap: 15px; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem; align-items: center; }
-			.meta-item { display: flex; align-items: center; gap: 6px; }
-			.meta-icon { width: 16px; height: 16px; min-width: 16px; }
-
-			.card-title { font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.75rem 0; line-height: 1.3; }
-			.card-excerpt {
-				font-size: 0.95rem; color: #4b5563; line-height: 1.5; margin-bottom: 1.5rem;
-				display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+			.card-content {
+				padding: 1.5rem;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
 			}
+
+			.card-title {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #111827;
+				margin: 0 0 0.75rem 0;
+				line-height: 1.3;
+			}
+
+            .card-meta {
+                font-size: 0.8rem;
+                color: #666;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            
+            .meta-icon { width: 16px; height: 16px; min-width: 16px; opacity: 0.7; }
+			
 			.read-more {
 				margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800;
 				font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px;
 			}
 			.read-more span { color: #ff0033; font-size: 1.2em; }
 
-			/* --- MOBILE RESPONSIVE --- */
-			@media (max-width: 900px) {
-				.hero-section { display: flex; flex-direction: column-reverse; text-align: center; }
-				.hero-image-container { display: block; width: 100%; height: 300px; min-height: auto; }
-				.hero-image-container img {
-					mask-image: linear-gradient(to top, transparent, black 20%);
-					-webkit-mask-image: linear-gradient(to top, transparent, black 20%);
-				}
-				.hero-content { padding: 3rem 1.5rem; }
-				.hero-title { font-size: 3rem; }
-				.hero-buttons { flex-direction: column; width: 100%; }
-				.btn { width: 100%; padding: 10px 15px; font-size: 0.9rem; }
-				.news-grid { grid-template-columns: 1fr; }
-			}
+			@media (max-width: 900px) { .news-grid { grid-template-columns: 1fr; } }
 		</style>
 	</head>
 	<body>
 		<Header />
-		
-		<section class="hero-section">
-			<div class="hero-content">
-				<div class="tag">EKSKLUZIVE</div>
-				<h1 class="hero-title">
-					TË PARËT<br>
-					<span>TE RRENA</span>
-				</h1>
-				<p class="hero-desc">
-					Gazetaria investigative që gërmon <span style="color: #ff0033;">aty ku nuk ka asgjë</span> për të gjetur.
-				</p>
-				<div class="hero-quote">
-					"Nëse është e vërtetë, ndoshta nuk e keni lexuar tek ne."
-				</div>
-				<div class="hero-buttons">
-					<a href="#latest" class="btn btn-primary">DOKR RAT E FUNDIT</a>
-					<a href="/about" class="btn btn-outline">RRETH NESH</a>
-				</div>
-			</div>
-			<div class="hero-image-container">
-				<img src="/hero-man.jpg" alt="" />
-			</div>
-		</section>
-
-		<main id="latest">
-			<div class="section-header">
-				<h2 class="section-title">Lajmet e Fundit</h2>
-				<a href="/blog" class="view-all">
-					Shiko të gjitha 
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-				</a>
-			</div>
-
-			<div class="news-grid">
+		<main>
+            <h1 class="page-title">Aktualitet</h1>
+            
+			<section class="news-grid">
 				{posts.map((post) => (
 					<article class="news-card">
 						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
@@ -261,20 +171,14 @@ const tagNames = {
 								)}
 							</div>
 							<div class="card-content">
-								<div class="card-meta">
-									<div class="meta-item">
-										<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-										<FormattedDate date={post.data.pubDate} />
-									</div>
-									<div class="meta-item">
-										<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-										<span>4 min read</span>
-									</div>
-								</div>
+                                <div class="card-meta">
+                                    <svg class="meta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <FormattedDate date={post.data.pubDate} />
+                                </div>
 								<h3 class="card-title">{post.data.title}</h3>
-								<p class="card-excerpt">
-									{post.data.description || "Klikoni për të lexuar lajmin e plotë..."}
-								</p>
+                                <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 1.5rem;">
+                                    {post.data.description}
+                                </p>
 								<div class="read-more">
 									LEXO MË SHUMË <span>&rarr;</span>
 								</div>
@@ -282,7 +186,7 @@ const tagNames = {
 						</a>
 					</article>
 				))}
-			</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
