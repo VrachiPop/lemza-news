@@ -2,7 +2,7 @@
 title: 'Gjuhëtari kapet në shtrat me të ëmën e Zeqos'
 description: 'TIRANË – Një skandal seksual ka tronditur botën akademike këtë të martë, pasi një nga gjuhëtarët më të respektuar të vendit...'
 pubDate: '2026-02-08'
-tags: ['aktualitet', 'showbiz']
+tags: ['aktualitet','showbiz']
 ---
 
 ![Description of the image](/images/zeqo.png)
