@@ -1,0 +1,152 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  // 1. Get every tag from every post
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+  // 2. Generate a route for each tag
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+// Capitalize the first letter for the title (politike -> Politike)
+const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
+const title = capitalize(tag);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+            /* Reusing the clean Grid styles from your Home page */
+			main {
+				width: 1200px;
+				max-width: 95%;
+				margin: 0 auto;
+				padding: 3rem 1rem;
+			}
+            
+            .page-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 2rem;
+                text-transform: uppercase;
+                border-bottom: 2px solid #ff0033;
+                display: inline-block;
+                padding-bottom: 5px;
+            }
+
+			.news-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2rem;
+			}
+
+            /* Card Styles (Same as Index) */
+			.news-card {
+				background: white;
+				border: 1px solid #e5e7eb;
+				border-radius: 8px;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			.news-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+			}
+
+			.card-image {
+				position: relative;
+				height: 200px;
+				width: 100%;
+				background: #f3f4f6;
+			}
+			.card-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.card-content {
+				padding: 1.5rem;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+			}
+
+			.card-title {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #111827;
+				margin: 0 0 0.75rem 0;
+				line-height: 1.3;
+			}
+
+            .card-meta {
+                font-size: 0.8rem;
+                color: #666;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            /* Mobile Check */
+			@media (max-width: 900px) {
+				.news-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+            <h1 class="page-title">{title}</h1>
+            
+			<section class="news-grid">
+				{posts.map((post) => (
+					<article class="news-card">
+						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
+							<div class="card-image">
+								{post.data.heroImage ? (
+									<Image width={400} height={250} src={post.data.heroImage} alt="" />
+								) : (
+									<div style="background:#eee; width:100%; height:100%;"></div>
+								)}
+							</div>
+							<div class="card-content">
+                                <div class="card-meta">
+                                    <FormattedDate date={post.data.pubDate} />
+                                </div>
+								<h3 class="card-title">{post.data.title}</h3>
+                                <p style="font-size: 0.9rem; color: #555;">
+                                    {post.data.description}
+                                </p>
+							</div>
+						</a>
+					</article>
+				))}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
