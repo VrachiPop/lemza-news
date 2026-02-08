@@ -16,7 +16,7 @@ import { SITE_TITLE } from '../consts';
 		<div class="internal-links">
 			<HeaderLink href="/">KREU</HeaderLink>
 			
-			<HeaderLink href="/aktualitet">TË FUNDIT</HeaderLink>
+            <HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
 
 			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
 			<HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
@@ -30,107 +30,16 @@ import { SITE_TITLE } from '../consts';
 </header>
 
 <style>
-	/* --- FORCE DARK HEADER --- */
-	header.site-header {
-		margin: 0;
-		padding: 0 2rem;
-		background-color: #343a46 !important;
-		color: white !important;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	}
-
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 80px;
-		max-width: 1400px;
-		margin: 0 auto;
-	}
-
-	/* --- LOGO STYLES --- */
-	a.logo-container {
-		display: flex;
-		align-items: center;
-		text-decoration: none !important;
-		gap: 12px;
-	}
-
-	.logo-box {
-		background-color: #ff0033;
-		color: white;
-		font-size: 28px;
-		font-weight: 900;
-		width: 45px;
-		height: 45px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 2px;
-		line-height: 1;
-	}
-
-	.logo-text {
-		display: flex;
-		flex-direction: column;
-		line-height: 1;
-	}
-
-	.brand-name {
-		color: white;
-		font-weight: 900;
-		font-size: 22px;
-		text-transform: uppercase;
-		letter-spacing: -0.5px;
-	}
-
-	.brand-slogan {
-		color: #9ca3af;
-		font-size: 10px;
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
-		margin-top: 3px;
-	}
-
-	/* --- MENU LINKS --- */
-	.internal-links {
-		display: flex;
-		gap: 2rem;
-	}
-
-	.internal-links :global(a) {
-		color: #e5e7eb !important;
-		text-decoration: none;
-		font-weight: 700;
-		font-size: 14px;
-		text-transform: uppercase;
-		padding: 28px 0;
-		border-bottom: 4px solid transparent;
-		transition: all 0.2s ease;
-	}
-
-	.internal-links :global(a:hover) {
-		color: white !important;
-	}
-
-	.internal-links :global(a.active) {
-		color: white !important;
-		border-bottom-color: #ff0033;
-	}
-
-	/* --- MOBILE --- */
-	@media (max-width: 900px) {
-		header.site-header { padding: 0 1rem; }
-		nav { height: auto; padding: 1rem 0; flex-wrap: wrap; }
-		.internal-links { 
-			order: 3; 
-			width: 100%; 
-			justify-content: center; 
-			margin-top: 1rem; 
-			gap: 10px;
-			flex-wrap: wrap;
-		}
-		.logo-text { display: none; }
-	}
+	header.site-header { margin: 0; padding: 0 2rem; background-color: #343a46 !important; color: white !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+	nav { display: flex; align-items: center; justify-content: space-between; height: 80px; max-width: 1400px; margin: 0 auto; }
+	a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 12px; }
+	.logo-box { background-color: #ff0033; color: white; font-size: 28px; font-weight: 900; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 2px; line-height: 1; }
+	.logo-text { display: flex; flex-direction: column; line-height: 1; }
+	.brand-name { color: white; font-weight: 900; font-size: 22px; text-transform: uppercase; letter-spacing: -0.5px; }
+	.brand-slogan { color: #9ca3af; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 3px; }
+	.internal-links { display: flex; gap: 2rem; }
+	.internal-links :global(a) { color: #e5e7eb !important; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; padding: 28px 0; border-bottom: 4px solid transparent; transition: all 0.2s ease; }
+	.internal-links :global(a:hover) { color: white !important; }
+	.internal-links :global(a.active) { color: white !important; border-bottom-color: #ff0033; }
+	@media (max-width: 900px) { header.site-header { padding: 0 1rem; } nav { height: auto; padding: 1rem 0; flex-wrap: wrap; } .internal-links { order: 3; width: 100%; justify-content: center; margin-top: 1rem; gap: 10px; flex-wrap: wrap; } .logo-text { display: none; } }
 </style>
