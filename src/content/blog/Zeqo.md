@@ -2,7 +2,7 @@
 title: 'Gjuhëtari kapet në shtrat me të ëmën e Zeqos'
 description: '![Description of the image](/images/zeqo.png)'
 pubDate: '2026-02-08'
-tags: ['aktualitet']
+tags: ['aktualitet', 'showbiz']
 ---
 
 ![Description of the image](/images/zeqo.png)
