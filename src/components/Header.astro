@@ -15,7 +15,11 @@ import { SITE_TITLE } from '../consts';
 
 		<div class="internal-links">
 			<HeaderLink href="/">KREU</HeaderLink>
-			<HeaderLink href="/aktualitet">AKTUALITET</HeaderLink>
+			
+            <HeaderLink href="/aktualitet">TË FUNDIT</HeaderLink>
+            
+            <HeaderLink href="/tags/aktualitet">AKTUALITET</HeaderLink>
+
 			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
 			<HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
 			<HeaderLink href="/tags/showbiz">SHOWBIZ</HeaderLink>
@@ -32,7 +36,7 @@ import { SITE_TITLE } from '../consts';
 	header.site-header {
 		margin: 0;
 		padding: 0 2rem;
-		background-color: #343a46 !important; /* Force Dark Blue/Grey */
+		background-color: #343a46 !important;
 		color: white !important;
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -51,12 +55,12 @@ import { SITE_TITLE } from '../consts';
 	a.logo-container {
 		display: flex;
 		align-items: center;
-		text-decoration: none !important; /* Remove underline */
+		text-decoration: none !important;
 		gap: 12px;
 	}
 
 	.logo-box {
-		background-color: #ff0033; /* Red Box */
+		background-color: #ff0033;
 		color: white;
 		font-size: 28px;
 		font-weight: 900;
@@ -94,17 +98,16 @@ import { SITE_TITLE } from '../consts';
 	/* --- MENU LINKS --- */
 	.internal-links {
 		display: flex;
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
-	/* This forces the styles onto the links from HeaderLink.astro */
 	.internal-links :global(a) {
-		color: #e5e7eb !important; /* Light Gray */
+		color: #e5e7eb !important;
 		text-decoration: none;
 		font-weight: 700;
 		font-size: 14px;
 		text-transform: uppercase;
-		padding: 28px 0; /* Tall click area */
+		padding: 28px 0;
 		border-bottom: 4px solid transparent;
 		transition: all 0.2s ease;
 	}
@@ -115,10 +118,10 @@ import { SITE_TITLE } from '../consts';
 
 	.internal-links :global(a.active) {
 		color: white !important;
-		border-bottom-color: #ff0033; /* Red Active Line */
+		border-bottom-color: #ff0033;
 	}
 
-	/* --- MOBILE TWEAKS --- */
+	/* --- MOBILE --- */
 	@media (max-width: 900px) {
 		header.site-header { padding: 0 1rem; }
 		nav { height: auto; padding: 1rem 0; flex-wrap: wrap; }
@@ -130,6 +133,6 @@ import { SITE_TITLE } from '../consts';
 			gap: 10px;
 			flex-wrap: wrap;
 		}
-		.logo-text { display: none; } /* Hide text on small screens */
+		.logo-text { display: none; }
 	}
 </style>
