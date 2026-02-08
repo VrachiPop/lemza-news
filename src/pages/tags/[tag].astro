@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-// --- DICTIONARY: Translates computer tags to Albanian names ---
+// --- DICTIONARY ---
 const tagNames = {
     'politike': 'Politikë',
     'ekonomi': 'Ekonomi',
@@ -49,6 +49,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 	<head>
 		<BaseHead title={`${pageTitle} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
+			/* --- GRID STYLES --- */
 			main {
 				width: 1200px;
 				max-width: 95%;
@@ -84,6 +85,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 				transition: transform 0.2s, box-shadow 0.2s;
 				text-decoration: none;
 				color: inherit;
+				position: relative;
 			}
 			.news-card:hover {
 				transform: translateY(-5px);
@@ -102,7 +104,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 				object-fit: cover;
 			}
 			
-			/* --- NEW: Container for Multiple Tags --- */
+			/* TAGS CONTAINER */
 			.tags-container {
 				position: absolute; 
 				top: 15px; 
@@ -110,7 +112,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 				z-index: 10;
 				display: flex;
 				flex-wrap: wrap;
-				gap: 5px; /* Gap between buttons */
+				gap: 5px;
 			}
 
 			/* Individual Tag Button */
@@ -165,7 +167,15 @@ const pageTitle = tagNames[tag] || capitalize(tag);
             <h1 class="page-title">{pageTitle}</h1>
             
 			<section class="news-grid">
-				{posts.map((post) => (
+				{posts.map((post) => {
+                    // --- THE IMAGE SCANNER ---
+                    // 1. Look for ![image](url) in the text
+					const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
+					
+					// 2. Pick the image (Hero first, then Body image)
+					const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
+
+                    return (
 					<article class="news-card">
 						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
 							<div class="card-image">
@@ -182,8 +192,9 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 									)}
 								</div>
 
-								{post.data.heroImage ? (
-									<Image width={400} height={250} src={post.data.heroImage} alt="" />
+                                {/* 3. SHOW THE IMAGE */}
+								{imageSrc ? (
+									<img src={imageSrc} style="width:100%; height:100%; object-fit:cover;" alt="" />
 								) : (
 									<div style="background:#eee; width:100%; height:100%;"></div>
 								)}
@@ -203,7 +214,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 							</div>
 						</a>
 					</article>
-				))}
+				)})}
 			</section>
 		</main>
 		<Footer />
