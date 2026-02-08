@@ -1,6 +1,6 @@
 ---
 title: 
-description: 
+description: 'SARANDË - Gazetaria e pavarur dhe liria e shprehjes mori një tjetër goditje pasditen e djeshme kur gazetari...'
 pubDate: '2026-02-08'
 tags: ['aktualitet']
 ---
