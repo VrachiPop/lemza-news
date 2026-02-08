@@ -1,6 +1,6 @@
 ---
 title: 'Zgjerohet hendeku / Të pasurit blejnë 34 diploma më shumë në vit se të varfrit'
-description: '**TIRANË** - Zgjerohet edhe më tej hendeku mes shtresave në Shqipëri. Shifrat më të fundit të publikuara nga...'
+description: 'TIRANË - Zgjerohet edhe më tej hendeku mes shtresave në Shqipëri. Shifrat më të fundit të publikuara nga...'
 pubDate: '02-07-2026'
 tags: ['ekonomi']
 ---
