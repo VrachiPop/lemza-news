@@ -3,7 +3,7 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
-<header>
+<header class="site-header">
 	<nav>
 		<a href="/" class="logo-container">
 			<div class="logo-box">L</div>
@@ -22,44 +22,43 @@ import { SITE_TITLE } from '../consts';
 		</div>
 
 		<div class="search-container">
-			<button id="search-btn" aria-label="Search">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-			</button>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 		</div>
 	</nav>
 </header>
 
 <style>
-	/* --- HEADER CONTAINER --- */
-	header {
+	/* --- FORCE DARK HEADER --- */
+	header.site-header {
 		margin: 0;
 		padding: 0 2rem;
-		background: #343a46; /* The Dark Blue-Grey Background */
-		color: white;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+		background-color: #343a46 !important; /* Force Dark Blue/Grey */
+		color: white !important;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	}
 
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 80px; /* Fixed height for stability */
+		height: 80px;
 		max-width: 1400px;
 		margin: 0 auto;
 	}
 
 	/* --- LOGO STYLES --- */
-	.logo-container {
+	a.logo-container {
 		display: flex;
 		align-items: center;
-		text-decoration: none;
+		text-decoration: none !important; /* Remove underline */
 		gap: 12px;
 	}
 
 	.logo-box {
-		background-color: #ff0033; /* The Red Box */
+		background-color: #ff0033; /* Red Box */
 		color: white;
-		font-size: 2rem;
+		font-size: 28px;
 		font-weight: 900;
 		width: 45px;
 		height: 45px;
@@ -67,6 +66,7 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		justify-content: center;
 		border-radius: 2px;
+		line-height: 1;
 	}
 
 	.logo-text {
@@ -78,17 +78,17 @@ import { SITE_TITLE } from '../consts';
 	.brand-name {
 		color: white;
 		font-weight: 900;
-		font-size: 1.4rem;
+		font-size: 22px;
 		text-transform: uppercase;
 		letter-spacing: -0.5px;
 	}
 
 	.brand-slogan {
-		color: #8890a0;
-		font-size: 0.65rem;
+		color: #9ca3af;
+		font-size: 10px;
 		text-transform: uppercase;
-		letter-spacing: 1px;
-		margin-top: 2px;
+		letter-spacing: 1.5px;
+		margin-top: 3px;
 	}
 
 	/* --- MENU LINKS --- */
@@ -97,51 +97,39 @@ import { SITE_TITLE } from '../consts';
 		gap: 2rem;
 	}
 
-	/* Target the links inside HeaderLink component */
+	/* This forces the styles onto the links from HeaderLink.astro */
 	.internal-links :global(a) {
-		color: #d1d5db; /* Light gray text */
+		color: #e5e7eb !important; /* Light Gray */
 		text-decoration: none;
 		font-weight: 700;
-		font-size: 0.95rem;
+		font-size: 14px;
 		text-transform: uppercase;
-		padding: 5px 0;
-		border-bottom: 3px solid transparent;
-		transition: color 0.2s;
+		padding: 28px 0; /* Tall click area */
+		border-bottom: 4px solid transparent;
+		transition: all 0.2s ease;
 	}
 
 	.internal-links :global(a:hover) {
-		color: white;
+		color: white !important;
 	}
 
 	.internal-links :global(a.active) {
-		color: white;
-		border-bottom-color: #ff0033; /* Red underline */
+		color: white !important;
+		border-bottom-color: #ff0033; /* Red Active Line */
 	}
 
-	/* --- SEARCH ICON --- */
-	.search-container button {
-		background: none;
-		border: none;
-		color: white;
-		cursor: pointer;
-		padding: 5px;
-	}
-	.search-container button:hover {
-		color: #ff0033;
-	}
-
-	/* --- MOBILE --- */
+	/* --- MOBILE TWEAKS --- */
 	@media (max-width: 900px) {
-		header { padding: 0 1rem; }
+		header.site-header { padding: 0 1rem; }
 		nav { height: auto; padding: 1rem 0; flex-wrap: wrap; }
 		.internal-links { 
 			order: 3; 
 			width: 100%; 
 			justify-content: center; 
 			margin-top: 1rem; 
-			gap: 1rem;
-			font-size: 0.8rem;
+			gap: 10px;
+			flex-wrap: wrap;
 		}
-		.logo-text { display: none; } /* Hide text on small screens to save space */
+		.logo-text { display: none; } /* Hide text on small screens */
 	}
 </style>
