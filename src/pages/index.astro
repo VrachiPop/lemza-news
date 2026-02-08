@@ -6,9 +6,10 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
+// --- CHANGE 1: Added .slice(0, 6) to limit to 6 posts ---
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+).slice(0, 6);
 
 const tagNames = {
    'politike': 'Politikë',
@@ -17,7 +18,8 @@ const tagNames = {
     'sport': 'Sport',
     'kulture': 'Kulturë',
     'teknologji': 'Teknologji',
-    'kronika': 'Kronikë'
+    'kronike': 'Kronikë',
+    'sociale': 'Sociale'
 };
 ---
 
@@ -162,7 +164,7 @@ const tagNames = {
 					"Nëse është e vërtetë, ndoshta nuk e keni lexuar tek ne."
 				</div>
 				<div class="hero-buttons">
-					<a href="#latest" class="btn btn-primary">DOKR RAT E FUNDIT</a>
+					<a href="/te-fundit" class="btn btn-primary">DOKR RAT E FUNDIT</a>
 					<a href="/about" class="btn btn-outline">RRETH NESH</a>
 				</div>
 			</div>
@@ -175,19 +177,15 @@ const tagNames = {
 			<div class="section-header">
 				<h2 class="section-title">Lajmet e Fundit</h2>
 				<a href="/te-fundit" class="view-all">
-					Shiko të gjitha 
+					Shiko të gjitha 
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
 				</a>
 			</div>
 
 			<div class="news-grid">
 				{posts.map((post) => {
-					// 1. SCAN THE TEXT FOR IMAGES (REGEX)
-					// This looks for ![alt](url) and captures the 'url' part
+					// Image Scanner
 					const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
-					
-					// 2. DECIDE WHICH IMAGE TO USE
-					// Use heroImage if it exists, OR use the one found in text
 					const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
 
 					return (
@@ -207,7 +205,6 @@ const tagNames = {
 									)}
 								</div>
 
-								{/* 3. SHOW THE IMAGE (Using standard IMG tag for safety) */}
 								{imageSrc ? (
 									<img src={imageSrc} alt="" />
 								) : (
@@ -219,10 +216,6 @@ const tagNames = {
 									<div class="meta-item">
 										<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
 										<FormattedDate date={post.data.pubDate} />
-									</div>
-									<div class="meta-item">
-										<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-										<span>4 min read</span>
 									</div>
 								</div>
 								<h3 class="card-title">{post.data.title}</h3>
