@@ -5,8 +5,6 @@ pubDate: '08-02-2026'
 tags: ['politike', 'ekonomi']
 ---
 
-![Description of the image](/images/paketa-haleve.jpg)
-
 **TIRANË** - Në një hap të guximshëm për të promovuar “lehtësimin ekonomik dhe gastrik të zyrtarëve”, qeveria shqiptare ka prezantuar **Paketën e Haleve**, një projekt-ligj që do u japi zyrtarëve të lartë, punonjësve të administratës dhe familjarëve të tyre të drejtën të marrin nën zotërim banjat e shtetasve shqiptarë për çmimin simbolik prej vetëm 1 euro.
 
 Sipas hartuesve të tij, ligji do të çlirojë “*potencialin e pashfrytëzuar hidraulik”* të vendit. KM deklaroi: *“Për shumë kohë shqiptarët i kanë mbajtur banjat vetëm për përdorim privat. Është koha të ndajmë këtë aset strategjik me zyrtarë që kanë kapacitetin gastrik si dhe përvojën e nevojshme për të kënaqur si duhet sqollet tona.”*
