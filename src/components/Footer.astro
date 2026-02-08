@@ -38,9 +38,9 @@ const today = new Date();
 			</div>
 		</div>
 
-		<div class="footer-col">
+		<div class="footer-col wide-col">
 			<h4>KATEGORITË</h4>
-			<ul>
+			<ul class="category-grid">
 				<li><a href="/">Kreu</a></li>
 				<li><a href="/te-fundit">Të Fundit</a></li>
 				<li><a href="/tags/politike">Politikë</a></li>
@@ -87,13 +87,13 @@ const today = new Date();
 </footer>
 
 <style>
-	/* --- UPDATED COLORS --- */
+	/* --- COLORS --- */
 	:root {
-		--footer-bg: #373D49;       /* Exact dark grey from screenshot */
-		--footer-text: #B0B3B8;     /* Light grey for standard text */
-		--footer-heading: #FFFFFF;  /* White for main headings & links */
-		--input-bg: #4E545F;        /* Darker input field background */
-		--border-color: #4E545F;    /* Separator line color */
+		--footer-bg: #373D49;
+		--footer-text: #B0B3B8;
+		--footer-heading: #FFFFFF;
+		--input-bg: #4E545F;
+		--border-color: #4E545F;
 	}
 
 	footer {
@@ -104,7 +104,7 @@ const today = new Date();
 		font-family: 'Helvetica Neue', Arial, sans-serif;
 	}
 
-	/* --- NEWSLETTER SECTION --- */
+	/* --- NEWSLETTER --- */
 	.newsletter-section {
 		text-align: center;
 		max-width: 700px;
@@ -112,114 +112,43 @@ const today = new Date();
 		border-bottom: 1px solid var(--border-color);
 		padding-bottom: 3rem;
 	}
-
 	.newsletter-section h2 {
-		color: var(--footer-heading); /* White title */
+		color: var(--footer-heading);
 		font-size: 2rem;
 		margin-bottom: 0.5rem;
 	}
+	.newsletter-section p { margin-bottom: 1.5rem; line-height: 1.5; }
 
-	.newsletter-section p {
-		margin-bottom: 1.5rem;
-		line-height: 1.5;
-	}
-
-	.newsletter-form {
-		display: flex;
-		gap: 10px;
-		justify-content: center;
-		max-width: 500px;
-		margin: auto;
-	}
-
-	.newsletter-form input {
-		background: var(--input-bg); /* Dark input background */
-		border: none;
-		padding: 12px 15px;
-		color: white;
-		border-radius: 4px;
-		flex: 1;
-	}
+	.newsletter-form { display: flex; gap: 10px; justify-content: center; max-width: 500px; margin: auto; }
+	.newsletter-form input { background: var(--input-bg); border: none; padding: 12px 15px; color: white; border-radius: 4px; flex: 1; }
 	.newsletter-form input::placeholder { color: var(--footer-text); }
-
-	.newsletter-form button {
-		background-color: #ff0033;
-		color: white;
-		border: none;
-		padding: 12px 24px;
-		font-weight: bold;
-		border-radius: 4px;
-		cursor: pointer;
-		text-transform: uppercase;
-		transition: background 0.2s;
-	}
+	.newsletter-form button { background-color: #ff0033; color: white; border: none; padding: 12px 24px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: background 0.2s; }
 	.newsletter-form button:hover { background-color: #cc0029; }
 
 
 	/* --- MAIN COLUMNS --- */
 	.footer-content {
 		display: grid;
-		grid-template-columns: 2fr 1fr 1fr 1fr;
+		grid-template-columns: 2fr 2fr 1fr 1fr; /* Made 2nd column wider to fit 2 sub-columns */
 		gap: 2rem;
 		max-width: 1200px;
 		margin: 0 auto 3rem auto;
 	}
 
-	/* Brand Column */
-	.footer-logo {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		margin-bottom: 1rem;
-	}
-	.logo-box {
-		background-color: #ff0033;
-		color: white;
-		font-weight: 900;
-		font-size: 1.2rem;
-		width: 32px;
-		height: 32px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 2px;
-	}
-	.logo-text {
-		color: var(--footer-heading); /* White logo text */
-		font-weight: 800;
-		font-size: 1.2rem;
-		text-transform: uppercase;
-	}
-	.brand-desc {
-		font-size: 0.9rem;
-		line-height: 1.5;
-		margin-bottom: 1.5rem;
-		max-width: 300px;
-	}
+	/* Brand & Social */
+	.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+	.logo-box { background-color: #ff0033; color: white; font-weight: 900; font-size: 1.2rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+	.logo-text { color: var(--footer-heading); font-weight: 800; font-size: 1.2rem; text-transform: uppercase; }
+	.brand-desc { font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem; max-width: 300px; }
 	
-	/* SOCIAL ICONS FIX */
-	.social-links {
-		display: flex;
-		gap: 1rem;
-	}
-	.social-links a {
-		color: var(--footer-text); /* Grey default color */
-		transition: color 0.2s;
-		display: flex;
-		align-items: center;
-		text-decoration: none; /* No underline */
-	}
-	/* FIXED SIZE FOR ICONS */
-	.social-links svg {
-		width: 24px;
-		height: 24px;
-	}
-	.social-links a:hover { color: var(--footer-heading); /* White on hover */ }
+	.social-links { display: flex; gap: 1rem; }
+	.social-links a { color: var(--footer-text); transition: color 0.2s; display: flex; align-items: center; text-decoration: none; }
+	.social-links svg { width: 24px; height: 24px; }
+	.social-links a:hover { color: var(--footer-heading); }
 
-
-	/* Link Columns */
+	/* --- HEADERS & LINKS --- */
 	.footer-col h4 {
-		color: var(--footer-text); /* Grey headers */
+		color: var(--footer-text);
 		font-size: 0.85rem;
 		text-transform: uppercase;
 		letter-spacing: 1px;
@@ -227,60 +156,34 @@ const today = new Date();
 		font-weight: bold;
 	}
 
-	.footer-col ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
+	.footer-col ul { list-style: none; padding: 0; margin: 0; }
 	.footer-col ul li { margin-bottom: 0.8rem; }
-
-	.footer-col ul li a {
-		color: var(--footer-heading); /* White links */
-		text-decoration: none; /* NO RED UNDERLINE */
-		font-size: 0.95rem;
-		transition: color 0.2s;
-	}
+	.footer-col ul li a { color: var(--footer-heading); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
 	.footer-col ul li a:hover { color: #ff0033; }
 
+	/* --- NEW: 2-COLUMN CATEGORY LIST --- */
+	.category-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr; /* Split into 2 columns */
+		gap: 0 20px; /* Horizontal space between columns */
+	}
 
 	/* --- BOTTOM BAR --- */
 	.footer-bottom {
-		max-width: 1200px;
-		margin: auto;
-		padding-top: 2rem;
-		border-top: 1px solid var(--border-color);
-		display: flex;
-		justify-content: space-between;
-		font-size: 0.85rem;
+		max-width: 1200px; margin: auto; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 0.85rem;
 	}
-	
 	.disclaimer { font-style: italic; opacity: 0.8; }
 
-	/* --- MOBILE RESPONSIVE --- */
+	/* --- MOBILE --- */
 	@media (max-width: 900px) {
-		.footer-content {
-			grid-template-columns: 1fr;
-			gap: 3rem;
-			text-align: center;
-		}
-		.footer-logo, .social-links, .brand-desc {
-			justify-content: center;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		.footer-bottom {
-			flex-direction: column;
-			gap: 1rem;
-			text-align: center;
-		}
-		.newsletter-form {
-			flex-direction: column;
-		}
-		.newsletter-form input {
-			width: 100%;
-			box-sizing: border-box;
-		}
+		.footer-content { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+		.footer-logo, .social-links, .brand-desc { justify-content: center; margin-left: auto; margin-right: auto; }
+		.footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+		.newsletter-form { flex-direction: column; }
+		.newsletter-form input { width: 100%; box-sizing: border-box; }
 		.newsletter-form button { width: 100%; }
+		
+		/* Keep categories as 2 columns on mobile for better space usage, or centered */
+		.category-grid { text-align: left; max-width: 300px; margin: 0 auto; }
 	}
 </style>
