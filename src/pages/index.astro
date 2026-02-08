@@ -10,6 +10,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// --- DICTIONARY: Translates computer tags to Albanian names ---
+const tagNames = {
+    'politike': 'Politikë',
+    'ekonomi': 'Ekonomi',
+    'showbiz': 'Showbiz',
+    'aktualitet': 'Aktualitet',
+    'sport': 'Sport',
+    'kulture': 'Kulturë',
+    'teknologji': 'Teknologji'
+};
 ---
 
 <!doctype html>
@@ -26,7 +37,7 @@ const posts = (await getCollection('blog')).sort(
 				background-color: #343a46;
 				color: white;
 				display: grid;
-				grid-template-columns: 1fr 1fr; /* Split 50/50 on Desktop */
+				grid-template-columns: 1fr 1fr;
 				align-items: center;
 				min-height: 500px;
 				overflow: hidden;
@@ -37,7 +48,7 @@ const posts = (await getCollection('blog')).sort(
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				z-index: 10; /* Ensures text sits above image fade if they overlap */
+				z-index: 10;
 			}
 			.tag {
 				background-color: #ff0033;
@@ -51,12 +62,12 @@ const posts = (await getCollection('blog')).sort(
 				border-radius: 2px;
 			}
 			.hero-title {
-    color: #ffffff !important; /* Forces the text to be White */
-    font-size: 4.5rem;
-    font-weight: 900;
-    line-height: 0.9;
-    margin: 0 0 1.5rem 0;
-    text-transform: uppercase;
+				color: #ffffff !important; /* Force White */
+				font-size: 4.5rem;
+				font-weight: 900;
+				line-height: 0.9;
+				margin: 0 0 1.5rem 0;
+				text-transform: uppercase;
 			}
 			.hero-title span { color: #8890a0; }
 			.hero-desc {
@@ -91,18 +102,17 @@ const posts = (await getCollection('blog')).sort(
 			.btn-outline { background-color: transparent; color: white; border: 2px solid #565e6d; }
 			.btn-outline:hover { border-color: white; }
 
-			/* HERO IMAGE (Desktop Default) */
+			/* HERO IMAGE */
 			.hero-image-container { 
 				height: 100%; 
 				width: 100%; 
 				position: relative; 
-				min-height: 500px; /* Ensures it's tall enough */
+				min-height: 500px;
 			}
 			.hero-image-container img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
-				/* Desktop Fade: Left to Right */
 				mask-image: linear-gradient(to right, transparent, black 20%);
 				-webkit-mask-image: linear-gradient(to right, transparent, black 20%);
 			}
@@ -139,11 +149,24 @@ const posts = (await getCollection('blog')).sort(
 			
 			.card-image { position: relative; height: 200px; width: 100%; background: #f3f4f6; }
 			.card-image img { width: 100%; height: 100%; object-fit: cover; }
-			.card-category {
-				position: absolute; top: 15px; left: 15px; background-color: #ff0033; color: white;
-				padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
-				border-radius: 2px; z-index: 10;
+			
+			/* --- NEW TAG STYLES --- */
+			.tags-container {
+				position: absolute; 
+				top: 15px; 
+				left: 15px; 
+				z-index: 10;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 5px;
 			}
+			.card-category {
+				background-color: #ff0033;
+				color: white;
+				padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
+				border-radius: 2px;
+			}
+
 			.card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
 			
 			/* META ICONS */
@@ -162,45 +185,18 @@ const posts = (await getCollection('blog')).sort(
 			}
 			.read-more span { color: #ff0033; font-size: 1.2em; }
 
-			/* --- MOBILE RESPONSIVE FIXES --- */
+			/* --- MOBILE RESPONSIVE --- */
 			@media (max-width: 900px) {
-				/* 1. Stack Content: Image on TOP, Text on BOTTOM */
-				.hero-section { 
-					display: flex; 
-					flex-direction: column-reverse; /* Reverses HTML order (Text, Image) -> (Image, Text) */
-					text-align: center;
-				}
-
-				/* 2. Show Image and Resize It */
-				.hero-image-container { 
-					display: block; /* Make sure it's visible */
-					width: 100%;
-					height: 300px; /* Fixed height for mobile */
-					min-height: auto;
-				}
-
-				/* 3. Change Fade Direction for Mobile */
+				.hero-section { display: flex; flex-direction: column-reverse; text-align: center; }
+				.hero-image-container { display: block; width: 100%; height: 300px; min-height: auto; }
 				.hero-image-container img {
-					/* Fade from Bottom (transparent) to Top (black) */
 					mask-image: linear-gradient(to top, transparent, black 20%);
 					-webkit-mask-image: linear-gradient(to top, transparent, black 20%);
 				}
-
-				/* Text Adjustments */
 				.hero-content { padding: 3rem 1.5rem; }
 				.hero-title { font-size: 3rem; }
-				
-				/* Buttons */
-				.hero-buttons {
-					flex-direction: column; 
-					width: 100%;
-				}
-				.btn {
-					width: 100%;
-					padding: 10px 15px; 
-					font-size: 0.9rem;
-				}
-
+				.hero-buttons { flex-direction: column; width: 100%; }
+				.btn { width: 100%; padding: 10px 15px; font-size: 0.9rem; }
 				.news-grid { grid-template-columns: 1fr; }
 			}
 		</style>
@@ -216,13 +212,13 @@ const posts = (await getCollection('blog')).sort(
 					<span>TE RRENA</span>
 				</h1>
 				<p class="hero-desc">
-					Gazetaria investigative që gërmon aty ku nuk ka asgjë për të gjetur.
+					Gazetaria investigative që gërmon <span style="color: #ff0033;">aty ku nuk ka asgjë</span> për të gjetur.
 				</p>
 				<div class="hero-quote">
 					"Nëse është e vërtetë, ndoshta nuk e keni lexuar tek ne."
 				</div>
 				<div class="hero-buttons">
-					<a href="#latest" class="btn btn-primary">DOKRRAT E FUNDIT</a>
+					<a href="#latest" class="btn btn-primary">DOKR RAT E FUNDIT</a>
 					<a href="/about" class="btn btn-outline">RRETH NESH</a>
 				</div>
 			</div>
@@ -245,9 +241,19 @@ const posts = (await getCollection('blog')).sort(
 					<article class="news-card">
 						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
 							<div class="card-image">
-								<span class="card-category">
-									{post.id.includes('/') ? post.id.split('/')[0] : 'LAJME'}
-								</span>
+								
+								<div class="tags-container">
+									{post.data.tags && post.data.tags.length > 0 ? (
+										post.data.tags.map((t) => (
+											<span class="card-category">
+												{tagNames[t] || t}
+											</span>
+										))
+									) : (
+										<span class="card-category">LAJME</span>
+									)}
+								</div>
+
 								{post.data.heroImage ? (
 									<Image width={400} height={250} src={post.data.heroImage} alt="" />
 								) : (
