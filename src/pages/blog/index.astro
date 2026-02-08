@@ -147,7 +147,15 @@ const tagNames = {
             <h1 class="page-title">Aktualitet</h1>
             
 			<section class="news-grid">
-				{posts.map((post) => (
+				{posts.map((post) => {
+                    // --- THE IMAGE SCANNER ---
+                    // 1. Look for ![image](url) inside the article text
+					const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
+					
+					// 2. Decide: Use Hero Image OR Body Image
+					const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
+
+                    return (
 					<article class="news-card">
 						<a href={`/blog/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
 							<div class="card-image">
@@ -164,8 +172,9 @@ const tagNames = {
 									)}
 								</div>
 
-								{post.data.heroImage ? (
-									<Image width={400} height={250} src={post.data.heroImage} alt="" />
+                                {/* 3. SHOW THE IMAGE */}
+								{imageSrc ? (
+									<img src={imageSrc} style="width:100%; height:100%; object-fit:cover;" alt="" />
 								) : (
 									<div style="background:#eee; width:100%; height:100%;"></div>
 								)}
@@ -185,7 +194,7 @@ const tagNames = {
 							</div>
 						</a>
 					</article>
-				))}
+				)})}
 			</section>
 		</main>
 		<Footer />
