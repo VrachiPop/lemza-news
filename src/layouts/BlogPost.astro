@@ -14,37 +14,49 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			/* --- 1. MAIN CONTAINER (Fixes text touching edges) --- */
-			main {
-				width: 100%;
-				max-width: 900px; /* Limits width so lines aren't too long to read */
-				margin: 0 auto;   /* Centers the article in the middle of screen */
-				padding: 2rem 1rem; /* Adds breathing room on Top/Sides */
+			/* --- 1. THE MAGIC FIX (Global Reset) --- */
+			/* This ensures 100% width actually means 100% of the screen */
+			*, *::before, *::after {
+				box-sizing: border-box;
 			}
 
-			/* --- 2. HERO IMAGE (Fixes the messy image) --- */
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				overflow-x: hidden; /* Prevents side-scrolling */
+			}
+
+			/* --- 2. MAIN CONTAINER --- */
+			main {
+				width: 100%;
+				max-width: 900px; 
+				margin: 0 auto;
+				/* This padding now sits INSIDE the width, so it won't overflow */
+				padding: 20px; 
+			}
+
+			/* --- 3. HERO IMAGE --- */
 			.hero-image {
 				width: 100%;
-				margin-bottom: 2rem; /* Space between image and title */
+				margin-bottom: 2rem;
 			}
 			
 			.hero-image img {
 				display: block;
 				margin: 0 auto;
-				border-radius: 8px; /* Nice rounded corners */
-				box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow */
+				border-radius: 8px;
+				box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 				
-				/* CRITICAL FIXES: */
-				width: 100%;      /* Force image to fill the width */
-				max-width: 100%;  /* Never overflow */
-				height: auto;     /* Keep correct shape (don't squash) */
+				/* Force image to fit perfectly */
+				width: 100%;      
+				height: auto;     
 				object-fit: cover;
 			}
 
-			/* --- 3. TYPOGRAPHY (Makes text look professional) --- */
+			/* --- 4. TEXT TYPOGRAPHY --- */
 			.prose {
 				width: 100%;
-				max-width: 100%;
 				line-height: 1.6;
 				color: #333;
 				font-size: 1.1rem;
@@ -68,8 +80,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				font-size: 0.9rem;
 			}
 
-			/* --- 4. IMAGES INSIDE TEXT --- */
-			/* This ensures images you paste into the article also look good */
+			/* --- 5. IMAGES INSIDE TEXT --- */
 			.prose :global(img) {
 				max-width: 100%;
 				height: auto;
@@ -78,10 +89,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: 20px auto;
 			}
 			
-			/* MOBILE TWEAKS */
+			/* --- 6. MOBILE SPECIFIC --- */
 			@media (max-width: 720px) {
-				main { padding: 1rem; } /* Smaller padding on phones */
-				.title h1 { font-size: 1.8rem; }
+				main { 
+					padding: 1rem; /* Aligns perfectly with the Header padding */
+				} 
+				.title h1 { 
+					font-size: 1.6rem; /* Slightly smaller title for phones */
+				}
+				.hero-image {
+					margin-bottom: 1rem;
+				}
 			}
 		</style>
 	</head>
@@ -92,7 +110,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				<div class="hero-image">
 					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 				</div>
-				
 				<div class="prose">
 					<div class="title">
 						<div class="date">
