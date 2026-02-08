@@ -18,7 +18,12 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
 			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
 			<HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
+			<HeaderLink href="/tags/sociale">SOCIALE</HeaderLink>
+			<HeaderLink href="/tags/kronike">KRONIKË</HeaderLink>
+			<HeaderLink href="/tags/sport">SPORT</HeaderLink>
+			<HeaderLink href="/tags/kulture">KULTURË</HeaderLink>
 			<HeaderLink href="/tags/showbiz">SHOWBIZ</HeaderLink>
+			<HeaderLink href="/tags/teknologji">TEKNO</HeaderLink>
 		</div>
 
 		<div class="right-actions">
@@ -37,7 +42,12 @@ import { SITE_TITLE } from '../consts';
 		<a href="/te-fundit">TË FUNDIT</a>
 		<a href="/tags/politike">POLITIKË</a>
 		<a href="/tags/ekonomi">EKONOMI</a>
+		<a href="/tags/sociale">SOCIALE</a>
+		<a href="/tags/kronike">KRONIKË</a>
+		<a href="/tags/sport">SPORT</a>
+		<a href="/tags/kulture">KULTURË</a>
 		<a href="/tags/showbiz">SHOWBIZ</a>
+		<a href="/tags/teknologji">TEKNOLOGJI</a>
 	</div>
 </header>
 
@@ -79,26 +89,32 @@ import { SITE_TITLE } from '../consts';
 	.brand-slogan { color: #9ca3af; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
 
 	/* --- DESKTOP LINKS (The Center Menu) --- */
-	.desktop-links { display: flex; gap: 1.5rem; height: 100%; align-items: center; }
+	.desktop-links { 
+		display: flex; 
+		gap: 1rem; /* Reduced gap to fit more items */
+		height: 100%; 
+		align-items: center; 
+	}
+	
 	.desktop-links :global(a) { 
 		color: #e5e7eb !important; 
 		text-decoration: none; 
 		font-weight: 700; 
-		font-size: 14px; 
+		font-size: 13px; /* Slightly smaller font to fit 10 items */
 		text-transform: uppercase; 
 		height: 100%;
 		display: flex;
 		align-items: center;
 		border-bottom: 4px solid transparent; 
+		white-space: nowrap; /* Prevents text from wrapping */
 	}
 	.desktop-links :global(a:hover), .desktop-links :global(a.active) { color: white !important; border-bottom-color: #ff0033; }
 
 	/* --- RIGHT ACTIONS --- */
 	.right-actions { display: flex; align-items: center; gap: 15px; }
 	
-	/* Hamburger Button: Clean, no background */
 	.mobile-menu-btn { 
-		display: none; /* Hidden on Desktop */
+		display: none; 
 		background: none; 
 		border: none; 
 		cursor: pointer; 
@@ -108,11 +124,11 @@ import { SITE_TITLE } from '../consts';
 
 	/* --- MOBILE MENU DROPDOWN --- */
 	.mobile-nav-links {
-		display: none; /* Hidden by default */
+		display: none; 
 		flex-direction: column;
-		background-color: #2d333f; /* Slightly lighter than header */
+		background-color: #2d333f;
 		position: absolute;
-		top: 100%; /* Push exactly below header */
+		top: 100%; 
 		left: 0;
 		right: 0;
 		padding: 0;
@@ -132,15 +148,11 @@ import { SITE_TITLE } from '../consts';
 	}
 	.mobile-nav-links a:hover { background-color: #3e4552; color: #ff0033; }
 
-	/* --- MOBILE BREAKPOINT (Phones) --- */
-	@media (max-width: 900px) {
-		/* 1. HIDE the desktop menu */
+	/* --- MOBILE BREAKPOINT --- */
+	/* Switched to 1100px because the menu is wide now */
+	@media (max-width: 1100px) {
 		.desktop-links { display: none !important; }
-		
-		/* 2. SHOW the hamburger */
 		.mobile-menu-btn { display: block; }
-
-		/* 3. Adjust logo text size if needed */
 		.brand-name { font-size: 16px; }
 	}
 </style>
