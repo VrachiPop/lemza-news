@@ -5,108 +5,143 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<a href="/" class="logo-container">
+			<div class="logo-box">L</div>
+			<div class="logo-text">
+				<span class="brand-name">LEMZA NEWS</span>
+				<span class="brand-slogan">TË PARËT TE RRENA</span>
+			</div>
+		</a>
 
 		<div class="internal-links">
-			<HeaderLink href="/">Kreu</HeaderLink>
-			<HeaderLink href="/aktualitet">TË FUNDIT</HeaderLink>
-			<HeaderLink href="/about">Rreth Nesh</HeaderLink>
+			<HeaderLink href="/">KREU</HeaderLink>
+			<HeaderLink href="/aktualitet">AKTUALITET</HeaderLink>
+			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
+			<HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
+			<HeaderLink href="/tags/showbiz">SHOWBIZ</HeaderLink>
 		</div>
 
-		<div class="social-links">
-			<a href="https://twitter.com/dhimotis" target="_blank">
-				<span class="sr-only">Follow dhimotis on Twitter</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" fill="currentColor">
-					<path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
-				</svg>
-			</a>
+		<div class="search-container">
+			<button id="search-btn" aria-label="Search">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+			</button>
 		</div>
 	</nav>
 </header>
 
 <style>
+	/* --- HEADER CONTAINER --- */
 	header {
 		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		padding: 0 2rem;
+		background: #343a46; /* The Dark Blue-Grey Background */
+		color: white;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	}
-	
+
 	nav {
 		display: flex;
 		align-items: center;
-		justify-content: space-between; /* Pushes items to Left, Center, Right */
-		padding: 1rem 0;
+		justify-content: space-between;
+		height: 80px; /* Fixed height for stability */
+		max-width: 1400px;
+		margin: 0 auto;
 	}
 
-	h2 {
-		margin: 0;
-		font-size: 1.5em;
-		font-weight: bold;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-		color: #111;
-	}
-
-	.internal-links {
-		display: flex;
-		gap: 1.5rem; /* Space between menu items */
-	}
-	
-	/* Style for the links */
-	.internal-links :global(a) {
-		text-decoration: none;
-		color: #333;
-		font-weight: 500;
-		text-transform: uppercase;
-		font-size: 0.9rem;
-		padding: 5px 0;
-		border-bottom: 3px solid transparent;
-	}
-	
-	.internal-links :global(a.active) {
-		border-bottom-color: #ff0033; /* Red underline for active page */
-		font-weight: bold;
-	}
-
-	.social-links {
-		display: flex;
-	}
-	
-	.social-links a {
-		color: #333;
+	/* --- LOGO STYLES --- */
+	.logo-container {
 		display: flex;
 		align-items: center;
 		text-decoration: none;
+		gap: 12px;
 	}
-	
-	.social-links a:hover {
+
+	.logo-box {
+		background-color: #ff0033; /* The Red Box */
+		color: white;
+		font-size: 2rem;
+		font-weight: 900;
+		width: 45px;
+		height: 45px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 2px;
+	}
+
+	.logo-text {
+		display: flex;
+		flex-direction: column;
+		line-height: 1;
+	}
+
+	.brand-name {
+		color: white;
+		font-weight: 900;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+		letter-spacing: -0.5px;
+	}
+
+	.brand-slogan {
+		color: #8890a0;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-top: 2px;
+	}
+
+	/* --- MENU LINKS --- */
+	.internal-links {
+		display: flex;
+		gap: 2rem;
+	}
+
+	/* Target the links inside HeaderLink component */
+	.internal-links :global(a) {
+		color: #d1d5db; /* Light gray text */
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 0.95rem;
+		text-transform: uppercase;
+		padding: 5px 0;
+		border-bottom: 3px solid transparent;
+		transition: color 0.2s;
+	}
+
+	.internal-links :global(a:hover) {
+		color: white;
+	}
+
+	.internal-links :global(a.active) {
+		color: white;
+		border-bottom-color: #ff0033; /* Red underline */
+	}
+
+	/* --- SEARCH ICON --- */
+	.search-container button {
+		background: none;
+		border: none;
+		color: white;
+		cursor: pointer;
+		padding: 5px;
+	}
+	.search-container button:hover {
 		color: #ff0033;
 	}
 
-	/* CRITICAL FIX: Hides the text visually but keeps it for screen readers */
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border-width: 0;
-	}
-
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
-		nav {
-			flex-direction: column;
+	/* --- MOBILE --- */
+	@media (max-width: 900px) {
+		header { padding: 0 1rem; }
+		nav { height: auto; padding: 1rem 0; flex-wrap: wrap; }
+		.internal-links { 
+			order: 3; 
+			width: 100%; 
+			justify-content: center; 
+			margin-top: 1rem; 
 			gap: 1rem;
+			font-size: 0.8rem;
 		}
+		.logo-text { display: none; } /* Hide text on small screens to save space */
 	}
 </style>
