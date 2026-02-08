@@ -7,177 +7,53 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 
-// Get all posts and sort them by date (newest first)
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// --- DICTIONARY ---
-const tagNames = {
-    'politike': 'Politikë',
-    'ekonomi': 'Ekonomi',
-    'showbiz': 'Showbiz',
-    'aktualitet': 'Aktualitet',
-    'sport': 'Sport',
-    'kulture': 'Kulturë',
-    'teknologji': 'Teknologji'
-};
+const tagNames = { 'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz', 'sport': 'Sport', 'kulture': 'Kulturë', 'teknologji': 'Teknologji' };
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Aktualitet - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Të Fundit - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
-			/* --- GRID STYLES --- */
-			main {
-				width: 1200px;
-				max-width: 95%;
-				margin: 0 auto;
-				padding: 3rem 1rem;
-			}
-            
-            .page-title {
-                font-size: 2.5rem;
-                font-weight: 800;
-                margin-bottom: 2rem;
-                text-transform: uppercase;
-                border-bottom: 2px solid #ff0033;
-                display: inline-block;
-                padding-bottom: 5px;
-                color: #343a46;
-            }
-
-			.news-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 2rem;
-			}
-
-            /* Card Styles */
-			.news-card {
-				background: white;
-				border: 1px solid #e5e7eb;
-				border-radius: 8px;
-				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-				transition: transform 0.2s, box-shadow 0.2s;
-				text-decoration: none;
-				color: inherit;
-				position: relative;
-			}
-			.news-card:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-			}
-
-			.card-image {
-				position: relative;
-				height: 200px;
-				width: 100%;
-				background: #f3f4f6;
-			}
-			.card-image img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-			
-			/* TAGS CONTAINER */
-			.tags-container {
-				position: absolute; 
-				top: 15px; 
-				left: 15px; 
-				z-index: 10;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 5px;
-			}
-
-			/* Individual Tag Button */
-			.card-category {
-				background-color: #ff0033; 
-				color: white;
-				padding: 4px 10px; 
-				font-size: 0.7rem; 
-				font-weight: bold; 
-				text-transform: uppercase;
-				border-radius: 2px;
-			}
-
-			.card-content {
-				padding: 1.5rem;
-				display: flex;
-				flex-direction: column;
-				flex-grow: 1;
-			}
-
-			.card-title {
-				font-size: 1.25rem;
-				font-weight: 800;
-				color: #111827;
-				margin: 0 0 0.75rem 0;
-				line-height: 1.3;
-			}
-
-            .card-meta {
-                font-size: 0.8rem;
-                color: #666;
-                margin-bottom: 1rem;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            }
-            
+			main { width: 1200px; max-width: 95%; margin: 0 auto; padding: 3rem 1rem; }
+            .page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; border-bottom: 2px solid #ff0033; display: inline-block; padding-bottom: 5px; color: #343a46; }
+			.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+			.news-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; position: relative; }
+			.news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+			.card-image { position: relative; height: 200px; width: 100%; background: #f3f4f6; }
+			.tags-container { position: absolute; top: 15px; left: 15px; z-index: 10; display: flex; flex-wrap: wrap; gap: 5px; }
+			.card-category { background-color: #ff0033; color: white; padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; border-radius: 2px; }
+			.card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+			.card-title { font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.75rem 0; line-height: 1.3; }
+            .card-meta { font-size: 0.8rem; color: #666; margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
             .meta-icon { width: 16px; height: 16px; min-width: 16px; opacity: 0.7; }
-			
-			.read-more {
-				margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800;
-				font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px;
-			}
+			.read-more { margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
 			.read-more span { color: #ff0033; font-size: 1.2em; }
-
 			@media (max-width: 900px) { .news-grid { grid-template-columns: 1fr; } }
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-            <h1 class="page-title">Aktualitet</h1>
-            
+            <h1 class="page-title">TË FUNDIT</h1>
 			<section class="news-grid">
 				{posts.map((post) => {
-                    // --- THE IMAGE SCANNER ---
-                    // 1. Look for ![image](url) inside the article text
 					const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
-					
-					// 2. Decide: Use Hero Image OR Body Image
 					const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
-
                     return (
 					<article class="news-card">
-						<a href={`/te-fundit/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
+                        <a href={`/te-fundit/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
 							<div class="card-image">
-								
 								<div class="tags-container">
 									{post.data.tags && post.data.tags.length > 0 ? (
-										post.data.tags.map((t) => (
-											<span class="card-category">
-												{tagNames[t] || t}
-											</span>
-										))
-									) : (
-										<span class="card-category">LAJME</span>
-									)}
+										post.data.tags.map((t) => <span class="card-category">{tagNames[t] || t}</span>)
+									) : (<span class="card-category">LAJME</span>)}
 								</div>
-
-                                {/* 3. SHOW THE IMAGE */}
-								{imageSrc ? (
-									<img src={imageSrc} style="width:100%; height:100%; object-fit:cover;" alt="" />
-								) : (
-									<div style="background:#eee; width:100%; height:100%;"></div>
-								)}
+								{imageSrc ? (<img src={imageSrc} style="width:100%; height:100%; object-fit:cover;" alt="" />) : (<div style="background:#eee; width:100%; height:100%;"></div>)}
 							</div>
 							<div class="card-content">
                                 <div class="card-meta">
@@ -185,12 +61,8 @@ const tagNames = {
                                     <FormattedDate date={post.data.pubDate} />
                                 </div>
 								<h3 class="card-title">{post.data.title}</h3>
-                                <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 1.5rem;">
-                                    {post.data.description}
-                                </p>
-								<div class="read-more">
-									LEXO MË SHUMË <span>&rarr;</span>
-								</div>
+                                <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 1.5rem;">{post.data.description}</p>
+								<div class="read-more">LEXO MË SHUMË <span>&rarr;</span></div>
 							</div>
 						</a>
 					</article>
