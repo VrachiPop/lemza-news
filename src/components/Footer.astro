@@ -174,16 +174,59 @@ const today = new Date();
 	}
 	.disclaimer { font-style: italic; opacity: 0.8; }
 
-	/* --- MOBILE --- */
+/* --- MOBILE RESPONSIVE --- */
 	@media (max-width: 900px) {
-		.footer-content { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-		.footer-logo, .social-links, .brand-desc { justify-content: center; margin-left: auto; margin-right: auto; }
-		.footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-		.newsletter-form { flex-direction: column; }
-		.newsletter-form input { width: 100%; box-sizing: border-box; }
+		.footer-content {
+			/* 1. Create a 2-column grid for mobile */
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem 1rem; /* 2rem vertical gap, 1rem horizontal gap */
+			text-align: left; /* NEATER: Left align text so lists look clean */
+		}
+
+		/* 2. Brand Section: Force it to be Full Width (Span 2 columns) */
+		.brand-col {
+			grid-column: 1 / -1; /* Spans from start to end */
+			text-align: center;  /* Keep logo centered */
+			border-bottom: 1px solid rgba(255,255,255,0.1); /* Nice divider */
+			padding-bottom: 2rem;
+			margin-bottom: 1rem;
+		}
+		/* Ensure internal flex items in brand are centered */
+		.footer-logo, .social-links, .brand-desc {
+			justify-content: center;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		/* 3. Categories: Force it to be Full Width */
+		.wide-col {
+			grid-column: 1 / -1; /* Spans full width */
+		}
+		
+		/* 4. Kompania & Ligjore:
+		   They are NOT mentioned here, so they naturally fall into 
+		   the 1fr 1fr grid (Side-by-Side), which is exactly what you want. */
+
+		/* 5. General Cleanup */
+		.footer-bottom {
+			flex-direction: column;
+			gap: 1rem;
+			text-align: center;
+		}
+		.newsletter-form {
+			flex-direction: column;
+		}
+		.newsletter-form input {
+			width: 100%;
+			box-sizing: border-box;
+		}
 		.newsletter-form button { width: 100%; }
 		
-		/* Keep categories as 2 columns on mobile for better space usage, or centered */
-		.category-grid { text-align: left; max-width: 300px; margin: 0 auto; }
+		/* Remove the centering constraint from before */
+		.category-grid { 
+			text-align: left; 
+			max-width: none; 
+			margin: 0;
+		}
 	}
 </style>
