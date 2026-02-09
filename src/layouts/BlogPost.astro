@@ -29,14 +29,16 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			/* --- 2. MAIN CONTAINER --- */
 			main {
 				width: 100%;
-				max-width: 900px; 
+				max-width: 900px;
 				margin: 0 auto;
-				padding: 20px; 
+				padding: 20px;
 			}
 
 			/* --- 3. HERO IMAGE --- */
 			.hero-image {
 				width: 100%;
+				/* Adjusted margins to look good under the title */
+				margin-top: 1rem;
 				margin-bottom: 2rem;
 			}
 			
@@ -45,8 +47,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: 0 auto;
 				border-radius: 8px;
 				box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-				width: 100%;      
-				height: auto;     
+				width: 100%;
+				height: auto;
 				object-fit: cover;
 			}
 
@@ -57,16 +59,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				color: #333;
 				font-size: 1.1rem;
 				
-				/* --- THE NEW CHANGES --- */
 				text-align: justify; /* Aligns text to both Left and Right */
 				hyphens: auto;       /* Breaks long words to prevent gaps */
 			}
 			
 			/* Keep titles centered or left, don't justify them */
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center; 
+				margin-bottom: 0.5em; /* Reduced bottom margin since image is next */
+				padding: 1em 0 0.5em 0;
+				text-align: center;
 				border-bottom: 1px solid #ddd;
 			}
 			.title h1 {
@@ -92,14 +93,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			
 			/* --- 6. MOBILE SPECIFIC --- */
 			@media (max-width: 720px) {
-				main { 
-					padding: 1rem; 
-				} 
-				.title h1 { 
-					font-size: 1.6rem; 
+				main {
+					padding: 1rem;
 				}
-				/* On very small screens, sometimes justify looks bad, 
-				   but 'hyphens: auto' usually saves it. */
+				.title h1 {
+					font-size: 1.6rem;
+				}
 			}
 		</style>
 	</head>
@@ -107,10 +106,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
 				<div class="prose">
+					
 					<div class="title">
 						<div class="date">
 							<FormattedDate date={pubDate} />
@@ -120,7 +117,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						</div>
 						<h1>{title}</h1>
 					</div>
+
+					<div class="hero-image">
+						{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+					</div>
+
 					<slot />
+					
 				</div>
 			</article>
 		</main>
