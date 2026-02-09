@@ -3,9 +3,8 @@ title: 'Gjuhëtari kapet në shtrat me të ëmën e Zeqos'
 description: 'TIRANË – Një skandal seksual ka tronditur botën akademike këtë të martë, pasi një nga gjuhëtarët më të respektuar të vendit...'
 pubDate: '2026-02-08'
 tags: ['kulture', 'showbiz']
+heroImage: "/images/zeqo.png"
 ---
-
-![Description of the image](/images/zeqo.png)
 
 **TIRANË** – Një skandal seksual ka tronditur botën akademike këtë të martë, pasi një nga gjuhëtarët më të respektuar të vendit, prof. dr. Pirro Ypi, u kap nga bashkëshortja në shtrat me të ëmën e Zeqos*.*
 
