@@ -3,9 +3,8 @@ title: 'Kineasti ngulmon se filmi që po xhiron më dramatik se jeta e vet'
 description: 'TIRANË - Edhe pse me katër produksione filmike e dhjetëra projekte televizive mbi supe, për kineastin...'
 pubDate: '2026-01-08'
 tags: ['kulture']
+heroImage: "/images/kineasti-ngulmon.jpeg"
 ---
-
-![Description of the image](/images/kineasti-ngulmon.jpeg)
 
 **TIRANË** - Edhe pse me katër produksione filmike e dhjetëra projekte televizive mbi supe, për kineastin Lukas Vercalli tortura duket se nuk ka fund, sidomos gjatë xhirimeve të filmit të tij të fundit.
 
