@@ -3,35 +3,158 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="Rreth nesh"
+	title="Rreth Nesh"
 	description="Të parët te rrena"
 	pubDate={new Date('January 01 2024')}
+    heroImage="/about-hero.jpg" 
 >
-	<p>
-		Mirëseerdhët në Lemza News ku do të zbuloni ndodhitë që nuk kanë ndodhur kurrë, rrëfimet e stisura të personazheve imagjinarë, apo raportimet e rreme dhe pa interes nga çdo qoshe e vendit.
+    <style>
+        .lead {
+            font-size: 1.3rem;
+            text-align: center;
+            color: #555;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
 
+        /* Two Column Grid for Mission/Standards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            transition: transform 0.2s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #ff0033;
+        }
+
+        h3 {
+            color: #111;
+            border-bottom: 3px solid #ff0033;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Fake Stats Section */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ff0033;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: #111;
+            color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .contact-box p {
+            color: #ccc;
+        }
+
+        /* Disclaimer Styling */
+        .disclaimer-alert {
+            background-color: #fff5f5;
+            border-left: 5px solid #ff0033;
+            padding: 1.5rem;
+            border-radius: 4px;
+            color: #c53030;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
+        .disclaimer-alert strong {
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #9b2c2c;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-row { flex-direction: column; gap: 2rem; }
+        }
+    </style>
+
+    <p class="lead">
+		Mirëseerdhët në <strong>Lemza News</strong>, ku do të zbuloni ndodhitë që nuk kanë ndodhur kurrë, rrëfimet e stisura të personazheve imagjinarë, dhe raportimet më të rreme nga çdo qoshe e vendit.
 	</p>
 
-	<h3>Misioni ynë</h3>
-	<p>
-		Misioni ynë është i thjeshtë: të raportojmë për ngjarje që nuk kanë ndodhur kurrë, të citojmë njerëz që nuk i kanë thënë kurrë këto gjëra dhe të publikojmë statistika që i kemi shpikur pesë minuta më parë.
-	</p>
+    <div class="stats-row">
+        <div>
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Gënjeshtra</span>
+        </div>
+        <div>
+            <span class="stat-number">0</span>
+            <span class="stat-label">Fakte të Verifikuara</span>
+        </div>
+        <div>
+            <span class="stat-number">12k</span>
+            <span class="stat-label">Paditë në Gjykatë</span>
+        </div>
+    </div>
 
-	<h3>Standardet Editoriale</h3>
-	<p>
-		Në Lemza News, ne ruajmë standardet më të larta të gazetarisë fiktive. Çdo histori është hartuar me kujdes për të shkaktuar kontraksione të pavullnetshme të muskulit të diafragmës.
-	</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Misioni Ynë</h3>
+            <p>
+                Misioni ynë është i thjeshtë: të raportojmë për ngjarje që nuk kanë ndodhur kurrë, të citojmë njerëz që nuk i kanë thënë kurrë këto gjëra dhe të publikojmë statistika që i kemi shpikur pesë minuta më parë në banjë.
+            </p>
+        </div>
 
-	<h3>Kontakt</h3>
-	<p>
-		Nëse besoni diçka që lexoni në këtë faqe interneti, ju lutemi kërkoni ndihmë menjëherë. Nëse dëshironi të paraqisni një ide për një histori, nëse keni ndonjë këshillë ose ankesë, ju lutemi shkruajeni atë në një copë letër dhe hidheni direkt në plehra. Kjo do i kursejë kohë të dyja palëve.
-	</p>
+        <div class="feature-card">
+            <h3>Standardet</h3>
+            <p>
+                Në Lemza News, ne ruajmë standardet më të larta të gazetarisë fiktive. Çdo histori është hartuar me kujdes maksimal për të shkaktuar kontraksione të pavullnetshme të muskulit të diafragmës (të qeshura).
+            </p>
+        </div>
+    </div>
 
-  <div class="disclaimer-alert">
-                    <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
-                    <p style="color: #c53030; margin: 0;">
-                        Lemza News është një botim satirik i lajmeve në internet. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.
-                    </p>
-                </div>
-	</p>
+    <div class="contact-box">
+        <h3 style="color: white; border-color: white;">Kontakt</h3>
+        <p>
+            Nëse besoni diçka që lexoni në këtë faqe, ju lutemi kërkoni ndihmë mjekësore menjëherë. 
+            <br><br>
+            Keni ankesa? Shkruajini në një copë letër, paloseni mirë dhe hidheni direkt në plehra. Kjo do i kursejë kohë të dyja palëve.
+        </p>
+    </div>
+
+    <div class="disclaimer-alert">
+        <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
+        <p style="margin: 0;">
+            Lemza News është një botim satirik. Artikujt janë pjellë e imagjinatës ose parodi. Emrat e përdorur, përveç figurave publike që janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë është krejtësisht e rastësishme.
+        </p>
+    </div>
+
 </Layout>
