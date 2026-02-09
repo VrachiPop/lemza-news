@@ -6,9 +6,18 @@ const today = new Date();
 	<div class="newsletter-section">
 		<h2>Mos humbisni asnjë gënjeshtër</h2>
 		<p>Abonohuni në buletinin tonë dhe merrni lajmet më të fundit direkt në inbox-in tuaj. Premtojmë që nuk do t'ju dërgojmë spam (shpesh).</p>
-		<form class="newsletter-form" onsubmit="event.preventDefault();">
-			<input type="email" placeholder="Vendosni email-in tuaj" required />
-			<button type="submit">ABONOHU</button>
+		<form 
+          class="newsletter-form" 
+          action="https://formspree.io/f/YOUR_FORM_ID_HERE" 
+          method="POST"
+>
+    <input 
+        type="email" 
+        name="email" 
+        placeholder="Vendosni email-in tuaj" 
+        required 
+    />
+    <button type="submit">ABONOHU</button>
 		</form>
 	</div>
 
