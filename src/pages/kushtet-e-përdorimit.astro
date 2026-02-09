@@ -1,0 +1,156 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="sq">
+	<head>
+		<BaseHead title="Kushtet e Përdorimit dhe Privatësia | Lemza News" description="Informacion ligjor, politika e privatësisë dhe kushtet e përdorimit për Lemza News." />
+		<style>
+            /* GLOBAL STYLES */
+			* { box-sizing: border-box; }
+			body { 
+                margin: 0; 
+                padding: 0; 
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+                background-color: #f9fafb;
+                color: #333;
+                line-height: 1.6;
+            }
+
+			main {
+				width: 800px;
+				max-width: 95%;
+				margin: 0 auto;
+				padding: 3rem 1rem;
+			}
+
+            /* TYPOGRAPHY */
+            h1 {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 2rem;
+                color: #111827;
+                border-bottom: 4px solid #ff0033;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+                color: #374151;
+                font-weight: 700;
+                text-transform: uppercase;
+                border-left: 4px solid #ff0033;
+                padding-left: 15px;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+                margin-top: 1.5rem;
+                color: #4b5563;
+                font-weight: bold;
+            }
+
+            p, li {
+                color: #4b5563;
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                text-align: justify;
+            }
+
+            ul {
+                margin-bottom: 1.5rem;
+                padding-left: 20px;
+            }
+
+            .legal-box {
+                background: white;
+                padding: 2.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                border: 1px solid #e5e7eb;
+            }
+
+            /* DISCLAIMER BOX */
+            .disclaimer-alert {
+                background-color: #fff5f5;
+                border: 1px solid #feb2b2;
+                padding: 1.5rem;
+                border-radius: 6px;
+                margin-bottom: 2rem;
+                color: #c53030;
+            }
+            .disclaimer-alert strong {
+                display: block;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+            }
+
+            a { color: #ff0033; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+            <div class="legal-box">
+                <h1>Kushtet dhe Privatësia</h1>
+                <p>Data e hyrjes në fuqi: <strong>Shkurt 2026</strong></p>
+
+                <p>Mirësevini në <strong>Lemza News</strong>. Duke hyrë dhe përdorur këtë faqe interneti, ju pranoni të respektoni kushtet e mëposhtme të përdorimit dhe politikën tonë të privatësisë. Nëse nuk jeni dakord me ndonjë pjesë të këtyre kushteve, ju lutemi të mos përdorni faqen tonë.</p>
+
+                <div class="disclaimer-alert">
+                    <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
+                    <p style="color: #c53030; margin: 0;">
+                        Lemza News është një botim satirik i lajmeve në internet. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.
+                    </p>
+                </div>
+
+                <h2>1. Politika e Privatësisë</h2>
+                <p>Privatësia juaj është e rëndësishme për ne. Kjo pjesë shpjegon se si ne mbledhim, përdorim dhe mbrojmë informacionin tuaj.</p>
+
+                <h3>Të dhënat që mbledhim (Log Files)</h3>
+                <p>Si shumë faqe të tjera, Lemza News përdor skedarë log. Informacioni brenda skedarëve log përfshin adresat e protokollit të internetit (IP), llojin e shfletuesit (browser), Ofruesin e Shërbimit të Internetit (ISP), vulën e datës/kohës, faqet e referimit/daljes dhe numrin e klikimeve. Ky informacion përdoret për të analizuar trendet, administruar faqen dhe për të mbledhur informacione demografike. Adresat IP dhe informacione të tjera të tilla nuk janë të lidhura me ndonjë informacion që është personalisht i identifikueshëm.</p>
+
+                <h3>Cookies dhe Web Beacons</h3>
+                <p>Lemza News përdor "cookies" për të ruajtur informacione në lidhje me preferencat e vizitorëve dhe për të regjistruar informacione specifike për përdoruesin në lidhje me faqet që vizitori akseson. Kjo bëhet për të përmirësuar përvojën e përdoruesit.</p>
+
+                <h3>Palët e Treta (Google AdSense & Analytics)</h3>
+                <p>Ne mund të përdorim kompani reklamimi të palëve të treta (si Google AdSense) për të shërbyer reklama kur vizitoni faqen tonë të internetit. Këto kompani mund të përdorin informacione (duke mos përfshirë emrin, adresën, adresën e emailit ose numrin e telefonit) në lidhje me vizitat tuaja në këtë dhe faqe të tjera në mënyrë që të ofrojnë reklama për mallra dhe shërbime me interes për ju.</p>
+                <ul>
+                    <li>Google, si një shitës i palës së tretë, përdor cookies për të shërbyer reklama në Lemza News.</li>
+                    <li>Përdorimi i cookie-t DART nga Google i mundëson asaj t'u shërbejë reklama përdoruesve bazuar në vizitën e tyre në Lemza News dhe faqe të tjera në internet.</li>
+                    <li>Përdoruesit mund të heqin dorë nga përdorimi i cookie-t DART duke vizituar politikën e privatësisë së rrjetit të reklamave dhe përmbajtjes së Google.</li>
+                </ul>
+
+                <h2>2. Pronësia Intelektuale</h2>
+                <p>Përveç rasteve kur shprehet ndryshe, Lemza News dhe/ose licencuesit e saj zotërojnë të drejtat e pronësisë intelektuale për të gjithë materialin në këtë faqe. Të gjitha të drejtat e pronësisë intelektuale janë të rezervuara. Ju mund ta aksesoni këtë nga Lemza News për përdorimin tuaj personal, duke iu nënshtruar kufizimeve të vendosura në këto kushte.</p>
+                <p>Ju nuk duhet të:</p>
+                <ul>
+                    <li>Ribotoni materiale nga Lemza News pa lejen tonë.</li>
+                    <li>Shisni, jepni me qira ose nën-licenconi materiale nga Lemza News.</li>
+                    <li>Riprodhoni, dyfishoni ose kopjoni materiale nga Lemza News për qëllime komerciale.</li>
+                </ul>
+
+                <h2>3. Komentet e Përdoruesve</h2>
+                <p>Pjesë të kësaj faqjeje mund t'u ofrojnë mundësinë përdoruesve për të postuar dhe shkëmbyer opinione dhe informacione (Komentet). Lemza News nuk i filtron, modifikon, publikon ose rishikon Komentet para prezencës së tyre në faqe. Komentet nuk pasqyrojnë pikëpamjet dhe opinionet e Lemza News, agjentëve dhe/ose bashkëpunëtorëve të saj.</p>
+                <p>Lemza News rezervon të drejtën për të monitoruar të gjitha Komentet dhe për të hequr çdo Koment që mund të konsiderohet i papërshtatshëm, fyes ose që shkakton shkelje të këtyre Kushteve.</p>
+
+                <h2>4. Ndryshimet në Këto Kushte</h2>
+                <p>Ne rezervojmë të drejtën, sipas gjykimit tonë të vetëm, për të modifikuar ose zëvendësuar këto Kushte në çdo kohë. Është përgjegjësia juaj të kontrolloni periodikisht këtë faqe për ndryshime. Përdorimi i vazhdueshëm i Shërbimit pas publikimit të ndonjë ndryshimi në Kushtet përbën pranim të atyre ndryshimeve.</p>
+
+                <h2>5. Kontakti</h2>
+                <p>Nëse keni ndonjë pyetje në lidhje me këto Kushte, ju lutemi na kontaktoni në:</p>
+                <p><strong>Email:</strong> info@lemzanews.com (Ose vendosni emailin tuaj)</p>
+            </div>
+		</main>
+		<Footer />
+	</body>
+</html>
