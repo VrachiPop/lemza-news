@@ -12,7 +12,7 @@ Raporti thekson se problemi lidhet me traditën shqiptare të lënies së cigare
 
 Ndërkaq, shumë banorë të nëntokës kanë paraqitur ankesa formale.
 
-“Unë e lashë duhanin në ’98-ën,” deklaroi një ish-mësues, ndarë nga jeta në një aksident rrugor. “Tani jam i detyruar ta kaloj përjetësinë mbytur nga tymi i duhanit.”
+“Unë e lashë duhanin në ’98-n,” deklaroi një ish-mësues, ndarë nga jeta në një aksident rrugor. “Tani jam i detyruar ta kaloj përjetësinë mbytur nga tymi i duhanit.”
 
 Të tjerë raportojnë kollë fantazmë, fishkëllimë torakale dhe irritim kronik të fytit.
 

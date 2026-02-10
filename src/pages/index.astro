@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import '../app.css'; // <--- KJO ËSHTË ZEMRA E TAILWIND (Mos e fshi!)
 
 // --- CHANGE 1: Added .slice(0, 6) to limit to 6 posts ---
 const posts = (await getCollection('blog')).sort(
@@ -13,220 +14,138 @@ const posts = (await getCollection('blog')).sort(
 
 const tagNames = {
    'politike': 'Politikë',
-    'ekonomi': 'Ekonomi',
-    'showbiz': 'Showbiz',
-    'sport': 'Sport',
-    'kulture': 'Kulturë',
-    'kronike': 'Kronikë',
-    'sociale': 'Sociale',
-    'tekno-shkence': 'Tekno & Shkencë',
-    'shendeti': 'Shëndeti',
-    'rajoni': 'Rajoni',
-    'bota': 'Bota'
+	'ekonomi': 'Ekonomi',
+	'showbiz': 'Showbiz',
+	'sport': 'Sport',
+	'kulture': 'Kulturë',
+	'kronike': 'Kronikë',
+	'sociale': 'Sociale',
+	'tekno-shkence': 'Tekno & Shkencë',
+	'shendeti': 'Shëndeti',
+	'rajoni': 'Rajoni',
+	'bota': 'Bota'
 };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="sq">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			/* GLOBAL RESET */
-			* { box-sizing: border-box; }
-			body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-
-			/* HERO SECTION */
-			.hero-section {
-				background-color: #343a46;
-				color: white;
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				align-items: center;
-				min-height: 500px;
-				overflow: hidden;
-				margin-bottom: 4rem;
-			}
-			.hero-content {
-				padding: 4rem;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				z-index: 10;
-			}
-			.tag {
-				background-color: #ff0033;
-				color: white;
-				padding: 5px 10px;
-				text-transform: uppercase;
-				font-weight: bold;
-				font-size: 0.8rem;
-				width: fit-content;
-				margin-bottom: 1.5rem;
-				border-radius: 2px;
-			}
-			.hero-title {
-				color: #ffffff !important;
-				font-size: 4.5rem;
-				font-weight: 900;
-				line-height: 0.9;
-				margin: 0 0 1.5rem 0;
-				text-transform: uppercase;
-			}
-			.hero-title span { color: #8890a0; }
-			.hero-desc {
-				font-size: 1.1rem;
-				color: #d1d5db;
-				margin-bottom: 1.5rem;
-				max-width: 90%;
-				line-height: 1.6;
-			}
-			.hero-quote {
-				border-left: 3px solid #ff0033;
-				padding-left: 1rem;
-				font-style: italic;
-				color: #9ca3af;
-				margin-bottom: 2.5rem;
-			}
-			.hero-buttons { display: flex; gap: 1rem; }
-			.btn {
-				padding: 12px 24px;
-				font-weight: bold;
-				text-transform: uppercase;
-				text-decoration: none;
-				border-radius: 4px;
-				transition: all 0.2s;
-				display: inline-block;
-				text-align: center;
-			}
-			.btn-primary { background-color: #ff0033; color: white; border: 2px solid #ff0033; }
-			.btn-primary:hover { background-color: #cc0029; border-color: #cc0029; }
-			.btn-outline { background-color: transparent; color: white; border: 2px solid #565e6d; }
-			.btn-outline:hover { border-color: white; }
-			.hero-image-container { height: 100%; width: 100%; position: relative; min-height: 500px; }
-			.hero-image-container img {
-				width: 100%; height: 100%; object-fit: cover;
-				mask-image: linear-gradient(to right, transparent, black 20%);
-				-webkit-mask-image: linear-gradient(to right, transparent, black 20%);
-			}
-
-			/* NEWS GRID SECTION */
-			main { width: 1200px; max-width: 95%; margin: 0 auto; padding: 0 1rem; }
-			.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; }
-			.section-title { font-size: 2rem; font-weight: 800; color: #1f2937; margin: 0; padding-left: 15px; border-left: 5px solid #ff0033; line-height: 1; }
-			.view-all { color: #ff0033; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; text-transform: uppercase; }
-			.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
-			
-			.news-card {
-				background: white; border: 1px solid #e5e7eb; border-radius: 8px;
-				overflow: hidden; display: flex; flex-direction: column;
-				transition: transform 0.2s, box-shadow 0.2s;
-			}
-			.news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-			
-			.card-image { position: relative; height: 200px; width: 100%; background: #f3f4f6; }
-			.card-image img { width: 100%; height: 100%; object-fit: cover; }
-			
-			.tags-container { position: absolute; top: 15px; left: 15px; z-index: 10; display: flex; flex-wrap: wrap; gap: 5px; }
-			.card-category { background-color: #ff0033; color: white; padding: 4px 10px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; border-radius: 2px; }
-
-			.card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-			.card-meta { display: flex; gap: 15px; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem; align-items: center; }
-			.meta-item { display: flex; align-items: center; gap: 6px; }
-			.meta-icon { width: 16px; height: 16px; min-width: 16px; }
-			.card-title { font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.75rem 0; line-height: 1.3; }
-			.card-excerpt { font-size: 0.95rem; color: #4b5563; line-height: 1.5; margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-			.read-more { margin-top: auto; color: #1f2937; text-decoration: none; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
-			.read-more span { color: #ff0033; font-size: 1.2em; }
-
-			@media (max-width: 900px) {
-				.hero-section { display: flex; flex-direction: column-reverse; text-align: center; }
-				.hero-image-container { display: block; width: 100%; height: 300px; min-height: auto; }
-				.hero-image-container img { mask-image: linear-gradient(to top, transparent, black 20%); -webkit-mask-image: linear-gradient(to top, transparent, black 20%); }
-				.hero-content { padding: 3rem 1.5rem; }
-				.hero-title { font-size: 3rem; }
-				.hero-buttons { flex-direction: column; width: 100%; }
-				.btn { width: 100%; padding: 10px 15px; font-size: 0.9rem; }
-				.news-grid { grid-template-columns: 1fr; }
-			}
-		</style>
 	</head>
-	<body>
+	<body class="font-sans m-0 p-0 box-border bg-gray-50 text-gray-900">
 		<Header />
 		
-		<section class="hero-section">
-			<div class="hero-content">
-				<div class="tag">EKSKLUZIVE</div>
-				<h1 class="hero-title">
-					TË PARËT<br>
-					<span>TE RRENA</span>
-				</h1>
-				<p class="hero-desc">
-					Gazetaria investigative që gërmon <span style="color: #ff0033;">aty ku nuk ka asgjë</span> për të gjetur.
-				</p>
-				<div class="hero-quote">
-					"Nëse është e vërtetë, ndoshta nuk e keni lexuar tek ne."
+		<section class="relative bg-[#23272F] text-white grid grid-cols-1 lg:grid-cols-2 min-h-[600px] overflow-hidden mb-16 items-center">
+			
+			<div class="relative p-10 md:p-20 flex flex-col justify-center z-20 order-2 lg:order-1 text-center lg:text-left">
+				
+				<div class="bg-[#DC2626] text-white px-4 py-1.5 uppercase font-black text-sm tracking-wider w-fit mb-8 rounded mx-auto lg:mx-0">
+					EKSKLUZIVE
 				</div>
-				<div class="hero-buttons">
-					<a href="/te-fundit" class="btn btn-primary">RRENAT E FUNDIT</a>
-					<a href="/about" class="btn btn-outline">RRETH NESH</a>
+				
+				<h1 class="text-6xl md:text-8xl font-black leading-[0.9] mb-8 uppercase text-white">
+					<span class="text-white block">TË PARËT</span>
+					<span class="text-[#6B7280] block">TE RRENA</span>
+				</h1>
+				
+				<p class="text-2xl text-[#D1D5DB] mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+					Gazetaria investigative që gërmon 
+					<span class="text-[#DC2626] font-bold">aty ku nuk ka asgjë</span> 
+					për të gjetur.
+				</p>
+				
+				<div class="flex gap-4 items-start mb-14 mx-auto lg:mx-0 max-w-md">
+					<p class="border-l-[6px] border-[#DC2626] pl-6 italic text-xl text-[#9CA3AF] md:text-left font-light">
+						"Nëse është e vërtetë, ndoshta nuk e keni lexuar tek ne."
+					</p>
+				</div>
+				
+				<div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+					
+					<a href="/te-fundit" class="bg-[#DC2626] hover:bg-[#B91C1C] !text-white px-8 py-4 font-black uppercase tracking-wider rounded text-lg transition-transform hover:-translate-y-1 text-center inline-flex items-center justify-center shadow-lg">
+						RRENAT E FUNDIT
+					</a>
+					
+					<a href="/about" class="bg-[#374151] hover:bg-[#4B5563] !text-white border-2 border-[#4B5563] px-8 py-4 font-black uppercase tracking-wider rounded text-lg transition-transform hover:-translate-y-1 text-center inline-flex items-center justify-center shadow-lg">
+						RRETH NESH
+					</a>
 				</div>
 			</div>
-			<div class="hero-image-container">
-				<img src="/hero-man.jpg" alt="" />
+
+			<div class="relative w-full h-[450px] lg:h-full min-h-[450px] order-1 lg:order-2">
+				<img 
+					src="/hero-man.jpg" 
+					alt="Lemza News Hero" 
+					class="w-full h-full object-cover [mask-image:linear-gradient(to_top,transparent,black_30%)] lg:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%)]" 
+				/>
 			</div>
 		</section>
 
-		<main id="latest">
-			<div class="section-header">
-				<h2 class="section-title">Rrenat e Fundit</h2>
-				<a href="/te-fundit" class="view-all">
-					Shiko të gjitha 
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+		<main class="w-[1200px] max-w-[95%] mx-auto px-4 mb-24 -mt-10 relative z-30">
+			
+			<div class="flex justify-between items-end mb-10 border-b-2 border-gray-200 pb-4">
+				<h2 class="text-4xl font-black text-gray-900 m-0 leading-none uppercase tracking-tight">
+					Rrenat e <span class="text-[#DC2626]">Fundit</span>
+				</h2>
+				<a href="/te-fundit" class="group text-gray-500 hover:text-[#DC2626] no-underline font-bold text-sm flex items-center gap-2 uppercase transition-colors">
+					Shiko të gjitha
+					<span class="bg-gray-200 group-hover:bg-[#DC2626] group-hover:text-white rounded-full p-1 transition-all">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+					</span>
 				</a>
 			</div>
 
-			<div class="news-grid">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{posts.map((post) => {
-					// Image Scanner
-					const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
-					const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
-
 					return (
-					<article class="news-card">
-						<a href={`/te-fundit/${post.id}/`} style="text-decoration: none; color: inherit; height: 100%; display: flex; flex-direction: column;">
-							<div class="card-image">
-								
-								<div class="tags-container">
+					<article class="bg-white rounded-2xl overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-900/10 transition-all duration-300 group border border-gray-100">
+						<a href={`/te-fundit/${post.id}/`} class="no-underline text-inherit h-full flex flex-col">
+							
+							<div class="relative h-60 w-full overflow-hidden">
+								<div class="absolute top-4 left-4 z-20 flex flex-wrap gap-1">
 									{post.data.tags && post.data.tags.length > 0 ? (
-										post.data.tags.map((t) => (
-											<span class="card-category">
-												{tagNames[t] || t}
+										post.data.tags.slice(0, 1).map((t) => (
+											<span class="bg-[#DC2626] text-white px-3 py-1 text-[11px] font-black uppercase tracking-wider rounded shadow-md">
+												{(tagNames as any)[t] || t}
 											</span>
 										))
 									) : (
-										<span class="card-category">LAJME</span>
+										<span class="bg-[#DC2626] text-white px-3 py-1 text-[11px] font-black uppercase tracking-wider rounded shadow-md">LAJME</span>
 									)}
 								</div>
 
-								{imageSrc ? (
-									<img src={imageSrc} alt="" />
+								{post.data.heroImage ? (
+									<img src={post.data.heroImage} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
 								) : (
-									<div style="background:#eee; width:100%; height:100%;"></div>
-								)}
-							</div>
-							<div class="card-content">
-								<div class="card-meta">
-									<div class="meta-item">
-										<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-										<FormattedDate date={post.data.pubDate} />
+									<div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+										<span class="font-bold text-sm">PA FOTO</span>
 									</div>
+								)}
+								
+								<div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+							</div>
+
+							<div class="p-7 flex flex-col flex-grow relative">
+								<div class="flex items-center gap-2 text-xs font-bold text-gray-400 mb-4 uppercase tracking-wide">
+									<span class="text-[#DC2626]">•</span>
+									<FormattedDate date={post.data.pubDate} />
 								</div>
-								<h3 class="card-title">{post.data.title}</h3>
-								<p class="card-excerpt">
+
+								<h3 class="text-2xl font-black text-gray-900 mb-3 leading-tight group-hover:text-[#DC2626] transition-colors">
+									{post.data.title}
+								</h3>
+								
+								<p class="text-sm text-gray-600 leading-relaxed mb-6 line-clamp-3 font-medium">
 									{post.data.description || "Klikoni për të lexuar lajmin e plotë..."}
 								</p>
-								<div class="read-more">
-									LEXO MË SHUMË <span>&rarr;</span>
+								
+								<div class="mt-auto border-t border-gray-100 pt-4 flex items-center justify-between">
+									<span class="text-gray-900 font-extrabold text-xs uppercase group-hover:translate-x-1 transition-transform duration-300">
+										Lexo Artikullin
+									</span>
+									<span class="text-[#DC2626] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+										<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+									</span>
 								</div>
 							</div>
 						</a>
