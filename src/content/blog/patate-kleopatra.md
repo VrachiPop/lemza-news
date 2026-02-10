@@ -1,7 +1,7 @@
 ---
 title: 'Politikat bujqësore të Kleopatrës fundosin pataten e Kukësit'
 description: 'KUKËS - Kleopatra është lavdëruar gjerësisht nga historianët për bukurinë, zgjuarsinë dhe aftësinë për të joshur...'
-pubDate: '02-06-2026'
+pubDate: '2026-02-06'
 tags: ['ekonomi']
 heroImage: "/images/patate-kleopatra.jpg"
 ---
