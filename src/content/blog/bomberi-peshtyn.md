@@ -8,7 +8,7 @@ heroImage: "/images/bomberi-peshtyn.jpg"
 
 **TRIBUNA B** – Futbolli shqiptar u trondit sërish këtë javë, jo për trukime ndeshjesh apo paga të prapambetura. Këtë herë kriza është më ekzistenciale: bomberi i ekipit Zetori të Superligës është kapur në flagrancë duke mos ditur të pështyjë.
 
-Ngjarja ndodhi gjatë minutës së 63-të të ndeshjes, kur lojtari, pas një vrapimi të gjatë për t’i bërë presion mbrojtjes kundërshtare, tentoi të kryente ritualin tradicional të bomberit, të pështynte një goxha gëlbazë dyll të verdhë dhe të shfrynte hundët me sa forca kishte, mirëpo prodhoi një jargë të vobektë e të fëlliqur që iu ngjit pas mjekrës.
+Ngjarja ndodhi gjatë minutës së 65-të të ndeshjes, kur lojtari, pas një vrapimi të gjatë për t’i bërë presion mbrojtjes kundërshtare, tentoi të kryente ritualin tradicional të bomberit, të pështynte një goxha gëlbazë dyll të verdhë dhe të shfrynte hundët me sa forca kishte, mirëpo prodhoi një jargë të vobektë e të fëlliqur që iu ngjit pas mjekrës.
 
 Tifozët në tribunë heshtën, ndërsa të tjerë u panë duke u larguar nga stadiumi.
 
