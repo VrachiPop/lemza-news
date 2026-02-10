@@ -6,6 +6,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://lemza-news.pages.dev',
+	site: 'https://lemzanews.com',
 	integrations: [mdx(), sitemap()],
 });
