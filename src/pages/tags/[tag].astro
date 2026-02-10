@@ -43,8 +43,8 @@ const tagNames = {
     'bota': 'Bota'
 };
 
-const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
-const pageTitle = tagNames[tag] || capitalize(tag);
+const capitalize = (s: any) => s && s[0].toUpperCase() + s.slice(1);
+const pageTitle = (tagNames as any)[tag] || capitalize(tag);
 ---
 
 <!doctype html>
@@ -187,7 +187,7 @@ const pageTitle = tagNames[tag] || capitalize(tag);
 									{post.data.tags && post.data.tags.length > 0 ? (
 										post.data.tags.map((t) => (
 											<span class="card-category">
-												{tagNames[t] || t}
+												{(tagNames as any)[t] || t}
 											</span>
 										))
 									) : (
