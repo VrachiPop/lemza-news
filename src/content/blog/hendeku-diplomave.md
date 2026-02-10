@@ -10,6 +10,6 @@ heroImage: "/images/hendeku-diplomave.jpg"
 
 *“Nuk është çudi që një familje e kamur të blejë diploma për çdo stinë të vitit, për çdo pjesëtar të familjes,”* tha Miro Grosha, sekretar i universitetit privat Luaraska. *“Një bachelor për ditë vere, një master për ditëlindje, dhe një doktoraturë për Vit të Ri. Vë bast se një pjesë e madhe e tyre kanë më shumë diploma masteri se çorape.”*
 
-Eksperti i arsimit dhe tregut të punës, Gregor Lemza, pranoi se hendeku pritet të zgjerohet edhe më tej nëse nuk merren masa drastike, *“Nuk bëhet fjalë vetëm për hendek sasior, por mbi të gjitha cilësor. Ndërkohë që të pasurit sigurojnë diploma nga universitete prestigjioze e të akredituara ndërkombëtarisht, të varfrit nuk blejnë dot as një certifikatë të lodhur berberi.”*
+Eksperti i arsimit dhe tregut të punës, Gregor Trumza, pranoi se hendeku pritet të zgjerohet edhe më tej nëse nuk merren masa drastike, *“Nuk bëhet fjalë vetëm për hendek sasior, por mbi të gjitha cilësor. Ndërkohë që të pasurit sigurojnë diploma nga universitete prestigjioze e të akredituara ndërkombëtarisht, të varfrit nuk blejnë dot as një certifikatë të lodhur berberi.”*
 
 Për të luftuar këtë trend negativ, të varfrit kanë krijuar grupe studimi për të ndarë shpenzimet e diplomës së blerë, duke shpresuar që në të ardhmen kjo praktikë të bëhet standard.
