@@ -1,0 +1,28 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+// Rregullimi i importit (një pikë më pak sepse jemi te pages/)
+import BlogPost from '../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => {
+        // --- FIX KRITIK ---
+        // Këtu i themi Astros: "Ndërtoje faqen me këtë emër të pastër"
+        // Heqim folderin dhe .md edhe këtu, që të përputhet me linkun
+        const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || '';
+
+		return {
+			params: { slug: cleanSlug },
+			props: post,
+		};
+	});
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BlogPost {...post.data}>
+	<Content />
+</BlogPost>

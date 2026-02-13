@@ -42,23 +42,20 @@ const tagNames = {
                         const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
                         const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
 
-                        // --- FIX PËRFUNDIMTAR PËR URL ---
-                        // 1. Marrim emrin bazë (slug)
-                        let slug = post.slug.split('/').pop() || '';
+                        // --- FIX PËR URL TË PASTËR ---
+                        // 1. Marrim vetëm emrin e skedarit (injorojmë folderat)
+                        const fileName = post.slug.split('/').pop() || '';
                         
-                        // 2. Nëse slug nuk ka .md në fund, ia shtojmë (pasi ti the që URL-ja e saktë e ka)
-                        if (!slug.endsWith('.md')) {
-                            slug += '.md';
-                        }
+                        // 2. Heqim .md nëse ekziston
+                        const cleanSlug = fileName.replace('.md', '');
 
-                        // 3. Krijojmë URL Absolute pa "/" në fund
-                        // Rezultati do jetë: /te-fundit/hendeku-diplomave.md
-                        const finalUrl = `/te-fundit/${slug}`;
+                        // 3. Krijojmë URL-në ROOT (Direkt te domeni kryesor)
+                        // Do duket: lemzanews.com/hendeku-diplomave/
+                        const finalUrl = `/${cleanSlug}/`;
 
                         return (
                         <article class="article-card group bg-white rounded-xl overflow-hidden border border-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
                             
-                            {/* Heqja e "/" në fund është çelësi këtu */}
                             <a href={finalUrl} class="flex flex-col h-full no-underline text-inherit flex-1">
                                 
                                 <div class="relative aspect-[16/10] overflow-hidden">
@@ -85,7 +82,7 @@ const tagNames = {
                                         <FormattedDate date={post.data.pubDate} />
                                     </div>
                                     
-                                    <h3 class="text-lg font-black text-slate-900 mb-3 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-2">
+                                    <h3 class="text-lg! font-black text-slate-900 mb-3 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-2">
                                         {post.data.title}
                                     </h3>
                                     

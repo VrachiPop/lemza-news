@@ -3,10 +3,10 @@ import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Sidebar from '../../components/Sidebar.astro'; /* Importimi i Sidebar */
+import Sidebar from '../../components/Sidebar.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
-import '../../app.css'; /* Stilet Globale */
+import '../../app.css';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
@@ -60,24 +60,31 @@ const pageTitle = (tagNames as any)[tag] || capitalize(tag);
             
             <main class="lg:col-span-8">
                 <div class="flex items-end mb-10 border-b-4 border-[#DC2626] pb-4">
-                    <h1 class="text-3xl! font-black text-slate-900 m-0 uppercase tracking-tighter">
+                    <h1 class="text-3xl font-black text-slate-900 m-0 uppercase tracking-tighter">
                         <span class="text-[#DC2626]">{pageTitle}</span>
                     </h1>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
                     {posts.map((post) => {
-                        // --- THE IMAGE SCANNER (Logjika jote e pandryshuar) ---
+                        // --- THE IMAGE SCANNER ---
                         const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
                         const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
 
+                        // --- FIX PËR URL TË PASTËR (TAG PAGE) ---
+                        // Përdorim të njëjtën logjikë si kudo tjetër
+                        const fileName = post.slug.split('/').pop() || '';
+                        const cleanSlug = fileName.replace(/\.md$/, '');
+                        const finalUrl = `/${cleanSlug}/`;
+
                         return (
                         <article class="article-card group bg-white rounded-xl overflow-hidden border border-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-                            <a href={`/te-fundit/${post.id}/`} class="flex flex-col h-full no-underline text-inherit flex-1">
+                            {/* FIX: Linku i pastruar */}
+                            <a href={finalUrl} class="flex flex-col h-full no-underline text-inherit flex-1">
                                 
                                 <div class="relative aspect-[16/10] overflow-hidden">
                                     <div class="absolute top-3 left-3 z-20 flex gap-2">
-                                         {/* TAGS (Logjika jote e shfaqjes) */}
+                                         {/* TAGS */}
                                         {post.data.tags && post.data.tags.length > 0 ? (
                                             post.data.tags.map((t: string) => (
                                                 <span class="bg-[#DC2626] text-white px-2 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg">

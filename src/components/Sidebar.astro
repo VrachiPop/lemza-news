@@ -21,16 +21,24 @@ const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
             Më të Injoruarat
         </h3>
         <div class="flex flex-col gap-4">
-            {randomPosts.map((post, index) => (
-                <a href={`/te-fundit/${post.id}/`} class="group flex gap-4 items-start no-underline">
-                    <span class="text-3xl font-black text-gray-200 group-hover:text-[#DC2626] transition-colors leading-none select-none">
-                        {index + 1}
-                    </span>
-                    <p class="font-bold text-gray-800 text-sm leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3">
-                        {post.data.title}
-                    </p>
-                </a>
-            ))}
+            {randomPosts.map((post, index) => {
+                // --- FIX PËR URL TË SIDEBAR ---
+                // Përdorim të njëjtën logjikë si te Homepage
+                const fileName = post.slug.split('/').pop() || '';
+                const cleanSlug = fileName.replace(/\.md$/, '');
+                const finalUrl = `/${cleanSlug}/`;
+
+                return (
+                    <a href={finalUrl} class="group flex gap-4 items-start no-underline">
+                        <span class="text-3xl font-black text-gray-200 group-hover:text-[#DC2626] transition-colors leading-none select-none">
+                            {index + 1}
+                        </span>
+                        <p class="font-bold text-gray-800 text-sm leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3">
+                            {post.data.title}
+                        </p>
+                    </a>
+                );
+            })}
         </div>
     </div>
 
