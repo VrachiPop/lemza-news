@@ -128,71 +128,73 @@ function getPostUrl(slug: string) {
                 -webkit-mask-image: linear-gradient(to right, transparent, black 45%);
             }
 
-            /* 6. RESPONSIVE - MOBILE (COMPACT GRID) */
+           /* 6. RESPONSIVE - MOBILE (STRETCHED GRID) */
 @media (max-width: 900px) {
     .hero-section {
         display: grid !important;
-        /* Raporti: Teksti merr 60%, Imazhi 40% */
-        grid-template-columns: 1.4fr 1fr !important; 
+        /* Raporti: Teksti 55%, Imazhi 45% (pak më shumë vend imazhit) */
+        grid-template-columns: 1.2fr 1fr !important; 
         align-items: center !important;
-        /* Heqim lartësinë e detyruar që të mos "stretchet" */
-        min-height: auto !important; 
+        /* KËTU ËSHTË "STRETCH": I japim një lartësi minimale fikse */
+        min-height: 300px !important; 
         height: auto !important;
-        /* Shtojmë pak margin që të mos prekë anët (nëse do që mos mbulojë çdo inç) */
-        padding: 10px 0 !important; 
+        padding: 0 !important;
+        overflow: hidden; /* Siguri që imazhi mos dalë jashtë */
     }
 
     .hero-content {
-        /* Padding minimal që teksti të ketë vend */
-        padding: 1.5rem 0.5rem 1.5rem 1rem !important;
+        /* Më shumë frymëmarrje (padding) lart e poshtë */
+        padding: 2rem 0.5rem 2rem 1.5rem !important;
         text-align: left !important;
         width: 100% !important;
         z-index: 20 !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
     }
 
     .hero-title {
-        /* Font kompakt */
-        font-size: 1.1rem !important; 
-        line-height: 1.1 !important;
-        margin-bottom: 0.5rem !important;
+        /* Font pak më i madh se versioni i ngjeshur */
+        font-size: 1.25rem !important; 
+        line-height: 1.15 !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .tag-red {
+        font-size: 0.65rem !important;
+        padding: 3px 8px !important;
+        margin-bottom: 0.8rem !important;
+        align-self: flex-start;
     }
 
     .hero-desc-wrapper {
-        border-left: 2px solid #DC2626 !important;
-        padding-left: 0.5rem !important;
-        margin-bottom: 0.8rem !important;
-        display: none; /* Opsionale: Në ekrane shumë të vogla mund ta heqësh përshkrimin, ose mbaje */
-        /* Nëse do ta mbash, hiqe rreshtin "display: none" dhe përdor këto më poshtë: */
-        /* max-height: 60px;
-        overflow: hidden;
-        font-size: 0.7rem;
-        */
+        border-left: 3px solid #DC2626 !important;
+        padding-left: 0.8rem !important;
+        margin-bottom: 1.2rem !important;
+        display: block !important; /* Sigurohemi që shfaqet */
     }
     
-    /* Nëse vendos ta mbash përshkrimin, e bëjmë të vogël */
     .hero-desc {
-        font-size: 0.75rem !important;
-        line-height: 1.2 !important;
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
         display: -webkit-box;
-        -webkit-line-clamp: 3; /* Pret tekstin pas 3 rreshtash */
+        -webkit-line-clamp: 4; /* Lejojmë deri në 4 rreshta tani */
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
 
     .btn-lexo-hero {
-        /* Buton shumë i vogël */
-        padding: 6px 12px !important;
-        font-size: 0.65rem !important;
+        padding: 8px 16px !important;
+        font-size: 0.7rem !important;
         width: auto !important;
-        display: inline-block !important;
+        align-self: flex-start;
     }
 
     .hero-image-container {
         display: block !important;
         width: 100% !important;
-        height: 100% !important;
-        /* Sigurohemi që nuk bëhet shumë i lartë */
-        max-height: 250px !important; 
+        height: 100% !important; /* Merr gjithë lartësinë e re (300px+) */
         position: relative !important;
     }
 
@@ -200,20 +202,14 @@ function getPostUrl(slug: string) {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
-        /* Maska horizontale (nga e majta) që të mos pritet thikë me tekstin */
-        mask-image: linear-gradient(to right, transparent 5%, black 40%) !important;
-        -webkit-mask-image: linear-gradient(to right, transparent 5%, black 40%) !important;
+        /* Maska pak më e butë */
+        mask-image: linear-gradient(to right, transparent 0%, black 50%) !important;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%) !important;
     }
 
-    /* Fshehim datën dhe elementë shtesë që zënë vend kot në "squeeze" mode */
+    /* Fshehim datën për pastërti, ose mund ta kthesh nëse do */
     .hero-content .flex.items-center.gap-3 {
         display: none !important;
-    }
-    
-    .tag-red {
-        font-size: 0.6rem !important;
-        padding: 2px 6px !important;
-        margin-bottom: 0.5rem !important;
     }
 }
 
@@ -287,7 +283,7 @@ function getPostUrl(slug: string) {
                 
                 <main class="lg:col-span-8">
                     <div class="flex justify-between items-end mb-12 border-b-4 border-slate-900 pb-5">
-                        <h2 class="text-2xl font-black text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
+                        <h2 class="text-2xl! font-black text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
                         {/* FIX: Linku i butonit "Shiko të gjitha" duhet të shkojë te faqja e listës */}
                         <a href="/te-fundit/" class="text-slate-500 hover:text-[#DC2626] font-bold text-xs uppercase tracking-widest transition-colors">Shiko të gjitha</a>
                     </div>
@@ -314,7 +310,7 @@ function getPostUrl(slug: string) {
                                             <FormattedDate date={post.data.pubDate} />
                                         </div>
 
-                                        <h3 class="text-lg font-black text-slate-800 mb-3 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-2">
+                                        <h3 class="text-lg! font-black text-slate-800 mb-3 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-2">
                                             {post.data.title}
                                         </h3>
 

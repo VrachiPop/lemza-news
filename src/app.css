@@ -1,7 +1,22 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
+:root {
+    --font-bookerly: 'Literata', Georgia, serif;
+}
 html, body {
     background-color: #F1F5F9; /* Slate 100 - Ngjyra e re globale */
     color: #1e293b; /* Slate 800 - Teksti */
     margin: 0;
     padding: 0;
+    font-family: var(--font-bookerly);
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-bookerly) !important;
+}
+
+p {
+    font-family: var(--font-bookerly);
+    line-height: 1.6; /* Hapësira ndërmjet rreshtave për lexim të rehatshëm */
 }

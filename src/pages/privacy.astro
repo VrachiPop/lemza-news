@@ -2,17 +2,19 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
 import { SITE_TITLE } from '../consts';
+import '../app.css'; // Shtohet për stilin global
 ---
 
 <!doctype html>
 <html lang="sq">
-	<head>
-		<BaseHead title="Kushtet e Përdorimit dhe Privatësia | Lemza News" description="Informacion ligjor, politika e privatësisë dhe kushtet e përdorimit për Lemza News." />
-		<style>
+    <head>
+        <BaseHead title="Kushtet e Përdorimit dhe Privatësia | Lemza News" description="Informacion ligjor, politika e privatësisë dhe kushtet e përdorimit për Lemza News." />
+        <style>
             /* GLOBAL STYLES */
-			* { box-sizing: border-box; }
-			body { 
+            * { box-sizing: border-box; }
+            body { 
                 margin: 0; 
                 padding: 0; 
                 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
@@ -21,14 +23,38 @@ import { SITE_TITLE } from '../consts';
                 line-height: 1.6;
             }
 
-			main {
-				width: 800px;
-				max-width: 95%;
-				margin: 0 auto;
-				padding: 3rem 1rem;
-			}
+            /* --- LAYOUT I RI ME SIDEBAR --- */
+            .page-container {
+                width: 100%;
+                max-width: 1600px; /* E njëjtë me faqet e tjera */
+                margin: 0 auto;
+                padding: 3rem 1rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
 
-            /* TYPOGRAPHY */
+            /* Desktop: 2 Kolona (Përmbajtja + Sidebar) */
+            @media (min-width: 1024px) {
+                .page-container {
+                    grid-template-columns: 8fr 4fr; /* 2/3 Përmbajtja, 1/3 Sidebar */
+                    padding: 4rem 2rem;
+                }
+                .sidebar-wrapper {
+                    display: block;
+                    padding-left: 2.5rem;
+                    border-left: 1px solid #e5e7eb;
+                }
+            }
+
+            /* Mobile: Sidebar fshihet ose shfaqet poshtë (këtu e fshehim si te faqet e tjera) */
+            @media (max-width: 1023px) {
+                .sidebar-wrapper {
+                    display: none; 
+                }
+            }
+
+            /* TYPOGRAPHY (E PANDRYSHUAR) */
             h1 {
                 font-size: 2.5rem;
                 font-weight: 800;
@@ -95,55 +121,67 @@ import { SITE_TITLE } from '../consts';
             a { color: #ff0033; text-decoration: none; }
             a:hover { text-decoration: underline; }
 
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-            <div class="legal-box">
-                <h1 id="kushtet">Kushtet dhe Privatësia</h1>
-                <p>Data e hyrjes në fuqi: <strong>Shkurt 2026</strong></p>
+        </style>
+    </head>
+    <body>
+        <Header />
+        
+        <div class="page-container">
+            
+            <main>
+                <div class="legal-box">
+                    <h1 id="kushtet">Kushtet dhe Privatësia</h1>
+                    <p>Data e hyrjes në fuqi: <strong>Shkurt 2026</strong></p>
 
-                <p>Mirësevini në <strong>Lemza News</strong>. Duke hyrë dhe përdorur këtë faqe interneti, ju pranoni të respektoni kushtet e mëposhtme të përdorimit dhe politikën tonë të privatësisë. Nëse nuk jeni dakord me ndonjë pjesë të këtyre kushteve, ju lutemi të mos përdorni faqen tonë.</p>
+                    <p>Mirësevini në <strong>Lemza News</strong>. Duke hyrë dhe përdorur këtë faqe interneti, ju pranoni të respektoni kushtet e mëposhtme të përdorimit dhe politikën tonë të privatësisë. Nëse nuk jeni dakord me ndonjë pjesë të këtyre kushteve, ju lutemi të mos përdorni faqen tonë.</p>
 
 
-                <h2 id="privatesia">1. Politika e Privatësisë</h2>
-                <p>Privatësia juaj është e rëndësishme për ne. Kjo pjesë shpjegon se si ne mbledhim, përdorim dhe mbrojmë informacionin tuaj.</p>
+                    <h2 id="privatesia">1. Politika e Privatësisë</h2>
+                    <p>Privatësia juaj është e rëndësishme për ne. Kjo pjesë shpjegon se si ne mbledhim, përdorim dhe mbrojmë informacionin tuaj.</p>
 
-                <h3>Të dhënat që mbledhim (Log Files)</h3>
-                <p>Si shumë faqe të tjera, Lemza News përdor skedarë log. Informacioni brenda skedarëve log përfshin adresat e protokollit të internetit (IP), llojin e shfletuesit (browser), Ofruesin e Shërbimit të Internetit (ISP), vulën e datës/kohës, faqet e referimit/daljes dhe numrin e klikimeve. Ky informacion përdoret për të analizuar trendet, administruar faqen dhe për të mbledhur informacione demografike. Adresat IP dhe informacione të tjera të tilla nuk janë të lidhura me ndonjë informacion që është personalisht i identifikueshëm.</p>
+                    <h3>Të dhënat që mbledhim (Log Files)</h3>
+                    <p>Si shumë faqe të tjera, Lemza News përdor skedarë log. Informacioni brenda skedarëve log përfshin adresat e protokollit të internetit (IP), llojin e shfletuesit (browser), Ofruesin e Shërbimit të Internetit (ISP), vulën e datës/kohës, faqet e referimit/daljes dhe numrin e klikimeve. Ky informacion përdoret për të analizuar trendet, administruar faqen dhe për të mbledhur informacione demografike. Adresat IP dhe informacione të tjera të tilla nuk janë të lidhura me ndonjë informacion që është personalisht i identifikueshëm.</p>
 
-                <h3 id="cookies">Cookies dhe Web Beacons</h3>
-                <p>Lemza News përdor "cookies" për të ruajtur informacione në lidhje me preferencat e vizitorëve dhe për të regjistruar informacione specifike për përdoruesin në lidhje me faqet që vizitori akseson. Kjo bëhet për të përmirësuar përvojën e përdoruesit.</p>
+                    <h3 id="cookies">Cookies dhe Web Beacons</h3>
+                    <p>Lemza News përdor "cookies" për të ruajtur informacione në lidhje me preferencat e vizitorëve dhe për të regjistruar informacione specifike për përdoruesin në lidhje me faqet që vizitori akseson. Kjo bëhet për të përmirësuar përvojën e përdoruesit.</p>
 
-                <h3>Palët e Treta (Google AdSense & Analytics)</h3>
-                <p>Ne mund të përdorim kompani reklamimi të palëve të treta (si Google AdSense) për të shërbyer reklama kur vizitoni faqen tonë të internetit. Këto kompani mund të përdorin informacione (duke mos përfshirë emrin, adresën, adresën e emailit ose numrin e telefonit) në lidhje me vizitat tuaja në këtë dhe faqe të tjera në mënyrë që të ofrojnë reklama për mallra dhe shërbime me interes për ju.</p>
-                <ul>
-                    <li>Google, si një shitës i palës së tretë, përdor cookies për të shërbyer reklama në Lemza News.</li>
-                    <li>Përdorimi i cookie-t DART nga Google i mundëson asaj t'u shërbejë reklama përdoruesve bazuar në vizitën e tyre në Lemza News dhe faqe të tjera në internet.</li>
-                    <li>Përdoruesit mund të heqin dorë nga përdorimi i cookie-t DART duke vizituar politikën e privatësisë së rrjetit të reklamave dhe përmbajtjes së Google.</li>
-                </ul>
+                    <h3>Palët e Treta (Google AdSense & Analytics)</h3>
+                    <p>Ne mund të përdorim kompani reklamimi të palëve të treta (si Google AdSense) për të shërbyer reklama kur vizitoni faqen tonë të internetit. Këto kompani mund të përdorin informacione (duke mos përfshirë emrin, adresën, adresën e emailit ose numrin e telefonit) në lidhje me vizitat tuaja në këtë dhe faqe të tjera në mënyrë që të ofrojnë reklama për mallra dhe shërbime me interes për ju.</p>
+                    <ul>
+                        <li>Google, si një shitës i palës së tretë, përdor cookies për të shërbyer reklama në Lemza News.</li>
+                        <li>Përdorimi i cookie-t DART nga Google i mundëson asaj t'u shërbejë reklama përdoruesve bazuar në vizitën e tyre në Lemza News dhe faqe të tjera në internet.</li>
+                        <li>Përdoruesit mund të heqin dorë nga përdorimi i cookie-t DART duke vizituar politikën e privatësisë së rrjetit të reklamave dhe përmbajtjes së Google.</li>
+                    </ul>
 
-                <h2 id="copyright">2. Pronësia Intelektuale</h2>
-                <p>Përveç rasteve kur shprehet ndryshe, Lemza News dhe/ose licencuesit e saj zotërojnë të drejtat e pronësisë intelektuale për të gjithë materialin në këtë faqe. Të gjitha të drejtat e pronësisë intelektuale janë të rezervuara. Ju mund ta aksesoni këtë nga Lemza News për përdorimin tuaj personal, duke iu nënshtruar kufizimeve të vendosura në këto kushte.</p>
-                <p>Ju nuk duhet të:</p>
-                <ul>
-                    <li>Ribotoni materiale nga Lemza News pa lejen tonë.</li>
-                    <li>Shisni, jepni me qira ose nën-licenconi materiale nga Lemza News.</li>
-                    <li>Riprodhoni, dyfishoni ose kopjoni materiale nga Lemza News për qëllime komerciale.</li>
-                </ul>
+                    <h2 id="copyright">2. Pronësia Intelektuale</h2>
+                    <p>Përveç rasteve kur shprehet ndryshe, Lemza News dhe/ose licencuesit e saj zotërojnë të drejtat e pronësisë intelektuale për të gjithë materialin në këtë faqe. Të gjitha të drejtat e pronësisë intelektuale janë të rezervuara. Ju mund ta aksesoni këtë nga Lemza News për përdorimin tuaj personal, duke iu nënshtruar kufizimeve të vendosura në këto kushte.</p>
+                    <p>Ju nuk duhet të:</p>
+                    <ul>
+                        <li>Ribotoni materiale nga Lemza News pa lejen tonë.</li>
+                        <li>Shisni, jepni me qira ose nën-licenconi materiale nga Lemza News.</li>
+                        <li>Riprodhoni, dyfishoni ose kopjoni materiale nga Lemza News për qëllime komerciale.</li>
+                    </ul>
 
-                <h2>3. Ndryshimet në Këto Kushte</h2>
-                <p>Ne rezervojmë të drejtën, sipas gjykimit tonë të vetëm, për të modifikuar ose zëvendësuar këto Kushte në çdo kohë. Është përgjegjësia juaj të kontrolloni periodikisht këtë faqe për ndryshime. Përdorimi i vazhdueshëm i Shërbimit pas publikimit të ndonjë ndryshimi në Kushtet përbën pranim të atyre ndryshimeve.</p>
+                    <h2>3. Ndryshimet në Këto Kushte</h2>
+                    <p>Ne rezervojmë të drejtën, sipas gjykimit tonë të vetëm, për të modifikuar ose zëvendësuar këto Kushte në çdo kohë. Është përgjegjësia juaj të kontrolloni periodikisht këtë faqe për ndryshime. Përdorimi i vazhdueshëm i Shërbimit pas publikimit të ndonjë ndryshimi në Kushtet përbën pranim të atyre ndryshimeve.</p>
 
-               <div class="disclaimer-alert">
-                    <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
-                    <p style="color: #c53030; margin: 0;">
-                        Lemza News është një faqe satirike interneti. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.
-                    </p>
+                <div class="disclaimer-alert">
+                        <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
+                        <p style="color: #c53030; margin: 0;">
+                            Lemza News është një faqe satirike interneti. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.
+                        </p>
+                    </div>
                 </div>
-            </div>
-		</main>
-		<Footer />
-	</body>
+            </main>
+
+            <aside class="sidebar-wrapper">
+                <div style="position: sticky; top: 2rem;">
+                    <Sidebar />
+                </div>
+            </aside>
+
+        </div>
+        
+        <Footer />
+    </body>
 </html>
