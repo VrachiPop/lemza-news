@@ -37,85 +37,156 @@ const tagNames = {
                 scroll-behavior: smooth;
             }
 
-            /* 2. TOP CONTAINER (Tani me ngjyrë të hapur) */
-            .top-container {
-                display: flex;
-                flex-direction: column;
-                height: 100dvh; 
-                width: 100%;
-                background-color: #F1F5F9;
-                border-bottom: 1px solid #e2e8f0;
-            }
+            /* ==========================================================================
+   HERO SECTION - LEMZA NEWS (DESKTOP & MOBILE OPTIMIZED)
+   ========================================================================== */
 
-            .hero-section {
-                flex: 1;
-                display: grid;
-                grid-template-columns: 1.5fr 1fr; 
-                align-items: center;
-                overflow: hidden;
-            }
+/* 1. TOP CONTAINER */
+/* ==========================================================================
+   HERO SECTION - DARK MODE VERSION (SLATE 900)
+   ========================================================================== */
 
-            .hero-content {
-                padding: 4rem 5rem;
-                z-index: 10;
-            }
+/* 1. TOP CONTAINER - Tani i errët */
+.top-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #0f172a; /* Slate 900 njësoj si Header/Footer */
+    border-bottom: 1px solid #1e293b; /* Border më i errët */
+}
 
-            .hero-title {
-                font-size: 3rem;
-                font-weight: 900;
-                line-height: 1;
-                margin: 0 0 2rem 0;
-                color: #0f172a; /* Slate 900 për titull të fortë */
-                letter-spacing: -0.04em;
-            }
+/* 2. HERO GRID STRUCTURE */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+}
 
-            .hero-desc-wrapper {
-                border-left: 5px solid #DC2626;
-                padding-left: 2rem;
-                margin-bottom: 3rem;
-                max-width: 90%;
-            }
+/* 3. HERO CONTENT - Teksti tani i bardhë/gri e hapur */
+.hero-content {
+    padding: 5rem 5rem;
+    z-index: 10;
+}
 
-            .hero-desc {
-                font-size: 1.35rem;
-                color: #475569; /* Slate 600 */
-                line-height: 1.6;
-                font-weight: 500;
-            }
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 2rem;
+    color: #ffffff; /* Titulli i bardhë */
+    letter-spacing: -0.04em;
+}
 
-            .btn-lexo-hero {
-                background-color: #DC2626;
-                color: white;
-                padding: 16px 50px;
-                font-weight: 900;
-                text-transform: uppercase;
-                text-decoration: none;
-                border-radius: 4px;
-                display: inline-block;
-                transition: all 0.3s ease;
-                box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.2);
-            }
+.hero-desc-wrapper {
+    border-left: 6px solid #DC2626;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+    max-width: 550px;
+}
 
-            .btn-lexo-hero:hover {
-                background-color: #b91c1c;
-                transform: translateY(-3px);
-                box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.3);
-            }
+.hero-desc {
+    font-size: 1.1rem;
+    color: #cbd5e1 !important; /* Slate 300 - Gri shumë e hapur për lexim më të mirë */
+    line-height: 1.6;
+    font-weight: 500;
+}
 
-            .hero-image-container {
-                height: 100%;
-                width: 100%;
-                position: relative;
-            }
+/* 4. BUTTON STYLE (LEXO MË SHUMË) - Mbetet i kuq por me kontrast të lartë */
+.btn-lexo-hero {
+    background-color: #DC2626 !important;
+    color: white !important;
+    padding: 16px 50px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
+    cursor: pointer !important;
+}
 
-            .hero-image-container img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                /* Shkrirja tani bëhet me #F1F5F9 */
-                mask-image: linear-gradient(to right, transparent, black 30%);
-                -webkit-mask-image: linear-gradient(to right, transparent, black 30%);
-            }
+.btn-lexo-hero:hover {
+    background-color: #b91c1c !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 5. HERO IMAGE CONTAINER */
+.hero-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Shkrirja tani bëhet drejt të zezës (#0f172a) */
+    mask-image: linear-gradient(to right, transparent, black 45%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 45%);
+}
+
+/* 6. RESPONSIVE - MOBILE (MAINTAINING GRID) */
+@media (max-width: 900px) {
+    .hero-section {
+        display: grid !important;
+        /* Mbajmë dy kolona por me raport 1:1 për hapësirë */
+        grid-template-columns: 1.1fr 0.9fr !important; 
+        align-items: center !important;
+        min-height: 350px !important; /* Lartësi më e vogël për celular */
+        height: auto !important;
+    }
+
+    .hero-content {
+        padding: 1.5rem !important; /* Hapësirë shumë më e vogël */
+        text-align: left !important;
+        width: 100% !important;
+    }
+
+    .hero-title {
+        /* Font shumë më i vogël që të mos thyejë grid-in */
+        font-size: 1.4rem !important; 
+        margin-bottom: 1rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-desc-wrapper {
+        border-left: 3px solid #DC2626 !important; /* Vizë më e hollë */
+        padding-left: 0.8rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hero-desc {
+        font-size: 0.85rem !important; /* Tekst i vogël */
+        line-height: 1.4 !important;
+    }
+
+    .btn-lexo-hero {
+        padding: 10px 20px !important; /* Buton më i vogël */
+        font-size: 0.75rem !important;
+        display: inline-block !important;
+        width: auto !important;
+    }
+
+    .hero-image-container {
+        height: 100% !important;
+        min-height: 250px !important;
+        display: block !important;
+    }
+
+    .hero-image-container img {
+        /* Rikthejmë maskën horizontale pasi imazhi është sërish anash */
+        mask-image: linear-gradient(to right, transparent, black 50%) !important;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 50%) !important;
+        object-fit: cover !important;
+    }
+}
 
             /* 3. GRID AREA */
             .news-container {
@@ -195,7 +266,7 @@ const tagNames = {
                 
                 <main class="lg:col-span-8">
                     <div class="flex justify-between items-end mb-12 border-b-4 border-slate-900 pb-5">
-                        <h2 class="text-4xl font-black text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
+                        <h2 class="text-2xl! font-black text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
                         <a href="/te-fundit" class="text-slate-500 hover:text-[#DC2626] font-bold text-xs uppercase tracking-widest transition-colors">Shiko të gjitha</a>
                     </div>
 

@@ -3,144 +3,169 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import '../app.css';
 
-type Props = CollectionEntry<'blog'>['data'];
+/* --- RREGULLIMI 1: Bëjmë description opsional me pikëpyetje (?) --- */
+interface Props {
+	title: string;
+	description?: string; 
+	pubDate: Date;
+	updatedDate?: Date;
+	heroImage?: string;
+	tags?: string[];
+}
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { 
+    title, 
+    /* --- RREGULLIMI 2: I japim një vlerë automatike nëse mungon --- */
+    description = "Lemza News - Lajme satirike dhe humor nga rajoni.",
+    pubDate, 
+    updatedDate, 
+    heroImage, 
+    tags 
+} = Astro.props;
+
+/* --- RREGULLIMI 3: E deklarojmë si Record<string, string> që të mos japë error --- */
+const tagNames: Record<string, string> = {
+    'politike': 'Politikë',
+    'ekonomi': 'Ekonomi',
+    'showbiz': 'Showbiz',
+    'kronike': 'Kronikë',   
+    'sport': 'Sport',
+    'kulture': 'Kulturë',
+    'tekno-shkence': 'Tekno & Shkencë',
+    'shendeti': 'Shëndeti',
+    'rajoni': 'Rajoni',
+    'bota': 'Bota'
+};
+
+function getDisplayTag(tag: string) {
+    if (!tag) return 'LAJME';
+    const cleanTag = tag.trim().toLowerCase();
+    return tagNames[cleanTag] || (tag.charAt(0).toUpperCase() + tag.slice(1));
+}
+
 ---
 
 <html lang="sq">
-	<head>
-		<BaseHead title={title} description={description} image={heroImage} />
-		<style>
-			/* --- 1. GLOBAL RESET --- */
-			*, *::before, *::after {
-				box-sizing: border-box;
-			}
-
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				overflow-x: hidden;
-			}
-
-			/* --- 2. MAIN CONTAINER --- */
-			main {
-				width: 100%;
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 20px;
-			}
-
-			/* --- 3. HERO IMAGE --- */
-			.hero-image {
-				width: 100%;
-				margin-top: 1rem;
-				margin-bottom: 2rem;
-			}
-			
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 8px;
-				box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-				width: 100%;
-				height: auto;
-				object-fit: cover;
-			}
-
-			/* --- 4. TYPOGRAPHY --- */
-			.prose {
-				width: 100%;
-				line-height: 1.6;
-				color: #333;
-				font-size: 1.1rem;
-				text-align: justify; 
-				hyphens: auto;       
-			}
-			
-			.title {
-				margin-bottom: 0.5em; 
-				padding: 1em 0 0.5em 0;
-				text-align: center;
-				border-bottom: 1px solid #ddd;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-				font-size: 2.2rem;
-				font-weight: 800;
-				line-height: 1.2;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: #666;
-				font-size: 0.9rem;
-			}
-
-			/* --- 5. IMAGES INSIDE TEXT --- */
-			.prose :global(img) {
-				max-width: 100%;
-				height: auto;
-				border-radius: 8px;
-				display: block;
-				margin: 20px auto;
-			}
-
-            /* --- 6. ARTICLE DISCLAIMER (NEW) --- */
+    <head>
+        <BaseHead title={title} description={description} image={heroImage} />
+        <style>
+            .prose {
+                width: 100%;
+                line-height: 1.8;
+                color: #334155;
+                font-size: 1.1rem;
+				text-align: justify;
+            }
+            .prose p { margin-bottom: 1.5em; }
+            .prose h2, .prose h3 {
+                color: #0f172a; font-weight: 900; margin-top: 2em; margin-bottom: 1em;
+                text-transform: uppercase; letter-spacing: -0.02em;
+            }
+            .prose ul, .prose ol { margin-bottom: 1.5em; padding-left: 1.5em; }
+            .prose li { margin-bottom: 0.5em; }
             .article-disclaimer {
-                background-color: #fff5f5; /* Light Red Background */
-                border-left: 5px solid #ff0033; /* The Red Line */
-                padding: 1.5rem;
-                margin-top: 4rem;  /* Space between article and disclaimer */
-                margin-bottom: 1rem;
-                border-radius: 4px;
-                font-size: 0.95rem;
-                color: #7f1d1d;
-                line-height: 1.5;
+                background-color: #fef2f2; border-left: 4px solid #DC2626;
+                padding: 1.5rem; margin-top: 4rem; border-radius: 0 4px 4px 0;
+                font-size: 0.95rem; color: #7f1d1d; line-height: 1.6;
             }
             .article-disclaimer strong {
-                display: block;
-                text-transform: uppercase;
-                margin-bottom: 0.5rem;
-                color: #c53030;
-                font-weight: 800;
+                display: block; text-transform: uppercase; margin-bottom: 0.5rem;
+                color: #DC2626; font-weight: 800; letter-spacing: 0.05em;
             }
-			
-			/* --- 7. MOBILE SPECIFIC --- */
-			@media (max-width: 720px) {
-				main {
-					padding: 1rem;
-				}
-				.title h1 {
-					font-size: 1.6rem;
-				}
+            .prose :global(img) {
+                max-width: 100%; height: auto; border-radius: 8px;
+                display: block; margin: 2rem auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+			.article-end-signoff {
+       			 display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1.5rem;
+				margin: 4rem 0; /* Hapësirë sipër dhe poshtë ikonës */
+				opacity: 0.8;
+    		}
+
+			.signoff-line {
+				height: 1px;
+				flex: 1;
+				background: linear-gradient(to right, transparent, #e2e8f0, transparent);
 			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{updatedDate && <div class="last-updated-on">
-								Last updated on <FormattedDate date={updatedDate} />
-							</div>}
-						</div>
-						<h1>{title}</h1>
-					</div>
 
-					<div class="hero-image">
-						{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-					</div>
+			.signoff-icon .logo-box {
+				background-color: #DC2626;
+				color: white;
+				font-weight: 900;
+				font-size: 1rem;
+				width: 28px;
+				height: 28px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 3px;
+				box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+			}
+        </style>
+    </head>
+    
+    <body class="bg-[#F1F5F9]">
+        <Header />
+        
+        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <main class="lg:col-span-8">
+                <article class="bg-white p-6 md:p-12 rounded-xl border border-slate-200 shadow-sm">
+                    
+                    <div class="mb-6 border-b border-slate-100 pb-6">
+                        <div class="flex items-center gap-2 text-sm font-bold text-slate-400 mb-6 uppercase tracking-widest">
+                            <span class="text-[#DC2626] font-black">/</span> 
+                            
+                            {tags && tags.length > 0 ? (
+            	tags.map((tag, index) => (
+                <>
+                    <span class="hover:text-[#DC2626] transition-colors cursor-default">
+                        {getDisplayTag(tag)}
+                    </span>
+                    {index < tags.length - 1 && <span class="text-slate-300">•</span>}
+                </>
+            ))
+        ) : (
+            <span>LAJME</span>
+        )}
+                            
+                            <span class="text-slate-300 mx-2">|</span>
+                            <FormattedDate date={pubDate} />
+                            {updatedDate && (
+                                <span class="italic text-slate-300 ml-1 text-xs normal-case">(Përditësuar)</span>
+                            )}
+                        </div>
+                        
+                        <h1 class="text-4xl! md:text-4xl lg:text-5xl font-black text-slate-900 mb-6! leading-tight tracking-tight">
+                            {title}
+                        </h1>
 
-                    <slot />
-					
+                        {heroImage && (
+                            <div class="rounded-xl overflow-hidden shadow-md mb-6 border border-slate-100">
+                                <img width={1020} height={510} src={heroImage} alt="" class="w-full h-auto object-cover" />
+                            </div>
+                        )}
+                    </div>
+
+                    <div class="prose">
+                        <slot />
+                    </div>
+
+					<div class="article-end-signoff">
+    					<div class="signoff-line"></div>
+    					<div class="signoff-icon">
+        					<span class="logo-box">L</span>
+    					</div>
+    					<div class="signoff-line"></div>
+					</div>
+                    
                     <div class="article-disclaimer">
                         <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
                         <p style="margin: 0;">
@@ -148,9 +173,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                         </p>
                     </div>
 
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+                </article>
+            </main>
+
+            <aside class="lg:col-span-4 lg:pl-10 border-l border-slate-200 hidden lg:block">
+                <div class="sticky top-8">
+                    <Sidebar />
+                </div>
+            </aside>
+
+        </div>
+
+        <Footer />
+    </body>
 </html>

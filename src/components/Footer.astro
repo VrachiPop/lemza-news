@@ -6,18 +6,10 @@ const today = new Date();
 	<div class="newsletter-section">
 		<h2>Mos humbisni asnjë gënjeshtër</h2>
 		<p>Abonohuni në buletinin tonë dhe merrni lajmet më të fundit direkt në inbox-in tuaj. Premtojmë që nuk do t'ju dërgojmë spam (shpesh).</p>
-		<form 
-          class="newsletter-form" 
-          action="https://formspree.io/f/xbdalqka" 
-          method="POST"
->
-    <input 
-        type="email" 
-        name="email" 
-        placeholder="Vendosni email-in tuaj" 
-        required 
-    />
-    <button type="submit">ABONOHU</button>
+		
+		<form class="newsletter-form" action="https://formspree.io/f/xbdalqka" method="POST">
+			<input type="email" name="email" placeholder="Vendosni email-in tuaj" required />
+			<button type="submit">ABONOHU</button>
 		</form>
 	</div>
 
@@ -31,19 +23,11 @@ const today = new Date();
 			<p class="brand-desc">
 				Platforma më serioze për lajme jo-serioze. Ne raportojmë atë që të tjerët kanë frikë ta imagjinojnë.
 			</p>
+			
 			<div class="social-links">
-				<a href="https://i0.wp.com/hyperallergic-newspack.s3.amazonaws.com/uploads/2023/07/stop-trying-to-make-x-happen.jpg?w=1200&quality=100&ssl=1" target="_blank" aria-label="Twitter">
-					<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-				</a>
-				<a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg" target="_blank" aria-label="Facebook">
-					<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036c-2.148 0-2.797 1.66-2.797 3.592v.38h3.454l-.258 3.667h-3.196v7.98z"/></svg>
-				</a>
-				<a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg" target="_blank" aria-label="Instagram">
-					<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-				</a>
-				<a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg" target="_blank" aria-label="LinkedIn">
-					<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-				</a>
+				<a href="#" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+				<a href="#" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036c-2.148 0-2.797 1.66-2.797 3.592v.38h3.454l-.258 3.667h-3.196v7.98z"/></svg></a>
+				<a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
 			</div>
 		</div>
 
@@ -55,13 +39,13 @@ const today = new Date();
 				<li><a href="/tags/ekonomi">Ekonomi</a></li>
 				<li><a href="/tags/sport">Sport</a></li>
 				<li><a href="/tags/kronike">Kronikë</a></li>
-        <li><a href="/tags/bota">Bota</a></li>
-        <li><a href="/tags/rajoni">Rajoni</a></li>
+				<li><a href="/tags/bota">Bota</a></li>
+				<li><a href="/tags/rajoni">Rajoni</a></li>
 				<li><a href="/tags/kulture">Kulturë</a></li>
 				<li><a href="/tags/tekno-shkence">Tekno & Shkencë</a></li>
 				<li><a href="/tags/sociale">Sociale</a></li>
-        <li><a href="/tags/shendeti">Shëndeti</a></li>
-        <li><a href="/tags/showbiz">Showbiz</a></li>
+				<li><a href="/tags/shendeti">Shëndeti</a></li>
+				<li><a href="/tags/showbiz">Showbiz</a></li>
 			</ul>
 		</div>
 
@@ -69,20 +53,20 @@ const today = new Date();
 			<h4>KOMPANIA</h4>
 			<ul>
 				<li><a href="/about">Rreth Nesh</a></li>
-				<li><a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg">Redaksia</a></li>
-				<li><a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg">Karriera</a></li>
-				<li><a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg">Reklamo</a></li>
-				<li><a href="https://media.makeameme.org/created/coming-soon-6f258451cb.jpg">Kontakt</a></li>
+				<li><a href="#">Redaksia</a></li>
+				<li><a href="#">Karriera</a></li>
+				<li><a href="#">Reklamo</a></li>
+				<li><a href="#">Kontakt</a></li>
 			</ul>
 		</div>
 
 		<div class="footer-col">
 			<h4>LIGJORE</h4>
 			<ul>
-				<li><a href="/privacy#kushtet">Kushtet e Përdorimit</a></li>
-        <li><a href="/privacy#privatesia">Privatësia</a></li>
-        <li><a href="/privacy#cookies">Cookies</a></li> 
-        <li><a href="/privacy#copyright">Copyright</a></li>
+				<li><a href="#">Kushtet</a></li>
+				<li><a href="#">Privatësia</a></li>
+				<li><a href="#">Cookies</a></li> 
+				<li><a href="#">Copyright</a></li>
 			</ul>
 		</div>
 	</div>
@@ -98,13 +82,13 @@ const today = new Date();
 </footer>
 
 <style>
-	/* --- COLORS --- */
+	/* --- NGJYRAT E REJA (DARK THEME) --- */
 	:root {
-		--footer-bg: #F1F5F9;
-		--footer-text: #0f172a;
-		--footer-heading: #0f172a;
-		--input-bg: #4E545F;
-		--border-color: #4E545F;
+		--footer-bg: #0f172a;      /* Slate 900 - E errët */
+		--footer-text: #94a3b8;    /* Slate 400 - Gri e lehtë */
+		--footer-heading: #ffffff; /* E bardhë */
+		--footer-border: #1e293b;  /* Slate 800 - Vijat ndarëse */
+		--accent-red: #DC2626;     /* E kuqja e re */
 	}
 
 	footer {
@@ -112,6 +96,7 @@ const today = new Date();
 		color: var(--footer-text);
 		padding: 4rem 1rem 1rem 1rem;
 		margin-top: auto;
+		border-top: 1px solid var(--footer-border);
 		font-family: 'Helvetica Neue', Arial, sans-serif;
 	}
 
@@ -120,124 +105,135 @@ const today = new Date();
 		text-align: center;
 		max-width: 700px;
 		margin: 0 auto 4rem auto;
-		border-bottom: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--footer-border);
 		padding-bottom: 3rem;
 	}
 	.newsletter-section h2 {
 		color: var(--footer-heading);
 		font-size: 2rem;
 		margin-bottom: 0.5rem;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: -1px;
 	}
-	.newsletter-section p { margin-bottom: 1.5rem; line-height: 1.5; }
+	.newsletter-section p { margin-bottom: 1.5rem; line-height: 1.6; font-size: 1.1rem; }
 
 	.newsletter-form { display: flex; gap: 10px; justify-content: center; max-width: 500px; margin: auto; }
-	.newsletter-form input { background: #F1F5F9; border: 1px solid #7f858d; padding: 12px 15px; color: var(--footer-text); border-radius: 4px; flex: 1; }
-	.newsletter-form input::placeholder { color: var(--footer-text); }
-	.newsletter-form button { background-color: #ff0033; color: white; border: none; padding: 12px 24px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: background 0.2s; }
-	.newsletter-form button:hover { background-color: #cc0029; }
+	
+	/* Inputi tani është i bardhë që të duket mbi sfondin e zi */
+	.newsletter-form input { 
+		background: #ffffff; 
+		border: none; 
+		padding: 12px 20px; 
+		color: #333; 
+		border-radius: 4px; 
+		flex: 1; 
+		font-size: 0.95rem;
+	}
+	.newsletter-form input:focus { outline: 2px solid var(--accent-red); }
+	
+	.newsletter-form button { 
+		background-color: var(--accent-red); 
+		color: white; border: none; 
+		padding: 12px 24px; 
+		font-weight: 900; 
+		border-radius: 4px; 
+		cursor: pointer; 
+		text-transform: uppercase; 
+		transition: all 0.2s; 
+		letter-spacing: 1px;
+	}
+	.newsletter-form button:hover { background-color: #b91c1c; transform: translateY(-2px); }
 
 
 	/* --- MAIN COLUMNS --- */
 	.footer-content {
 		display: grid;
-		grid-template-columns: 2fr 2fr 1fr 1fr; /* Made 2nd column wider to fit 2 sub-columns */
-		gap: 2rem;
-		max-width: 1200px;
+		grid-template-columns: 2fr 2fr 1fr 1fr;
+		gap: 3rem;
+		max-width: 1400px; /* E zgjeruar pak */
 		margin: 0 auto 3rem auto;
 	}
 
-	/* Brand & Social */
-	.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-	.logo-box { background-color: #ff0033; color: white; font-weight: 900; font-size: 1.2rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
-	.logo-text { color: var(--footer-heading); font-weight: 800; font-size: 1.2rem; text-transform: uppercase; }
-	.brand-desc { font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem; max-width: 300px; }
+	/* Brand */
+	.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
+	.logo-box { background-color: var(--accent-red); color: white; font-weight: 900; font-size: 1.4rem; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+	.logo-text { color: var(--footer-heading); font-weight: 900; font-size: 1.4rem; text-transform: uppercase; letter-spacing: -1px; }
+	.brand-desc { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 320px; color: var(--footer-text); }
 	
 	.social-links { display: flex; gap: 1rem; }
-	.social-links a { color: var(--footer-text); transition: color 0.2s; display: flex; align-items: center; text-decoration: none; }
-	.social-links svg { width: 24px; height: 24px; }
-	.social-links a:hover { color: var(--footer-heading); }
+	.social-links a { 
+		color: var(--footer-text); 
+		background: var(--footer-border); 
+		width: 36px; height: 36px; 
+		display: flex; align-items: center; justify-content: center; 
+		border-radius: 4px; 
+		transition: all 0.2s; 
+	}
+	.social-links svg { width: 18px; height: 18px; }
+	.social-links a:hover { color: white; background: var(--accent-red); transform: translateY(-3px); }
 
 	/* --- HEADERS & LINKS --- */
 	.footer-col h4 {
-		color: var(--footer-text);
-		font-size: 0.85rem;
+		color: var(--footer-heading);
+		font-size: 0.8rem;
 		text-transform: uppercase;
-		letter-spacing: 1px;
+		letter-spacing: 2px;
 		margin-bottom: 1.5rem;
-		font-weight: bold;
+		font-weight: 900;
+		opacity: 0.7;
 	}
 
 	.footer-col ul { list-style: none; padding: 0; margin: 0; }
 	.footer-col ul li { margin-bottom: 0.8rem; }
-	.footer-col ul li a { color: var(--footer-heading); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
-	.footer-col ul li a:hover { color: #ff0033; }
+	.footer-col ul li a { 
+		color: var(--footer-text); 
+		text-decoration: none; 
+		font-size: 0.95rem; 
+		font-weight: 500;
+		transition: color 0.2s; 
+	}
+	.footer-col ul li a:hover { color: var(--accent-red); padding-left: 5px; }
 
-	/* --- NEW: 2-COLUMN CATEGORY LIST --- */
+	/* Category Grid */
 	.category-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr; /* Split into 2 columns */
-		gap: 0 20px; /* Horizontal space between columns */
+		grid-template-columns: 1fr 1fr;
+		gap: 0 30px;
 	}
 
 	/* --- BOTTOM BAR --- */
 	.footer-bottom {
-		max-width: 1200px; margin: auto; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 0.85rem;
+		max-width: 1400px; margin: auto; padding-top: 2rem; border-top: 1px solid var(--footer-border); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;
 	}
-	.disclaimer { font-style: italic; opacity: 0.8; }
+	.copyright { font-weight: bold; }
+	.disclaimer { font-style: italic; opacity: 0.6; }
 
-/* --- MOBILE RESPONSIVE --- */
+	/* --- MOBILE --- */
 	@media (max-width: 900px) {
 		.footer-content {
-			/* 1. Create a 2-column grid for mobile */
-			grid-template-columns: 1fr 1fr;
-			gap: 2rem 1rem; /* 2rem vertical gap, 1rem horizontal gap */
-			text-align: left; /* NEATER: Left align text so lists look clean */
+			grid-template-columns: 1fr; /* Një kolonë në celular */
+			gap: 3rem;
+			text-align: center;
 		}
 
-		/* 2. Brand Section: Force it to be Full Width (Span 2 columns) */
-		.brand-col {
-			grid-column: 1 / -1; /* Spans from start to end */
-			text-align: center;  /* Keep logo centered */
-			border-bottom: 1px solid rgba(255,255,255,0.1); /* Nice divider */
-			padding-bottom: 2rem;
-			margin-bottom: 1rem;
-		}
-		/* Ensure internal flex items in brand are centered */
+		.brand-col, .wide-col { grid-column: auto; }
+		
 		.footer-logo, .social-links, .brand-desc {
 			justify-content: center;
 			margin-left: auto;
 			margin-right: auto;
 		}
 
-		/* 3. Categories: Force it to be Full Width */
-		.wide-col {
-			grid-column: 1 / -1; /* Spans full width */
-		}
-		
-		/* 4. Kompania & Ligjore:
-		   They are NOT mentioned here, so they naturally fall into 
-		   the 1fr 1fr grid (Side-by-Side), which is exactly what you want. */
+		.category-grid { text-align: center; }
 
-		/* 5. General Cleanup */
 		.footer-bottom {
 			flex-direction: column;
 			gap: 1rem;
 			text-align: center;
 		}
-		.newsletter-form {
-			flex-direction: column;
-		}
-		.newsletter-form input {
-			width: 100%;
-			box-sizing: border-box;
-		}
-		.newsletter-form button { width: 100%; }
 		
-		/* Remove the centering constraint from before */
-		.category-grid { 
-			text-align: left; 
-			max-width: none; 
-			margin: 0;
-		}
+		.newsletter-form { flex-direction: column; }
+		.newsletter-form input, .newsletter-form button { width: 100%; }
 	}
 </style>

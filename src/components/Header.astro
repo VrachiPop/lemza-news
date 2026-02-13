@@ -1,164 +1,215 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
 ---
 
 <header class="site-header">
-	<nav>
-		<a href="/" class="logo-container">
-			<div class="logo-box">L</div>
-			<div class="logo-text">
-				<span class="brand-name">LEMZA NEWS</span>
-				<span class="brand-slogan">TË PARËT TE RRENA</span>
-			</div>
-		</a>
+    <nav>
+        <a href="/" class="logo-container">
+            <div class="logo-box">L</div>
+            <div class="logo-text">
+                <span class="brand-name">LEMZA NEWS</span>
+            </div>
+        </a>
 
-		<div class="desktop-links">
-			<HeaderLink href="/">KREU</HeaderLink>
-			<HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
-			<HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
-			<HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
-			<HeaderLink href="/tags/sociale">SOCIALE</HeaderLink>
-			<HeaderLink href="/tags/kronike">KRONIKË</HeaderLink>
-      <HeaderLink href="/tags/shendeti">SHËNDETI</HeaderLink>
-      <HeaderLink href="/tags/rajoni">RAJONI</a>
-    	<HeaderLink href="/tags/bota">BOTA</a>
-			<HeaderLink href="/tags/sport">SPORT</HeaderLink>
-			<HeaderLink href="/tags/kulture">KULTURË</HeaderLink>
-			<HeaderLink href="/tags/showbiz">SHOWBIZ</HeaderLink>
-			<HeaderLink href="/tags/tekno-shkence">TEKNO & SHKENCË</HeaderLink>
-		</div>
+        <div class="desktop-links">
+            <HeaderLink href="/">KREU</HeaderLink>
+            <HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
+            <HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
+            <HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
+            <HeaderLink href="/tags/sociale">SOCIALE</HeaderLink>
+            <HeaderLink href="/tags/kronike">KRONIKË</HeaderLink>
+            <HeaderLink href="/tags/shendeti">SHËNDETI</HeaderLink>
+            <HeaderLink href="/tags/rajoni">RAJONI</HeaderLink>
+            <HeaderLink href="/tags/bota">BOTA</HeaderLink>
+            <HeaderLink href="/tags/sport">SPORT</HeaderLink>
+            <HeaderLink href="/tags/kulture">KULTURË</HeaderLink>
+            <HeaderLink href="/tags/showbiz">SHOWBIZ</HeaderLink>
+            <HeaderLink href="/tags/tekno-shkence">TEKNO & SHKENCË</HeaderLink>
+        </div>
 
-		<div class="right-actions">
-			<div class="search-container">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-			</div>
-			
-			<button class="mobile-menu-btn" id="menu-toggle" aria-label="Menu">
-				<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-			</button>
-		</div>
-	</nav>
+        <div class="right-actions">
+            <div class="search-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            
+            <button class="mobile-menu-btn" id="menu-toggle" aria-label="Menu">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </nav>
 
-	<div class="mobile-nav-links" id="mobile-menu">
-		<a href="/">KREU</a>
-		<a href="/te-fundit">TË FUNDIT</a>
-		<a href="/tags/politike">POLITIKË</a>
-		<a href="/tags/ekonomi">EKONOMI</a>
-		<a href="/tags/sociale">SOCIALE</a>
-		<a href="/tags/kronike">KRONIKË</a>
-    <a href="/tags/shendeti">SHËNDETI</a>
-    <a href="/tags/rajoni">RAJONI</a>
-    <a href="/tags/bota">BOTA</a>
-		<a href="/tags/sport">SPORT</a>
-		<a href="/tags/kulture">KULTURË</a>
-		<a href="/tags/showbiz">SHOWBIZ</a>
-		<a href="/tags/tekno-shkence">TEKNO & SHKENCË</a>
-	</div>
+    <div class="mobile-nav-links" id="mobile-menu">
+        <a href="/">KREU</a>
+        <a href="/te-fundit">TË FUNDIT</a>
+        <a href="/tags/politike">POLITIKË</a>
+        <a href="/tags/ekonomi">EKONOMI</a>
+        <a href="/tags/sociale">SOCIALE</a>
+        <a href="/tags/kronike">KRONIKË</a>
+        <a href="/tags/shendeti">SHËNDETI</a>
+        <a href="/tags/rajoni">RAJONI</a>
+        <a href="/tags/bota">BOTA</a>
+        <a href="/tags/sport">SPORT</a>
+        <a href="/tags/kulture">KULTURË</a>
+        <a href="/tags/showbiz">SHOWBIZ</a>
+        <a href="/tags/tekno-shkence">TEKNO & SHKENCË</a>
+    </div>
 </header>
 
 <script>
-	const menuBtn = document.getElementById('menu-toggle');
-	const mobileMenu = document.getElementById('mobile-menu');
+    const menuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-	menuBtn?.addEventListener('click', () => {
-		mobileMenu?.classList.toggle('open');
-	});
+    menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('open');
+    });
 </script>
 
 <style>
-	/* --- GLOBAL RESET --- */
-	header.site-header {
-		margin: 0;
-		padding: 0 1rem;
-		background-color: #F1F5F9 !important;
-		color: #0f172a !important;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-		position: relative;
-		z-index: 1000;
-	}
+    /* --- DARK THEME VARS --- */
+    :root {
+        --header-bg: #0f172a;    /* Slate 900 - E ZEZE/BLU E ERRET */
+        --header-text: #ffffff;  /* E bardhë */
+        --accent-red: #DC2626;   /* E kuqe */
+        --border-color: #1e293b; /* Slate 800 - Borders të errët */
+    }
 
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 70px;
-		max-width: 1400px;
-		margin: 0 auto;
-	}
+    /* --- LAYOUT --- */
+    header.site-header {
+        background-color: var(--header-bg) !important; /* Detyrojmë ngjyrën e errët */
+        color: var(--header-text);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0 1rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Hije më e fortë për sfond të errët */
+    }
 
-	/* --- LOGO --- */
-	a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 10px; }
-	.logo-box { background-color: #ff0033; color: white; font-size: 24px; font-weight: 900; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
-	.logo-text { display: flex; flex-direction: column; line-height: 1; }
-	.brand-name { color: #0f172a; font-weight: 900; font-size: 18px; text-transform: uppercase; }
-	.brand-slogan { color: #0f172a; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
 
-	/* --- DESKTOP LINKS (The Center Menu) --- */
-	.desktop-links { 
-		display: flex; 
-		gap: 1rem; /* Reduced gap to fit more items */
-		height: 100%; 
-		align-items: center; 
-	}
-	
-	.desktop-links :global(a) { 
-		color: #0f172a !important; 
-		text-decoration: none; 
-		font-weight: 700; 
-		font-size: 13px; /* Slightly smaller font to fit 10 items */
-		text-transform: uppercase; 
-		height: 100%;
-		display: flex;
-		align-items: center;
-		border-bottom: 4px solid transparent; 
-		white-space: nowrap; /* Prevents text from wrapping */
-	}
-	.desktop-links :global(a:hover), .desktop-links :global(a.active) { color: #0f172a !important; border-bottom-color: #ff0033; }
+    /* --- LOGO --- */
+    a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 12px; }
+    
+    .logo-box { 
+        background-color: var(--accent-red); 
+        color: white; 
+        font-size: 24px; 
+        font-weight: 900; 
+        width: 40px; 
+        height: 40px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        border-radius: 4px; 
+    }
+    
+    .logo-text { display: flex; flex-direction: column; line-height: 1; }
+    
+    .brand-name { 
+        color: var(--header-text); /* E Bardhë */
+        font-weight: 900; 
+        font-size: 20px; 
+        text-transform: uppercase; 
+        letter-spacing: -0.5px;
+    }
+    
+    .brand-slogan { 
+        color: #94a3b8; /* Slate 400 - Gri e hapur */
+        font-size: 10px; 
+        font-weight: 700;
+        text-transform: uppercase; 
+        letter-spacing: 1.5px; 
+        margin-top: 2px;
+    }
 
-	/* --- RIGHT ACTIONS --- */
-	.right-actions { display: flex; align-items: center; gap: 15px; }
-	
-	.mobile-menu-btn { 
-		display: none; 
-		background: none; 
-		border: none; 
-		cursor: pointer; 
-		padding: 0;
-		color: white; 
-	}
+    /* --- DESKTOP LINKS --- */
+    .desktop-links { 
+        display: flex; 
+        gap: 1.2rem; 
+        height: 100%; 
+        align-items: center; 
+    }
+    
+    .desktop-links :global(a) { 
+        color: #cbd5e1 !important; /* Slate 300 - Gri e hapur */
+        text-decoration: none; 
+        font-weight: 800; 
+        font-size: 12px; 
+        text-transform: uppercase; 
+        letter-spacing: 0.5px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+        transition: color 0.2s;
+    }
 
-	/* --- MOBILE MENU DROPDOWN --- */
-	.mobile-nav-links {
-		display: none; 
-		flex-direction: column;
-		background-color: #2d333f;
-		position: absolute;
-		top: 100%; 
-		left: 0;
-		right: 0;
-		padding: 0;
-		border-top: 1px solid #4b5563;
-		box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-	}
+    .desktop-links :global(a:hover), 
+    .desktop-links :global(a.active) { 
+        color: var(--header-text) !important; /* Bëhet e bardhë kur prek */
+        border-bottom-color: var(--accent-red);  /* Viza e kuqe sipër */
+    }
 
-	.mobile-nav-links.open { display: flex; }
+    /* --- RIGHT ACTIONS --- */
+    .right-actions { display: flex; align-items: center; gap: 20px; color: white; }
+    
+    .search-container svg { cursor: pointer; transition: color 0.2s; }
+    .search-container svg:hover { color: var(--accent-red); }
 
-	.mobile-nav-links a {
-		color: white;
-		padding: 15px 20px;
-		text-decoration: none;
-		border-bottom: 1px solid #3e4552;
-		font-weight: bold;
-		text-transform: uppercase;
-	}
-	.mobile-nav-links a:hover { background-color: #3e4552; color: #ff0033; }
+    .mobile-menu-btn { 
+        display: none; 
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        padding: 0;
+        color: white; /* Hamburgeri i bardhë */
+    }
 
-	/* --- MOBILE BREAKPOINT --- */
-	/* Switched to 1100px because the menu is wide now */
-	@media (max-width: 1100px) {
-		.desktop-links { display: none !important; }
-		.mobile-menu-btn { display: block; }
-		.brand-name { font-size: 16px; }
-	}
+    /* --- MOBILE MENU (DARK) --- */
+    .mobile-nav-links {
+        display: none; 
+        flex-direction: column;
+        background-color: var(--header-bg); /* Sfond i errët */
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        right: 0;
+        padding: 0;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+    }
+
+    .mobile-nav-links.open { display: flex; }
+
+    .mobile-nav-links a {
+        color: #cbd5e1; /* Tekst gri i hapur */
+        padding: 15px 20px;
+        text-decoration: none;
+        border-bottom: 1px solid var(--border-color);
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .mobile-nav-links a:hover { 
+        background-color: #1e293b; /* Pak më e çelët në hover */
+        color: var(--accent-red); 
+        padding-left: 25px; /* Efekt lëvizjeje */
+    }
+
+    /* --- BREAKPOINT --- */
+    @media (max-width: 1250px) {
+        .desktop-links { display: none !important; }
+        .mobile-menu-btn { display: block; }
+        nav { height: 70px; }
+    }
 </style>

@@ -3,260 +3,135 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="Rreth Nesh"
-	description="Të parët te rrena"
-	pubDate={new Date('January 01 2024')}
+    title="Rreth Nesh"
+<    pubDate={new Date('January 01 2026')}
 >
-    <style>
-        .lead {
-            font-size: 1.3rem;
-            text-align: center;
-            color: #555;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            font-weight: 300;
-        }
+    <div class="mb-12">
+        <p class="text-lg! text-slate-600 font-medium leading-relaxed border-l-4 border-[#DC2626] pl-6 italic">
+            Mirë se erdhët në <strong class="text-slate-900">Lemza News</strong>, platforma numër një në rajon për lajme që nuk kanë ndodhur kurrë, rrëfime të personazheve imagjinarë dhe statistika të shpikura në moment.
+        </p>
+    </div>
 
-        /* GRIDS */
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        /* CARDS */
-        .feature-card, .staff-card {
-            background: #f9fafb;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            transition: transform 0.2s ease;
-        }
-        .feature-card:hover, .staff-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: #ff0033;
-        }
-
-        /* TYPOGRAPHY */
-        h2 {
-            text-align: center;
-            margin-top: 3rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            font-size: 1.8rem;
-            color: #111;
-        }
-
-        h3 {
-            color: #111;
-            border-bottom: 3px solid #ff0033;
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .staff-role {
-            font-size: 0.85rem;
-            color: #ff0033;
-            font-weight: 800;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        /* FAKE STATS */
-        .stats-row {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin: 3rem 0;
-            padding: 2rem 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        .stat-number {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #ff0033;
-        }
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* CONTACT BOX */
-        .contact-box {
-            background: #111;
-            color: #fff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 3rem;
-            border: 1px solid #333;
-        }
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .contact-item {
-            background: #222;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-        }
-        .contact-label {
-            display: block;
-            font-size: 0.8rem;
-            color: #888;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .contact-value {
-            font-weight: bold;
-            color: #fff;
-            font-size: 1.1rem;
-        }
-
-        /* DISCLAIMER */
-        .disclaimer-alert {
-            background-color: #fff5f5;
-            border-left: 5px solid #ff0033;
-            padding: 1.5rem;
-            border-radius: 4px;
-            color: #c53030;
-            font-size: 0.95rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .features-grid, .staff-grid { grid-template-columns: 1fr; }
-            .stats-row { flex-direction: column; gap: 2rem; }
-            .contact-details { flex-direction: column; gap: 1rem; }
-        }
-    </style>
-
-    <p class="lead">
-		Mirë se erdhët në <strong>Lemza News</strong>, platforma numër një në rajon për lajme që nuk kanë ndodhur kurrë, rrëfime të personazheve imagjinarë dhe statistika të shpikura në moment.
-	</p>
-
-    <div class="stats-row">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 my-10 border-y border-slate-200 text-center bg-slate-50 rounded-lg">
         <div>
-            <span class="stat-number">100%</span>
-            <span class="stat-label">Gënjeshtra</span>
+            <span class="block text-4xl font-black text-[#DC2626] mb-2">100%</span>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Gënjeshtra</span>
         </div>
         <div>
-            <span class="stat-number">0</span>
-            <span class="stat-label">Fakte</span>
+            <span class="block text-4xl font-black text-slate-900 mb-2">0</span>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Fakte</span>
         </div>
         <div>
-            <span class="stat-number">12k</span>
-            <span class="stat-label">Padi në Gjykatë</span>
+            <span class="block text-4xl font-black text-[#DC2626] mb-2">12k</span>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Padi në Gjykatë</span>
         </div>
     </div>
 
-    <div class="features-grid">
-        <div class="feature-card">
-            <h3>Misioni Ynë</h3>
-            <p>
-                Të raportojmë atë që të tjerët kanë frikë ta imagjinojnë. Ne nuk ndjekim lajmin, ne e krijojmë atë nga hiçi.
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform duration-300">
+            <h3 class="text-lg! font-black text-slate-900 mb-4 uppercase tracking-tight flex items-center gap-2">
+                <span class="w-2 h-2 bg-[#DC2626] rounded-full"></span> Misioni Ynë
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-sm font-medium">
+                Të raportojmë atë që të tjerët kanë frikë ta imagjinojnë. Ne nuk ndjekim lajmin, ne e krijojmë atë nga hiçi duke përdorur teknologjinë më të fundit të thashethemeve.
             </p>
         </div>
-        <div class="feature-card">
-            <h3>Standardet</h3>
-            <p>
-                Ne ruajmë standardet më të larta të gazetarisë fiktive. Çdo histori verifikohet me kujdes për t'u siguruar që është absolutisht e pavërtetë.
+        <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform duration-300">
+            <h3 class="text-lg! font-black text-slate-900 mb-4 uppercase tracking-tight flex items-center gap-2">
+                <span class="w-2 h-2 bg-[#DC2626] rounded-full"></span> Standardet
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-sm font-medium">
+                Ne ruajmë standardet më të larta të gazetarisë fiktive. Çdo histori verifikohet me kujdes për t'u siguruar që është absolutisht e pavërtetë dhe e pabazuar.
             </p>
         </div>
     </div>
 
-    <h2>Redaksia</h2>
-    <div class="staff-grid">
-        <div class="staff-card">
-            <span class="staff-role">Kryeredaktor</span>
-            <strong>Padoras Bregu</strong>
-            <p style="font-size:0.9rem; margin-top:0.5rem; color:#666;">
-                Nuk vjen kurrë në zyrë sepse ka frikë nga përmbaruesit.
-            </p>
-        </div>
-        <div class="staff-card">
-            <span class="staff-role">Analist</span>
-            <strong>Gjithologu i Lagjes</strong>
-            <p style="font-size:0.9rem; margin-top:0.5rem; color:#666;">
-                Ekspert në gjeopolitikë, ekonomi dhe çështje sociale, sidomos pas gotës së tretë të rakisë.
-            </p>
-        </div>
-        <div class="staff-card">
-            <span class="staff-role">IT & Siguria</span>
-            <strong>Nipi i Pronarit</strong>
-            <p style="font-size:0.9rem; margin-top:0.5rem; color:#666;">
-                Di të rregullojë Wi-Fi duke fikur dhe ndezur modemin.
-            </p>
+    <div class="mb-16">
+        <h2 class="text-2xl! font-black text-slate-900 mb-8 uppercase tracking-tighter border-b-2 border-slate-100 pb-4 inline-block">
+            Redaksia
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 group">
+                <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-2">Kryeredaktor</div>
+                <strong class="block text-lg text-slate-900 mb-2 group-hover:text-[#DC2626] transition-colors">Padoras Bregu</strong>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Nuk vjen kurrë në zyrë sepse ka frikë nga përmbaruesit dhe ish-gratë.
+                </p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 group">
+                <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-2">Analist</div>
+                <strong class="block text-lg text-slate-900 mb-2 group-hover:text-[#DC2626] transition-colors">Gjithologu i Lagjes</strong>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Ekspert në gjeopolitikë, ekonomi dhe çështje sociale, sidomos pas gotës së tretë të rakisë.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 group">
+                <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-2">IT & Siguria</div>
+                <strong class="block text-lg text-slate-900 mb-2 group-hover:text-[#DC2626] transition-colors">Nipi i Pronarit</strong>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Di të rregullojë Wi-Fi duke fikur dhe ndezur modemin. Ka formatuar PC-në gabimisht 3 herë.
+                </p>
+            </div>
         </div>
     </div>
 
-    <div class="features-grid">
-        <div class="feature-card" style="background: #fff; border-left: 4px solid #333;">
-            <h3>Karriera</h3>
-            <p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="bg-white p-8 rounded-xl border-l-4 border-slate-800 shadow-sm">
+            <h3 class="text-xl font-black text-slate-900 mb-4 uppercase">Karriera</h3>
+            <p class="text-slate-600 text-sm mb-4">
                 A keni imagjinatë të shfrenuar? A dini të bëni tituj bombastikë që nuk kanë lidhje me përmbajtjen?
             </p>
-            <p><strong>Ne kërkojmë:</strong></p>
-            <ul style="font-size:0.9rem; padding-left:1.2rem; margin-bottom:1rem;">
-                <li>Gazetarë që nuk verifikojnë burimet.</li>
-                <li>Fotografë që dinë Photoshop.</li>
-                <li>Ekspertë të Clickbait.</li>
-            </ul>
-            <em style="color:#666; font-size:0.85rem;">Pagesa bëhet me "Bravo" dhe ekspozim.</em>
+            <div class="bg-slate-50 p-4 rounded mb-4">
+                <strong class="block text-xs uppercase text-slate-400 mb-2 tracking-widest">Ne kërkojmë:</strong>
+                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1 font-bold">
+                    <li>Gazetarë që nuk verifikojnë burimet.</li>
+                    <li>Fotografë që dinë Photoshop.</li>
+                    <li>Ekspertë të Clickbait.</li>
+                </ul>
+            </div>
+            <em class="text-xs text-slate-400 uppercase tracking-wider">Pagesa bëhet me "Bravo" dhe ekspozim.</em>
         </div>
 
-        <div class="feature-card" style="background: #fff; border-left: 4px solid #ff0033;">
-            <h3>Reklamo me Ne</h3>
-            <p>
+        <div class="bg-white p-8 rounded-xl border-l-4 border-[#DC2626] shadow-sm">
+            <h3 class="text-xl font-black text-slate-900 mb-4 uppercase">Reklamo</h3>
+            <p class="text-slate-600 text-sm mb-4">
                 Doni të reklamoni produktin tuaj te një audiencë që nuk ekziston? Jeni në vendin e duhur!
             </p>
-            <p><strong>Paketat tona:</strong></p>
-            <ul style="font-size:0.9rem; padding-left:1.2rem; margin-bottom:1rem;">
-                <li><strong>Paketa Bazë:</strong> Baner që nuk shihet.</li>
-                <li><strong>Paketa Premium:</strong> Artikull i sponsorizuar plot gabime drejtshkrimore.</li>
-            </ul>
-            <em style="color:#666; font-size:0.85rem;">Pranojmë pagesa vetëm kesh.</em>
+            <div class="bg-red-50 p-4 rounded mb-4">
+                <strong class="block text-xs uppercase text-red-400 mb-2 tracking-widest">Paketat tona:</strong>
+                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1 font-bold">
+                    <li><span class="text-[#DC2626]">Paketa Bazë:</span> Baner që nuk shihet.</li>
+                    <li><span class="text-[#DC2626]">Paketa Premium:</span> Artikull me gabime drejtshkrimore.</li>
+                </ul>
+            </div>
+            <em class="text-xs text-slate-400 uppercase tracking-wider">Pranojmë pagesa vetëm kesh.</em>
         </div>
     </div>
 
-    <div class="contact-box">
-        <h3 style="color: white; border-color: white;">Na Kontaktoni</h3>
-        <p style="color: #ccc; margin-bottom: 2rem;">
+    <div class="bg-slate-900 text-white p-10 rounded-xl text-center shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-slate-900 via-[#DC2626] to-slate-900"></div>
+
+        <h3 class="text-2xl font-black uppercase mb-4 tracking-tight text-slate-200!">Na Kontaktoni</h3>
+        <p class="text-slate-400 mb-8 max-w-lg mx-auto text-sm leading-relaxed">
             Nëse keni ankesa, ju lutemi shkruajini në një copë akulli dhe lërini në diell. 
             Për çdo gjë tjetër, ja ku na gjeni:
         </p>
 
-        <div class="contact-details">
-            <div class="contact-item">
-                <span class="contact-label">Email</span>
-                <span class="contact-value">info@lemzanews.com</span>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <div class="bg-slate-800 p-4 rounded-lg flex-1 border border-slate-700">
+                <span class="block text-[10px] text-slate-500 uppercase tracking-widest mb-1">Email</span>
+                <span class="font-bold text-white">info@lemzanews.com</span>
             </div>
-            <div class="contact-item">
-                <span class="contact-label">Adresa</span>
-                <span class="contact-value">Rr. "Bulevardi i Pishave",<br>Pallati pa Leje, Kati -1, Tiranë</span>
+            <div class="bg-slate-800 p-4 rounded-lg flex-1 border border-slate-700">
+                <span class="block text-[10px] text-slate-500 uppercase tracking-widest mb-1">Adresa</span>
+                <span class="font-bold text-white">Pallati pa Leje, Kati -1</span>
             </div>
-            <div class="contact-item">
-                <span class="contact-label">Telefon</span>
-                <span class="contact-value">+355 69 00 00 000</span>
+            <div class="bg-slate-800 p-4 rounded-lg flex-1 border border-slate-700">
+                <span class="block text-[10px] text-slate-500 uppercase tracking-widest mb-1">Telefon</span>
+                <span class="font-bold text-white">+355 69 00 00 000</span>
             </div>
         </div>
     </div>

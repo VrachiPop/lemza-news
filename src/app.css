@@ -1,1 +1,7 @@
 @import "tailwindcss";
+html, body {
+    background-color: #F1F5F9; /* Slate 100 - Ngjyra e re globale */
+    color: #1e293b; /* Slate 800 - Teksti */
+    margin: 0;
+    padding: 0;
+}
