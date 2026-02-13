@@ -1,0 +1,33 @@
+<svg width="145" height="50" viewBox="0 0 145 50" xmlns="http://www.w3.org/2000/svg">
+  <rect width="145" height="50" fill="#0f172a"/>
+
+  <g transform="translate(5, 5)">
+    
+    <rect width="40" height="40" rx="4" fill="#DC2626" />
+    
+    <text x="20" y="31" 
+          font-family="'Georgia', 'Times New Roman', serif" 
+          font-weight="900" 
+          font-size="30" 
+          fill="white" 
+          text-anchor="middle">L</text>
+
+    <g transform="translate(48, 0)">
+      
+      <text x="0" y="18" 
+            font-family="'Georgia', 'Times New Roman', serif" 
+            font-weight="900" 
+            font-size="22" 
+            fill="white" 
+            letter-spacing="-0.5">LEMZA</text>
+      
+      <text x="0" y="36" 
+            font-family="'Georgia', 'Times New Roman', serif" 
+            font-weight="700" 
+            font-size="22" 
+            fill="white" 
+            letter-spacing="0">NEWS</text>
+    </g>
+
+  </g>
+</svg>

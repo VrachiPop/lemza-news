@@ -20,3 +20,24 @@ p {
     font-family: var(--font-bookerly);
     line-height: 1.6; /* Hapësira ndërmjet rreshtave për lexim të rehatshëm */
 }
+/* --- ANIMACIONI LEMZA (HICCUP) --- */
+@keyframes hiccup {
+    0% { transform: scale(1) rotate(0deg); }
+    40% { transform: scale(1.15) rotate(-4deg); } /* Kërcen lart e majtas */
+    60% { transform: scale(1.1) rotate(2deg); }   /* Ulet pak djathtas */
+    100% { transform: scale(1) rotate(0deg); }    /* Kthehet në vend */
+}
+
+/* Kur bëjmë hover mbi elementin me klasën 'group' */
+.group:hover .lemza-icon {
+    animation: hiccup 0.4s ease-in-out forwards;
+}
+
+.group:hover .lemza-text {
+    transform: translateX(5px); /* Lëviz tekstin pak djathtas */
+}
+
+/* Shtojmë transition që teksti të lëvizë butë */
+.lemza-text {
+    transition: transform 0.3s ease-out;
+}

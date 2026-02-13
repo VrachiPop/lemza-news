@@ -16,10 +16,22 @@ const today = new Date();
     <div class="footer-content">
         
         <div class="footer-col brand-col">
-            <div class="footer-logo">
-                <span class="logo-box">L</span>
-                <span class="logo-text">Lemza News</span>
-            </div>
+    <div class="footer-logo group cursor-pointer" style="display: flex; align-items: center; gap: 12px;"> 
+        
+        <div class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0 origin-bottom-left">
+            <span class="font-black text-3xl leading-none">L</span>
+        </div>
+
+        <div class="lemza-text flex flex-col justify-center h-10">
+            <span class="text-white font-black text-2xl leading-[0.8] tracking-tight uppercase">
+                LEMZA
+            </span>
+            <span class="text-white font-bold text-2xl leading-none tracking-tight uppercase mt-1">
+                NEWS
+            </span>
+        </div>
+        
+    </div>
             <p class="brand-desc">
                 Platforma më serioze për lajme jo-serioze. Ne raportojmë atë që të tjerët kanë frikë ta imagjinojnë.
             </p>
@@ -103,7 +115,7 @@ const today = new Date();
         padding: 5.8rem 1rem 1rem 1rem;
         margin-top: auto;
         border-top: 1px solid var(--footer-border);
-        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Literata', 'Georgia', sans-serif;
     }
 
     /* --- NEWSLETTER --- */

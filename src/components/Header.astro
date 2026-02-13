@@ -4,15 +4,23 @@ import HeaderLink from './HeaderLink.astro';
 
 <header class="site-header">
     <nav>
-        <a href="/" class="logo-container">
-            <div class="logo-box">L</div>
-            <div class="logo-text">
-                <span class="brand-name">LEMZA NEWS</span>
-            </div>
-        </a>
+        <a href="/" class="flex items-center gap-3 group no-underline h-full py-3">
+    
+    <div class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0 origin-bottom-left">
+        <span class="font-black text-3xl leading-none">L</span>
+    </div>
+
+    <div class="lemza-text flex flex-col justify-center h-10">
+        <span class="text-white font-black text-2xl leading-[0.8] tracking-tight uppercase">
+            LEMZA
+        </span>
+        <span class="text-white font-bold text-2xl leading-none tracking-tight uppercase">
+            NEWS
+        </span>
+    </div>
+</a>
 
         <div class="desktop-links">
-            <HeaderLink href="/">KREU</HeaderLink>
             <HeaderLink href="/te-fundit">TË FUNDIT</HeaderLink>
             <HeaderLink href="/tags/politike">POLITIKË</HeaderLink>
             <HeaderLink href="/tags/ekonomi">EKONOMI</HeaderLink>
@@ -39,7 +47,6 @@ import HeaderLink from './HeaderLink.astro';
     </nav>
 
     <div class="mobile-nav-links" id="mobile-menu">
-        <a href="/">KREU</a>
         <a href="/te-fundit">TË FUNDIT</a>
         <a href="/tags/politike">POLITIKË</a>
         <a href="/tags/ekonomi">EKONOMI</a>
@@ -89,7 +96,7 @@ import HeaderLink from './HeaderLink.astro';
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 70px;
+        height: 50px;
         max-width: 1600px;
         margin: 0 auto;
     }
@@ -102,12 +109,12 @@ import HeaderLink from './HeaderLink.astro';
         color: white; 
         font-size: 24px; 
         font-weight: 900; 
-        width: 40px; 
-        height: 40px; 
+        width: 50px; 
+        height: 50px; 
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        border-radius: 4px; 
+        border-radius: 3px; 
     }
     
     .logo-text { display: flex; flex-direction: column; line-height: 1; }
@@ -115,18 +122,9 @@ import HeaderLink from './HeaderLink.astro';
     .brand-name { 
         color: var(--header-text); /* E Bardhë */
         font-weight: 900; 
-        font-size: 20px; 
+        font-size: 22px; 
         text-transform: uppercase; 
         letter-spacing: -0.5px;
-    }
-    
-    .brand-slogan { 
-        color: #94a3b8; /* Slate 400 - Gri e hapur */
-        font-size: 10px; 
-        font-weight: 700;
-        text-transform: uppercase; 
-        letter-spacing: 1.5px; 
-        margin-top: 2px;
     }
 
     /* --- DESKTOP LINKS --- */
@@ -138,7 +136,7 @@ import HeaderLink from './HeaderLink.astro';
     }
     
     .desktop-links :global(a) { 
-        color: #cbd5e1 !important; /* Slate 300 - Gri e hapur */
+        color: #e6ebf2 !important; /* Slate 300 - Gri e hapur */
         text-decoration: none; 
         font-weight: 800; 
         font-size: 12px; 
