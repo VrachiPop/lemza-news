@@ -103,7 +103,7 @@ const today = new Date();
     /* --- NGJYRAT E REJA (DARK THEME) --- */
     :root {
         --footer-bg: #0f172a;      /* Slate 900 - E errët */
-        --footer-text: #94a3b8;    /* Slate 400 - Gri e lehtë */
+        --footer-text: #c8ccd3;    /* Slate 400 - Gri e lehtë */
         --footer-heading: #ffffff; /* E bardhë */
         --footer-border: #1e293b;  /* Slate 800 - Vijat ndarëse */
         --accent-red: #DC2626;     /* E kuqja e re */
@@ -211,8 +211,34 @@ const today = new Date();
         font-weight: 500;
         transition: color 0.2s; 
     }
-    .footer-col ul li a:hover { color: var(--accent-red); padding-left: 5px; }
+/* 1. Pozicioni bazë për linkun */
+.footer-col ul li a {
+    position: relative;
+    text-decoration: none;
+}
 
+/* 2. Vija e Trashë (e fshehur fillimisht) */
+.footer-col ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px; /* Distanca nga teksti */
+    width: 100%;
+    height: 3px;  /* Trashësia e vijës */
+    background-color: var(--accent-red);
+    display: none; /* Kjo e bën të padukshme */
+}
+
+/* 3. Kur bën Hover -> Shfaqet menjëherë */
+.footer-col ul li a:hover::after {
+    display: block;
+}
+
+/* 4. Sigurohemi që teksti të mos lëvizë */
+.footer-col ul li a:hover {
+    padding-left: 0;
+    color: inherit; 
+}
     /* Category Grid */
     .category-grid {
         display: grid;
