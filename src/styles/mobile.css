@@ -1,27 +1,52 @@
-/* src/styles/mobile.css - VERSIONI FINAL FINAL */
+/* src/styles/mobile.css - VERSIONI "SAFE" (Pa Overflow) */
 
 @media (max-width: 768px) {
 
-    /* --- 1. RREGULLIMI I HERO SECTION --- */
+    /* --- 1. RREGULLIME TË PËRGJITHSHME (Siguria) --- */
+    html, body {
+        overflow-x: hidden !important; /* Siguri maksimale ndaj scroll-it horizontal */
+    }
+
+    /* FIX KRYESOR: Përdorim 'width: auto' dhe 'max-width: 100%' në vend të 'width: 100%' */
+    main, section, article, .prose, .max-w-5xl, .max-w-\[1600px\], .editorial-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        width: auto !important;     /* E lëmë të marrë gjerësinë natyrale */
+        max-width: 100% !important; /* Nuk e lëmë të kalojë ekranin */
+    }
+
+    /* --- 2. ZVOGËLIMI I PADDING (Që kartat të mos jenë gjigante) --- */
+    /* Kjo rregullon kartat "Karriera/Reklamo" dhe "Redaksia" */
+    [class*="p-8"], [class*="p-10"], [class*="p-12"] {
+        padding: 1.25rem !important; /* Nga 32px bëhet 20px -> Më shumë vend, pa overflow */
+    }
+
+    /* --- 3. HERO SECTION --- */
     .hero-wrapper {
         height: 65vh !important;
         min-height: 400px !important;
         display: block !important;
         position: relative !important;
+        width: 100% !important; /* Hero duhet të jetë full width */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important; /* Hero nuk do padding anash */
+        padding-right: 0 !important;
     }
 
     .hero-slide {
         height: 100% !important; 
         position: absolute !important;
+        width: 100% !important;
     }
 
     .hero-slide img {
         height: 100% !important;
+        width: 100% !important;
         object-fit: cover !important;
     }
 
-    /* --- 2. KARTAT DHE TITUJT E PLOTË --- */
-    /* Ndalojmë zgjatjen vertikale të kartave */
+    /* --- 4. KARTAT & LAJMET --- */
     .article-card, 
     .news-container .grid,
     .editorial-container .grid {
@@ -29,52 +54,35 @@
         min-height: 0 !important;
         display: flex !important;
         flex-direction: column !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     .article-card img {
         height: 200px !important;
         object-fit: cover !important;
-    }
-
-    /* RREGULLIMI KRITIK PËR TITUJT: I lejon të shfaqen deri në fund */
-    .card-title, h3 {
-        -webkit-line-clamp: unset !important; /* Heq kufizimin e rreshtave */
-        line-clamp: unset !important;
-        white-space: normal !important; /* Thyhet normalisht në rresht të ri */
-        height: auto !important;
-        margin-bottom: 0.5rem !important;
-        font-size: 1.25rem !important; /* Madhësi e lexueshme */
-    }
-
-    /* --- 3. PADDING MË I VOGËL PËR LEXIM --- */
-    /* Zvogëlojmë hapësirën anash në minimum (8px) për më shumë tekst */
-    main, section, article, .prose, .max-w-5xl, .max-w-\[1600px\] {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
         width: 100% !important;
     }
 
-    /* Fotot brenda artikullit dalin 'Full Width' */
+    /* Titujt e plotë */
+    .card-title, h3 {
+        -webkit-line-clamp: unset !important;
+        line-clamp: unset !important;
+        white-space: normal !important;
+        height: auto !important;
+        margin-bottom: 0.5rem !important;
+        font-size: 1.25rem !important;
+    }
+
+    /* --- 5. FOTOT BRENDA ARTIKULLIT (Full Width Effect) --- */
     .prose img {
         margin-left: -0.5rem !important;
         margin-right: -0.5rem !important;
         width: calc(100% + 1rem) !important;
         max-width: none !important;
-        border-radius: 0 !important;
     }
 
-    /* --- 4. ZVOGËLIMI I FONTEVE TË MËDHA --- */
-    h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
-        font-size: 1.75rem !important; /* rreth 28px */
-        line-height: 1.2 !important;
-    }
-
-    /* Sigurohemi që teksti i vogël (Lexo më shumë) mbetet i vogël */
-    .text-\[11px\], .text-xs, small, em {
-        font-size: 0.75rem !important; /* 12px */
-    }
-
-    /* --- 5. SHIGJETAT E HERO-së --- */
+    /* --- 6. SHIGJETAT E HERO --- */
     .hero-arrow {
         display: flex !important;
         width: 36px !important;
@@ -89,8 +97,13 @@
         height: 20px !important;
     }
 
-    /* --- 6. GRIDS --- */
-    /* Kthejmë çdo grid në 1 kolonë, përveç statistikave */
+    /* --- 7. ZVOGËLIMI I FONTEVE GJIGANTE --- */
+    h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* --- 8. GRIDS (1 Kolonë) --- */
     .grid:not(.stats-grid):not(.keep-mobile) {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
