@@ -74,59 +74,6 @@ function getPostUrl(slug: string) {
             .slider-dot.active {
                 background-color: #DC2626;
             }
-
-            /* --- MOBILE RESPONSIVE TWEAKS --- */
-            @media (max-width: 768px) {
-                /* 1. HERO SECTION NË TELEFON */
-                .hero-wrapper {
-                    /* Përdorim 80svh që të mos kërcejë kur shfaqet menuja e browserit */
-                    height: 80svh !important; 
-                    min-height: 500px;
-                }
-
-                .hero-title {
-                    font-size: 1.75rem !important; /* E zvogëlova pak nga 2rem që të rrijë më mirë */
-                    line-height: 1.15 !important;
-                    padding: 0 10px; /* Që të mos ngjitet me anët */
-                }
-                
-                .hero-category {
-                    font-size: 0.7rem !important;
-                    padding: 4px 10px !important;
-                    margin-bottom: 1rem !important;
-                }
-
-                /* 2. SHIGJETAT NË TELEFON */
-                .hero-arrow {
-                    display: flex !important; /* I detyrojmë të shfaqen */
-                    padding: 8px !important;  /* Më të vogla se në Desktop */
-                    width: 40px !important;   /* Madhësi fikse */
-                    height: 40px !important;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: rgba(255, 255, 255, 0.1) !important; /* Sfond i lehtë */
-                }
-
-                /* Zvogëlojmë ikonën SVG brenda shigjetës */
-                .hero-arrow svg {
-                    width: 20px !important;
-                    height: 20px !important;
-                }
-
-                .hero-dots {
-                    bottom: 1.5rem !important;
-                }
-
-                /* 3. NEWS CARDS NË TELEFON */
-                .news-container {
-                    padding-top: 1.5rem !important;
-                }
-
-                .card-title {
-                    font-size: 1.25rem !important;
-                    line-height: 1.3 !important;
-                }
-            }
         </style>
     </head>
     <body>
