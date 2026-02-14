@@ -26,18 +26,26 @@
         overflow-x: hidden !important; /* Pret çdo gjë që del jashtë */
     }
 
-    /* --- 3. KARTAT (Karriera, Reklamo, Redaksia) --- */
-    /* Këtu ndodhte problemi: I bëjmë 100% të gjerësisë së disponueshme */
+    /* --- 3. KARTAT (ZGJIDHJA "SOMETHING ELSE" ME PADDING-INLINE) --- */
+    
+    /* Ne shënjestrojmë çdo element që ka padding të madh (p-6, p-8, p-10) */
     .article-card, 
     .bg-white, 
     .bg-slate-50, 
-    .bg-\[\#fff1f2\], 
-    .group {
+    .group,
+    [class*="p-6"], 
+    [class*="p-8"], 
+    [class*="p-10"] {
+        /* Kjo është magjia: Prek VETËM anët (Majtas/Djathtas) */
+        padding-inline: 12px !important; /* Nga 32px bëhet vetëm 12px */
+        
+        /* Mbajmë padding-un vertikal që të mos duken të shtypura lart/poshtë */
+        padding-top: 1.5rem !important; 
+        padding-bottom: 1.5rem !important;
+        
+        /* Sigurohemi që gjerësia është e saktë */
         width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        /* Nëse karta ka padding të madh, e zvogëlojmë */
-        padding: 1rem 0.5rem !important; 
+        box-sizing: border-box !important;
     }
 
     /* --- 4. RREGULLIMI I LISTËS "REKLAMO" (Nga kërkesa e mëparshme) --- */
