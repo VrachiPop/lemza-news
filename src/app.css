@@ -41,3 +41,4 @@ p {
 .lemza-text {
     transition: transform 0.3s ease-out;
 }
+@import './styles/mobile.css';

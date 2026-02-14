@@ -1,0 +1,69 @@
+/* src/styles/mobile.css */
+
+/* Këto rregulla aplikohen VETËM në ekrane më të vogla se 768px */
+@media (max-width: 768px) {
+
+    /* 1. RREGULLIMI I TEKSTIT (Gjithmonë majtas në telefon për të evituar hapësirat) */
+    html, body, p, h1, h2, h3, h4, li, div {
+        text-align: left !important;
+        hyphens: auto !important;
+        -webkit-hyphens: auto !important;
+        word-break: break-word !important; /* Thyren fjalët e gjata që mos prishin ekranin */
+    }
+
+    /* 2. KUFIZIMI I FONTEVE GJIGANTE */
+    /* Asnjë titull nuk duhet të jetë më i madh se 2.5rem (40px) në telefon */
+    h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl, .text-8xl {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    h2, .text-3xl {
+        font-size: 1.75rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* 3. RREGULLIMI I HAPËSIRAVE (PADDING) */
+    /* Nëse ke vënë p-10, p-12, p-20 -> Në telefon bëhen p-5 (20px) */
+    [class*="p-8"], [class*="p-10"], [class*="p-12"], [class*="p-14"], [class*="p-16"], [class*="p-20"] {
+        padding: 1.25rem !important; /* 20px */
+    }
+    
+    /* Padding anësor i detyrueshëm që teksti mos prekë anët */
+    main, section, article {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        width: 100% !important;
+        overflow-x: hidden !important; /* Heq scroll-in horizontal të bezdisshëm */
+    }
+
+    /* 4. GRID SYSTEM (Kthimi në 1 Kolonë) */
+    /* Çdo grid që nuk është specifikuar ndryshe, bëhet 1 kolonë */
+    .grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* PËRJASHTIM: Statistikat ose butonat e vegjël mund të rrinë 2 ose 3 kolona */
+    .grid.keep-mobile, .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+        gap: 1rem !important;
+    }
+
+    /* 5. HERO SECTION FIX */
+    .hero-wrapper, section[class*="h-screen"] {
+        height: 70vh !important; /* Jo 100vh në telefon */
+        min-height: 500px !important;
+    }
+
+    /* 6. FOTOT */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* 7. KARTAT & KUTITË */
+    /* Heqim efektet e hover në telefon se nuk ka maus */
+    .hover\:scale-110:hover { transform: none !important; }
+    .hover\:-translate-y-1:hover { transform: none !important; }
+}
