@@ -1,55 +1,95 @@
-/* src/styles/mobile.css */
+/* src/styles/mobile.css - VERSIONI I KORRIGJUAR */
 
 @media (max-width: 768px) {
-    /* 1. TITUJT: I bëjmë të vegjël me forcë */
-    h1, h2, h3, 
-    .text-4xl, .text-5xl, .text-6xl, .text-7xl, .text-8xl,
-    [class*="text-["] { /* Kap klasat custom si text-[8rem] */
-        font-size: 1.75rem !important; /* Maksimumi 28px */
-        line-height: 1.2 !important;
-        word-wrap: break-word !important;
-    }
 
-    /* Titujt e kartave edhe më të vegjël */
-    h3, .card-title {
-        font-size: 1.25rem !important; /* 20px */
-    }
-
-    /* 2. KUTITË: Heqim "stretching" vertikal */
-    /* Kjo rregullon kutitë e zgjatura */
-    .grid, .flex, .h-full, section, article, div {
-        height: auto !important; /* Mos u zgjat sa ekrani */
-        min-height: 0 !important; /* Hiq limitet minimale */
-    }
-
-    /* Përjashtim: Hero Section duhet të ketë pak lartësi */
+    /* --- 1. RREGULLIMI I HERO SECTION (Që të shfaqet) --- */
     .hero-wrapper {
-        height: 65vh !important; 
+        height: 65vh !important; /* Lartësi fikse e detyrueshme */
         min-height: 400px !important;
+        display: block !important;
+        position: relative !important;
     }
-    
-    /* 3. SHIGJETAT NË HERO (Detyrim shfaqjeje) */
-    /* Kjo punon vetëm nëse heqim 'hidden' nga HTML, shih hapin 2 */
+
+    /* Kjo është shumë e rëndësishme: Slidet duhet të mbushin wrapper-in */
+    .hero-slide {
+        height: 100% !important; 
+        position: absolute !important;
+    }
+
+    /* Imazhet e Hero-së */
+    .hero-slide img {
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    /* --- 2. RREGULLIMI I KARTAVE TË ZGJATURA (Stretched Boxes) --- */
+    /* Vetëm kartat e lajmeve duhet të kenë lartësi automatike, jo gjithçka */
+    .article-card, 
+    .news-container .grid,
+    .editorial-container .grid {
+        height: auto !important;
+        min-height: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Sigurohemi që imazhi i kartës nuk zgjatet pafundësisht */
+    .article-card img {
+        height: 200px !important; /* Lartësi fikse për fotot e lajmeve në telefon */
+        object-fit: cover !important;
+    }
+
+    /* --- 3. RREGULLIMI I SHKRIMEVE TË MËDHA --- */
+    /* Zvogëlojmë titujt e mëdhenj */
+    h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+        font-size: 1.75rem !important; /* 28px */
+        line-height: 1.2 !important;
+    }
+
+    /* "Lexo më shumë" dhe tekstet e vogla duhet të rrinë të vogla */
+    .text-\[11px\], .text-xs, small, em {
+        font-size: 0.75rem !important; /* 12px - I detyrojmë të jenë të vogla */
+    }
+
+    /* --- 4. SHIGJETAT (Detyrim shfaqjeje) --- */
     .hero-arrow {
         display: flex !important;
-        width: 40px !important;
-        height: 40px !important;
+        width: 36px !important;
+        height: 36px !important;
         padding: 8px !important;
-        background: rgba(0,0,0,0.5) !important; /* Sfond i errët që të duken */
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        z-index: 50 !important;
     }
+    
     .hero-arrow svg {
         width: 20px !important;
         height: 20px !important;
     }
 
-    /* 4. HAPËSIRAT (PADDING) */
-    /* Zvogëlojmë padding-un e kutive që të mos duken gjigante */
-    [class*="p-8"], [class*="p-10"], [class*="p-12"], [class*="p-20"] {
-        padding: 1.5rem !important;
-    }
-
-    main, .editorial-container {
+    /* --- 5. RREGULLIME TË PËRGJITHSHME --- */
+    /* Heqim padding-un e tepërt anash */
+    main, section, .max-w-\[1600px\], .max-w-5xl {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
+        width: 100% !important;
+    }
+
+    /* I bëjmë grid-et 1 kolonë, PËRVEÇ statistikave */
+    .grid:not(.stats-grid):not(.keep-mobile) {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    /* Statistikat (100% Gënjeshtra) duhet të jenë vertikale në telefon por të ngjeshura */
+    .stats-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+    
+    .stats-item {
+        padding: 1.5rem 0 !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        border-right: none !important;
     }
 }
