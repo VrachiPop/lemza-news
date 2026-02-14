@@ -2,10 +2,11 @@
 import { getCollection } from 'astro:content';
 import { horoscopes } from '../data/horoscope';
 import { quotes } from '../data/quotes';
+import '../app.css';
 
 // 1. Merr artikujt për "Më të Injoruarat" (Random)
 const allPosts = await getCollection('blog');
-const randomPosts = allPosts.sort(() => 0.5 - Math.random()).slice(0, 5);
+const randomPosts = allPosts.sort(() => 0.5 - Math.random()).slice(0, 7);
 
 // 2. Zgjidh një Horoskop Random
 const randomHoroscope = horoscopes[Math.floor(Math.random() * horoscopes.length)];
@@ -14,108 +15,44 @@ const randomHoroscope = horoscopes[Math.floor(Math.random() * horoscopes.length)
 const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 ---
 
-<aside class="flex flex-col gap-8 sticky top-8">
+<aside class="flex flex-col gap-10 sticky top-8">
     
-    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-        <h3 class="font-black !text-xl mb-6 uppercase border-l-4 border-[#DC2626] pl-3">
-            Më të Injoruarat
-        </h3>
-        <div class="flex flex-col gap-4">
-            {randomPosts.map((post, index) => {
-                // --- FIX PËR URL TË SIDEBAR ---
-                // Përdorim të njëjtën logjikë si te Homepage
+    <div class="flex flex-col">
+        
+        <div class="mb-5 pb-2 border-b border-slate-500">
+            <h3 class="font-black text-lg! text-slate-900 uppercase tracking-tight">
+                Më të Injoruarat
+            </h3>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            {randomPosts.map((post) => {
+                // Logic per URL
                 const fileName = post.slug.split('/').pop() || '';
                 const cleanSlug = fileName.replace(/\.md$/, '');
                 const finalUrl = `/${cleanSlug}/`;
+                const heroImage = post.data.heroImage || "https://placehold.co/150x150/e2e8f0/64748b?text=Lemza";
 
                 return (
                     <a href={finalUrl} class="group flex gap-4 items-start no-underline">
-                        <span class="text-3xl font-black text-gray-200 group-hover:text-[#DC2626] transition-colors leading-none select-none">
-                            {index + 1}
-                        </span>
-                        <p class="font-bold text-gray-800 text-sm leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3">
-                            {post.data.title}
-                        </p>
+                        
+                        {/* Imazhi Thumbnail */}
+                        <div class="shrink-0 w-24 h-16 overflow-hidden rounded bg-slate-100">
+                            <img 
+                                src={heroImage} 
+                                alt={post.data.title}
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            />
+                        </div>
+
+                        {/* Titulli me Animacion */}
+                        <div class="flex flex-col justify-center py-0.5">
+                            <h4 class="font-bold text-slate-800 text-sm! leading-snug group-hover:text-[#DC2626] group-hover:translate-x-2 transition-all duration-300 ease-in-out line-clamp-3 font-['Literata',serif]">
+                                {post.data.title}
+                            </h4>
+                        </div>
                     </a>
                 );
             })}
         </div>
-    </div>
-
-    <div class="bg-[#fafaf9] p-8 rounded-xl border border-stone-200 shadow-sm relative overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-red-200 cursor-pointer h-full">
-    
-        <span class="absolute top-[-20px] left-4 text-[120px] leading-none text-stone-200 font-serif select-none pointer-events-none group-hover:text-red-100/50 transition-colors duration-300">
-            “
-        </span>
-        
-        <div class="relative z-10 flex flex-col h-full justify-between">
-            <div>
-                <span class="text-[14px] font-bold tracking-[0.2em] text-[#DC2626] uppercase mb-4 block border-b border-stone-200 pb-2 w-fit group-hover:border-[#DC2626] transition-colors">
-                    Thënia e Ditës
-                </span>
-                
-                <blockquote class="mb-6">
-                    <p class="text-xl font-serif italic text-stone-800 leading-relaxed">
-                        {randomQuote?.text || "Duke ngarkuar thënien..."}
-                    </p>
-                </blockquote>
-            </div>
-            
-            <footer class="flex items-center gap-3">
-                <div class="h-[2px] w-8 bg-[#DC2626] transition-all duration-300 group-hover:w-12"></div>
-                <cite class="text-xs font-black uppercase text-stone-600 not-italic tracking-wide">
-                    {randomQuote?.author || "Anonim"}
-                </cite>
-            </footer>
-        </div>
-    </div>
-
-    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 relative group transition-colors hover:bg-white hover:shadow-md">
-        
-        <div class="flex items-center justify-between mb-4 border-b border-gray-200 pb-3">
-            <span class="text-base font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
-                Horoskopi
-            </span>
-            <span class="text-lg opacity-50 grayscale group-hover:grayscale-0 transition-all">🔮</span>
-        </div>
-        
-        <h4 class="font-black text-2xl text-gray-800 mb-2 uppercase tracking-tight">
-            {randomHoroscope.sign}
-        </h4>
-        
-        <p class="text-gray-600 text-sm leading-relaxed mb-5 font-medium">
-            "{randomHoroscope.text}"
-        </p>
-        
-        <div class="flex justify-between items-center">
-            <div class="text-[9px] text-gray-400 font-bold uppercase tracking-wider border border-gray-200 rounded px-2 py-1">
-                Saktësia: 0%
-            </div>
-        </div>
-    </div>
-
-    <div class="relative rounded-xl border-2 border-dashed border-gray-300 bg-gray-50/50 p-8 text-center group hover:border-[#DC2626] hover:bg-red-50/10 transition-colors duration-300">
-        
-        <div class="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-        
-        <div class="relative z-10 flex flex-col items-center justify-center min-h-[140px]">
-            <span class="text-gray-300 text-4xl mb-3 group-hover:text-[#DC2626] group-hover:scale-110 transition-all duration-300">
-                📢
-            </span>
-            
-            <h4 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-2 group-hover:text-gray-900">
-                Hapësirë e Lirë
-            </h4>
-            
-            <p class="text-xs text-gray-400 mb-6 max-w-[200px] mx-auto">
-                Reklamoni këtu para se ta blejë ndonjë oligark dhe të bëjë pallat.
-            </p>
-            
-            <button class="text-[10px] font-black uppercase tracking-widest border border-gray-300 px-4 py-2 rounded hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] transition-all cursor-pointer">
-                Rezervo Tani
-            </button>
-        </div>
-    </div>
-
 </aside>

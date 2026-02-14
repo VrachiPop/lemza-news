@@ -67,7 +67,7 @@ function getDisplayTag(tag: string) {
                 color: #0f172a; font-weight: 900; margin-top: 2em; margin-bottom: 1em;
                 text-transform: uppercase; letter-spacing: -0.02em;
             }
-            .prose ul, .prose ol { margin-bottom: 1.5em; padding-left: 1.5em; }
+            .prose ul, .prose ol { margin-bottom: 1.5em; padding-left: 1rem; }
             .prose li { margin-bottom: 0.5em; }
             .article-disclaimer {
                 background-color: #fef2f2; border-left: 4px solid #DC2626;
@@ -82,12 +82,33 @@ function getDisplayTag(tag: string) {
                 max-width: 100%; height: auto; border-radius: 8px;
                 display: block; margin: 2rem auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             }
+            /* Shtoje këtë te pjesa <style> në krye të skedarit */
+
+            /* --- Shto këtë te pjesa <style> --- */
+
+            /* Përdorim :global() për të kapur paragrafin brenda artikullit */
+            .prose :global(p:last-of-type)::after {
+                content: "L"; 
+                display: inline-block;
+                background-color: #DC2626; /* E kuqe */
+                color: white;
+                font-weight: 900;
+                font-size: 11px;
+                line-height: 1.4;
+                padding: 1px 6px;
+                border-radius: 2px;
+                margin-left: 8px; /* Hapësira nga pika */
+                vertical-align: middle;
+                position: relative;
+                top: -1px;
+                box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+            }
 			.article-end-signoff {
-       			 display: flex;
+       			display: flex;
 				align-items: center;
 				justify-content: center;
 				gap: 1.5rem;
-				margin: 4rem 0; /* Hapësirë sipër dhe poshtë ikonës */
+				margin: 1.5rem 0; /* Hapësirë sipër dhe poshtë ikonës */
 				opacity: 0.8;
     		}
 
@@ -116,7 +137,7 @@ function getDisplayTag(tag: string) {
     <body class="bg-[#F1F5F9]">
         <Header />
         
-        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <main class="lg:col-span-8">
                 <article class="bg-white p-6 md:p-12 rounded-xl border border-slate-200 shadow-sm">
@@ -150,23 +171,17 @@ function getDisplayTag(tag: string) {
                         </h1>
 
                         {heroImage && (
-                            <div class="rounded-xl overflow-hidden shadow-md mb-4 border border-slate-100">
+                            <div class="rounded-xl overflow-hidden shadow-md mb-6 border border-slate-100">
                                 <img width={1020} height={510} src={heroImage} alt="" class="w-full h-auto object-cover" />
                             </div>
                         )}
                     </div>
 
-                    <div class="prose">
-                        <slot />
+                    <div class="prose prose-slate max-w-none 
+    prose-p:my-3!        prose-ul:my-2       prose-li:my-0       prose-headings:mt-6 prose-headings:mb-3">
+    
+    <slot />
                     </div>
-
-					<div class="article-end-signoff">
-    					<div class="signoff-line"></div>
-    					<div class="signoff-icon">
-        					<span class="logo-box">L</span>
-    					</div>
-    					<div class="signoff-line"></div>
-					</div>
                     
                     <div class="article-disclaimer">
                         <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
