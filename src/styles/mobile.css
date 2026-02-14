@@ -1,29 +1,27 @@
-/* src/styles/mobile.css - VERSIONI I KORRIGJUAR */
+/* src/styles/mobile.css - VERSIONI FINAL FINAL */
 
 @media (max-width: 768px) {
 
-    /* --- 1. RREGULLIMI I HERO SECTION (Që të shfaqet) --- */
+    /* --- 1. RREGULLIMI I HERO SECTION --- */
     .hero-wrapper {
-        height: 65vh !important; /* Lartësi fikse e detyrueshme */
+        height: 65vh !important;
         min-height: 400px !important;
         display: block !important;
         position: relative !important;
     }
 
-    /* Kjo është shumë e rëndësishme: Slidet duhet të mbushin wrapper-in */
     .hero-slide {
         height: 100% !important; 
         position: absolute !important;
     }
 
-    /* Imazhet e Hero-së */
     .hero-slide img {
         height: 100% !important;
         object-fit: cover !important;
     }
 
-    /* --- 2. RREGULLIMI I KARTAVE TË ZGJATURA (Stretched Boxes) --- */
-    /* Vetëm kartat e lajmeve duhet të kenë lartësi automatike, jo gjithçka */
+    /* --- 2. KARTAT DHE TITUJT E PLOTË --- */
+    /* Ndalojmë zgjatjen vertikale të kartave */
     .article-card, 
     .news-container .grid,
     .editorial-container .grid {
@@ -33,25 +31,50 @@
         flex-direction: column !important;
     }
 
-    /* Sigurohemi që imazhi i kartës nuk zgjatet pafundësisht */
     .article-card img {
-        height: 200px !important; /* Lartësi fikse për fotot e lajmeve në telefon */
+        height: 200px !important;
         object-fit: cover !important;
     }
 
-    /* --- 3. RREGULLIMI I SHKRIMEVE TË MËDHA --- */
-    /* Zvogëlojmë titujt e mëdhenj */
+    /* RREGULLIMI KRITIK PËR TITUJT: I lejon të shfaqen deri në fund */
+    .card-title, h3 {
+        -webkit-line-clamp: unset !important; /* Heq kufizimin e rreshtave */
+        line-clamp: unset !important;
+        white-space: normal !important; /* Thyhet normalisht në rresht të ri */
+        height: auto !important;
+        margin-bottom: 0.5rem !important;
+        font-size: 1.25rem !important; /* Madhësi e lexueshme */
+    }
+
+    /* --- 3. PADDING MË I VOGËL PËR LEXIM --- */
+    /* Zvogëlojmë hapësirën anash në minimum (8px) për më shumë tekst */
+    main, section, article, .prose, .max-w-5xl, .max-w-\[1600px\] {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        width: 100% !important;
+    }
+
+    /* Fotot brenda artikullit dalin 'Full Width' */
+    .prose img {
+        margin-left: -0.5rem !important;
+        margin-right: -0.5rem !important;
+        width: calc(100% + 1rem) !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+    }
+
+    /* --- 4. ZVOGËLIMI I FONTEVE TË MËDHA --- */
     h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
-        font-size: 1.75rem !important; /* 28px */
+        font-size: 1.75rem !important; /* rreth 28px */
         line-height: 1.2 !important;
     }
 
-    /* "Lexo më shumë" dhe tekstet e vogla duhet të rrinë të vogla */
+    /* Sigurohemi që teksti i vogël (Lexo më shumë) mbetet i vogël */
     .text-\[11px\], .text-xs, small, em {
-        font-size: 0.75rem !important; /* 12px - I detyrojmë të jenë të vogla */
+        font-size: 0.75rem !important; /* 12px */
     }
 
-    /* --- 4. SHIGJETAT (Detyrim shfaqjeje) --- */
+    /* --- 5. SHIGJETAT E HERO-së --- */
     .hero-arrow {
         display: flex !important;
         width: 36px !important;
@@ -66,21 +89,14 @@
         height: 20px !important;
     }
 
-    /* --- 5. RREGULLIME TË PËRGJITHSHME --- */
-    /* Heqim padding-un e tepërt anash */
-    main, section, .max-w-\[1600px\], .max-w-5xl {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        width: 100% !important;
-    }
-
-    /* I bëjmë grid-et 1 kolonë, PËRVEÇ statistikave */
+    /* --- 6. GRIDS --- */
+    /* Kthejmë çdo grid në 1 kolonë, përveç statistikave */
     .grid:not(.stats-grid):not(.keep-mobile) {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
     }
     
-    /* Statistikat (100% Gënjeshtra) duhet të jenë vertikale në telefon por të ngjeshura */
+    /* Statistikat vertikale */
     .stats-grid {
         display: flex !important;
         flex-direction: column !important;
