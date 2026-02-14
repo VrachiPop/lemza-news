@@ -1,187 +1,110 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../app.css';
+import Sidebar from '../components/Sidebar.astro'; // <--- Importojmë Sidebar-in ekzistues
+
+const SITE_TITLE = "Rreth Nesh | Lemza News";
+const SITE_DESCRIPTION = "Platforma numër një në rajon për lajme që nuk kanë ndodhur kurrë.";
 ---
 
-<Layout
-    title="Rreth Nesh"
-    pubDate={new Date('January 01 2026')}
-> 
-    <div class="editorial-container max-w-5xl mx-auto py-8">
+<!doctype html>
+<html lang="sq">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        </head>
+	<body class="bg-white flex flex-col min-h-screen">
+		<Header />
+		
+		<main class="flex-grow w-full">
+            <div class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
 
-        <div class="mb-16 md:px-8 text-center md:text-left">
-            <div class="group relative inline-block">
-                <p class="headline-main text-xl! md:text-3xl text-slate-700 font-medium leading-relaxed font-['Literata',serif]">
-                    <span class="absolute -left-6 top-0 bottom-0 w-1 bg-[#DC2626] transition-all duration-500 group-hover:h-full group-hover:bg-slate-900"></span>
-                    Mirë se erdhët në <strong class="text-slate-900 bg-gradient-to-r from-[#DC2626]/20 to-transparent px-2 rounded-md">Lemza News</strong>, platforma numër një në rajon për lajme që nuk kanë ndodhur kurrë, rrëfime të personazheve imagjinarë dhe statistika të shpikura në moment.
-                </p>
-            </div>
-        </div>
-
-        <div class="stats-grid grid grid-cols-1 md:grid-cols-3 gap-8 py-10 my-12 border-y border-slate-200 text-center bg-slate-50/50 rounded-2xl transition-colors duration-500 hover:bg-white hover:shadow-xl hover:border-slate-300">
-            <div class="stats-item group cursor-default transition-transform duration-300 hover:scale-110">
-                <span class="block text-5xl font-black text-[#DC2626] mb-2 font-['Literata',serif] group-hover:text-slate-900 transition-colors">100%</span>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-[#DC2626]">Gënjeshtra</span>
-            </div>
-            <div class="stats-item group cursor-default transition-transform duration-300 hover:scale-110">
-                <span class="block text-5xl font-black text-slate-900 mb-2 font-['Literata',serif]">0</span>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-slate-900">Fakte</span>
-            </div>
-            <div class="stats-item group cursor-default transition-transform duration-300 hover:scale-110">
-                <span class="block text-5xl font-black text-[#DC2626] mb-2 font-['Literata',serif] group-hover:text-slate-900 transition-colors">12k</span>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-[#DC2626]">Padi në Gjykatë</span>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-            <div class="group bg-white p-8 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#DC2626]/30 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-20 h-20 bg-slate-50 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-150 group-hover:bg-[#DC2626]/10"></div>
-                
-                <h3 class="text-xl! font-black text-slate-900 mb-4 uppercase tracking-tight flex items-center gap-3 font-['Literata',serif]">
-                    <span class="w-3 h-3 bg-[#DC2626] rounded-full group-hover:animate-ping"></span> Misioni Ynë
-                </h3>
-                <p class="text-slate-600 leading-relaxed text-sm font-medium relative z-10">
-                    Të raportojmë atë që të tjerët kanë frikë ta imagjinojnë. Ne nuk ndjekim lajmin, ne e krijojmë atë nga hiçi duke përdorur teknologjinë më të fundit të thashethemeve.
-                </p>
-            </div>
-
-            <div class="group bg-white p-8 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#DC2626]/30 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-20 h-20 bg-slate-50 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-150 group-hover:bg-[#DC2626]/10"></div>
-
-                <h3 class="text-xl! font-black text-slate-900 mb-4 uppercase tracking-tight flex items-center gap-3 font-['Literata',serif]">
-                    <span class="w-3 h-3 bg-[#DC2626] rounded-full group-hover:animate-ping"></span> Standardet
-                </h3>
-                <p class="text-slate-600 leading-relaxed text-sm font-medium relative z-10">
-                    Ne ruajmë standardet më të larta të gazetarisë fiktive. Çdo histori verifikohet me kujdes për t'u siguruar që është absolutisht e pavërtetë dhe e pabazuar.
-                </p>
-            </div>
-        </div>
-
-        <div class="mb-20">
-            <h2 class="text-3xl! font-black text-slate-900 mb-10 uppercase tracking-tighter border-b-4 border-slate-900 pb-4 inline-block font-['Literata',serif]">
-                Redaksia
-            </h2>
-            
-            <div class="cards-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#DC2626]">
-                    <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-3 bg-red-50 inline-block px-2 py-1 rounded">Kryeredaktor</div>
-                    <strong class="block text-xl! font-['Literata',serif] text-slate-900 mb-2 group-hover:text-[#DC2626] transition-colors">Padoras Bregu</strong>
-                    <div class="h-px w-10 bg-slate-200 my-3 group-hover:w-full group-hover:bg-[#DC2626] transition-all duration-500"></div>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">
-                        Nuk vjen kurrë në zyrë sepse ka frikë nga përmbaruesit dhe ish-gratë.
-                    </p>
-                </div>
-                
-                <div class="group bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#DC2626]">
-                    <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-3 bg-red-50 inline-block px-2 py-1 rounded">Analist</div>
-                    <strong class="block text-xl font-['Literata',serif] text-slate-900 mb-2 group-hover:text-[#DC2626] transition-colors tracking-tight">Gjithologu i Lagjes</strong>
-                    <div class="h-px w-10 bg-slate-200 my-3 group-hover:w-full group-hover:bg-[#DC2626] transition-all duration-500"></div>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">
-                        Ekspert në gjeopolitikë, ekonomi dhe çështje sociale, sidomos pas gotës së tretë të rakisë.
-                    </p>
-                </div>
-
-                <div class="group bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#DC2626]">
-                    <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-3 bg-red-50 inline-block px-2 py-1 rounded">IT & Siguria</div>
-                    <strong class="block text-xl font-['Literata',serif] text-slate-900 mb-2 group-hover:text-[#DC2626] transition-colors">Nipi i Pronarit</strong>
-                    <div class="h-px w-10 bg-slate-200 my-3 group-hover:w-full group-hover:bg-[#DC2626] transition-all duration-500"></div>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">
-                        Di të rregullojë Wi-Fi duke fikur dhe ndezur modemin.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-        
-        <div class="group relative bg-white p-8 rounded-xl border-2 border-dashed border-slate-300 hover:border-slate-800 transition-all duration-300 hover:shadow-lg flex flex-col">
-            <span class="absolute -top-3 left-6 bg-slate-800 text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest shadow-sm group-hover:bg-[#DC2626] transition-colors">
-                Njoftim Punësimi
-            </span>
-
-            <h3 class="text-2xl! font-black text-slate-900 mb-3 uppercase font-['Literata',serif]">Karriera</h3>
-            <p class="text-slate-600 text-sm mb-6 font-medium leading-relaxed text-left">
-                A keni imagjinatë të shfrenuar? A dini të bëni tituj bombastikë që nuk kanë lidhje me përmbajtjen?
-            </p>
-
-            <div class="bg-slate-50 p-5 rounded-lg border border-slate-100 mt-auto">
-                <strong class="block text-xs uppercase text-slate-500 mb-4 tracking-widest border-b border-slate-200 pb-2">Ne kërkojmë:</strong>
-                <ul class="space-y-3">
-                    <li class="flex items-start text-sm text-slate-800 font-bold text-left">
-                        <svg class="w-5 h-5 text-[#DC2626] mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span>Gazetarë që nuk verifikojnë burimet.</span>
-                    </li>
-                    <li class="flex items-start text-sm text-slate-800 font-bold text-left">
-                        <svg class="w-5 h-5 text-[#DC2626] mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span>Fotografë që dinë Photoshop.</span>
-                    </li>
-                    <li class="flex items-start text-sm text-slate-800 font-bold text-left">
-                        <svg class="w-5 h-5 text-[#DC2626] mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span>Ekspertë të Clickbait.</span>
-                    </li>
-                </ul>
-            </div>
-            <em class="block text-center text-[10px] text-slate-500 uppercase mt-4 font-bold tracking-wide">Pagesa bëhet me "Bravo" dhe ekspozim.</em>
-        </div>
-
-        <div class="group relative bg-[#FFF1F2] p-8 rounded-xl border border-red-100 hover:border-[#DC2626]/30 transition-all duration-300 hover:shadow-lg overflow-hidden flex flex-col">
-            <div class="absolute top-0 right-0">
-                <div class="bg-[#DC2626] text-white text-[10px] font-black px-8 py-1 uppercase tracking-widest rotate-45 translate-x-8 translate-y-4 shadow-md group-hover:scale-110 transition-transform">
-                    Oferta
-                </div>
-            </div>
-
-            <h3 class="text-2xl! font-black text-[#991B1B] mb-3 uppercase font-['Literata',serif]">Reklamo</h3>
-            <p class="text-[#7F1D1D] text-sm mb-6 font-medium leading-relaxed text-left">
-                Doni të reklamoni produktin tuaj te një audiencë që nuk ekziston? Jeni në vendin e duhur!
-            </p>
-
-            <div class="bg-white p-5 rounded-lg border border-red-100 shadow-sm mt-auto">
-                <strong class="block text-xs uppercase text-red-400 mb-4 tracking-widest border-b border-red-100 pb-2">Paketat tona:</strong>
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center text-sm group/item">
-                        <span class="font-bold text-slate-900 group-hover/item:text-[#DC2626] transition-colors whitespace-nowrap">Paketa Bazë</span>
-                        <span class="h-px bg-slate-200 flex-1 mx-3 border-b border-dotted border-slate-300"></span>
-                        <span class="text-slate-500 font-medium text-right text-xs">Baner i padukshëm</span>
-                    </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     
-                    <div class="flex justify-between items-center text-sm group/item">
-                        <span class="font-bold text-[#DC2626] whitespace-nowrap">Paketa Premium</span>
-                        <span class="h-px bg-red-200 flex-1 mx-3 border-b border-dotted border-red-300"></span>
-                        <span class="text-slate-500 font-medium text-right text-xs tracking-tight">Artikull me gabime</span>
-                    </div>
-                </div>
-            </div>
-            <em class="block text-right text-[10px] text-red-500 uppercase mt-4 font-bold tracking-wide">Pranojmë vetëm kesh.</em>
-        </div>
-    </div>
+                    <div class="lg:col-span-2 space-y-16">
 
-        <div class="group bg-slate-900 text-white p-10 md:p-14 rounded-3xl text-center shadow-2xl relative overflow-hidden isolate">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#DC2626]/20 to-slate-900 opacity-50 group-hover:opacity-70 transition-opacity duration-1000"></div>
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#DC2626] to-transparent"></div>
+                        <div class="text-center md:text-left">
+                            <div class="group relative inline-block">
+                                <p class="text-xl! md:text-4xl text-slate-700 font-medium leading-relaxed font-['Literata',serif]">
+                                    <span class="absolute -left-6 top-0 bottom-0 w-1.5 bg-[#DC2626] transition-all duration-500 group-hover:h-full group-hover:bg-slate-900 hidden md:block"></span>
+                                    Mirë se erdhët në <strong class="text-slate-900 bg-gradient-to-r from-[#DC2626]/20 to-transparent px-2 rounded-md">Lemza News</strong>, platforma numër një në rajon për lajme që nuk kanë ndodhur kurrë, rrëfime të personazheve imagjinarë dhe statistika të shpikura në moment.
+                                </p>
+                            </div>
+                        </div>
 
-            <div class="relative z-10">
-                <h3 class="text-3xl font-black uppercase mb-4 tracking-tight text-white! font-['Literata',serif]">Na Kontaktoni</h3>
-                <p class="text-slate-400 mb-10 max-w-lg mx-auto text-sm leading-relaxed">
-                    Nëse keni ankesa, ju lutemi shkruajini në një copë akulli dhe lërini në diell. 
-                    Për çdo gjë tjetër, ja ku na gjeni:
-                </p>
+                        <div class="stats-grid grid grid-cols-1 md:grid-cols-3 gap-8 py-10 my-12 border-y border-slate-300 text-center bg-slate-50/50 rounded-2xl transition-colors duration-500 hover:bg-white hover:shadow-xl hover:border-slate-300">
+                                <div class="stats-item group cursor-default transition-transform duration-300 hover:scale-110">
+                                    <span class="block text-5xl font-black text-[#DC2626] mb-2 font-['Literata',serif] group-hover:text-slate-900 transition-colors">100%</span>
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-[#DC2626]">Gënjeshtra</span>
+                                    </div>
+                                    <div class="stats-item group cursor-default transition-transform duration-300 hover:scale-110">
+                                    <span class="block text-5xl font-black text-slate-900 mb-2 font-['Literata',serif]">0</span>
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-slate-900">Fakte</span>
+                                    </div>
+                                    <div class="stats-item group cursor-default transition-transform duration-300 hover:scale-110">
+                                    <span class="block text-5xl font-black text-[#DC2626] mb-2 font-['Literata',serif] group-hover:text-slate-900 transition-colors">12k</span>
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest group-hover:text-[#DC2626]">Padi në Gjykatë</span>
+                                </div>
+                        </div>
 
-                <div class="flex flex-col md:flex-row justify-center gap-6">
-                    <div class="bg-slate-800/50 p-5 rounded-xl flex-1 border border-slate-700 backdrop-blur-sm hover:bg-slate-800 hover:border-[#DC2626]/50 transition-all duration-300">
-                        <span class="block text-[10px] text-slate-500 uppercase tracking-widest mb-1">Email</span>
-                        <span class="font-bold text-white tracking-wide">info@lemzanews.com</span>
-                    </div>
-                    <div class="bg-slate-800/50 p-5 rounded-xl flex-1 border border-slate-700 backdrop-blur-sm hover:bg-slate-800 hover:border-[#DC2626]/50 transition-all duration-300">
-                        <span class="block text-[10px] text-slate-500 uppercase tracking-widest mb-1">Adresa</span>
-                        <span class="font-bold text-white tracking-wide">Pallati pa Leje, Kati -1</span>
-                    </div>
-                    <div class="bg-slate-800/50 p-5 rounded-xl flex-1 border border-slate-700 backdrop-blur-sm hover:bg-slate-800 hover:border-[#DC2626]/50 transition-all duration-300">
-                        <span class="block text-[10px] text-slate-500 uppercase tracking-widest mb-1">Telefon</span>
-                        <span class="font-bold text-white tracking-wide">+355 69 00 00 000</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="group bg-white p-8 rounded-3xl border border-slate-300 shadow-xl shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1 hover:border-[#DC2626]/30">
+                                <h3 class="text-xl! font-black text-slate-900 mb-4 uppercase flex items-center gap-3 font-['Literata',serif]">
+                                    <span class="w-2.5 h-2.5 bg-[#DC2626] rounded-full group-hover:animate-ping"></span> Misioni Ynë
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed text-sm font-medium">
+                                    Të raportojmë atë që të tjerët kanë frikë ta imagjinojnë. Ne nuk ndjekim lajmin, ne e krijojmë atë nga hiçi.
+                                </p>
+                            </div>
 
-    </div>
-</Layout>
+                            <div class="group bg-white p-8 rounded-3xl border border-slate-300 shadow-xl shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1 hover:border-[#DC2626]/30">
+                                <h3 class="text-xl! font-black text-slate-900 mb-4 uppercase flex items-center gap-3 font-['Literata',serif]">
+                                    <span class="w-2.5 h-2.5 bg-[#DC2626] rounded-full group-hover:animate-ping"></span> Standardet
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed text-sm font-medium">
+                                    Ne ruajmë standardet më të larta të gazetarisë fiktive. Çdo histori verifikohet me kujdes për t'u siguruar që është e pavërtetë.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 text-white p-10 md:p-12 rounded-[2rem] text-center shadow-2xl relative overflow-hidden isolate">
+                            <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-[#DC2626]/20 opacity-50"></div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="text-2xl font-black uppercase mb-6 text-white! font-['Literata',serif]">Kontakt</h3>
+                                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                                    <div class="bg-white/10 p-4 rounded-xl border border-white/10 text-sm flex-1 backdrop-blur-sm">
+                                        <span class="text-slate-400 uppercase text-[10px] tracking-widest block mb-1">Email</span>
+                                        <span class="font-bold text-white break-all">info@lemzanews.com</span>
+                                    </div>
+                                    <div class="bg-white/10 p-4 rounded-xl border border-white/10 text-sm flex-1 backdrop-blur-sm">
+                                        <span class="text-slate-400 uppercase text-[10px] tracking-widest block mb-1">Adresa</span>
+                                        <span class="font-bold text-white">Tuneli i Murrizit</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="
+                                group relative 
+                                bg-red-50 border-l-4 border-[#DC2626] 
+                                p-6 mt-16 rounded-r 
+                                text-xl! text-red-900 leading-relaxed
+                                transform transition-all duration-500 ease-in-out
+                                hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(220,38,38,0.2)] hover:bg-red-100">
+                                <strong class="block uppercase mb-2 text-[#DC2626] font-extrabold tracking-wider animate-pulse">
+                                        Mohimi i Përgjegjësisë (Disclaimer)
+                                </strong>
+                                    <p>
+                                        Lemza News është një faqe satirike interneti. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.                       
+                             </div>
+                    </div> <aside class="lg:col-span-1">
+                        <Sidebar />
+                    </aside>
+
+                </div> </div>
+		</main>
+		<Footer />
+	</body>
+</html>
