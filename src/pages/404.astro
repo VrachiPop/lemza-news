@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import '../app.css';
 ---
 
 <!doctype html>
@@ -12,24 +13,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<style>
             /* GLOBAL RESET */
 			* { box-sizing: border-box; }
-			body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9fafb; display: flex; flex-direction: column; min-height: 100vh; }
+			body { margin: 0; padding: 0; font-family: 'Literata', 'Georgia', sans-serif; background-color: #f9fafb; display: flex; flex-direction: column; min-height: 100vh; }
 
 			main {
 				flex-grow: 1;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding: 2rem;
+				padding: 6rem;
 				text-align: center;
 			}
 
 			.error-container {
+				min-height: 60vh;
 				max-width: 600px;
 				background: white;
 				padding: 3rem;
 				border-radius: 12px;
 				box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-				border-top: 6px solid #ff0033;
+				border-top: 6px solid #DC2626;
 			}
 
 			h1 {
@@ -57,7 +59,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			.btn-home {
 				display: inline-block;
-				background-color: #ff0033;
+				background-color: #DC2626;
 				color: white;
 				text-decoration: none;
 				padding: 12px 30px;
@@ -67,7 +69,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transition: background 0.2s;
 			}
 			.btn-home:hover {
-				background-color: #cc0029;
+				background-color: #DC2626;
 			}
 
 			.excuse {
@@ -78,6 +80,31 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				border-top: 1px solid #e5e7eb;
 				padding-top: 1rem;
 			}
+
+			/* 2. STILI SPECIFIK PËR TELEFON (Mobile Only) */
+            @media (max-width: 768px) {
+                .error-container {
+                    min-height: 60vh; /* Më pak lartësi në telefon */
+                    padding: 2rem 1rem; /* Më pak hapësirë anash */
+                }
+
+                .error-number {
+                    font-size: 5rem; /* Zvogëlojmë numrin 404 */
+                    margin-bottom: 1rem;
+                }
+
+                .error-title {
+                    font-size: 1.25rem; /* Zvogëlojmë titullin */
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+
+                .error-desc {
+                    font-size: 0.875rem; /* Tekst më i vogël për përshkrimin */
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+            }
 		</style>
 	</head>
 	<body>

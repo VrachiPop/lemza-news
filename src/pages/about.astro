@@ -6,6 +6,47 @@ import Layout from '../layouts/BlogPost.astro';
     title="Rreth Nesh"
 <    pubDate={new Date('January 01 2026')}
 >
+    <style>
+        /* Stili bazë (Desktop) është i definuar me Tailwind poshtë. 
+           Këtu kemi vetëm rregullimet specifike për telefon. */
+        
+        @media (max-width: 768px) {
+            /* 1. Ngushtimi i hapësirave anësore */
+            .editorial-container {
+                padding-left: 1rem !important; /* 16px */
+                padding-right: 1rem !important;
+            }
+
+            /* 2. Zvogëlimi i Titujve Gjigantë */
+            .headline-main {
+                font-size: 1.5rem !important; /* Nga 3xl në xl */
+                line-height: 1.3 !important;
+            }
+
+            /* 3. Statistikat: Vijat bëhen horizontale në telefon */
+            .stats-grid {
+                display: grid;
+                grid-template-columns: 1fr !important;
+                border-top: 4px double #0f172a;
+                border-bottom: 4px double #0f172a;
+            }
+            .stats-item {
+                border-bottom: 1px solid #e2e8f0;
+                padding: 1.5rem 0;
+            }
+            .stats-item:last-child {
+                border-bottom: none;
+            }
+
+            /* 4. Rregullimi i Kartave (Gap) */
+            .cards-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem !important; /* Hapësirë mes kartave */
+            }
+        }
+    </style>
+    
     <div class="mb-12">
         <p class="text-lg! text-slate-600 font-medium leading-relaxed border-l-4 border-[#DC2626] pl-6 italic">
             Mirë se erdhët në <strong class="text-slate-900">Lemza News</strong>, platforma numër një në rajon për lajme që nuk kanë ndodhur kurrë, rrëfime të personazheve imagjinarë dhe statistika të shpikura në moment.

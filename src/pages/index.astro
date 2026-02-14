@@ -74,6 +74,43 @@ function getPostUrl(slug: string) {
             .slider-dot.active {
                 background-color: #DC2626;
             }
+
+            /* --- MOBILE RESPONSIVE TWEAKS --- */
+            @media (max-width: 768px) {
+                /* 1. HERO SECTION NË TELEFON */
+                .hero-wrapper {
+                    height: 75vh !important; /* Jo full screen që të mos bllokohet nga browser bar */
+                    min-height: 500px;
+                }
+
+                .hero-title {
+                    font-size: 2rem !important; /* Zvogëlojmë titullin */
+                    line-height: 1.1 !important;
+                }
+                
+                .hero-category {
+                    font-size: 0.7rem !important;
+                    padding: 4px 10px !important;
+                }
+
+                .hero-arrow {
+                    display: none !important; /* I fshehim shigjetat në telefon (zënë vend kot) */
+                }
+
+                .hero-dots {
+                    bottom: 1.5rem !important; /* I ngremë pak më lart pikat */
+                }
+
+                /* 2. NEWS CARDS NË TELEFON */
+                .news-container {
+                    padding-top: 1rem !important;
+                }
+
+                .card-title {
+                    font-size: 1.25rem !important; /* Titull i lexueshëm, jo gjigant */
+                    line-height: 1.3 !important;
+                }
+            }
         </style>
     </head>
     <body>
