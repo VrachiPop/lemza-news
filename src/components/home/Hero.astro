@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../FormattedDate.astro';
 import  '../../app.css';
@@ -32,11 +33,17 @@ function getTag(post: any) {
     
     <a href={getPostUrl(mainPost.slug)} class="block w-full h-full">
         
-        <img 
-            src={mainPost.data.heroImage} 
-            alt={mainPost.data.title} 
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" 
-        />
+            {mainPost.data.heroImage && (
+
+            <Image 
+                src={mainPost.data.heroImage} 
+                alt={mainPost.data.title}
+                width={1600}
+                height={900}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" 
+            />
+        )}
+        </div>
         
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
 

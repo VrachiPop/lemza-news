@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
 import '../../app.css';
 
 const posts = (await getCollection('blog')).sort(
@@ -32,24 +33,21 @@ const tagNames = {
             
             <main class="lg:col-span-8">
                 <div class="flex items-end mb-8 border-b-2 border-slate-400 pb-2">
-                    <h1 class="text-2xl! font-light text-[#0f172a] m-0 uppercase tracking-tighter">
+                    {/* FIX: U rregullua tagu mbyllës nga div në h1 dhe u shtua fonti i ri */}
+                    <h1 class="font-news font-light font-stretch-ultra text-2xl! uppercase tracking-tighter text-[#0f172a] m-0">
                         Të Fundit
+                    </h1>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
                     {posts.map((post) => {
+                        // --- SCANNER PËR FOTO NGA TRUPI (FALLBACK) ---
                         const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
-                        const imageSrc = post.data.heroImage || (imageMatch ? imageMatch[1] : null);
+                        const fallbackImage = imageMatch ? imageMatch[1] : null;
 
                         // --- FIX PËR URL TË PASTËR ---
-                        // 1. Marrim vetëm emrin e skedarit (injorojmë folderat)
                         const fileName = post.slug.split('/').pop() || '';
-                        
-                        // 2. Heqim .md nëse ekziston
-                        const cleanSlug = fileName.replace('.md', '');
-
-                        // 3. Krijojmë URL-në ROOT (Direkt te domeni kryesor)
-                        // Do duket: lemzanews.com/hendeku-diplomave/
+                        const cleanSlug = fileName.replace(/\.md$/, '');
                         const finalUrl = `/${cleanSlug}/`;
 
                         return (
@@ -64,14 +62,28 @@ const tagNames = {
                                         </span>
                                     </div>
                                     
-                                    {imageSrc ? (
-                                        <img src={imageSrc} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    {/* LOGJIKA E SIGURT E IMAZHIT */}
+                                    {post.data.heroImage ? (
+                                        // 1. Nëse ka HeroImage të optimizuar, përdorim Astro Image
+                                        <Image 
+                                            src={post.data.heroImage} 
+                                            alt="" 
+                                            width={400} 
+                                            height={225} 
+                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        />
                                     ) : (
-                                        <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                            </svg>
-                                        </div>
+                                        // 2. Fallback: Nëse gjetëm link në body, përdorim <img> standarde
+                                        fallbackImage ? (
+                                            <img src={fallbackImage} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                        ) : (
+                                            // 3. Nëse s'ka asnjë foto, shfaqim kutinë gri
+                                            <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                                </svg>
+                                            </div>
+                                        )
                                     )}
                                 </div>
 
@@ -81,7 +93,7 @@ const tagNames = {
                                         <FormattedDate date={post.data.pubDate} />
                                     </div>
                                     
-                                    <h3 class="text-lg! font-black text-slate-900 mb-3 leading-tight group-hover:text-[#DC2626] transition-colors">
+                                    <h3 class="font-news font-black font-stretch-ultra tracking-tight text-xl text-slate-900 mb-3 leading-none group-hover:text-[#DC2626] transition-colors">
                                         {post.data.title}
                                     </h3>
                                     

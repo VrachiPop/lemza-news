@@ -7,6 +7,7 @@ import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Hero from '../components/home/Hero.astro'; // <--- IMPORT THE NEW HERO
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets';
 import '../app.css';
 
 // 1. Fetch all posts
@@ -87,7 +88,15 @@ function getPostUrl(slug: string) {
                                                 {post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'LAJME'}
                                             </span>
                                         </div>
-                                        <img src={post.data.heroImage} alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                    {post.data.heroImage && (
+                                        <Image 
+                                            src={post.data.heroImage} 
+                                            alt={post.data.title} 
+                                            width={720}   
+                                            height={405}
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                                        />
+                                    )}                                    
                                     </div>
                                     <div class="p-5 flex flex-col flex-1">
                                         <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400 mb-3 uppercase tracking-widest">

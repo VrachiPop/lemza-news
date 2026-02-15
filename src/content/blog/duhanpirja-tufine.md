@@ -3,7 +3,7 @@ title: 'Duhanpirja shkaku kryesor i sëmundjeve respiratore në varrezat e Tufin
 description: 'TUFINË / NËNTOKË – Instituti i Shëndetit Publik të Botës së Përtejme publikoi sot raportin vjetor për gjendjen epidemiologjike të popullsisë së nëntokës, duke konfirmuar një trend shqetësues...'
 pubDate: '2026-02-10'
 tags: [shendeti]
-heroImage: "/images/duhanpirja-tufine.jpg"
+heroImage: "../../assets/images/duhanpirja-tufine.jpg"
 ---
 
 **TUFINË / NËNTOKË** – Instituti i Shëndetit Publik të Botës së Përtejme publikoi sot raportin vjetor për gjendjen epidemiologjike të popullsisë së nëntokës, duke konfirmuar një trend shqetësues: rastet e sëmundjeve respiratore në popullatën e varrezave të Tufinës janë rritur ndjeshëm, kryesisht për shkak të ekspozimit të vazhdueshëm ndaj duhanit.
