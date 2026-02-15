@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import FormattedDate from '../FormattedDate.astro';
+import  '../../app.css';
 
 // 1. Merr VETËM postimin e fundit
 const allPosts = (await getCollection('blog')).sort(
@@ -45,7 +46,7 @@ function getTag(post: any) {
                 {getTag(mainPost)}
             </span>
 
-            <h1 class="max-w-6xl text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white! drop-shadow-2xl mb-4 group-hover:text-slate-100 transition-colors">
+            <h1 class="font-news max-w-6xl text-5xl! md:text-6xl lg:text-7xl font-bold leading-tight text-white! drop-shadow-2xl mb-4 group-hover:text-slate-100 transition-colors">
                 {mainPost.data.title}
             </h1>
             

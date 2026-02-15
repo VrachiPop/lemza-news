@@ -1,50 +1,62 @@
-/* GLOBAL STYLES */
+/* 1. IMPORTIMI I TAILWIND (Themelorja) */
+@import "tailwindcss";
 
-:root {
-	--accent: 255, 0, 51; /* Your Red #ff0033 */
-	--accent-dark: 204, 0, 41;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 52, 58, 70;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%);
+/* 2. IMPORTIMI I FONTEVE */
+/* Archivo për Titujt (Variable Font) */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap');
+/* Literata për Tekstin (Body) */
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
+
+/* 3. CONFIGURIMI BAZË */
+@layer base {
+  :root {
+    --font-body: 'Literata', Georgia, serif;
+    --font-news: 'Archivo', sans-serif;
+    --accent: #DC2626; /* Ngjyra e kuqe e lajmeve */
+  }
+
+  html {
+    font-family: var(--font-body);
+    background-color: #F1F5F9; /* Slate 100 */
+    color: #1e293b; /* Slate 800 */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Parandalon scroll-in horizontal */
+  }
+
+  /* Këtu sigurohemi që titujt marrin fontin e trupit si default,
+     përveç nëse i ndryshojmë manualisht me klasën 'font-news' */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    line-height: 1.2;
+  }
 }
 
-/* 1. Use Helvetica/Arial for everything */
-body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: #ffffff; /* White background */
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	line-height: 1.5;
+/* 4. KLASA MAGJIKE "HYPER STYLE" (Për titujt e gjerë) */
+@layer utilities {
+  .font-stretch-ultra {
+    font-stretch: 125%;
+    font-variation-settings: "wdth" 125;
+  }
 }
 
-/* 2. Standard headings */
-h1, h2, h3, h4, h5, h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
+/* 5. ANIMACIONI LEMZA */
+@keyframes hiccup {
+    0% { transform: scale(1) rotate(0deg); }
+    40% { transform: scale(1.15) rotate(-4deg); }
+    60% { transform: scale(1.1) rotate(2deg); }
+    100% { transform: scale(1) rotate(0deg); }
 }
 
-h1 { font-size: 3.052rem; }
-h2 { font-size: 2.441rem; }
-h3 { font-size: 1.953rem; }
-h4 { font-size: 1.563rem; }
-h5 { font-size: 1.25rem; }
-
-strong, b { font-weight: 700; }
-
-/* 3. Links */
-a { color: #ff0033; }
-a:hover { color: #cc0029; }
-
-/* 4. Code blocks */
-code {
-	font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-		Bitstream Vera Sans Mono, Courier New, monospace;
+.group:hover .lemza-icon {
+    animation: hiccup 0.4s ease-in-out forwards;
 }
+
+/* 6. IMPORTIMI I MOBILE CSS */
+/* Sigurohu që ky skedar ekziston në folderin styles */
+@import './mobile.css';
