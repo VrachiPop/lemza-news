@@ -72,22 +72,17 @@
         gap: 1.5rem !important;
         margin: 0 !important;
     }
-    
+
     /* --- 6. HERO SECTION I RI (FULL SCREEN SINGLE) --- */
     /* Targetojmë specifikisht Hero-n e ri për ta bërë edge-to-edge */
     section.relative.bg-slate-900.group {
         /* FIX PËR IMAZHIN: Përdorim 'auto' dhe margins negative në të dy anët */
-        width: auto !important;
-        margin-left: -4px !important;
-        margin-right: -4px !important;
-
-        /* Heqim paddingun anësor të vendosur te rregulli nr.2 */
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-
-        /* Lartësia Dinamike për Celular (Llogarit shiritin e shfletuesit) */
-        height: calc(100dvh - 70px) !important;
-        min-height: 500px !important;
+       width: calc(100vw + 4px) !important; /* Pak më shumë se ekrani */
+    margin-left: -2px !important;       /* E shtyjmë majtas për ta centruar */
+    padding: 0 !important;
+    overflow: hidden !important;
+    height: calc(100dvh - 70px) !important;
+    min-height: 500px !important;
     }
 
     /* Imazhi i Hero-t */
@@ -106,7 +101,7 @@
     /* Titulli Gjigand rregullohet për ekran të vogël */
     section.relative.bg-slate-900.group h1 {
         /* FIX PËR TITULLIN: E zvogëlojmë në 1.5rem (24px) */
-        font-size: 1.5rem !important;
+        font-size: 1rem !important;
         line-height: 1.1 !important;
         margin-bottom: 0.5rem !important;
     }
@@ -181,4 +176,37 @@
         font-size: 0.8rem !important;
         opacity: 0.7 !important;
     }
+
+    /* --- FIX FINAL: TAGS, DATE & SHARE NË NJË RRESHT --- */
+
+@media (max-width: 768px) {
+    /* 1. Forcojmë rreshtin të qëndrojë horizontal dhe të zërë 100% të gjerësisë */
+    .flex.items-center.justify-between.w-full.mb-6 {
+        display: flex !important;
+        flex-direction: row !important; /* Nuk lejon zbritjen poshtë */
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 4px !important; /* Hapësirë minimale mes tyre */
+        flex-wrap: nowrap !important; /* Ndalon thyerjen në dy rreshta */
+    }
+
+    /* 2. Ulim fontin për Tags dhe Datën që të nxënë */
+    .flex.items-center.gap-2.text-xs.font-bold {
+        font-size: 9px !important; /* Font shumë i vogël për celular */
+        gap: 4px !important;
+        white-space: nowrap !important; /* Ndalon thyerjen e tekstit brenda tyre */
+    }
+
+    /* 3. Ulim fontin për butonin Shpërndaje */
+    #share-button {
+        font-size: 9px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important; /* Nuk lejon që butoni të shtypet/shformohet */
+    }
+
+    /* 4. Fshehim pikën (•) ose vijën (|) nëse ekrani është shumë i ngushtë (opsionale) */
+    @media (max-width: 400px) {
+        .text-slate-600.mx-2 { display: none !important; } /* Fsheh | */
+    }
+}
 }
