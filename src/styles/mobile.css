@@ -102,9 +102,14 @@
 
     /* Titulli Gjigand rregullohet për ekran të vogël */
     section.relative.bg-slate-900.group h1 {
-        font-size: 2rem !important; /* Ishte 7xl, e bëjmë të lexueshme */
-        line-height: 1.1 !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.75rem !important; /* E zvogëluam në 28px (ishte 32px) */
+        line-height: 1.0 !important;    /* I ngjeshim rreshtat */
+        letter-spacing: -1px !important; /* I afrojmë shkronjat pak */
+        margin-bottom: 0.75rem !important;
+        white-space: normal !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        hyphens: auto !important;
     }
     
     /* Tagu në Hero */

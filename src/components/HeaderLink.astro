@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import '../app.css';
 
 type Props = HTMLAttributes<'a'>;
 
@@ -10,17 +11,27 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a 
+    href={href} 
+    class:list={[
+        className, 
+        'font-news font-black font-stretch-ultra uppercase tracking-tighter text-sm', 
+        { 'text-[#DC2626] border-b-2 border-[#DC2626]': isActive } 
+    ]} 
+    {...props}
+>
 	<slot />
 </a>
 
 <style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-	}
-	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
-	}
+    /* Sigurohemi që linku të ketë ngjyrë dhe sjellje normale */
+    a {
+        display: inline-block;
+        text-decoration: none;
+        color: #1e293b; /* Slate 800 */
+    }
+    a:hover {
+        color: #DC2626; /* E kuqe kur kalon mausi */
+    }
+    /* Hiq stilin e vjetër 'active' nëse ekziston poshtë kësaj dhe lëre class:list ta bëjë punën */
 </style>
