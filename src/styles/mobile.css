@@ -76,20 +76,23 @@
     /* --- 6. HERO SECTION I RI (FULL SCREEN SINGLE) --- */
     /* Targetojmë specifikisht Hero-n e ri për ta bërë edge-to-edge */
     section.relative.bg-slate-900.group {
-        /* FIX PËR IMAZHIN: Përdorim 'auto' dhe margins negative në të dy anët */
-       width: calc(100vw + 4px) !important; /* Pak më shumë se ekrani */
-    margin-left: -2px !important;       /* E shtyjmë majtas për ta centruar */
-    padding: 0 !important;
-    overflow: hidden !important;
-    height: calc(100dvh - 70px) !important;
-    min-height: 500px !important;
+        width: 100vw !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        padding: 0 !important;
+        height: calc(100dvh - 70px) !important;
+        min-height: 500px !important;
     }
 
-    /* Imazhi i Hero-t */
     section.relative.bg-slate-900.group img {
-        height: 100% !important;
         width: 100% !important;
+        height: 100% !important;
         object-fit: cover !important;
+        /* Kjo heq çdo pixel gap që mund të krijohet poshtë imazhit */
+        display: block !important;
     }
 
     /* Teksti dhe Titulli në Hero */
@@ -192,14 +195,14 @@
 
     /* 2. Ulim fontin për Tags dhe Datën që të nxënë */
     .flex.items-center.gap-2.text-xs.font-bold {
-        font-size: 9px !important; /* Font shumë i vogël për celular */
+        font-size: 7px !important; /* Font shumë i vogël për celular */
         gap: 4px !important;
         white-space: nowrap !important; /* Ndalon thyerjen e tekstit brenda tyre */
     }
 
     /* 3. Ulim fontin për butonin Shpërndaje */
     #share-button {
-        font-size: 9px !important;
+        font-size: 7px !important;
         white-space: nowrap !important;
         flex-shrink: 0 !important; /* Nuk lejon që butoni të shtypet/shformohet */
     }
