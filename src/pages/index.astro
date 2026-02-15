@@ -5,17 +5,16 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
+import Hero from '../components/home/Hero.astro'; // <--- IMPORT THE NEW HERO
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import '../app.css';
 
-// 1. LOGJIKA E POSTIMEVE
+// 1. Fetch all posts
 const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// 4 të parat për Hero Slider
-const heroPosts = allPosts.slice(0, 4);
-// Pjesa tjetër për Grid
+// 2. Skip the first 4 (because they are in the Hero component)
 const gridPosts = allPosts.slice(4);
 
 const tagNames = {
@@ -46,7 +45,7 @@ function getPostUrl(slug: string) {
             }
 
             .news-container {
-                padding-top: 2rem;
+                padding-top: 0rem;
                 padding-bottom: 4rem;
             }
 
@@ -62,89 +61,20 @@ function getPostUrl(slug: string) {
                 box-shadow: 0 25px 30px -10px rgba(51, 65, 85, 0.12);
                 border-color: #cbd5e1;
             }
-
-            /* Indikatorët poshtë */
-            .slider-dot {
-                width: 40px;
-                height: 4px;
-                background-color: rgba(255, 255, 255, 0.3);
-                transition: all 0.3s;
-                cursor: pointer;
-            }
-            .slider-dot.active {
-                background-color: #DC2626;
-            }
         </style>
     </head>
     <body>
         
         <Header />
             
-        <section class="relative w-full h-screen overflow-hidden bg-slate-900 group/slider">
-            
-            {heroPosts.map((post, index) => (
-                <div 
-                    class={`hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                    data-index={index}
-                >
-                    <a href={getPostUrl(post.slug)} class="block w-full h-full cursor-pointer">
-                        <img 
-                            src={post.data.heroImage} 
-                            alt={post.data.title} 
-                            class="absolute inset-0 h-full w-full object-cover" 
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80"></div>
-
-                        <div class="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end p-6 pb-24 text-center z-20">
-                            <span class="mb-6 inline-block bg-[#DC2626] px-3 py-1 text-[12px] font-black uppercase tracking-widest text-white shadow-lg rounded-md">
-                                {post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'Kryesore'}
-                            </span>
-                            <h1 class="max-w-6xl font-['Literata',serif] text-4xl font-bold leading-tight text-white! drop-shadow-lg md:text-6xl lg:text-7xl">
-                                {post.data.title}
-                            </h1>
-                        </div>
-                    </a>
-                </div>
-            ))}
-
-            <button 
-                onclick="prevSlide()" 
-                class="hero-arrow absolute left-2 md:left-4 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/10 p-2 md:p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110 active:scale-95 flex items-center justify-center"
-                aria-label="Previous Slide"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 md:size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-            </button>
-
-            <button 
-                onclick="nextSlideManual()" 
-                class="hero-arrow absolute right-2 md:right-4 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/10 p-2 md:p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110 active:scale-95 flex items-center justify-center"
-                aria-label="Next Slide"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 md:size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-            </button>
-
-            <div class="absolute bottom-8 left-0 right-0 z-30 flex justify-center gap-2">
-                {heroPosts.map((_, index) => (
-                    <button 
-                        class={`slider-dot rounded-full ${index === 0 ? 'active' : ''}`} 
-                        onclick={`manualChangeSlide(${index})`}
-                        aria-label={`Go to slide ${index + 1}`}
-                    ></button>
-                ))}
-            </div>
-
-        </section>
+        <Hero />
 
         <div class="news-container">
             <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16">
                 
                 <main class="lg:col-span-8">
                     <div class="flex items-end mb-6 border-b-2 border-slate-900 pb-1">
-                        <h2 class="text-2xl! font-black text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
+                        <h2 class="text-2xl! font-light text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
@@ -192,62 +122,5 @@ function getPostUrl(slug: string) {
         </div>
         
         <Footer />
-
-        <script is:inline>
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.hero-slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            const totalSlides = slides.length;
-            const slideDuration = 8000; // 8 Sekonda
-            let slideInterval;
-
-            function showSlide(index) {
-                // Fsheh të gjitha
-                slides.forEach(slide => {
-                    slide.classList.remove('opacity-100', 'z-10');
-                    slide.classList.add('opacity-0', 'z-0');
-                });
-                dots.forEach(dot => dot.classList.remove('active'));
-
-                // Shfaq aktivin
-                slides[index].classList.remove('opacity-0', 'z-0');
-                slides[index].classList.add('opacity-100', 'z-10');
-                dots[index].classList.add('active');
-                
-                currentSlide = index;
-            }
-
-            function nextSlide() {
-                let next = (currentSlide + 1) % totalSlides;
-                showSlide(next);
-            }
-
-            function prevSlide() {
-                // Logjika për të shkuar mbrapsht (nëse je te 0 shkon te i fundit)
-                let prev = (currentSlide - 1 + totalSlides) % totalSlides;
-                resetTimer();
-                showSlide(prev);
-            }
-
-            function nextSlideManual() {
-                resetTimer();
-                nextSlide();
-            }
-
-            function manualChangeSlide(index) {
-                resetTimer();
-                showSlide(index);
-            }
-
-            function resetTimer() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, slideDuration);
-            }
-
-            // Start Auto Play (8 sekonda)
-            if(totalSlides > 0) {
-                slideInterval = setInterval(nextSlide, slideDuration);
-            }
-        </script>
     </body>
 </html>

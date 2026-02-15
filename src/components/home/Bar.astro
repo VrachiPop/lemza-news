@@ -1,0 +1,43 @@
+---
+// --- LOGJIKA E DATËS ---
+const today = new Date().toLocaleDateString('sq-AL', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long', 
+    year: 'numeric'
+});
+const formattedDate = today.charAt(0).toUpperCase() + today.slice(1);
+
+// --- LOGJIKA E MOTIT SATIRIK ---
+const weatherForecasts = [
+    "🌦️ Guxo dhe harron çadrën",
+];
+
+// Zgjedh një mot rastësor
+const randomWeather = weatherForecasts[Math.floor(Math.random() * weatherForecasts.length)];
+---
+
+<div class="w-full flex flex-col md:flex-row md:items-end justify-between border-b-2 border-slate-400 mb-4 pb-2 gap-2">
+    
+    <div class="flex items-center gap-3">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-[#DC2626]"></span>
+        </span>
+        <h2 class="text-2xl! text-slate-900 uppercase tracking-tighter m-0 leading-none">
+            Të Fundit
+        </h2>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-1 md:gap-6 text-sm! text-slate-500 tracking-widest text-right md:items-center">
+        
+        <span class="text-black animate-pulse hidden md:inline-block">
+            {randomWeather}
+        </span>
+
+        <span class="text-slate-900">
+            📅 {formattedDate}
+        </span>
+    </div>
+
+</div>

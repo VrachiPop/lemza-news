@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../FormattedDate.astro';
+import Bar from './Bar.astro';
+
+const allPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const mainPost = allPosts[0];           
+const sidePosts = allPosts.slice(1, 3); 
+
+// Logjika e Datës (Kjo shkaktonte gabimin nëse ishte poshtë)
+const today = new Date().toLocaleDateString('sq-AL', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+});
+// E bëjmë shkronjën e parë të madhe (e.g. "E hënë" -> "E Hënë")
+const formattedDate = today.charAt(0).toUpperCase() + today.slice(1);
+
+const tagNames = {
+   'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
+   'sport': 'Sport', 'kulture': 'Kulturë', 'kronike': 'Kronikë',
+   'sociale': 'Sociale', 'tekno-shkence': 'Tekno & Shkencë',
+   'shendeti': 'Shëndeti', 'rajoni': 'Rajoni', 'bota': 'Bota'
+};
+
+function getPostUrl(slug: string) {
+    const fileName = slug.split('/').pop() || '';
+    const cleanSlug = fileName.replace(/\.md$/, '');
+    return `/${cleanSlug}/`;
+}
+
+function getTag(post: any) {
+    return post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'KRYESORE';
+}
+---
+
+<section class="w-full max-w-[1600px] mx-auto px-4 md:px-6 mb-12 mt-8">
+
+    <Bar />
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 h-auto lg:h-[550px]">
+        
+        <a href={getPostUrl(mainPost.slug)} class="lg:col-span-8 relative group overflow-hidden block h-[400px] lg:h-full rounded-tl-xl rounded-bl-xl bg-slate-900">
+            <img 
+                src={mainPost.data.heroImage} 
+                alt={mainPost.data.title} 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90" 
+            />
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+            <div class="absolute bottom-0 left-0 p-8 md:p-10 w-full z-10">
+                <span class="inline-block bg-[#DC2626] text-white text-[10px] font-black px-2 py-1 uppercase tracking-widest mb-3">
+                    {getTag(mainPost)}
+                </span>
+                
+                <h1 class="text-4xl! md:text-5xl lg:text-5xl font-black text-white! leading-tight font-['Literata',serif]">
+                    {mainPost.data.title}
+                </h1>
+                
+                <div class="mt-4 text-white/80 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <FormattedDate date={mainPost.data.pubDate} />
+                </div>
+            </div>
+        </a>
+
+        <div class="lg:col-span-4 flex flex-col gap-2 h-full">
+            
+            {sidePosts.map((post, index) => (
+                <a href={getPostUrl(post.slug)} class={`relative group flex-1 overflow-hidden block bg-slate-900 ${index === 0 ? 'rounded-tr-xl' : 'rounded-br-xl'}`}>
+                    
+                    <img 
+                        src={post.data.heroImage} 
+                        alt={post.data.title} 
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60" 
+                    />
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 p-4 w- z-10">
+                        <span class="inline-block bg-[#DC2626] rounded-xs text-white text-[10px] font-black px-2 py-1 uppercase tracking-widest mb-3">
+                            {getTag(post)}
+                        </span>
+                        
+                        <h3 class="text-xl! font-black text-white! leading-snug font-['Literata',serif] line-clamp-3 group-hover:text-red-100 transition-colors">
+                            {post.data.title}
+                        </h3>
+
+                        <div class="mt-2 text-white/60 text-[10px] font-bold uppercase tracking-widest">
+                            <FormattedDate date={post.data.pubDate} />
+                        </div>
+                    </div>
+                </a>
+            ))}
+
+        </div>
+    </div>
+
+</section>
