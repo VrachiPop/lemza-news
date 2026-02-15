@@ -195,14 +195,14 @@
 
     /* 2. Ulim fontin për Tags dhe Datën që të nxënë */
     .flex.items-center.gap-2.text-xs.font-bold {
-        font-size: 7px !important; /* Font shumë i vogël për celular */
+        font-size: 8px !important; /* Font shumë i vogël për celular */
         gap: 4px !important;
         white-space: nowrap !important; /* Ndalon thyerjen e tekstit brenda tyre */
     }
 
     /* 3. Ulim fontin për butonin Shpërndaje */
     #share-button {
-        font-size: 7px !important;
+        font-size: 8px !important;
         white-space: nowrap !important;
         flex-shrink: 0 !important; /* Nuk lejon që butoni të shtypet/shformohet */
     }
@@ -210,6 +210,25 @@
     /* 4. Fshehim pikën (•) ose vijën (|) nëse ekrani është shumë i ngushtë (opsionale) */
     @media (max-width: 400px) {
         .text-slate-600.mx-2 { display: none !important; } /* Fsheh | */
+    }
+}
+/* --- RREGULLIMI I TITULLIT TË ARTIKULLIT NË CELULAR --- */
+
+@media (max-width: 768px) {
+    /* Targetojmë titullin h1 brenda faqes së artikullit */
+    article h1, 
+    .lg\:col-span-8 h1 {
+        font-size: 1.5rem !important; /* Ishte rreth 2rem (32px), tani e bëjmë 24px */
+        line-height: 1.2 !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 1rem !important;
+        letter-spacing: -0.01em !important;
+    }
+
+    /* Nëse titulli është pjesa "Full Width" që nxorrëm jashtë grid-it */
+    .w-full.max-w-\[1600px\] h1 {
+        font-size: 1.5rem !important;
+        line-height: 1.1 !important;
     }
 }
 }
