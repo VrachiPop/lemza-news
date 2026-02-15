@@ -43,3 +43,44 @@ p {
     transition: transform 0.3s ease-out;
 }
 @import './styles/mobile.css';
+
+/* --- STILIMI I ARTITKUJVE (FIX FINAL) --- */
+
+/* 1. Hapësira dhe Justifikimi për Paragrafët */
+.blog-content p {
+    margin-bottom: 1.5rem !important; /* Hapësirë rreth 24px */
+    text-align: justify !important;   /* E bën tekstin katror */
+    line-height: 1.8 !important;      /* Ajros rreshtat */
+    font-size: 1.2rem;                /* Tekst pak më i madh dhe i qartë */
+    color: #1e293b;                   /* Ngjyrë gri e errët (Slate 800) */
+}
+
+/* 2. Hapësira për Listat (që të mos ngjiten) */
+.blog-content ul, 
+.blog-content ol {
+    margin-bottom: 1.5rem !important;
+    padding-left: 1.5rem !important;
+    list-style-type: disc !important;
+}
+
+.blog-content li {
+    margin-bottom: 0.5rem !important;
+}
+
+/* 3. Titujt e brendshëm (h2, h3) */
+.blog-content h2, 
+.blog-content h3 {
+    margin-top: 2.5rem !important;
+    margin-bottom: 1rem !important;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* 4. Imazhet brenda tekstit */
+.blog-content img {
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: auto;
+}

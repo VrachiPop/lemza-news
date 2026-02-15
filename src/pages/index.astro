@@ -16,7 +16,7 @@ const allPosts = (await getCollection('blog')).sort(
 );
 
 // 2. Skip the first 4 (because they are in the Hero component)
-const gridPosts = allPosts.slice(2);
+const gridPosts = allPosts.slice(1);
 
 const tagNames = {
    'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',

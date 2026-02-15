@@ -49,9 +49,13 @@ function getTag(post: any) {
 
         <div class="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end p-6 pb-24 text-center z-20">
             
-            <span class="mb-6 inline-block bg-[#DC2626] px-3 py-1 text-[12px] font-black uppercase tracking-widest text-white shadow-lg rounded-xs transform group-hover:-translate-y-1 transition-transform duration-300">
-                {getTag(mainPost)}
-            </span>
+            <span class="bg-[#DC2626] text-white px-3 py-1 text-xs font-black uppercase tracking-widest rounded-sm shadow-lg">
+        {
+            mainPost.data.tags && mainPost.data.tags.length > 0 
+            ? (tagNames as any)[mainPost.data.tags[0]] || mainPost.data.tags[0] 
+            : 'LAJME'
+        }
+    </span>
 
             <h1 class="font-news max-w-6xl text-5xl! md:text-6xl lg:text-7xl font-bold leading-tight text-white! drop-shadow-2xl mb-4 group-hover:text-slate-100 transition-colors">
                 {mainPost.data.title}

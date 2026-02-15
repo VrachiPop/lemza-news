@@ -8,27 +8,26 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import '../app.css';
 
-/* --- RREGULLIMI 1: Bëjmë description opsional me pikëpyetje (?) --- */
+/* --- RREGULLIMI 1: Definimi i Props --- */
 interface Props {
 	title: string;
 	description?: string; 
 	pubDate: Date;
 	updatedDate?: Date;
-	heroImage?: any;
+	heroImage?: any; // Lejon ImageMetadata ose string
 	tags?: string[];
 }
 
 const { 
     title, 
-    /* --- RREGULLIMI 2: I japim një vlerë automatike nëse mungon --- */
-    description = "Lemza News - Lajme satirike dhe humor nga rajoni.",
+    description = "Lemza News - Lajme satirike dhe humor nga rajoni.", // Vlera default
     pubDate, 
     updatedDate, 
     heroImage, 
     tags 
 } = Astro.props;
 
-/* --- RREGULLIMI 3: E deklarojmë si Record<string, string> që të mos japë error --- */
+/* --- RREGULLIMI 2: Fjalori për Tag-et --- */
 const tagNames: Record<string, string> = {
     'politike': 'Politikë',
     'ekonomi': 'Ekonomi',
@@ -42,18 +41,24 @@ const tagNames: Record<string, string> = {
     'bota': 'Bota'
 };
 
+/* --- RREGULLIMI 3: Funksioni Ndihmës për Shfaqjen e Tag-ut --- */
 function getDisplayTag(tag: string) {
     if (!tag) return 'LAJME';
     const cleanTag = tag.trim().toLowerCase();
+    // Kthen emrin nga fjalori, ose e bën fjalën me gërmë të madhe nëse s'gjendet
     return tagNames[cleanTag] || (tag.charAt(0).toUpperCase() + tag.slice(1));
 }
 
+const currentUrl = Astro.url.href;
+const encodedUrl = encodeURIComponent(currentUrl);
+const encodedTitle = encodeURIComponent(title);
 ---
 
 <html lang="sq">
     <head>
         <BaseHead title={title} description={description} image={heroImage} />
         <style>
+            /* --- Stilimi për tekstin e artikullit --- */
             .prose {
                 width: 100%;
                 line-height: 1.8;
@@ -70,6 +75,8 @@ function getDisplayTag(tag: string) {
             }
             .prose ul, .prose ol { margin-bottom: 1.5em; padding-left: 1rem; }
             .prose li { margin-bottom: 0.5em; }
+            
+            /* --- Disclaimer Box --- */
             .article-disclaimer {
                 background-color: #fef2f2; border-left: 4px solid #DC2626;
                 padding: 1.5rem; margin-top: 4rem; border-radius: 0 4px 4px 0;
@@ -79,117 +86,99 @@ function getDisplayTag(tag: string) {
                 display: block; text-transform: uppercase; margin-bottom: 0.5rem;
                 color: #DC2626; font-weight: 800; letter-spacing: 0.05em;
             }
+
+            /* --- Imazhet brenda tekstit --- */
             .prose :global(img) {
                 max-width: 100%; height: auto; border-radius: 8px;
                 display: block; margin: 2rem auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             }
-            /* Shtoje këtë te pjesa <style> në krye të skedarit */
 
-            /* --- Shto këtë te pjesa <style> --- */
-
-            /* Përdorim :global() për të kapur paragrafin brenda artikullit */
+            /* --- "L" e kuqe në fund të artikullit --- */
             .prose :global(p:last-of-type)::after {
                 content: "L"; 
                 display: inline-block;
-                background-color: #DC2626; /* E kuqe */
+                background-color: #DC2626;
                 color: white;
                 font-weight: 900;
                 font-size: 11px;
                 line-height: 1.4;
                 padding: 1px 6px;
                 border-radius: 2px;
-                margin-left: 8px; /* Hapësira nga pika */
+                margin-left: 8px;
                 vertical-align: middle;
                 position: relative;
                 top: -1px;
                 box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
             }
-			.article-end-signoff {
-       			display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 1.5rem;
-				margin: 1.5rem 0; /* Hapësirë sipër dhe poshtë ikonës */
-				opacity: 0.8;
-    		}
-
-			.signoff-line {
-				height: 1px;
-				flex: 1;
-				background: linear-gradient(to right, transparent, #e2e8f0, transparent);
-			}
-
-			.signoff-icon .logo-box {
-				background-color: #DC2626;
-				color: white;
-				font-weight: 900;
-				font-size: 1rem;
-				width: 28px;
-				height: 28px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-radius: 3px;
-				box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
-			}
         </style>
     </head>
     
     <body class="bg-[#F1F5F9]">
         <Header />
         
-        <div class="w-full max-w-[1600px] mx-2 px-2 md:px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
             
             <main class="lg:col-span-8">
-                <article class="bg-white p-6 md:p-10 rounded-xl border border-slate-200 shadow-sm">
+                <article class="bg-white p-8 md:p-12 rounded-xl border border-slate-200 shadow-sm">
                     
-                    <div class="mb-6 border-b border-slate-300 pb-2">
-                        <div class="flex items-center gap-2 text-xs! font-bold text-slate-400 mb-6 uppercase tracking-widest">
-                            <span class="text-[#DC2626] font-black">/</span> 
-                            
-                            {tags && tags.length > 0 ? (
-            	tags.map((tag, index) => (
-                <>
-                    <span class="hover:text-[#DC2626] transition-colors cursor-default">
-                        {getDisplayTag(tag)}
-                    </span>
-                    {index < tags.length - 1 && <span class="text-slate-600">•</span>}
-                </>
-            ))
-        ) : (
-            <span>LAJME</span>
-        )}
-                            
-                            <span class="text-slate-600 mx-2">|</span>
-                            <FormattedDate date={pubDate} />
-                            {updatedDate && (
-                                <span class="italic text-slate-600 ml-1 text-xs normal-case">(Përditësuar)</span>
-                            )}
-                        </div>
+                    <header class="mb-8 border-b border-slate-200 pb-6">
+                        {/* Meta Data: Tags & Date */}
+                        <div class="flex items-center justify-between w-full mb-6">
+        
+        {/* MAJTAS: Tags dhe Data */}
+        <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <span class="text-[#DC2626] font-black">/</span> 
+            {tags && tags.length > 0 ? (
+                tags.map((tag, index) => (
+                    <>
+                        <span class="hover:text-[#DC2626] transition-colors cursor-default">
+                            {getDisplayTag(tag)}
+                        </span>
+                        {index < tags.length - 1 && <span class="text-slate-600">•</span>}
+                    </>
+                ))
+            ) : (
+                <span>LAJME</span>
+            )}
+            <span class="text-slate-600 mx-2">|</span>
+            <FormattedDate date={pubDate} />
+        </div>
+
+        {/* DJATHTAS: Butoni Shpërndaje */}
+        <button 
+            id="share-button"
+            class="text-[12px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#DC2626] transition-colors flex items-center gap-2 group"
+        >
+            <span class="group-hover:underline">Shpërndaje</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-[#DC2626]"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        </button>
+    </div>
                         
-                        <h1 class="text-2xl! md:text-4xl lg:text-5xl font-black text-slate-900 mb-4! leading-tight tracking-tight">
+                        {/* Titulli */}
+                        <h1 class="font-news font-black font-stretch-ultra text-4xl! md:text-5xl text-slate-900 mb-6 leading-tight tracking-tight">
                             {title}
                         </h1>
 
+                        {/* Imazhi Kryesor */}
                         {heroImage && (
-                                <div class="rounded-xl overflow-hidden shadow-md mb-6 border border-slate-100">
-                                    <Image 
-                                        width={1020} 
-                                        height={510} 
-                                        src={heroImage} 
-                                        alt={title || ""}
-                                        class="w-full h-auto object-cover" 
-                                    />
-                                </div>
-                            )}
-                    </div>
+                            <div class="rounded-xl overflow-hidden shadow-md border border-slate-100">
+                                <Image 
+                                    width={1020} 
+                                    height={510} 
+                                    src={heroImage} 
+                                    alt={title || ""}
+                                    class="w-full h-auto object-cover" 
+                                />
+                            </div>
+                        )}
+                    </header>
 
-                    <div class="prose prose-slate max-w-none 
-    prose-p:my-3!        prose-ul:my-2       prose-li:my-0       prose-headings:mt-6 prose-headings:mb-3">
-    
-    <slot />
+                    {/* Përmbajtja e Artikullit */}
+                    <div class="blog-content prose">
+                        <slot />
                     </div>
                     
+                    {/* Disclaimer */}
                     <div class="article-disclaimer">
                         <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
                         <p style="margin: 0;">
@@ -200,7 +189,7 @@ function getDisplayTag(tag: string) {
                 </article>
             </main>
 
-            <aside class="lg:col-span-4 lg:pl-8 border-l border-slate-200 hidden lg:block">
+            <aside class="hidden lg:block lg:col-span-4 lg:pl-8 border-l border-slate-200">
                 <div class="sticky top-8">
                     <Sidebar />
                 </div>
@@ -209,5 +198,21 @@ function getDisplayTag(tag: string) {
         </div>
 
         <Footer />
+        <script>
+    const shareBtn = document.getElementById('share-button');
+    
+    shareBtn?.addEventListener('click', () => {
+        // Kopjon URL-në aktuale
+        navigator.clipboard.writeText(window.location.href);
+        
+        // Ndryshon tekstin përkohësisht për feedback
+        const originalText = shareBtn.innerHTML;
+        shareBtn.innerHTML = '<span class="text-green-600">✓ U kopjua</span>';
+        
+        setTimeout(() => {
+            shareBtn.innerHTML = originalText;
+        }, 2000);
+    });
+</script>
     </body>
 </html>
