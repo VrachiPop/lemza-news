@@ -22,5 +22,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: false, // Kjo ndalon simulimin që po jep error
+    },
+  }),
 });

@@ -1,28 +1,42 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-// Rregullimi i importit (një pikë më pak sepse jemi te pages/)
+import { getCollection } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => {
-        // --- FIX KRITIK ---
-        // Këtu i themi Astros: "Ndërtoje faqen me këtë emër të pastër"
-        // Heqim folderin dhe .md edhe këtu, që të përputhet me linkun
-        const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || '';
+    const posts = await getCollection('blog');
+    return posts.map((post) => {
+        // Marrim emrin e skedarit pa prapashtesën .md
+        // Astro automatikisht e trajton 'slug' si emrin e skedarit nëse nuk e specifikon ndryshe
+        const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || post.slug;
 
-		return {
-			params: { slug: cleanSlug },
-			props: post,
-		};
-	});
+        return {
+            params: { slug: cleanSlug },
+            props: { post },
+        };
+    });
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+const { post } = Astro.props;
+
+// Nëse për ndonjë arsye 'post' nuk vjen, Astro do të tentojë ta gjejë direkt (për SSR)
+if (!post) {
+    const { slug } = Astro.params;
+    const allPosts = await getCollection('blog');
+    const findPost = allPosts.find(p => 
+        p.slug.split('/').pop()?.replace(/\.md$/, '') === slug || p.slug === slug
+    );
+    
+    if (!findPost) return Astro.redirect('/404');
+    
+    // Nëse e gjeti, vazhdojmë me të
+    var finalPost = findPost;
+} else {
+    var finalPost = post;
+}
+
+const { Content } = await finalPost.render();
 ---
 
-<BlogPost {...post.data}>
-	<Content />
+<BlogPost {...finalPost.data}>
+    <Content />
 </BlogPost>

@@ -1,14 +1,16 @@
 ---
 interface Props {
-	date: Date;
+	date: Date | string; // Pranojmë edhe tekst, edhe datë
 }
 
 const { date } = Astro.props;
+// Kjo rresht e kthen çdo gjë në Datë reale, kështu që nuk del më error
+const myDate = new Date(date);
 ---
 
-<time datetime={date.toISOString()}>
+<time datetime={myDate.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
+		myDate.toLocaleDateString('en-us', {
 			year: 'numeric',
 			month: 'short',
 			day: 'numeric',

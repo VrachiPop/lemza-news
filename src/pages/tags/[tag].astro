@@ -9,29 +9,26 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import '../../app.css';
 
-export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-  
-  const uniqueTags = [...new Set(allPosts
-    .map((post) => post.data.tags || [])
-    .flat()
-  )];
+// --- NDRYSHIMI KRYESOR PËR SERVER MODE ---
+// 1. Marrim tag-un direkt nga URL-ja (jo nga getStaticPaths)
+const { tag } = Astro.params;
 
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) => 
-        post.data.tags && post.data.tags.includes(tag)
-    );
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
+// 2. Nëse nuk ka tag në URL, e çojmë te 404
+if (!tag) {
+  return Astro.redirect('/404');
 }
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
+// 3. I marrim të gjitha postimet LIVE
+const allPosts = await getCollection('blog');
 
-// --- DICTIONARY ---
+// 4. I filtrojmë këtu "në vend"
+const posts = allPosts.filter((post) => {
+    const postTags = post.data.tags || [];
+    // Krahasim i sigurt (lowercase + trim)
+    return postTags.some(t => t.toLowerCase().trim() === tag.toLowerCase().trim());
+});
+
+// --- DICTIONARY (Përkthimet) ---
 const tagNames = {
     'politike': 'Politikë',
     'ekonomi': 'Ekonomi',
@@ -42,11 +39,14 @@ const tagNames = {
     'tekno-shkence': 'Tekno & Shkencë',
     'shendeti': 'Shëndeti',
     'rajoni': 'Rajoni',
-    'bota': 'Bota'
+    'bota': 'Bota',
+    'sociale': 'Sociale'
 };
 
 const capitalize = (s: any) => s && s[0].toUpperCase() + s.slice(1);
-const pageTitle = (tagNames as any)[tag] || capitalize(tag);
+// Përdorim tag-un nga URL për titullin
+const cleanTag = tag.toLowerCase().trim(); 
+const pageTitle = (tagNames as any)[cleanTag] || capitalize(cleanTag);
 ---
 
 <!doctype html>
@@ -62,89 +62,92 @@ const pageTitle = (tagNames as any)[tag] || capitalize(tag);
             <main class="lg:col-span-8">
                 <div class="flex items-end mb-8 border-b-2 border-slate-400 pb-2">
                     <h1 class="font-news font-light font-stretch-ultra text-2xl! uppercase tracking-tighter text-slate-900 m-0">
-                        <span class="text-black!">{pageTitle}</span>
+                        <span class="text-black font-light">{pageTitle}</span>
                     </h1>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
-                    {posts.map((post) => {
-                        // --- THE IMAGE SCANNER (Fallback logic) ---
-                        // We keep this just in case, but prefer post.data.heroImage
-                        const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
-                        const fallbackImage = imageMatch ? imageMatch[1] : null;
+                    {/* Mbrojtje: Nëse nuk ka postime për këtë tag */}
+                    {posts.length === 0 ? (
+                        <p class="text-slate-500 italic">Nuk u gjetën lajme në këtë kategori.</p>
+                    ) : (
+                        posts.map((post) => {
+                            // --- LOGJIKA E FOTOS ---
+                            const imageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
+                            const fallbackImage = imageMatch ? imageMatch[1] : null;
 
-                        // --- FIX PËR URL TË PASTËR ---
-                        const fileName = post.slug.split('/').pop() || '';
-                        const cleanSlug = fileName.replace(/\.md$/, '');
-                        const finalUrl = `/${cleanSlug}/`;
+                            // --- URL E PASTËR ---
+                            // Përdorim slug direkt sepse jemi në Server Mode
+                            const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || post.slug;
+                            const finalUrl = `/${cleanSlug}/`;
 
-                        return (
-                        <article class="article-card group bg-white rounded-xl overflow-hidden border border-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-                            <a href={finalUrl} class="flex flex-col h-full no-underline text-inherit flex-1">
-                                
-                                <div class="relative aspect-[16/10] overflow-hidden">
-                                    <div class="absolute top-3 left-3 z-20 flex gap-2">
-                                         {/* TAGS */}
-                                        {post.data.tags && post.data.tags.length > 0 ? (
-                                            post.data.tags.map((t: string) => (
-                                                <span class="bg-[#DC2626] text-white px-2 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg">
-                                                    {(tagNames as any)[t] || t}
-                                                </span>
-                                            ))
+                            return (
+                            <article class="article-card group bg-white rounded-xl overflow-hidden border border-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
+                                <a href={finalUrl} class="flex flex-col h-full no-underline text-inherit flex-1">
+                                    
+                                    <div class="relative aspect-[16/10] overflow-hidden">
+                                        <div class="absolute top-3 left-3 z-20 flex gap-2">
+                                            {/* TAGS */}
+                                            {post.data.tags && post.data.tags.length > 0 ? (
+                                                post.data.tags.slice(0, 1).map((t: string) => (
+                                                    <span class="bg-[#DC2626] text-white px-2 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg">
+                                                        {(tagNames as any)[t.toLowerCase().trim()] || t}
+                                                    </span>
+                                                ))
+                                            ) : (
+                                                <span class="bg-[#DC2626] text-white px-2 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg">LAJME</span>
+                                            )}
+                                        </div>
+                                        
+                                        {/* HERO IMAGE */}
+                                        {post.data.heroImage ? (
+                                            <Image 
+                                                src={post.data.heroImage} 
+                                                alt={post.data.title}
+                                                width={600} 
+                                                height={375}
+                                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                                            />
                                         ) : (
-                                            <span class="bg-[#DC2626] text-white px-2 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg">LAJME</span>
+                                            /* FALLBACK IMAGE */
+                                            fallbackImage ? (
+                                                <img src={fallbackImage} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                            ) : (
+                                                /* EMPTY STATE */
+                                                <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                                    </svg>
+                                                </div>
+                                            )
                                         )}
                                     </div>
-                                    
-                                    {/* 1. If we have the optimized HeroImage, use Astro Image */}
-                                    {post.data.heroImage ? (
-                                        <Image 
-                                            src={post.data.heroImage} 
-                                            alt={post.data.title}
-                                            width={600} 
-                                            height={375}
-                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                                        />
-                                    ) : (
-                                        /* 2. Fallback: If no heroImage but regex found a link, use standard img */
-                                        fallbackImage ? (
-                                            <img src={fallbackImage} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                                        ) : (
-                                            /* 3. Empty State: Grey Box */
-                                            <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                                </svg>
-                                            </div>
-                                        )
-                                    )}
-                                </div>
 
-                                <div class="p-6 flex flex-col flex-1">
-                                    <div class="text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-widest flex items-center gap-2">
-                                        <span class="text-[#DC2626] font-black">/</span> 
-                                        <FormattedDate date={post.data.pubDate} />
+                                    <div class="p-6 flex flex-col flex-1">
+                                        <div class="text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-widest flex items-center gap-2">
+                                            <span class="text-[#DC2626] font-black">/</span> 
+                                            <FormattedDate date={post.data.pubDate} />
+                                        </div>
+                                        
+                                        <h3 class="font-news font-black font-stretch-ultra tracking-tight text-xl text-slate-900 mb-3 leading-none group-hover:text-[#DC2626] transition-colors">
+                                            {post.data.title}
+                                        </h3>
+                                        
+                                        <p class="text-sm text-slate-600 leading-relaxed line-clamp-2 font-medium mb-4">
+                                            {post.data.description}
+                                        </p>
+                                        
+                                        <div class="mt-auto flex items-center text-[#DC2626] font-black text-[10px] uppercase tracking-widest pt-2 group/link">
+                                            LEXO MË SHUMË
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover:translate-x-2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                    
-                                    {/* Updated Title Font to match your new style */}
-                                    <h3 class="font-news font-black font-stretch-ultra tracking-tight text-xl text-slate-900 mb-3 leading-none group-hover:text-[#DC2626] transition-colors">
-                                        {post.data.title}
-                                    </h3>
-                                    
-                                    <p class="text-sm text-slate-600 leading-relaxed line-clamp-2 font-medium mb-4">
-                                        {post.data.description}
-                                    </p>
-                                    
-                                    <div class="mt-auto flex items-center text-[#DC2626] font-black text-[10px] uppercase tracking-widest pt-2 group/link">
-                                        LEXO MË SHUMË
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover:translate-x-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    )})}
+                                </a>
+                            </article>
+                        )})
+                    )}
                 </div>
             </main>
 
