@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: main # Sigurohu që dega jote kryesore është 'main' (ose 'master')
+
+# --- LOGJIKA E FOTOVE (Ajo që diskutuam) ---
+media_folder: "src/assets/images" # Decap i ruan fotot këtu
+public_folder: "../../assets/images" # Decap shkruan këtë rrugë në Markdown
+# -------------------------------------------
+
+# Kjo heq editorin e avancuar për slug dhe e bën automatik
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "blog"
+    label: "Lajmet"
+    folder: "src/content/blog" # Ku ruhen skedarët .md
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Emri i skedarit (psh: 2023-10-25-titulli.md)
+    fields:
+      - {label: "Titulli", name: "title", widget: "string"}
+      - {label: "Data e Publikimit", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD HH:mm"}
+      - {label: "Foto Kryesore", name: "heroImage", widget: "image", required: false}
+      - {label: "Përshkrimi", name: "description", widget: "text"}
+      
+      # Tag-et si listë ku mund të shtosh shumë
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["Lajme"]
+      
+      # Trupi i lajmit
+      - {label: "Përmbajtja", name: "body", widget: "markdown"}
+
+local_backend: true

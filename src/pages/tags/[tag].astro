@@ -9,24 +9,35 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import '../../app.css';
 
-// --- NDRYSHIMI KRYESOR PËR SERVER MODE ---
-// 1. Marrim tag-un direkt nga URL-ja (jo nga getStaticPaths)
-const { tag } = Astro.params;
+// --- LOGJIKA STATIKE (getStaticPaths) ---
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  // 1. Gjej tag-et unike dhe pastroji
+  const uniqueTags = [...new Set(allPosts
+    .map((post) => post.data.tags)
+    .flat()
+    .filter(tag => tag) // Heqim vlerat null/undefined
+    .map(tag => tag.toLowerCase().trim()) 
+  )];
 
-// 2. Nëse nuk ka tag në URL, e çojmë te 404
-if (!tag) {
-  return Astro.redirect('/404');
+  // 2. Gjenero faqet për secilin tag
+  return uniqueTags.map((tag) => {
+    // Filtro postimet për këtë tag specifik
+    const filteredPosts = allPosts.filter((post) => 
+      post.data.tags?.some(t => t.toLowerCase().trim() === tag)
+    );
+    
+    return {
+      params: { tag: tag },
+      props: { posts: filteredPosts },
+    };
+  });
 }
 
-// 3. I marrim të gjitha postimet LIVE
-const allPosts = await getCollection('blog');
-
-// 4. I filtrojmë këtu "në vend"
-const posts = allPosts.filter((post) => {
-    const postTags = post.data.tags || [];
-    // Krahasim i sigurt (lowercase + trim)
-    return postTags.some(t => t.toLowerCase().trim() === tag.toLowerCase().trim());
-});
+// --- MARRJA E TË DHËNAVE ---
+const { tag } = Astro.params;
+const { posts } = Astro.props; // Tani postimet vijnë nga props, jo nga filtrimi live
 
 // --- DICTIONARY (Përkthimet) ---
 const tagNames = {
@@ -77,7 +88,6 @@ const pageTitle = (tagNames as any)[cleanTag] || capitalize(cleanTag);
                             const fallbackImage = imageMatch ? imageMatch[1] : null;
 
                             // --- URL E PASTËR ---
-                            // Përdorim slug direkt sepse jemi në Server Mode
                             const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || post.slug;
                             const finalUrl = `/${cleanSlug}/`;
 

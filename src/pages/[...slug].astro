@@ -2,23 +2,20 @@
 import { getCollection } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
 
+// --- KJO ËSHTË PJESA E NDRYSHUAR ---
 export async function getStaticPaths() {
     const posts = await getCollection('blog');
-    return posts.map((post) => {
-        // Marrim emrin e skedarit pa prapashtesën .md
-        // Astro automatikisht e trajton 'slug' si emrin e skedarit nëse nuk e specifikon ndryshe
-        const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || post.slug;
-
-        return {
-            params: { slug: cleanSlug },
-            props: { post },
-        };
-    });
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }
+// -----------------------------------
 
 const { post } = Astro.props;
 
-// Nëse për ndonjë arsye 'post' nuk vjen, Astro do të tentojë ta gjejë direkt (për SSR)
+// Kjo pjesa poshtë mbetet siç ishte (për siguri), 
+// edhe pse tani 'post' do të vijë gjithmonë i mbushur nga getStaticPaths.
 if (!post) {
     const { slug } = Astro.params;
     const allPosts = await getCollection('blog');
@@ -28,7 +25,6 @@ if (!post) {
     
     if (!findPost) return Astro.redirect('/404');
     
-    // Nëse e gjeti, vazhdojmë me të
     var finalPost = findPost;
 } else {
     var finalPost = post;

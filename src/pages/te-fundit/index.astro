@@ -46,8 +46,7 @@ const tagNames = {
                         const fallbackImage = imageMatch ? imageMatch[1] : null;
 
                         // --- FIX PËR URL TË PASTËR ---
-                        const fileName = post.slug.split('/').pop() || '';
-                        const cleanSlug = fileName.replace(/\.md$/, '');
+                        const cleanSlug = post.slug.split('/').pop()?.replace(/\.md$/, '') || post.slug;
                         const finalUrl = `/${cleanSlug}/`;
 
                         return (
