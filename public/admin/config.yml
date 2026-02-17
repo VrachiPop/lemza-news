@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: "VrachiPop/lemza-news"
   branch: main # Sigurohu që dega jote kryesore është 'main' (ose 'master')
+  base_url: https://authetincationdecap.hingllima-vrachit.workers.dev/ # Linku i Worker-it (PA /callback)
+  auth_endpoint: auth      # Kjo është standarde
 
 # --- LOGJIKA E FOTOVE (Ajo që diskutuam) ---
 media_folder: "src/assets/images" # Decap i ruan fotot këtu
@@ -34,4 +37,4 @@ collections:
       # Trupi i lajmit
       - {label: "Përmbajtja", name: "body", widget: "markdown"}
 
-local_backend: true
+local_backend: false
