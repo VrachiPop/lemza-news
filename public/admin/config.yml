@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: "VrachiPop/lemza-news"
+  repo: VrachiPop/lemza-news
   branch: main # Sigurohu që dega jote kryesore është 'main' (ose 'master')
   base_url: https://authetincationdecap.hingllima-vrachit.workers.dev/ # Linku i Worker-it (PA /callback)
   auth_endpoint: auth      # Kjo është standarde
