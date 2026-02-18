@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import './styles/mobile.css';
 /* Import Fonts directly */
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
@@ -93,6 +93,3 @@ p {
     width: 100%;
     height: auto;
 }
-
-/* Import Mobile Styles */
-@import './styles/mobile.css';
