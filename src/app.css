@@ -1,15 +1,26 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap');
+
+/* Import Fonts directly */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
-:root {
-    --font-bookerly: 'Literata', Georgia, Archivo, serif;
+
+@theme {
+  /* Define fonts for Tailwind v4 (if using v4) or just standard CSS variables */
+  --font-news: "Archivo", sans-serif;
+  --font-bookerly: "Literata", serif;
 }
+
+:root {
+    --font-bookerly: 'Literata', Georgia, serif;
+    --font-news: 'Archivo', sans-serif;
+}
+
 html, body {
-    background-color: #F1F5F9; /* Slate 100 - Ngjyra e re globale */
-    color: #1e293b; /* Slate 800 - Teksti */
+    background-color: #F1F5F9;
+    color: #1e293b;
     margin: 0;
     padding: 0;
-    font-family: var(--font-bookerly);
+    font-family: var(--font-bookerly); /* Default font is Literata */
     scroll-behavior: smooth;
 }
 
@@ -17,45 +28,45 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-bookerly);
 }
 
-p {
-    font-family: var(--font-bookerly);
-    line-height: 1.6; /* Hapësira ndërmjet rreshtave për lexim të rehatshëm */
-}
-/* --- ANIMACIONI LEMZA (HICCUP) --- */
-@keyframes hiccup {
-    0% { transform: scale(1) rotate(0deg); }
-    40% { transform: scale(1.15) rotate(-4deg); } /* Kërcen lart e majtas */
-    60% { transform: scale(1.1) rotate(2deg); }   /* Ulet pak djathtas */
-    100% { transform: scale(1) rotate(0deg); }    /* Kthehet në vend */
+/* Explicitly force Archivo for elements with .font-news class if Tailwind fails */
+.font-news {
+    font-family: var(--font-news) !important;
 }
 
-/* Kur bëjmë hover mbi elementin me klasën 'group' */
+p {
+    font-family: var(--font-bookerly);
+    line-height: 1.6;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes hiccup {
+    0% { transform: scale(1) rotate(0deg); }
+    40% { transform: scale(1.15) rotate(-4deg); }
+    60% { transform: scale(1.1) rotate(2deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
 .group:hover .lemza-icon {
     animation: hiccup 0.4s ease-in-out forwards;
 }
 
 .group:hover .lemza-text {
-    transform: translateX(5px); /* Lëviz tekstin pak djathtas */
+    transform: translateX(5px);
 }
 
-/* Shtojmë transition që teksti të lëvizë butë */
 .lemza-text {
     transition: transform 0.3s ease-out;
 }
-@import './styles/mobile.css';
 
-/* --- STILIMI I ARTITKUJVE (FIX FINAL) --- */
-
-/* 1. Hapësira dhe Justifikimi për Paragrafët */
+/* --- BLOG STYLES --- */
 .blog-content p {
-    margin-bottom: 1.5rem !important; /* Hapësirë rreth 24px */
-    text-align: justify !important;   /* E bën tekstin katror */
-    line-height: 1.8 !important;      /* Ajros rreshtat */
-    font-size: 1.2rem;                /* Tekst pak më i madh dhe i qartë */
-    color: #1e293b;                   /* Ngjyrë gri e errët (Slate 800) */
+    margin-bottom: 1.5rem !important;
+    text-align: justify !important;
+    line-height: 1.8 !important;
+    font-size: 1.2rem;
+    color: #1e293b;
 }
 
-/* 2. Hapësira për Listat (që të mos ngjiten) */
 .blog-content ul, 
 .blog-content ol {
     margin-bottom: 1.5rem !important;
@@ -67,7 +78,6 @@ p {
     margin-bottom: 0.5rem !important;
 }
 
-/* 3. Titujt e brendshëm (h2, h3) */
 .blog-content h2, 
 .blog-content h3 {
     margin-top: 2.5rem !important;
@@ -76,7 +86,6 @@ p {
     line-height: 1.2;
 }
 
-/* 4. Imazhet brenda tekstit */
 .blog-content img {
     border-radius: 0.5rem;
     margin-top: 2rem;
@@ -84,3 +93,6 @@ p {
     width: 100%;
     height: auto;
 }
+
+/* Import Mobile Styles */
+@import './styles/mobile.css';

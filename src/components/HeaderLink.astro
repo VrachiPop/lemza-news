@@ -15,23 +15,19 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
     href={href} 
     class:list={[
         className, 
-        'font-news font-black font-stretch-ultra uppercase tracking-tighter text-sm', 
-        { 'text-[#DC2626] border-b-2 border-[#DC2626]': isActive } 
+        'font-news font-black uppercase tracking-tighter text-sm transition-colors duration-200', 
+        { 'text-[#DC2626] border-b-2 border-[#DC2626]': isActive },
+        { 'text-slate-800 hover:text-[#DC2626] border-b-2 border-transparent hover:border-[#DC2626]': !isActive }
     ]} 
     {...props}
 >
-	<slot />
+    <slot />
 </a>
 
 <style>
-    /* Sigurohemi që linku të ketë ngjyrë dhe sjellje normale */
+    /* Ensure the font applies even if Tailwind misses it */
     a {
-        display: inline-block;
-        text-decoration: none;
-        color: #1e293b; /* Slate 800 */
+        font-family: 'Archivo', sans-serif !important; 
+        font-stretch: 125%; /* Ultra stretch manually if class fails */
     }
-    a:hover {
-        color: #DC2626; /* E kuqe kur kalon mausi */
-    }
-    /* Hiq stilin e vjetër 'active' nëse ekziston poshtë kësaj dhe lëre class:list ta bëjë punën */
 </style>

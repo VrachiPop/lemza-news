@@ -1,65 +1,64 @@
 ---
-import HeaderLink from './HeaderLink.astro';
 import '../app.css';
 ---
 
-<header class="site-header">
-    <nav>
-        <a href="/" class="flex items-center gap-3 group no-underline h-full py-3">
-    
-    <div class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0 origin-bottom-left">
-        <span class="font-black text-3xl leading-none">L</span>
+<header class="sticky top-0 z-[1000] bg-[#0f172a] border-b border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-transform duration-300">
+    <nav class="flex items-center justify-between h-[60px] max-w-[1600px] mx-auto px-4">
+        
+        <a href="/" class="flex items-center gap-3 group no-underline h-full py-2 select-none">
+    <div class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0">
+        <span class="font-bookerly font-black text-3xl! leading-none">L</span>
     </div>
 
     <div class="lemza-text flex flex-col justify-center h-10">
-        <span class="text-white font-black text-2xl leading-[0.8] tracking-tight uppercase">
+        <span class="text-white font-black text-2xl leading-[0.8] tracking-tight uppercase font-bookerly">
             LEMZA
         </span>
-        <span class="text-white font-bold text-2xl leading-none tracking-tight uppercase">
+        <span class="text-white font-bold text-2xl leading-none tracking-tight uppercase font-bookerly">
             NEWS
         </span>
     </div>
 </a>
 
-        <div class="desktop-links">
-            <HeaderLink href="/te-fundit" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">TË FUNDIT</HeaderLink>
-            <HeaderLink href="/tags/politike" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">POLITIKË</HeaderLink>
-            <HeaderLink href="/tags/ekonomi" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">EKONOMI</HeaderLink>
-            <HeaderLink href="/tags/sociale" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">SOCIALE</HeaderLink>
-            <HeaderLink href="/tags/kronike" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">KRONIKË</HeaderLink>
-            <HeaderLink href="/tags/shendeti" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">SHËNDETI</HeaderLink>
-            <HeaderLink href="/tags/rajoni" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">RAJONI</HeaderLink>
-            <HeaderLink href="/tags/bota" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">BOTA</HeaderLink>
-            <HeaderLink href="/tags/sport" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">SPORT</HeaderLink>
-            <HeaderLink href="/tags/kulture" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">KULTURË</HeaderLink>
-            <HeaderLink href="/tags/showbiz" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">SHOWBIZ</HeaderLink>
-            <HeaderLink href="/tags/tekno-shkence" class="font-news font-black font-stretch-ultra tracking-tighter text-sm">TEKNO & SHKENCË</HeaderLink>
+        <div class="hidden xl:flex gap-5 h-full items-center translate-y-[4px]">
+            <a href="/te-fundit" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">TË FUNDIT</a>
+            <a href="/tags/politike" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">POLITIKË</a>
+            <a href="/tags/ekonomi" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">EKONOMI</a>
+            <a href="/tags/sociale" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SOCIALE</a>
+            <a href="/tags/kronike" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">KRONIKË</a>
+            <a href="/tags/shendeti" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SHËNDETI</a>
+            <a href="/tags/rajoni" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">RAJONI</a>
+            <a href="/tags/bota" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">BOTA</a>
+            <a href="/tags/sport" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SPORT</a>
+            <a href="/tags/kulture" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">KULTURË</a>
+            <a href="/tags/showbiz" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SHOWBIZ</a>
+            <a href="/tags/tekno-shkence" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">TEKNO & SHKENCË</a>
         </div>
 
-        <div class="right-actions">
-            <div class="search-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <div class="flex items-center gap-5 text-white">
+            <div class="cursor-pointer hover:text-[#DC2626] transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
             
-            <button class="mobile-menu-btn" id="menu-toggle" aria-label="Menu">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <button class="xl:hidden bg-transparent border-none cursor-pointer p-0 text-white hover:text-[#DC2626] transition-colors" id="menu-toggle" aria-label="Menu">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </div>
     </nav>
 
-    <div class="mobile-nav-links" id="mobile-menu">
-        <a href="/te-fundit" class="font-news font-black">TË FUNDIT</a>
-        <a href="/tags/politike" class="font-news font-bold">POLITIKË</a>
-        <a href="/tags/ekonomi" class="font-news font-bold">EKONOMI</a>
-        <a href="/tags/sociale" class="font-news font-bold">SOCIALE</a>
-        <a href="/tags/kronike" class="font-news font-bold">KRONIKË</a>
-        <a href="/tags/shendeti" class="font-news font-bold">SHËNDETI</a>
-        <a href="/tags/rajoni" class="font-news font-bold">RAJONI</a>
-        <a href="/tags/bota" class="font-news font-bold">BOTA</a>
-        <a href="/tags/sport" class="font-news font-bold">SPORT</a>
-        <a href="/tags/kulture" class="font-news font-bold">KULTURË</a>
-        <a href="/tags/showbiz" class="font-news font-bold">SHOWBIZ</a>
-        <a href="/tags/tekno-shkence" class="font-news font-bold">TEKNO & SHKENCË</a>
+    <div class="hidden flex-col absolute top-full left-0 w-full bg-[#0f172a] border-t border-slate-800 shadow-2xl z-50" id="mobile-menu">
+        <a href="/te-fundit" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">TË FUNDIT</a>
+        <a href="/tags/politike" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">POLITIKË</a>
+        <a href="/tags/ekonomi" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">EKONOMI</a>
+        <a href="/tags/sociale" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SOCIALE</a>
+        <a href="/tags/kronike" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">KRONIKË</a>
+        <a href="/tags/shendeti" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SHËNDETI</a>
+        <a href="/tags/rajoni" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">RAJONI</a>
+        <a href="/tags/bota" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">BOTA</a>
+        <a href="/tags/sport" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SPORT</a>
+        <a href="/tags/kulture" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">KULTURË</a>
+        <a href="/tags/showbiz" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SHOWBIZ</a>
+        <a href="/tags/tekno-shkence" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">TEKNO & SHKENCË</a>
     </div>
 </header>
 
@@ -68,145 +67,22 @@ import '../app.css';
     const mobileMenu = document.getElementById('mobile-menu');
 
     menuBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('open');
+        mobileMenu?.classList.toggle('hidden');
+        mobileMenu?.classList.toggle('flex');
+    });
+
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Shtimi i '?' pas header rregullon gabimin "possibly null"
+            header?.classList.add('-translate-y-full');
+        } else {
+            header?.classList.remove('-translate-y-full');
+        }
+        lastScroll = currentScroll;
     });
 </script>
-
-<style>
-    /* --- DARK THEME VARS --- */
-    :root {
-        --header-bg: #0f172a;    /* Slate 900 - E ZEZE/BLU E ERRET */
-        --header-text: #ffffff;  /* E bardhë */
-        --accent-red: #DC2626;   /* E kuqe */
-        --border-color: #1e293b; /* Slate 800 - Borders të errët */
-    }
-
-    /* --- LAYOUT --- */
-    header.site-header {
-        background-color: var(--header-bg) !important; /* Detyrojmë ngjyrën e errët */
-        color: var(--header-text);
-        border-bottom: 1px solid var(--border-color);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 0 1rem;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Hije më e fortë për sfond të errët */
-    }
-
-    nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 60px;
-        max-width: 1600px;
-        margin: 0 auto;
-    }
-
-    /* --- LOGO --- */
-    a.logo-container { display: flex; align-items: center; text-decoration: none !important; gap: 12px; }
-    
-    .logo-box { 
-        background-color: var(--accent-red); 
-        color: white; 
-        font-size: 24px; 
-        font-weight: 900; 
-        width: 50px; 
-        height: 50px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        border-radius: 3px; 
-    }
-    
-    .logo-text { display: flex; flex-direction: column; line-height: 1; }
-    
-    .brand-name { 
-        color: var(--header-text); /* E Bardhë */
-        font-weight: 900; 
-        font-size: 22px; 
-        text-transform: uppercase; 
-        letter-spacing: -0.5px;
-    }
-
-    /* --- DESKTOP LINKS --- */
-    .desktop-links { 
-        display: flex; 
-        gap: 1.2rem; 
-        height: 100%; 
-        align-items: center; 
-    }
-    
-    .desktop-links :global(a) { 
-        color: #e6ebf2 !important; /* Slate 300 - Gri e hapur */
-        text-decoration: none; 
-        font-size: 12px; 
-        text-transform: uppercase; 
-        letter-spacing: 0.5px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        border-top: 3px solid transparent;
-        border-bottom: 3px solid transparent;
-        white-space: nowrap;
-        transition: color 0.2s;
-    }
-
-    .desktop-links :global(a:hover), 
-    .desktop-links :global(a.active) { 
-        color: var(--header-text) !important; /* Bëhet e bardhë kur prek */
-        border-bottom-color: var(--accent-red);  /* Viza e kuqe sipër */
-    }
-
-    /* --- RIGHT ACTIONS --- */
-    .right-actions { display: flex; align-items: center; gap: 20px; color: white; }
-    
-    .search-container svg { cursor: pointer; transition: color 0.2s; }
-    .search-container svg:hover { color: var(--accent-red); }
-
-    .mobile-menu-btn { 
-        display: none; 
-        background: none; 
-        border: none; 
-        cursor: pointer; 
-        padding: 0;
-        color: white; /* Hamburgeri i bardhë */
-    }
-
-    /* --- MOBILE MENU (DARK) --- */
-    .mobile-nav-links {
-        display: none; 
-        flex-direction: column;
-        background-color: var(--header-bg); /* Sfond i errët */
-        position: absolute;
-        top: 100%; 
-        left: 0;
-        right: 0;
-        padding: 0;
-        border-top: 1px solid var(--border-color);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.5);
-    }
-
-    .mobile-nav-links.open { display: flex; }
-
-    .mobile-nav-links a {
-        color: #cbd5e1; /* Tekst gri i hapur */
-        padding: 15px 20px;
-        text-decoration: none;
-        border-bottom: 1px solid var(--border-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    
-    .mobile-nav-links a:hover { 
-        background-color: #1e293b; /* Pak më e çelët në hover */
-        color: var(--accent-red); 
-        padding-left: 25px; /* Efekt lëvizjeje */
-    }
-
-    /* --- BREAKPOINT --- */
-    @media (max-width: 1250px) {
-        .desktop-links { display: none !important; }
-        .mobile-menu-btn { display: block; }
-        nav { height: 70px; }
-    }
-</style>
