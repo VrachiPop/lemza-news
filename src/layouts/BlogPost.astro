@@ -1,5 +1,4 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -8,180 +7,167 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import '../app.css';
 
-/* --- RREGULLIMI 1: Definimi i Props --- */
+/* --- PROPS --- */
 interface Props {
-	title: string;
-	description?: string; 
-	pubDate: Date;
-	updatedDate?: Date;
-	heroImage?: any; // Lejon ImageMetadata ose string
-	tags?: string[];
+    title: string;
+    description?: string; 
+    pubDate: Date;
+    updatedDate?: Date;
+    heroImage?: any; 
+    tags?: string[];
 }
 
 const { 
     title, 
-    description = "Lemza News - Lajme satirike dhe humor nga rajoni.", // Vlera default
+    description = "Lemza News - Lajme satirike.", 
     pubDate, 
     updatedDate, 
     heroImage, 
     tags 
 } = Astro.props;
 
-/* --- RREGULLIMI 2: Fjalori për Tag-et --- */
+/* --- LOGJIKA E TAG-EVE --- */
 const tagNames: Record<string, string> = {
-    'politike': 'Politikë',
-    'ekonomi': 'Ekonomi',
-    'showbiz': 'Showbiz',
-    'kronike': 'Kronikë',   
-    'sport': 'Sport',
-    'kulture': 'Kulturë',
-    'tekno-shkence': 'Tekno & Shkencë',
-    'shendeti': 'Shëndeti',
-    'rajoni': 'Rajoni',
-    'bota': 'Bota'
+    'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
+    'kronike': 'Kronikë', 'sport': 'Sport', 'kulture': 'Kulturë',
+    'tekno-shkence': 'Tekno & Shkencë', 'shendeti': 'Shëndeti',
+    'rajoni': 'Rajoni', 'bota': 'Bota'
 };
 
-/* --- RREGULLIMI 3: Funksioni Ndihmës për Shfaqjen e Tag-ut --- */
 function getDisplayTag(tag: string) {
     if (!tag) return 'LAJME';
     const cleanTag = tag.trim().toLowerCase();
-    // Kthen emrin nga fjalori, ose e bën fjalën me gërmë të madhe nëse s'gjendet
     return tagNames[cleanTag] || (tag.charAt(0).toUpperCase() + tag.slice(1));
 }
-
-const currentUrl = Astro.url.href;
-const encodedUrl = encodeURIComponent(currentUrl);
-const encodedTitle = encodeURIComponent(title);
 ---
 
 <html lang="sq">
     <head>
         <BaseHead title={title} description={description} image={heroImage} />
         <style>
-            /* --- Stilimi për tekstin e artikullit --- */
+            /* --- STILI I ARTIKULLIT (Typography) --- */
             .prose {
                 width: 100%;
+                color: #334155; /* Slate-700 për lexim të butë */
+                font-family: 'Georgia', serif; /* Font serif për trupin e tekstit (Stil Gazete) */
+                font-size: 1.125rem; /* 18px */
                 line-height: 1.8;
-                color: #1d242e;
-                font-size: 1.1rem;
-				text-align: justify;
-                hyphens: auto;
-                -webkit-hyphens: auto;
             }
+            
+            /* Paragrafët */
             .prose p { margin-bottom: 1.5em; }
+            
+            /* Titujt e brendshëm (h2, h3) */
             .prose h2, .prose h3 {
-                color: #0f172a; font-weight: 900; margin-top: 2em; margin-bottom: 1em;
-                text-transform: uppercase; letter-spacing: -0.02em;
+                color: #0f172a; 
+                font-family: ui-sans-serif, system-ui, sans-serif; /* Sans për titujt e brendshëm */
+                font-weight: 800; 
+                margin-top: 2.5em; 
+                margin-bottom: 1em;
+                line-height: 1.3;
             }
-            .prose ul, .prose ol { margin-bottom: 1.5em; padding-left: 1rem; }
+            
+            /* Listat */
+            .prose ul, .prose ol { margin-bottom: 1.5em; padding-left: 1.5rem; }
             .prose li { margin-bottom: 0.5em; }
             
-            /* --- Disclaimer Box --- */
-            .article-disclaimer {
-                background-color: #fef2f2; border-left: 4px solid #DC2626;
-                padding: 1.5rem; margin-top: 4rem; border-radius: 0 4px 4px 0;
-                font-size: 0.95rem; color: #7f1d1d; line-height: 1.6;
-            }
-            .article-disclaimer strong {
-                display: block; text-transform: uppercase; margin-bottom: 0.5rem;
-                color: #DC2626; font-weight: 800; letter-spacing: 0.05em;
+            /* Blockquotes */
+            .prose blockquote {
+                border-left: 4px solid #DC2626;
+                padding-left: 1rem;
+                font-style: italic;
+                color: #475569;
+                margin: 2rem 0;
+                background: #f8fafc;
+                padding: 1rem;
             }
 
-            /* --- Imazhet brenda tekstit --- */
+            /* Imazhet në tekst */
             .prose :global(img) {
-                max-width: 100%; height: auto; border-radius: 8px;
-                display: block; margin: 2rem auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                max-width: 100%; 
+                height: auto; 
+                border-radius: 8px;
+                display: block; 
+                margin: 2.5rem auto; 
             }
 
-            /* --- "L" e kuqe në fund të artikullit --- */
+            /* "L" e kuqe në fund (Signature) */
             .prose :global(p:last-of-type)::after {
                 content: "L"; 
                 display: inline-block;
                 background-color: #DC2626;
                 color: white;
                 font-weight: 900;
-                font-size: 11px;
-                line-height: 1.4;
-                padding: 1px 6px;
+                font-size: 12px;
+                padding: 0px 6px;
                 border-radius: 2px;
                 margin-left: 8px;
                 vertical-align: middle;
-                position: relative;
-                top: -1px;
-                box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
             }
         </style>
     </head>
     
-    <body class="bg-[#F1F5F9]">
+    <body class="bg-[#F8FAFC]">
         <Header />
         
-        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-8 md:py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <main class="lg:col-span-8">
-                <article class="bg-white p-8 md:p-12 rounded-xl border border-slate-200 shadow-sm">
+                <article class="bg-white p-5 md:p-12 rounded-xl border border-slate-200 shadow-sm">
                     
-                    <header class="mb-8 border-b border-slate-200 pb-6">
-                        {/* Meta Data: Tags & Date */}
-                        <div class="flex items-center justify-between w-full mb-6">
-        
-        {/* MAJTAS: Tags dhe Data */}
-        <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-            <span class="text-[#DC2626] font-black">/</span> 
-            {tags && tags.length > 0 ? (
-                tags.map((tag, index) => (
-                    <>
-                        <span class="hover:text-[#DC2626] transition-colors cursor-default">
-                            {getDisplayTag(tag)}
-                        </span>
-                        {index < tags.length - 1 && <span class="text-slate-600">•</span>}
-                    </>
-                ))
-            ) : (
-                <span>LAJME</span>
-            )}
-            <span class="text-slate-600 mx-2">|</span>
-            <FormattedDate date={pubDate} />
-        </div>
-
-        {/* DJATHTAS: Butoni Shpërndaje */}
-        <button 
-            id="share-button"
-            class="text-[12px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#DC2626] transition-colors flex items-center gap-2 group"
-        >
-            <span class="group-hover:underline">Shpërndaje</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-[#DC2626]"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-        </button>
-    </div>
+                    <header class="mb-8 md:mb-10 border-b border-slate-100 pb-6 md:pb-8">
                         
-                        {/* Titulli */}
-                        <h1 class="font-news font-black font-stretch-ultra text-4xl! md:text-5xl text-slate-900 mb-6 leading-tight tracking-tight">
+                        <div class="flex items-center gap-3 text-[11px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 md:mb-6">
+                            <span class="text-[#DC2626] font-black">/</span> 
+                            {tags && tags.length > 0 ? (
+                                <span class="text-[#DC2626]">
+                                    {getDisplayTag(tags[0])}
+                                </span>
+                            ) : (
+                                <span>LAJME</span>
+                            )}
+                            <span class="text-slate-300">•</span>
+                            <FormattedDate date={pubDate} />
+                        </div>
+
+                        <h1 class="font-bookerly font-black text-4xl! md:text-5xl text-[#0f172a] mb-6 leading-[1.1] tracking-tighter">
                             {title}
                         </h1>
 
-                        {/* Imazhi Kryesor */}
                         {heroImage && (
-                            <div class="rounded-xl overflow-hidden shadow-md border border-slate-100">
+                            <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-slate-100 shadow-sm">
                                 <Image 
-                                    width={1020} 
-                                    height={510} 
+                                    width={1200} 
+                                    height={675} 
                                     src={heroImage} 
                                     alt={title || ""}
-                                    class="w-full h-auto object-cover" 
+                                    class="absolute inset-0 w-full h-full object-cover" 
                                 />
                             </div>
                         )}
+
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100">
+                             <span class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                Nga: <span class="text-slate-900">Redaksia Lemza</span>
+                            </span>
+
+                            <button id="share-button" class="flex items-center gap-2 text-[10px] md:text-xs font-bold text-slate-500 hover:text-[#DC2626] uppercase tracking-widest transition-colors group cursor-pointer">
+                                <span class="hidden md:inline group-hover:underline">Shpërndaje</span>
+                                <span class="md:hidden">Share</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                            </button>
+                        </div>
                     </header>
 
-                    {/* Përmbajtja e Artikullit */}
-                    <div class="blog-content prose">
+                    <div class="blog-content prose mx-auto">
                         <slot />
                     </div>
                     
-                    {/* Disclaimer */}
-                    <div class="article-disclaimer">
-                        <strong>Mohim i Përgjegjësisë (Disclaimer)</strong>
-                        <p style="margin: 0;">
+                    <div class="mt-12 p-6 bg-slate-50 border-l-4 border-[#DC2626] rounded-r-lg">
+                        <h4 class="text-[#DC2626] font-black text-xs uppercase tracking-widest mb-2">
+                            Mohim Përgjegjësie
+                        </h4>
+                        <p class="text-slate-600 text-sm leading-relaxed m-0 italic font-sans">
                             Lemza News është një faqe satirike interneti. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.
                         </p>
                     </div>
@@ -189,8 +175,8 @@ const encodedTitle = encodeURIComponent(title);
                 </article>
             </main>
 
-            <aside class="hidden lg:block lg:col-span-4 lg:pl-8 border-l border-slate-200">
-                <div class="sticky top-8">
+            <aside class="hidden lg:block lg:col-span-4 lg:pl-10 border-l border-slate-200">
+                <div class="sticky top-24">
                     <Sidebar />
                 </div>
             </aside>
@@ -198,21 +184,27 @@ const encodedTitle = encodeURIComponent(title);
         </div>
 
         <Footer />
+
         <script>
-    const shareBtn = document.getElementById('share-button');
-    
-    shareBtn?.addEventListener('click', () => {
-        // Kopjon URL-në aktuale
-        navigator.clipboard.writeText(window.location.href);
-        
-        // Ndryshon tekstin përkohësisht për feedback
-        const originalText = shareBtn.innerHTML;
-        shareBtn.innerHTML = '<span class="text-green-600">✓ U kopjua</span>';
-        
-        setTimeout(() => {
-            shareBtn.innerHTML = originalText;
-        }, 2000);
-    });
-</script>
+            // Logjika e butonit Share
+            const shareBtn = document.getElementById('share-button');
+            shareBtn?.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: document.title,
+                            url: window.location.href
+                        });
+                    } catch (err) {
+                        console.log('Error sharing:', err);
+                    }
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    const originalHTML = shareBtn.innerHTML;
+                    shareBtn.innerHTML = '<span class="text-[#DC2626]">✓ U kopjua</span>';
+                    setTimeout(() => shareBtn.innerHTML = originalHTML, 2000);
+                }
+            });
+        </script>
     </body>
 </html>
