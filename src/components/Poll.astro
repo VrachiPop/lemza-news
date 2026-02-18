@@ -1,0 +1,169 @@
+---
+import pollData from '../data/poll.json';
+---
+
+<div class="bg-white border-y md:border border-slate-200 md:rounded-xl p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] relative overflow-hidden" id="poll-widget">
+    
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0f172a] via-[#DC2626] to-[#0f172a]"></div>
+
+    <div class="flex items-center gap-2 mb-4">
+        <div class="bg-[#DC2626] text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest rounded-sm">
+            Sondazh
+        </div>
+        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+            Vota Totale: <span id="total-votes-display">12.4k</span>
+        </span>
+    </div>
+
+    <h3 class="font-serif font-bold text-[#0f172a] text-xl leading-tight mb-6">
+        {pollData.question}
+    </h3>
+
+    <form id="poll-form" class="flex flex-col gap-3 transition-all duration-500">
+        {pollData.options.map((option) => (
+            <label class="cursor-pointer group relative">
+                <input type="radio" name="poll_option" value={option.id} class="peer sr-only" />
+                
+                {/* Karta e Opsionit */}
+                <div class="relative overflow-hidden p-3 rounded-lg border border-slate-200 bg-slate-50 peer-checked:border-[#0f172a] peer-checked:bg-white peer-checked:shadow-md transition-all duration-200 flex items-center gap-3 group-hover:border-slate-300">
+                    
+                    {/* Rrethi i selektimit */}
+                    <div class="shrink-0 w-5 h-5 rounded-full border-2 border-slate-300 peer-checked:border-[#0f172a] peer-checked:bg-[#0f172a] relative flex items-center justify-center transition-colors">
+                        <div class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                    </div>
+
+                    {/* Teksti */}
+                    <span class="text-sm font-bold text-slate-600 peer-checked:text-[#0f172a] font-sans">
+                        {option.text}
+                    </span>
+                </div>
+            </label>
+        ))}
+
+        <button type="submit" class="mt-4 w-full py-3 bg-[#0f172a] text-white text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-[#DC2626] transition-colors shadow-lg shadow-slate-200 active:scale-95 transform duration-150">
+            Voto (Anonim)
+        </button>
+    </form>
+
+    <div id="poll-results" class="hidden flex-col gap-5 mt-2">
+        {pollData.options.map((option) => (
+            <div class="result-item flex flex-col gap-1" data-id={option.id} data-base={option.base_votes}>
+                
+                {/* Header i Rezultatit */}
+                <div class="flex justify-between items-end text-xs font-bold text-slate-700 uppercase tracking-wide z-10 relative">
+                    <span>{option.text}</span>
+                    <span class="percentage-text text-[#DC2626]">0%</span>
+                </div>
+
+                {/* Bar-i i Progresit */}
+                <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden relative">
+                    {/* Sfondi i mbushur */}
+                    <div class="progress-bar h-full bg-[#0f172a] rounded-full w-0 transition-all duration-[1500ms] cubic-bezier(0.4, 0, 0.2, 1)"></div>
+                    
+                    {/* Efekt shkëlqimi mbi bar */}
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 opacity-50"></div>
+                </div>
+            </div>
+        ))}
+        
+        <div class="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-100 text-center">
+             <p class="text-[12px] text-slate-600 font-serif italic">
+                "Demokracia funksionon vetëm kur jeni dakord me ne."
+            </p>
+             <button id="reset-poll" class="mt-2 text-[9px] text-slate-400 hover:text-[#DC2626] underline cursor-pointer uppercase tracking-widest">
+                Voto sërish
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- SKRIPTI I "FAKE" POLL (Fixed for TypeScript) ---
+    const widget = document.getElementById('poll-widget');
+    const form = document.getElementById('poll-form');
+    const results = document.getElementById('poll-results');
+    const resetBtn = document.getElementById('reset-poll');
+    
+    const pollId = 'lemza_poll_v2'; 
+
+    // FIX 1: Përcaktojmë që userChoice është String
+    function calculateAndShow(userChoice: string) {
+        if(!form || !results) return;
+
+        form.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => {
+            form.classList.add('hidden');
+            results.classList.remove('hidden');
+            results.classList.add('flex');
+            
+            requestAnimationFrame(() => {
+                results.classList.remove('opacity-0');
+                
+                const items = document.querySelectorAll('.result-item');
+                let grandTotal = 0;
+                
+                // FIX 2: Përcaktojmë tipin e array-t që të mos jetë "any[]"
+                const calculatedVotes: { el: Element; v: number }[] = [];
+                
+                items.forEach(item => {
+                    let votes = parseInt(item.getAttribute('data-base') || '0');
+                    if (userChoice === item.getAttribute('data-id')) {
+                        votes += 1;
+                    }
+                    calculatedVotes.push({ el: item, v: votes });
+                    grandTotal += votes;
+                });
+
+                calculatedVotes.forEach((obj) => {
+                    const percent = grandTotal === 0 ? 0 : Math.round((obj.v / grandTotal) * 100);
+                    // FIX: Sigurohemi që elementet janë HTMLElement
+                    const bar = obj.el.querySelector('.progress-bar') as HTMLElement | null;
+                    const text = obj.el.querySelector('.percentage-text') as HTMLElement | null;
+                    const id = obj.el.getAttribute('data-id');
+
+                    if(text) text.innerText = percent + '%';
+
+                    if (userChoice === id && bar) {
+                        bar.style.backgroundColor = '#DC2626';
+                    }
+
+                    setTimeout(() => {
+                        if(bar) bar.style.width = percent + '%';
+                    }, 100);
+                });
+
+                const totalDisplay = document.getElementById('total-votes-display');
+                if(totalDisplay) totalDisplay.innerText = (grandTotal / 1000).toFixed(1) + 'k';
+            });
+        }, 300);
+    }
+
+    const savedVote = localStorage.getItem(pollId);
+    if (savedVote) {
+        form?.classList.add('hidden');
+        calculateAndShow(savedVote);
+    }
+
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // FIX 3: I themi kodit që 'e.target' është patjetër Formë
+        const target = e.target as HTMLFormElement; 
+        const formData = new FormData(target);
+        // FIX 4: I themi kodit që rezultati është String
+        const selected = formData.get('poll_option') as string;
+
+        if (selected) {
+            localStorage.setItem(pollId, selected);
+            calculateAndShow(selected);
+        } else {
+            form.classList.add('animate-pulse');
+            setTimeout(() => form.classList.remove('animate-pulse'), 500);
+        }
+    });
+
+    resetBtn?.addEventListener('click', () => {
+        localStorage.removeItem(pollId);
+        window.location.reload();
+    });
+</script>

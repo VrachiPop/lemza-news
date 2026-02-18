@@ -2,43 +2,33 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import '../app.css';
+import PollBaner from './PollBaner.astro';
 
 const allPosts = await getCollection('blog');
-const randomPosts = allPosts.sort(() => 0.5 - Math.random()).slice(0, 5);
+const randomPosts = allPosts.slice(7).sort(() => 0.5 - Math.random()).slice(0, 5);
+const tagNames = { 'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz', 'sport': 'Sport', 'kulture': 'Kulturë', 'kronike': 'Kronikë', 'sociale': 'Sociale', 'tekno-shkence': 'Tekno & Shkencë', 'shendeti': 'Shëndeti', 'rajoni': 'Rajoni', 'bota': 'Bota' };
 ---
 
-<aside class="flex flex-col gap-6 sticky top-24">
+<aside class="sticky top-24 flex flex-col gap-15">
     
-    <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-        <h3 class="font-bookerly font-black text-[#0f172a] text-sm uppercase tracking-widest">
-            Më të Injoruarat
-        </h3>
-        <div class="flex gap-1">
-            <span class="h-1 w-1 rounded-full bg-[#0f172a]"></span>
-            <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-            <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+    <div class="flex flex-col">
+        <div class="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200">
+            <span class="w-1.5 h-6 bg-[#0f172a]"></span>
+            <h3 class="font-serif font-bold text-[#0f172a] text-lg tracking-tight m-0">
+                Më të injoruarat
+            </h3>
         </div>
-    </div>
 
-    <div class="flex flex-col gap-4">
-        {randomPosts.map((post, index) => {
-            const fileName = post.slug.split('/').pop() || '';
-            const cleanSlug = fileName.replace(/\.md$/, '');
-            const finalUrl = `/${cleanSlug}/`;
+        <div class="flex flex-col divide-y divide-slate-200">
+            {randomPosts.map((post, index) => {
+                const fileName = post.slug.split('/').pop() || '';
+                const cleanSlug = fileName.replace(/\.md$/, '');
+                const finalUrl = `/${cleanSlug}/`;
 
-            return (
-                <a href={finalUrl} class="group relative flex flex-col bg-white p-3 rounded-xl border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#0f172a]/30 hover:-translate-y-1 no-underline">
-                    
-                    {/* PJESA E SIPËRME: Imazhi dhe Numri */}
-                    <div class="flex gap-3 items-start">
+                return (
+                    <a href={finalUrl} class="group flex gap-4 py-4 first:pt-0 no-underline items-start">
                         
-                        {/* Numri (Si Etiketë e Vogël) */}
-                        <div class="absolute top-3 left-3 z-10 bg-slate-100/90 backdrop-blur-sm text-[#0f172a] text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200 group-hover:bg-[#0f172a] group-hover:text-white transition-colors duration-300">
-                            #{index + 1}
-                        </div>
-
-                        {/* Imazhi (Me Border Radius të butë) */}
-                        <div class="shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-slate-50 border border-slate-100 group-hover:border-[#0f172a]/20 transition-colors">
+                        <div class="relative shrink-0 w-[85px] h-[85px] rounded-md overflow-hidden bg-slate-100 shadow-sm group-hover:shadow-md transition-all duration-300">
                             {post.data.heroImage ? (
                                 <Image 
                                     src={post.data.heroImage} 
@@ -52,27 +42,34 @@ const randomPosts = allPosts.sort(() => 0.5 - Math.random()).slice(0, 5);
                                     <span class="text-[9px]">IMG</span>
                                 </div>
                             )}
-                        </div>
 
-                        {/* Titulli dhe Meta */}
-                        <div class="flex flex-col justify-between h-20 py-0.5">
-                            <h4 class="font-news font-black text-slate-800 text-[14px] leading-tight text-slate-800 mb-3 group-hover:text-[#0f172a] transition-colors duration-200 line-clamp-3">
-                                {post.data.title}
-                            </h4>
-                            
-                            {/* Lexo më shumë (Shfaqet vetëm në Hover) */}
-                            <div class="flex items-center gap-1 text-[9px] font-bold text-[#DC2626] uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                Lexo Lajmin <span class="text-xs">&rarr;</span>
+                            <div class="absolute top-0 left-0 bg-[#0f172a] text-white text-[10px] font-black px-2 py-1 rounded-br-md z-10 font-sans shadow-sm">
+                                #{index + 1}
                             </div>
                         </div>
-                    </div>
-                </a>
-            );
-        })}
+
+                        <div class="flex flex-col justify-between h-[85px] py-0.5">
+                            
+                            <div class="flex flex-col gap-1">
+                                <span class="text-[9px] font-bold text-[#DC2626] uppercase tracking-widest">
+                                    {post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'Lajm'}
+                                </span>
+
+                                <h4 class="font-serif font-bold text-slate-800 text-[14px] leading-snug group-hover:text-[#0f172a] group-hover:underline decoration-2 underline-offset-2 transition-all duration-200 line-clamp-2">
+                                    {post.data.title}
+                                </h4>
+                            </div>
+
+                            <div class="flex items-center text-[#0f172a] font-bold text-[10px] uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                                Lexo <span class="ml-1 text-sm leading-none">&rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                );
+            })}
+        </div>
     </div>
 
-    <a href="/te-fundit" class="w-full py-3 text-center rounded-lg border border-dashed border-slate-300 text-slate-400 text-xs font-bold uppercase hover:border-[#0f172a] hover:text-[#0f172a] transition-all duration-300">
-        Shiko të gjitha
-    </a>
+    <PollBaner />
 
 </aside>

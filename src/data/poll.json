@@ -1,0 +1,8 @@
+{
+  "question": "Nga të kthehem?",
+  "total_fake_votes": 12450,
+  "options": [
+    { "id": "left", "text": "Majtas", "base_votes": 4500 },
+    { "id": "right", "text": "Djathtas", "base_votes": 3200 }
+  ]
+}

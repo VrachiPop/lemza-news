@@ -5,18 +5,25 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
-import Hero from '../components/home/Hero.astro'; // <--- IMPORT THE NEW HERO
+import Hero from '../components/home/Hero.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
 import '../app.css';
 
-// 1. Fetch all posts
+// 1. Merr të gjitha postimet dhe renditi sipas datës (Më e reja -> Më e vjetra)
 const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// 2. Skip the first 4 (because they are in the Hero component)
-const gridPosts = allPosts.slice(1);
+// 2. Kapërce 4 të parat (sepse janë në Hero)
+const gridPosts = allPosts.slice(1, 7);
+
+// 3. LOGJIKA E RENDITJES PËR KËTË SEKSION
+// Featured Post është më i fundit i këtij grupi (pra i 5-ti në total)
+const featuredPost = gridPosts[0];
+
+// Lista fillon nga i dyti i këtij grupi (pra i 6-ti në total) e tutje
+const restPosts = gridPosts.slice(1);
 
 const tagNames = {
    'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
@@ -40,27 +47,13 @@ function getPostUrl(slug: string) {
             html, body {
                 margin: 0;
                 padding: 0;
-                background-color: #F1F5F9;
+                background-color: #F8FAFC;
                 color: #1e293b;
                 scroll-behavior: smooth;
             }
-
             .news-container {
-                padding-top: 2rem;
-                padding-bottom: 4rem;
-            }
-
-            .article-card {
-                background-color: #ffffff;
-                border: 1px solid #e2e8f0;
-                border-radius: 12px;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .article-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 25px 30px -10px rgba(51, 65, 85, 0.12);
-                border-color: #cbd5e1;
+                padding-top: 3rem;
+                padding-bottom: 5rem;
             }
         </style>
     </head>
@@ -71,62 +64,124 @@ function getPostUrl(slug: string) {
         <Hero />
 
         <div class="news-container">
-            <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
                 <main class="lg:col-span-8">
-                    <div class="flex items-end mb-6 border-b-2 border-slate-900 pb-1">
-                        <h2 class="text-2xl! font-light text-slate-900 m-0 uppercase tracking-tighter">Të tjera</h2>
+                    
+                    <div class="flex items-center gap-3 mb-8 pb-4 border-b border-slate-200">
+                        <span class="w-2 h-8 bg-[#0f172a]"></span>
+                        <h2 class="text-3xl font-serif font-bold text-[#0f172a] m-0 tracking-tight">
+                            Të tjera
+                        </h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
-                        {gridPosts.map((post) => (
-                            <article class="article-card group h-full flex flex-col relative overflow-hidden">
-                                <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex-1 flex flex-col">
-                                    <div class="relative aspect-[16/10] overflow-hidden rounded-t-xl">
-                                        <div class="absolute top-4 left-4 z-20">
-                                            <span class="bg-[#DC2626] text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-md">
-                                                {post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'LAJME'}
-                                            </span>
-                                        </div>
-                                    {post.data.heroImage && (
+                    {featuredPost && (
+                        <article class="group mb-12 pb-12 border-b border-slate-200">
+                            <a href={getPostUrl(featuredPost.slug)} class="no-underline text-inherit block">
+                                
+                                {/* Imazhi i Madh */}
+                                <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl shadow-sm mb-6 bg-slate-100">
+                                    {featuredPost.data.heroImage ? (
                                         <Image 
-                                            src={post.data.heroImage} 
-                                            alt={post.data.title} 
-                                            width={720}   
-                                            height={405}
-                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                                            src={featuredPost.data.heroImage} 
+                                            alt={featuredPost.data.title} 
+                                            width={1000}   
+                                            height={600}
+                                            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
                                         />
-                                    )}                                    
+                                    ) : (
+                                        <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                    )}
+
+                                    {/* TAGU I KUQ (Rregulluar: Nuk është ngjitur në cep) */}
+                                    <span class="absolute top-4 left-4 bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-sm shadow-lg z-10">
+                                        {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (tagNames as any)[featuredPost.data.tags[0]] : 'KRYESORE'}
+                                    </span>
+                                </div>
+
+                                {/* Content i Madh */}
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                        <FormattedDate date={featuredPost.data.pubDate} />
+                                        <span class="text-[#DC2626]">&bull;</span>
+                                        <span class="text-[#DC2626]">Kryesore</span>
                                     </div>
-                                    <div class="p-5 flex flex-col flex-1">
-                                        <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400 mb-3 uppercase tracking-widest">
-                                            <span class="text-[#DC2626] font-black">/</span>
-                                            <FormattedDate date={post.data.pubDate} />
+
+                                    <h3 class="text-3xl md:text-4xl font-serif font-black text-slate-900 leading-tight group-hover:text-[#0f172a] group-hover:underline decoration-4 underline-offset-8 transition-all">
+                                        {featuredPost.data.title}
+                                    </h3>
+
+                                    <p class="text-lg text-slate-600 leading-relaxed line-clamp-3 font-sans mt-2">
+                                        {featuredPost.data.description}
+                                    </p>
+                                </div>
+                            </a>
+                        </article>
+                    )}
+
+                    <div class="flex flex-col divide-y divide-slate-200 border-b border-slate-200">
+                        {restPosts.map((post) => (
+                            <article class="group py-8 first:pt-0">
+                                <a href={getPostUrl(post.slug)} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                                    
+                                    {/* Image Left */}
+                                    <div class="md:col-span-4 lg:col-span-5 relative aspect-[16/10] overflow-hidden rounded-lg bg-slate-100 shadow-sm">
+                                        {post.data.heroImage ? (
+                                            <Image 
+                                                src={post.data.heroImage} 
+                                                alt={post.data.title} 
+                                                width={500}   
+                                                height={300}
+                                                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
+                                            />
+                                        ) : (
+                                            <div class="w-full h-full bg-slate-200 text-slate-400 flex items-center justify-center">IMG</div>
+                                        )}
+                                        
+                                        {/* TAGU I KUQ (Rregulluar: top-3 left-3, jo ngjitur) */}
+                                        <span class="absolute top-3 left-3 bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm shadow-md z-10">
+                                            {post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'LAJM'}
+                                        </span>
+                                    </div>
+
+                                    {/* Content Right */}
+                                    <div class="md:col-span-8 lg:col-span-7 flex flex-col justify-between h-full">
+                                        <div>
+                                            <div class="flex items-center gap-2 mb-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                                                <FormattedDate date={post.data.pubDate} />
+                                            </div>
+
+                                            <h3 class="text-xl font-serif font-bold text-slate-800 leading-tight mb-2 group-hover:text-[#0f172a] group-hover:underline decoration-2 underline-offset-4 transition-colors">
+                                                {post.data.title}
+                                            </h3>
+
+                                            <p class="text-slate-600 text-sm leading-relaxed line-clamp-2 font-sans">
+                                                {post.data.description}
+                                            </p>
                                         </div>
-                                        <h3 class="text-xl! font-news font-black text-slate-800 mb-3 leading-tight">
-                                            {post.data.title}
-                                        </h3>
-                                        <p class="text-sm text-slate-500 leading-relaxed line-clamp-2 font-medium mb-6">
-                                            {post.data.description}
-                                        </p>
-                                        <div class="mt-auto flex items-center text-[#DC2626] font-black text-[11px] uppercase tracking-widest group/link">
-                                            LEXO MË SHUMË
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover:translate-x-2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                                            </svg>
+                                        
+                                        <div class="mt-3 md:mt-auto pt-2 flex items-center text-[#0f172a] font-bold text-xs uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                                            Lexo të plotë &rarr;
                                         </div>
                                     </div>
                                 </a>
                             </article>
                         ))}
                     </div>
+
+                    <div class="mt-12 text-center">
+                        <a href="/te-fundit" class="inline-block px-10 py-4 border border-slate-400 text-slate-600 font-bold uppercase tracking-widest text-xs hover:border-[#0f172a] hover:text-white hover:bg-[#0f172a] transition-all rounded-sm">
+                            Shiko të gjitha
+                        </a>
+                    </div>
                 </main>
 
-                <aside class="lg:col-span-4 mt-12 lg:mt-0 lg:pl-8 border-l-2 border-slate-200">
-                    <div class="sticky top-10">
+                <aside class="lg:col-span-4 mt-12 lg:mt-0 lg:pl-10 border-l border-slate-200">
+                    <div class="sticky top-24">
                         <Sidebar />
                     </div>
                 </aside>
+
             </div>
         </div>
         
