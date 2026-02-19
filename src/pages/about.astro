@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Sidebar from '../components/Sidebar.astro';
+import EditorialBanner from '../components/EditorialBanner.astro';
 import '../app.css';
 
 const SITE_TITLE = "Rreth Nesh & Misioni | Lemza News";
@@ -16,20 +17,15 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
     </head>
     <body class="bg-white font-sans flex flex-col min-h-screen">
         <Header />
+
+        <EditorialBanner title="Rreth Nesh" 
+                            subtitle="Lemza News është destinacioni kryesor për satirë, humor dhe parodi në hapësirën dixhitale shqiptare."/>
+                        
         
-        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-6 md:py-10 grid grid-cols-1 lg:grid-cols-12 gap-12 flex-grow">
+        <div class="w-full max-w-[1600px] mx-auto mt-18 px-4 md:px-8 py-6 md:py-10 grid grid-cols-1 lg:grid-cols-12 gap-12 flex-grow">
             
             <main class="lg:col-span-8">
                 <div class="max-w-4xl">
-                    
-                    <header class="border-b border-slate-100 pb-8 mb-10">
-                        <h1 class="font-serif text-4xl md:text-5xl font-bold text-[#0f172a] mb-6 tracking-tight">
-                            Rreth Nesh
-                        </h1>
-                        <p class="text-xl text-slate-500 font-serif italic leading-relaxed">
-                            Lemza News është destinacioni kryesor për satirë, humor dhe parodi në hapësirën dixhitale shqiptare.
-                        </p>
-                    </header>
 
                     <div class="prose prose-slate max-w-none 
                         prose-headings:font-serif prose-headings:font-bold prose-headings:text-[#0f172a] 

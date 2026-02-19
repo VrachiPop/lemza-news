@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
+import EditorialBanner from '../../components/EditorialBanner.astro';
 import { Image } from 'astro:assets';
 import '../../app.css';
 
@@ -68,14 +69,12 @@ const pageTitle = (tagNames as any)[cleanTag] || capitalize(cleanTag);
     <body class="bg-[#F1F5F9]">
         <Header />
         
-        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <EditorialBanner title={pageTitle} />
+        
+        <div class="w-full max-w-[1600px] mx-auto mt-14 px-4 md:px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
             
             <main class="lg:col-span-8">
-                <div class="flex items-end mb-8 border-b-2 border-slate-400 pb-2">
-                    <h1 class="font-news font-light font-stretch-ultra text-2xl! uppercase tracking-tighter text-slate-900 m-0">
-                        <span class="text-black font-light">{pageTitle}</span>
-                    </h1>
-                </div>
+                <div class="flex items-end mb-8 pb-2"> </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
                     {/* Mbrojtje: Nëse nuk ka postime për këtë tag */}

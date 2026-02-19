@@ -2,67 +2,131 @@
 import '../app.css';
 ---
 
-<header class="sticky top-0 z-[1000] bg-[#0f172a] border-b border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-transform duration-300">
-    <nav class="flex items-center justify-between h-[60px] max-w-[1600px] mx-auto px-4">
+<header class="fixed top-0 left-0 w-full z-[1000] transition-transform duration-300 pointer-events-none">
+    
+    <nav class="flex items-center justify-between h-[80px] max-w-[1600px] mx-auto px-4 md:px-8 pointer-events-auto">
         
-        <a href="/" class="flex items-center gap-3 group no-underline h-full py-2 select-none">
-    <div class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0">
-        <span class="font-bookerly font-black text-3xl! leading-none">L</span>
-    </div>
+        <a href="/" class="flex items-center gap-3 group no-underline h-full py-2 select-none hover:opacity-70 transition-opacity">
+            
+            <div class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0">
+                <span class="font-bookerly font-black text-3xl! leading-none">L</span>
+            </div>
 
-    <div class="lemza-text flex flex-col justify-center h-10">
-        <span class="text-white font-black text-2xl leading-[0.8] tracking-tight uppercase font-bookerly">
-            LEMZA
-        </span>
-        <span class="text-white font-bold text-2xl leading-none tracking-tight uppercase font-bookerly">
-            NEWS
-        </span>
-    </div>
-</a>
+            <div class="lemza-text flex flex-col justify-center h-10 mix-blend-difference text-white">
+                <span class="font-black text-2xl leading-[0.8] tracking-tight uppercase font-bookerly">
+                    LEMZA
+                </span>
+                <span class="font-bold text-2xl leading-none tracking-tight uppercase font-bookerly">
+                    NEWS
+                </span>
+            </div>
+        </a>
 
-        <div class="hidden xl:flex gap-5 h-full items-center translate-y-[4px]">
-            <a href="/te-fundit" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">TË FUNDIT</a>
-            <a href="/tags/politike" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">POLITIKË</a>
-            <a href="/tags/ekonomi" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">EKONOMI</a>
-            <a href="/tags/sociale" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SOCIALE</a>
-            <a href="/tags/kronike" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">KRONIKË</a>
-            <a href="/tags/shendeti" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SHËNDETI</a>
-            <a href="/tags/rajoni" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">RAJONI</a>
-            <a href="/tags/bota" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">BOTA</a>
-            <a href="/tags/sport" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SPORT</a>
-            <a href="/tags/kulture" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">KULTURË</a>
-            <a href="/tags/showbiz" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">SHOWBIZ</a>
-            <a href="/tags/tekno-shkence" class="text-white font-bookerly font-bold text-[12px] tracking-wide uppercase no-underline transition-colors duration-200 border-b-4 border-transparent h-full flex items-center hover:border-[#DC2626]">TEKNO & SHKENCË</a>
+        <div class="hidden xl:flex gap-6 h-full items-center pt-1">
+            <a href="/te-fundit" class="text-white font-bookerly font-bold text-[15px] tracking-normal no-underline transition-opacity duration-200 hover:opacity-60 mix-blend-difference">Të fundit</a>
+            
+            <div class="group relative h-full flex items-center">
+                <span class="text-white font-bookerly font-bold text-[15px] tracking-normal cursor-pointer transition-opacity duration-200 hover:opacity-60 flex items-center gap-1 mix-blend-difference">
+                    Aktualitet
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+                
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 translate-y-3 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out z-50">                    
+                    <div class="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl p-2 flex flex-col min-w-[180px]">
+                        <a href="/tags/politike" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Politikë</a>
+                        <a href="/tags/ekonomi" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Ekonomi</a>
+                        <a href="/tags/kronike" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Kronikë</a>
+                        <a href="/tags/rajoni" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Rajoni</a>
+                        <a href="/tags/bota" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Bota</a>
+                        <a href="/tags/sociale" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Sociale</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative h-full flex items-center">
+                <span class="text-white font-bookerly font-bold text-[15px] tracking-normal cursor-pointer transition-opacity duration-200 hover:opacity-60 flex items-center gap-1 mix-blend-difference">
+                    Argëtim
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+                
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 translate-y-3 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out z-50">
+                    <div class="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl p-2 flex flex-col min-w-[180px]">
+                        <a href="/tags/sport" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Sport</a>
+                        <a href="/tags/kulture" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Kulturë</a>
+                        <a href="/tags/kulture" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Kulturë</a>
+                        <a href="/tags/showbiz" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Showbiz</a>
+                        <a href="/tags/udhetime" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Udhëtime</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative h-full flex items-center">
+                <span class="text-white font-bookerly font-bold text-[15px] tracking-normal cursor-pointer transition-opacity duration-200 hover:opacity-60 flex items-center gap-1 mix-blend-difference">
+                    Të tjera
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-180"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+                
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 translate-y-3 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out z-50">
+                    <div class="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl p-2 flex flex-col min-w-[180px]">
+                        <a href="/tags/shendeti" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Shëndeti</a>
+                        <a href="/tags/shkence" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Shkencë</a>
+                        <a href="/tags/teknologji" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Teknologji</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="flex items-center gap-5 text-white">
-            <div class="cursor-pointer hover:text-[#DC2626] transition-colors duration-200">
+        <div class="flex items-center gap-5 text-white mix-blend-difference">
+            <div class="cursor-pointer hover:opacity-60 transition-opacity duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
             
-            <button class="xl:hidden bg-transparent border-none cursor-pointer p-0 text-white hover:text-[#DC2626] transition-colors" id="menu-toggle" aria-label="Menu">
+            <button class="xl:hidden bg-transparent border-none cursor-pointer p-0 text-white hover:opacity-60 transition-opacity" id="menu-toggle" aria-label="Menu">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </div>
     </nav>
 
-    <div class="hidden flex-col absolute top-full left-0 w-full bg-[#0f172a] border-t border-slate-800 shadow-2xl z-50" id="mobile-menu">
-        <a href="/te-fundit" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">TË FUNDIT</a>
-        <a href="/tags/politike" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">POLITIKË</a>
-        <a href="/tags/ekonomi" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">EKONOMI</a>
-        <a href="/tags/sociale" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SOCIALE</a>
-        <a href="/tags/kronike" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">KRONIKË</a>
-        <a href="/tags/shendeti" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SHËNDETI</a>
-        <a href="/tags/rajoni" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">RAJONI</a>
-        <a href="/tags/bota" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">BOTA</a>
-        <a href="/tags/sport" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SPORT</a>
-        <a href="/tags/kulture" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">KULTURË</a>
-        <a href="/tags/showbiz" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">SHOWBIZ</a>
-        <a href="/tags/tekno-shkence" class="text-slate-200 font-bookerly font-bold text-lg py-4 px-6 border-b border-slate-800 uppercase tracking-widest no-underline transition-all duration-200 block hover:bg-slate-800 hover:pl-8">TEKNO & SHKENCË</a>
+    <div class="hidden flex-col absolute top-full left-0 w-full bg-[#0f172a] shadow-2xl z-50 pointer-events-auto" id="mobile-menu">
+        <div class="flex flex-col p-6 gap-6">
+            <a href="/te-fundit" class="text-white font-bookerly font-bold text-[18px] tracking-wide no-underline border-b border-slate-800 pb-3">Të fundit</a>
+            
+            <div class="flex flex-col gap-4 border-b border-slate-800 pb-4">
+                <span class="text-slate-400 font-bookerly font-bold text-[12px] uppercase tracking-widest">Aktualitet</span>
+                <div class="grid grid-cols-2 gap-3 pl-2">
+                    <a href="/tags/politike" class="text-white text-[15px] no-underline">Politikë</a>
+                    <a href="/tags/ekonomi" class="text-white text-[15px] no-underline">Ekonomi</a>
+                    <a href="/tags/kronike" class="text-white text-[15px] no-underline">Kronikë</a>
+                    <a href="/tags/rajoni" class="text-white text-[15px] no-underline">Rajoni</a>
+                    <a href="/tags/bota" class="text-white text-[15px] no-underline">Bota</a>
+                    <a href="/tags/sociale" class="text-white text-[15px] no-underline">Sociale</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-4 border-b border-slate-800 pb-4">
+                <span class="text-slate-400 font-bookerly font-bold text-[12px] uppercase tracking-widest">Argëtim</span>
+                <div class="grid grid-cols-2 gap-3 pl-2">
+                    <a href="/tags/sport" class="text-white text-[15px] no-underline">Sport</a>
+                    <a href="/tags/kulture" class="text-white text-[15px] no-underline">Kulturë</a>
+                    <a href="/tags/showbiz" class="text-white text-[15px] no-underline">Showbiz</a>
+                    <a href="/tags/udhetime" class="text-white text-[15px] no-underline">Udhëtime</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-4 pb-2">
+                <span class="text-slate-400 font-bookerly font-bold text-[12px] uppercase tracking-widest">Të tjera</span>
+                <div class="grid grid-cols-2 gap-3 pl-2">
+                    <a href="/tags/shendeti" class="text-white text-[15px] no-underline">Shëndeti</a>
+                    <a href="/tags/shkence" class="text-white text-[15px] no-underline">Shkencë</a>
+                    <a href="/tags/teknologji" class="text-white text-[15px] no-underline">Teknologji</a>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
 <script>
+    const header = document.querySelector('header');
     const menuBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -71,18 +135,12 @@ import '../app.css';
         mobileMenu?.classList.toggle('flex');
     });
 
-    const header = document.querySelector('header');
-    let lastScroll = 0;
-
+    // Fsheh Header-in kur zbret poshtë
     window.addEventListener('scroll', () => {
-        const currentScroll = window.scrollY;
-
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            // Shtimi i '?' pas header rregullon gabimin "possibly null"
+        if (window.scrollY > 50) {
             header?.classList.add('-translate-y-full');
         } else {
             header?.classList.remove('-translate-y-full');
         }
-        lastScroll = currentScroll;
     });
 </script>

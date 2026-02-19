@@ -1,5 +1,5 @@
 {
-  "question": "Nga të kthehem?",
+  "question": "Nga të kthehem për në 21sh?",
   "total_fake_votes": 12450,
   "options": [
     { "id": "left", "text": "Majtas", "base_votes": 4500 },

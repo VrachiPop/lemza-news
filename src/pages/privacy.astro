@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Sidebar from '../components/Sidebar.astro';
+import EditorialBanner from '../components/EditorialBanner.astro';
 import { SITE_TITLE } from '../consts';
 import '../app.css';
 ---
@@ -118,12 +119,13 @@ import '../app.css';
     </head>
     <body>
         <Header />
+
+        <EditorialBanner title="Kushtet dhe Privatësia" subtitle="Politika e privatësisë dhe kushtet e përdorimit të Lemza News."/>
         
-        <div class="page-container">
+        <div class="page-container mt-40">
             
             <main>
                 <div class="legal-box">
-                    <h1 id="kushtet">Kushtet dhe Privatësia</h1>
                     <p>Data e hyrjes në fuqi: <strong>Shkurt 2026</strong></p>
 
                     <p>Mirësevini në <strong>Lemza News</strong>. Duke hyrë dhe përdorur këtë faqe interneti, ju pranoni të respektoni kushtet e mëposhtme të përdorimit dhe politikën tonë të privatësisë. Nëse nuk jeni dakord me ndonjë pjesë të këtyre kushteve, ju lutemi të mos përdorni faqen tonë.</p>
