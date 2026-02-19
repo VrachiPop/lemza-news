@@ -3,7 +3,7 @@ title: 'Qeveria prezanton “Paketën e Haleve”'
 description: 'TIRANË - Në një hap të guximshëm për të promovuar “lehtësimin ekonomik dhe gastrik të zyrtarëve”, qeveria shqiptare ka prezantuar Paketën e Haleve...'
 pubDate: '2025-10-03'
 tags: ['politike', 'ekonomi']
-heroImage: "../../assets/images/paketa-haleve.jpg"
+heroImage: "../../assets/images/paketa-haleve.png"
 ---
 
 **TIRANË** - Në një hap të guximshëm për të promovuar “lehtësimin ekonomik dhe gastrik të zyrtarëve”, qeveria shqiptare ka prezantuar **Paketën e Haleve**, një projekt-ligj që do u japi zyrtarëve të lartë, punonjësve të administratës dhe familjarëve të tyre të drejtën të marrin nën zotërim banjat e shtetasve shqiptarë për çmimin simbolik prej vetëm 1 euro.

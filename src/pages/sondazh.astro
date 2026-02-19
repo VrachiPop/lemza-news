@@ -10,37 +10,39 @@ import '../app.css';
 
 <!doctype html>
 <html lang="sq">
-	<head>
-		<BaseHead title={`Sondazhi - ${SITE_TITLE}`} description="Merrni pjesë në sondazh." />
-	</head>
-	<body class="bg-[#F1F5F9] flex flex-col min-h-screen">
-		<Header />
+    <head>
+        <BaseHead title={`Sondazhi - ${SITE_TITLE}`} description="Merrni pjesë në sondazh." />
+    </head>
+    <body class="bg-white flex flex-col min-h-screen">
+        <Header />
 
-            <EditorialBanner title="Sondazhi" />
+        <EditorialBanner title="Sondazhi" />
     
-            <main class="flex-grow flex flex-col items-center justify-center py-10">
+        <div class="w-full max-w-[1600px] mx-auto px-4 pt-10 pb-20 flex-grow flex flex-col items-center justify-start">
+            
+            <div class="mb-8 text-center mt-4 md:mt-8">
+                <span class="text-[#DC2626] font-black text-xs uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-100 shadow-sm">
+                    Vox Populi
+                </span>
+            </div>
+
+            <main class="w-full max-w-2xl bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 p-6 md:p-12 relative flex flex-col">
                 
-                <div class="mb-6 text-center">
-                    <span class="text-[#DC2626] font-black text-xs uppercase tracking-widest bg-white px-3 py-1 rounded shadow-sm">
-                        Vox Populi
-                    </span>
+                <div class="w-full h-full">
+                    <Poll />
                 </div>
-    
-                <div class="w-[75vmin] aspect-square bg-white rounded-xl shadow-2xl border border-slate-200 flex flex-col p-6 md:p-10 relative overflow-hidden">
-                    
-                    <div class="w-full h-full">
-                        <Poll />
-                    </div>
-    
-                </div>
-    
-                <div class="mt-8">
-                    <a href="/" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#0f172a] transition-colors border-b border-transparent hover:border-[#0f172a] pb-0.5">
-                        &larr; Kthehu tek Lajmet
-                    </a>
-                </div>  
+
             </main>
 
-		<Footer />
-	</body>
+            <div class="mt-10 mb-8">
+                <a href="/" class="group flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#0f172a] transition-colors no-underline">
+                    <span class="text-lg leading-none transition-transform group-hover:-translate-x-1">&larr;</span> 
+                    <span>Kthehu tek Lajmet</span>
+                </a>
+            </div>  
+            
+        </div>
+
+        <Footer />
+    </body>
 </html>

@@ -16,4 +16,4 @@ Ndërkaq, shumë banorë të nëntokës kanë paraqitur ankesa formale.
 
 Të tjerë raportojnë kollë fantazmë, fishkëllimë torakale dhe irritim kronik të fytit.
 
-Autoritetet e nëntokës rekomandojnë zëvendësimin e cigareve me karamele menteje, si dhe vendosjen e tabelave *“Ndalohet duhani. Edhe pas vdekjes”* në pikat kyçe të varrezës. Pas kësaj, pritet raporti për varrezën e Sharrës, por autoritetet nuk kanë shpresa për rezultate të kënaqshme.
+Autoritetet e nëntokës rekomandojnë zëvendësimin e cigareve me karamele menteje, si dhe përditësimin e ambalazhit të tyre me mesazhin: *“Duhani vret. Edhe pas vdekjes”*. Pas kësaj, pritet raporti për varrezën e Sharrës, por autoritetet nuk kanë shpresa për rezultate të kënaqshme.

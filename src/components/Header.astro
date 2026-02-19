@@ -51,11 +51,10 @@ import '../app.css';
                 
                 <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 translate-y-3 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out z-50">
                     <div class="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl p-2 flex flex-col min-w-[180px]">
-                        <a href="/tags/sport" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Sport</a>
-                        <a href="/tags/kulture" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Kulturë</a>
-                        <a href="/tags/kulture" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Kulturë</a>
-                        <a href="/tags/showbiz" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Showbiz</a>
-                        <a href="/tags/udhetime" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Udhëtime</a>
+                        <a href="/tags/sport" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Sport</a>
+                        <a href="/tags/kulture" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Kulturë</a>
+                        <a href="/tags/showbiz" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Showbiz</a>
+                        <a href="/tags/udhetime" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Udhëtime</a>
                     </div>
                 </div>
             </div>
@@ -68,9 +67,9 @@ import '../app.css';
                 
                 <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 translate-y-3 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out z-50">
                     <div class="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl p-2 flex flex-col min-w-[180px]">
-                        <a href="/tags/shendeti" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Shëndeti</a>
-                        <a href="/tags/shkence" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Shkencë</a>
-                        <a href="/tags/teknologji" class="block px-4 py-2.5 rounded-xl text-slate-800 font-news font-bold text-[14px] tracking-wide no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Teknologji</a>
+                        <a href="/tags/shendeti" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Shëndeti</a>
+                        <a href="/tags/shkence" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Shkencë</a>
+                        <a href="/tags/teknologji" class="block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline hover:bg-[#0f172a] hover:text-white transition-colors duration-200">Teknologji</a>
                     </div>
                 </div>
             </div>
@@ -87,38 +86,39 @@ import '../app.css';
         </div>
     </nav>
 
-    <div class="hidden flex-col absolute top-full left-0 w-full bg-[#0f172a] shadow-2xl z-50 pointer-events-auto" id="mobile-menu">
-        <div class="flex flex-col p-6 gap-6">
-            <a href="/te-fundit" class="text-white font-bookerly font-bold text-[18px] tracking-wide no-underline border-b border-slate-800 pb-3">Të fundit</a>
+    <div class="hidden flex-col absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-[#0f172a]/98 backdrop-blur-2xl shadow-2xl z-50 pointer-events-auto border-t border-slate-800/60" id="mobile-menu">
+        <div class="flex flex-col p-6 md:p-8 gap-8 pb-32">
             
-            <div class="flex flex-col gap-4 border-b border-slate-800 pb-4">
-                <span class="text-slate-400 font-bookerly font-bold text-[12px] uppercase tracking-widest">Aktualitet</span>
-                <div class="grid grid-cols-2 gap-3 pl-2">
-                    <a href="/tags/politike" class="text-white text-[15px] no-underline">Politikë</a>
-                    <a href="/tags/ekonomi" class="text-white text-[15px] no-underline">Ekonomi</a>
-                    <a href="/tags/kronike" class="text-white text-[15px] no-underline">Kronikë</a>
-                    <a href="/tags/rajoni" class="text-white text-[15px] no-underline">Rajoni</a>
-                    <a href="/tags/bota" class="text-white text-[15px] no-underline">Bota</a>
-                    <a href="/tags/sociale" class="text-white text-[15px] no-underline">Sociale</a>
+            <a href="/te-fundit" class="text-white font-bookerly font-black text-2xl tracking-wide no-underline border-b border-slate-800/60 pb-5 hover:text-[#DC2626] transition-colors">Të fundit</a>
+            
+            <div class="flex flex-col gap-5 border-b border-slate-800/60 pb-6">
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">Aktualitet</span>
+                <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
+                    <a href="/tags/politike" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Politikë</a>
+                    <a href="/tags/ekonomi" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Ekonomi</a>
+                    <a href="/tags/kronike" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Kronikë</a>
+                    <a href="/tags/rajoni" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Rajoni</a>
+                    <a href="/tags/bota" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Bota</a>
+                    <a href="/tags/sociale" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Sociale</a>
                 </div>
             </div>
 
-            <div class="flex flex-col gap-4 border-b border-slate-800 pb-4">
-                <span class="text-slate-400 font-bookerly font-bold text-[12px] uppercase tracking-widest">Argëtim</span>
-                <div class="grid grid-cols-2 gap-3 pl-2">
-                    <a href="/tags/sport" class="text-white text-[15px] no-underline">Sport</a>
-                    <a href="/tags/kulture" class="text-white text-[15px] no-underline">Kulturë</a>
-                    <a href="/tags/showbiz" class="text-white text-[15px] no-underline">Showbiz</a>
-                    <a href="/tags/udhetime" class="text-white text-[15px] no-underline">Udhëtime</a>
+            <div class="flex flex-col gap-5 border-b border-slate-800/60 pb-6">
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">Argëtim</span>
+                <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
+                    <a href="/tags/sport" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Sport</a>
+                    <a href="/tags/kulture" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Kulturë</a>
+                    <a href="/tags/showbiz" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Showbiz</a>
+                    <a href="/tags/udhetime" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Udhëtime</a>
                 </div>
             </div>
 
-            <div class="flex flex-col gap-4 pb-2">
-                <span class="text-slate-400 font-bookerly font-bold text-[12px] uppercase tracking-widest">Të tjera</span>
-                <div class="grid grid-cols-2 gap-3 pl-2">
-                    <a href="/tags/shendeti" class="text-white text-[15px] no-underline">Shëndeti</a>
-                    <a href="/tags/shkence" class="text-white text-[15px] no-underline">Shkencë</a>
-                    <a href="/tags/teknologji" class="text-white text-[15px] no-underline">Teknologji</a>
+            <div class="flex flex-col gap-5 pb-4">
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">Të tjera</span>
+                <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
+                    <a href="/tags/shendeti" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Shëndeti</a>
+                    <a href="/tags/shkence" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Shkencë</a>
+                    <a href="/tags/teknologji" class="text-slate-200 text-[17px] font-bookerly no-underline hover:text-white block transition-colors">Teknologji</a>
                 </div>
             </div>
         </div>
@@ -130,17 +130,34 @@ import '../app.css';
     const menuBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
 
+    // Ikonat për Menynë
+    const iconHamburger = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+    const iconClose = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+
     menuBtn?.addEventListener('click', () => {
+        // Shfaq/Fshih menynë
         mobileMenu?.classList.toggle('hidden');
         mobileMenu?.classList.toggle('flex');
+        
+        // Blloko scroll-in e faqes kur menyja është e hapur
+        document.body.classList.toggle('overflow-hidden');
+
+        // Ndrysho ikonën Hamburger <-> X
+        if (mobileMenu?.classList.contains('flex')) {
+            menuBtn.innerHTML = iconClose;
+        } else {
+            menuBtn.innerHTML = iconHamburger;
+        }
     });
 
-    // Fsheh Header-in kur zbret poshtë
+    // Fsheh Header-in kur zbret poshtë (Funksionon vetëm nëse menyja është e mbyllur)
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header?.classList.add('-translate-y-full');
-        } else {
-            header?.classList.remove('-translate-y-full');
+        if (!mobileMenu?.classList.contains('flex')) {
+            if (window.scrollY > 50) {
+                header?.classList.add('-translate-y-full');
+            } else {
+                header?.classList.remove('-translate-y-full');
+            }
         }
     });
 </script>
