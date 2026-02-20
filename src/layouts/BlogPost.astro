@@ -42,12 +42,40 @@ function getDisplayTag(tag: string) {
 ---
 
 <!doctype html>
-<html lang="sq" class="m-0 p-0 w-full max-w-[100vw] overflow-x-hidden">
+<html lang="sq">
     <head>
         <BaseHead title={title} description={description} image={heroImage} />
-        <style>
-            /* Ruajmë VETËM shenjën "L" në fund të lajmit. Çdo stil tjetër tipografik e bën Tailwind. */
-            .prose-lemza :global(p:last-of-type)::after {
+        <style is:global>
+            /* STILI ABSOLUT PËR MARKDOWN: Detyron shfletuesin të bindet */
+            .lemza-artikull {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+            .lemza-artikull p {
+                margin-bottom: 1.5rem !important;
+                text-align: justify !important;
+                font-size: 1.2rem !important;
+                line-height: 1.8 !important;
+                color: #1e293b !important;
+                font-family: 'Literata', Georgia, serif !important;
+            }
+            .lemza-artikull h2, .lemza-artikull h3 {
+                margin-top: 2.5rem !important;
+                margin-bottom: 1rem !important;
+                font-weight: 800 !important;
+                color: #0f172a !important;
+                line-height: 1.3 !important;
+                font-family: 'Literata', Georgia, serif !important;
+            }
+            .lemza-artikull img, .lemza-artikull iframe {
+                max-width: 100% !important;
+                height: auto !important;
+                border-radius: 0.5rem;
+                margin: 2rem auto !important;
+                display: block;
+            }
+            /* L-ja e kuqe e famshme */
+            .lemza-artikull p:last-of-type::after {
                 content: "L"; 
                 display: inline-block;
                 background-color: #DC2626;
@@ -62,7 +90,7 @@ function getDisplayTag(tag: string) {
         </style>
     </head>
     
-    <body class="bg-white flex flex-col min-h-screen m-0 p-0 w-full max-w-[100vw] overflow-x-hidden">  
+    <body class="bg-white flex flex-col min-h-screen overflow-x-hidden w-full">  
        
         <Header />
         
@@ -108,13 +136,13 @@ function getDisplayTag(tag: string) {
 
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-slate-700/50 pt-6 mt-8">
                     
-                    <div class="flex items-center gap-4 text-slate-100 text-[4px] md:text-[6px] lg:text-[10px] font-black uppercase tracking-widest">
+                    <div class="flex items-center gap-4 text-slate-100 text-[6px] md:text-[8px] lg:text-[12px] font-black uppercase tracking-widest">
                         <FormattedDate date={pubDate} />
                         <span class="text-slate-600">|</span>
                         <span>Nga: <span class="text-slate-200">Redaksia Lemza</span></span>
                     </div>
 
-                    <button id="share-button" class="flex items-center gap-2 text-[8px] md:text-[10px] lg:text-xs font-bold text-slate-300 hover:text-white uppercase tracking-tight transition-all group cursor-pointer bg-slate-800/50 hover:bg-[#DC2626] px-5 py-2.5 rounded-full border border-slate-700 hover:border-[#DC2626]">
+                    <button id="share-button" class="flex items-center gap-2 text-[6px] md:text-[10px] lg:text-xs font-bold text-slate-300 hover:text-white uppercase tracking-tight transition-all group cursor-pointer bg-slate-800/50 hover:bg-[#DC2626] px-5 py-2.5 rounded-full border border-slate-700 hover:border-[#DC2626]">
                         <span class="group-hover:underline">Shpërndaje</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
@@ -146,15 +174,7 @@ function getDisplayTag(tag: string) {
                         )}
                     </header>
 
-                    <div class="prose prose-slate prose-lemza max-w-none break-words overflow-hidden w-full
-                                [&_p]:mb-[1.5rem] [&_p]:text-justify [&_p]:text-[1.2rem] [&_p]:leading-[1.8] [&_p]:text-[#1e293b] [&_p]:font-bookerly
-                                [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:mt-8 [&_h3]:mb-4
-                                prose-headings:font-bookerly prose-headings:font-bold prose-headings:text-[#0f172a] 
-                                prose-strong:text-[#0f172a] prose-strong:font-black
-                                prose-img:rounded-lg prose-img:w-full prose-img:my-8
-                                prose-a:text-[#DC2626] prose-a:font-bold
-                                prose-blockquote:border-l-4 prose-blockquote:border-[#DC2626] prose-blockquote:pl-4 prose-blockquote:italic
-                                prose-li:mb-2 prose-li:text-[1.125rem] prose-ul:pl-6 prose-ol:pl-6">
+                    <div class="lemza-artikull prose max-w-none w-full">
                         <slot />
                     </div>
                     
