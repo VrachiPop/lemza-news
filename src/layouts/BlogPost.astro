@@ -36,7 +36,7 @@ function getDisplayTag(tag: string) {
     <head>
         <BaseHead title={title} description={description} image={heroImage} />
         <style is:global>
-            /* GLOBAL STYLES FIX (IDENTIKE SI PRIVACY) */
+            /* GLOBAL STYLES FIX */
             * { box-sizing: border-box; }
             body, html { 
                 margin: 0; 
@@ -45,7 +45,6 @@ function getDisplayTag(tag: string) {
                 background-color: #ffffff;
             }
 
-            /* LAYOUT I RI ME SIDEBAR */
             .page-container {
                 width: 100%;
                 max-width: 1600px;
@@ -69,7 +68,7 @@ function getDisplayTag(tag: string) {
                 }
             }
 
-            /* STILI I ARTIKULLIT PA TAILWIND PROSE */
+            /* STILI I ARTIKULLIT */
             .lemza-artikull {
                 width: 100%;
                 overflow: hidden;
@@ -113,7 +112,6 @@ function getDisplayTag(tag: string) {
             }
             .lemza-artikull a:hover { text-decoration: underline; }
             
-            /* L-ja e famshme në fund */
             .lemza-artikull p:last-of-type::after {
                 content: "L"; 
                 display: inline-block;
@@ -149,11 +147,22 @@ function getDisplayTag(tag: string) {
                         <div class="flex items-center gap-2"><span class="text-[#DC2626] font-bold">/</span> <span class="text-[#DC2626]">LAJME</span></div>
                     )}
                 </div>
+                
                 <h1 class="font-serif font-black text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-[1.1] tracking-tight max-w-5xl drop-shadow-md">{title}</h1>
+                
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-slate-700/50 pt-6 mt-8">
                     <div class="flex items-center gap-2 text-slate-100 text-[10px] lg:text-[12px] font-black uppercase tracking-widest">
                         <FormattedDate date={pubDate} /><span class="text-slate-600">|</span><span>Nga: <span class="text-slate-200">Redaksia Lemza</span></span>
                     </div>
+
+                    <button id="share-button" class="shrink-0 flex items-center gap-2 text-[10px] md:text-[11px] lg:text-xs font-bold text-slate-300 hover:text-white uppercase tracking-tight transition-all group cursor-pointer bg-slate-800/50 hover:bg-[#DC2626] px-5 py-2.5 rounded-full border border-slate-700 hover:border-[#DC2626]">
+                        <span class="group-hover:underline">Shpërndaje</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16 6 12 2 8 6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -173,9 +182,9 @@ function getDisplayTag(tag: string) {
                         <slot />
                     </div>
                     
-                    <div class="mt-16 p-6 bg-[#fff5f5] border border-[#feb2b2] rounded-lg w-full">
-                        <h4 class="text-[#c53030] font-black text-xs uppercase tracking-widest mb-2 mt-0">Mohim Përgjegjësie</h4>
-                        <p class="text-[#c53030] text-sm leading-relaxed m-0 italic font-sans">
+                    <div class="mt-16 p-6 bg-slate-50 border-l-4 border-[#DC2626] rounded-r-lg w-full box-border">
+                        <h4 class="text-[#DC2626] font-black text-xs uppercase tracking-widest mb-2 mt-0">Mohim Përgjegjësie</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed m-0 italic font-sans break-words">
                             Lemza News është një publikim satirik. Artikujt, historitë dhe përmbajtja e publikuar në këtë faqe janë pjellë e imagjinatës ose parodi të ngjarjeve reale. Emrat e përdorur, përveç atyre të figurave publike të cilët janë subjekt i satirës, janë fiktivë. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme. Përmbajtja nuk duhet të merret si faktike apo serioze.
                         </p>
                     </div>
@@ -190,5 +199,26 @@ function getDisplayTag(tag: string) {
         </div>
 
         <Footer />
+
+        <script>
+            const shareBtn = document.getElementById('share-button');
+            shareBtn?.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({ title: document.title, url: window.location.href });
+                    } catch (err) { console.log('Error sharing:', err); }
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    const originalHTML = shareBtn.innerHTML;
+                    shareBtn.innerHTML = '<span class="text-white">✓ U kopjua</span>';
+                    shareBtn.classList.add('bg-[#DC2626]', 'border-[#DC2626]'); 
+                    
+                    setTimeout(() => {
+                        shareBtn.innerHTML = originalHTML;
+                        shareBtn.classList.remove('bg-[#DC2626]', 'border-[#DC2626]');
+                    }, 2000);
+                }
+            });
+        </script>
     </body>
 </html>

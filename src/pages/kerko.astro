@@ -24,20 +24,55 @@ const tagNames: Record<string, string> = {
 ---
 
 <!doctype html>
-<html lang="sq" class="m-0 p-0 w-full max-w-[100vw] overflow-x-hidden">
+<html lang="sq">
     <head>
         <BaseHead title="Kërko | Lemza News" description="Rezultatet e kërkimit në Lemza News" />
+        <style is:global>
+            /* GLOBAL STYLES FIX (FORMULA E PATHYESHME) */
+            * { box-sizing: border-box; }
+            body, html { 
+                margin: 0; 
+                padding: 0; 
+                max-width: 100vw;
+                background-color: #ffffff;
+            }
+
+            /* LAYOUT I PËRBASHKËT ME SIDEBAR */
+            .page-container {
+                width: 100%;
+                max-width: 1600px;
+                margin: 0 auto;
+                padding: 2rem 1rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                min-height: 50vh;
+            }
+
+            @media (min-width: 1024px) {
+                .page-container {
+                    grid-template-columns: 8fr 4fr;
+                    padding: 4rem 2rem;
+                    gap: 3rem;
+                }
+                .sidebar-wrapper {
+                    display: block;
+                    padding-left: 2.5rem;
+                    border-left: 1px solid #e5e7eb;
+                }
+            }
+        </style>
     </head>
-    <body class="bg-white flex flex-col min-h-screen m-0 p-0 w-full max-w-[100vw] overflow-x-hidden">
+    <body class="overflow-x-hidden w-full">
         <Header />
 
         <div id="banner-wrapper">
-            <EditorialBanner title="Rezultate për:" subtitle="..." />
+            <EditorialBanner title="Kërko" subtitle="..." />
         </div>
         
-        <div class="w-full max-w-[1600px] mx-auto px-4 pt-10 md:px-8 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 flex-grow">
+        <div class="page-container">
             
-            <main class="lg:col-span-8 w-full">
+            <main>
 
                 <div id="no-results-message" class="hidden text-center py-16 bg-slate-50 rounded-xl border border-slate-100 w-full mb-10">
                     <div class="text-[#DC2626] mb-4 flex justify-center">
@@ -100,8 +135,8 @@ const tagNames: Record<string, string> = {
 
             </main>
 
-            <aside class="hidden lg:block lg:col-span-4 lg:pl-10 border-l border-slate-100">
-                <div class="sticky top-24">
+            <aside class="sidebar-wrapper hidden lg:block">
+                <div style="position: sticky; top: 2rem;">
                     <Sidebar />
                 </div>
             </aside>
@@ -111,47 +146,48 @@ const tagNames: Record<string, string> = {
         <Footer />
 
         <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    
-    // Kapim Titullin dhe Nëntitullin (duke i treguar TypeScript që është HTMLElement)
-    const bannerTitle = document.querySelector('#banner-wrapper h1');
-    const bannerSubtitle = document.querySelector('#banner-wrapper p') as HTMLElement | null;
-    
-    const noResultsMsg = document.getElementById('no-results-message');
-    const searchCards = document.querySelectorAll('.search-card');
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            
+            // Kapim Titullin dhe Nëntitullin
+            const bannerTitle = document.querySelector('#banner-wrapper h1');
+            const bannerSubtitle = document.querySelector('#banner-wrapper p') as HTMLElement | null;
+            
+            const noResultsMsg = document.getElementById('no-results-message');
+            const searchCards = document.querySelectorAll('.search-card');
 
-    if (query && query.trim() !== '') {
-        if (bannerTitle) bannerTitle.textContent = "REZULTATE PËR:";
-        if (bannerSubtitle) {
-            bannerSubtitle.textContent = `"${query}"`;
-            bannerSubtitle.classList.add('text-3xl', 'md:text-4xl', 'font-black', 'text-white', 'mt-2');
-            bannerSubtitle.style.display = 'block';
-        }
-        
-        const searchTerm = query.toLowerCase().trim();
-        let matchCount = 0;
+            if (query && query.trim() !== '') {
+                // Sapo të ngarkohet faqja, JS ndryshon tekstin nga 'KËRKO' në 'REZULTATE PËR:'
+                if (bannerTitle) bannerTitle.textContent = "REZULTATE PËR:";
+                if (bannerSubtitle) {
+                    bannerSubtitle.textContent = `"${query}"`;
+                    bannerSubtitle.classList.add('text-3xl', 'md:text-4xl', 'font-black', 'text-white', 'mt-2');
+                    bannerSubtitle.style.display = 'block';
+                }
+                
+                const searchTerm = query.toLowerCase().trim();
+                let matchCount = 0;
 
-        searchCards.forEach(card => {
-            const content = card.getAttribute('data-search-content') || '';
-            if (content.includes(searchTerm)) {
-                card.classList.remove('hidden');
-                card.classList.add('flex'); 
-                matchCount++;
+                searchCards.forEach(card => {
+                    const content = card.getAttribute('data-search-content') || '';
+                    if (content.includes(searchTerm)) {
+                        card.classList.remove('hidden');
+                        card.classList.add('flex'); 
+                        matchCount++;
+                    } else {
+                        card.classList.add('hidden');
+                        card.classList.remove('flex');
+                    }
+                });
+
+                if (matchCount === 0 && noResultsMsg) {
+                    noResultsMsg.classList.remove('hidden');
+                }
             } else {
-                card.classList.add('hidden');
-                card.classList.remove('flex');
+                if (bannerTitle) bannerTitle.textContent = "KËRKIM I ZBRAZËT";
+                if (bannerSubtitle) bannerSubtitle.style.display = 'none';
+                if (noResultsMsg) noResultsMsg.classList.remove('hidden');
             }
-        });
-
-        if (matchCount === 0 && noResultsMsg) {
-            noResultsMsg.classList.remove('hidden');
-        }
-    } else {
-        if (bannerTitle) bannerTitle.textContent = "KËRKIM I ZBRAZËT";
-        if (bannerSubtitle) bannerSubtitle.style.display = 'none';
-        if (noResultsMsg) noResultsMsg.classList.remove('hidden');
-    }
-</script>
+        </script>
     </body>
 </html>

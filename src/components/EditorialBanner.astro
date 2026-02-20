@@ -26,7 +26,8 @@ const fileMap: Record<string, string> = {
     "teknologji": "teknologji",
     "rreth nesh": "about",
     "politika e privatësisë": "privacy",
-    "sondazh": "sondazh",
+    "sondazhi i ditës": "sondazh",
+    "kërko": "kerko"
 };
 
 const fileName = fileMap[normalizedTitle];
@@ -67,12 +68,12 @@ const overlayColorClass = "bg-[#0f172a]";
     <div class={`absolute inset-0 ${overlayColorClass} ${bgImageUrl !== "" ? "opacity-80" : "opacity-100"} z-10`}></div>
 
     <div class="relative z-20 max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col items-start justify-end text-left text-white pt-[80px] pb-16 h-full w-full">
-        <h1 class="font-black text-4xl md:text-5xl lg:text-7xl uppercase tracking-tight mb-3 drop-shadow-md">
+        <h1 class="font-black text-4xl md:text-5xl lg:text-5xl uppercase tracking-tight mb-3 drop-shadow-md">
             {title}
         </h1>
 
         {subtitle && (
-            <p class="text-lg md:text-xl max-w-2xl font-medium opacity-90 drop-shadow-sm leading-relaxed">
+            <p class="text-lg md:text-2xl max-w-2xl font-medium opacity-90 drop-shadow-sm leading-relaxed">
                 {subtitle}
             </p>
         )}

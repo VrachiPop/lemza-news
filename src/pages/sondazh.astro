@@ -11,22 +11,50 @@ import '../app.css';
 <!doctype html>
 <html lang="sq">
     <head>
-        <BaseHead title={`Sondazhi - ${SITE_TITLE}`} description="Merrni pjesë në sondazh." />
+        <BaseHead title={`Sondazh - ${SITE_TITLE}`} description="Merrni pjesë në sondazh." />
+        <style is:global>
+            /* GLOBAL STYLES FIX (FORMULA E PATHYESHME) */
+            * { box-sizing: border-box; }
+            body, html { 
+                margin: 0; 
+                padding: 0; 
+                max-width: 100vw;
+                background-color: #ffffff;
+            }
+
+            /* CONTAINER PËR QENDËRZIM TË SIGURT */
+            .poll-container {
+                width: 100%;
+                max-width: 1600px;
+                margin: 0 auto;
+                padding: 2rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 50vh; 
+            }
+
+            @media (min-width: 768px) {
+                .poll-container {
+                    padding: 4rem 2rem;
+                }
+            }
+        </style>
     </head>
-    <body class="bg-white flex flex-col min-h-screen">
+    <body class="overflow-x-hidden w-full">
         <Header />
 
-        <EditorialBanner title="Sondazhi" />
+        <EditorialBanner title="Sondazhi i Ditës" />
     
-        <div class="w-full max-w-[1600px] mx-auto px-4 pt-10 pb-20 flex-grow flex flex-col items-center justify-start">
+        <div class="poll-container">
             
-            <div class="mb-8 text-center mt-4 md:mt-8">
-                <span class="text-[#DC2626] font-black text-xs uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-100 shadow-sm">
+            <div class="mb-8 text-center mt-4 md:mt-8 w-full">
+                <span class="text-[#DC2626] font-black text-xs uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-100 shadow-sm inline-block">
                     Vox Populi
                 </span>
             </div>
 
-            <main class="w-full max-w-2xl bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 p-6 md:p-12 relative flex flex-col">
+            <main class="w-full max-w-2xl bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 p-6 md:p-12 relative flex flex-col box-border overflow-hidden">
                 
                 <div class="w-full h-full">
                     <Poll />
@@ -34,7 +62,7 @@ import '../app.css';
 
             </main>
 
-            <div class="mt-10 mb-8">
+            <div class="mt-10 mb-8 w-full flex justify-center">
                 <a href="/" class="group flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#0f172a] transition-colors no-underline">
                     <span class="text-lg leading-none transition-transform group-hover:-translate-x-1">&larr;</span> 
                     <span>Kthehu tek Lajmet</span>

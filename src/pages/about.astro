@@ -15,7 +15,6 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
         <style>
-            /* GLOBAL STYLES FIX */
             * { box-sizing: border-box; }
             body, html { 
                 margin: 0; 
@@ -47,7 +46,6 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                 }
             }
 
-            /* STILI PA TAILWIND PROSE */
             .about-content { width: 100%; overflow: hidden; }
             .about-content p {
                 font-family: 'Literata', Georgia, serif;
@@ -75,16 +73,6 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
             .about-content li { margin-bottom: 0.5rem; color: #4b5563; }
             .about-content a { color: #DC2626; text-decoration: none; font-weight: bold; }
             .about-content a:hover { text-decoration: underline; }
-            
-            .disclaimer-alert {
-                background-color: #fff5f5;
-                border: 1px solid #feb2b2;
-                padding: 1.5rem;
-                border-radius: 8px;
-                margin: 2.5rem 0;
-            }
-            .disclaimer-alert h4 { margin-top: 0; font-size: 0.875rem; text-transform: uppercase; color: #c53030; font-family: sans-serif;}
-            .disclaimer-alert p { margin-bottom: 0; font-size: 0.875rem; color: #c53030; font-family: sans-serif; font-style: italic;}
         </style>
     </head>
     <body class="overflow-x-hidden w-full">
@@ -107,9 +95,11 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                         Lemza News beson se humori është mjeti më efikas për të kritikuar fenomenet negative të shoqërisë, pa sulmuar individët.
                     </p>
 
-                    <div class="disclaimer-alert">
-                        <h4>Deklaratë mbi Natyrën e Përmbajtjes</h4>
-                        <p>
+                    <div class="bg-slate-50 border-l-4 border-[#DC2626] p-6 my-10 rounded-r-lg shadow-sm w-full box-border">
+                        <h4 class="text-[#0f172a] mt-0 mb-3 uppercase tracking-widest text-xs font-black" style="font-family: sans-serif;">
+                            Deklaratë mbi Natyrën e Përmbajtjes
+                        </h4>
+                        <p class="text-sm text-slate-600 mb-0 font-sans italic leading-relaxed" style="font-family: sans-serif;">
                             Lemza News është një <strong>publikim satirik</strong>. Të gjithë artikujt, lajmet dhe editorialet e publikuara në këtë faqe janë fiktive dhe kanë për qëllim argëtimin (Entertainment purpose only). Emrat e përdorur, përveç figurave publike që janë subjekt i satirës, janë pjellë e imagjinatës. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme.
                         </p>
                     </div>
