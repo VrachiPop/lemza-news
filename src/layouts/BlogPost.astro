@@ -49,11 +49,13 @@ function getDisplayTag(tag: string) {
             /* --- STILI I ARTIKULLIT (Typography) --- */
             .prose {
                 width: 100%;
-                max-width: 100vw; /* Siguri shtesë */
+                max-width: 100%; /* RREGULLIMI: ishte 100vw që shkaktonte thyerjen e ekranit */
                 color: #334155; 
                 font-family: 'Georgia', serif; 
                 font-size: 1.125rem; 
                 line-height: 1.8;
+                overflow-wrap: break-word; /* Siguri shtesë për fjalët/linqet e gjata */
+                word-wrap: break-word;
             }
             .prose p { margin-bottom: 1.5em; }
             .prose h2, .prose h3 {
@@ -75,7 +77,8 @@ function getDisplayTag(tag: string) {
                 margin: 2rem 0;
             }
 
-            .prose :global(img) {
+            /* Siguri edhe për videot/iframe nëse shton ndonjëherë */
+            .prose :global(img), .prose :global(iframe), .prose :global(video) {
                 max-width: 100%; 
                 height: auto; 
                 border-radius: 8px;
@@ -165,10 +168,10 @@ function getDisplayTag(tag: string) {
 
         <div class="w-full max-w-[1600px] mx-auto px-4 md:px-8 pt-4 pb-12 md:pt-8 md:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 flex-grow">
 
-            <main class="lg:col-span-8">
-                <article class="max-w-4xl">
+            <main class="lg:col-span-8 w-full overflow-hidden">
+                <article class="max-w-4xl w-full">
                     
-                    <header class="mb-8 md:mb-10">
+                    <header class="mb-8 md:mb-10 w-full">
                         {heroImage && (
                             <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-slate-50 shadow-sm mb-8">
                                 <Image 
@@ -182,11 +185,11 @@ function getDisplayTag(tag: string) {
                         )}
                     </header>
 
-                    <div class="blog-content prose break-words overflow-hidden">
+                    <div class="blog-content prose break-words overflow-hidden w-full">
                         <slot />
                     </div>
                     
-                    <div class="mt-16 p-6 bg-slate-50 border-l-4 border-[#DC2626] rounded-r-lg">
+                    <div class="mt-16 p-6 bg-slate-50 border-l-4 border-[#DC2626] rounded-r-lg w-full box-border">
                         <h4 class="text-[#DC2626] font-black text-xs uppercase tracking-widest mb-2">
                             Mohim Përgjegjësie
                         </h4>
