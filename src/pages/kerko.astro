@@ -1,0 +1,157 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import EditorialBanner from '../components/EditorialBanner.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import '../app.css';
+
+// Marrim të gjitha lajmet dhe i rendisim
+const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Përkthyesi i Tag-eve
+const tagNames: Record<string, string> = {
+    'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
+    'kronike': 'Kronikë', 'sport': 'Sport', 'kulture': 'Kulturë',
+    'tekno-shkence': 'Tekno & Shkencë', 'shendeti': 'Shëndeti',
+    'rajoni': 'Rajoni', 'bota': 'Bota'
+};
+---
+
+<!doctype html>
+<html lang="sq">
+    <head>
+        <BaseHead title="Kërko | Lemza News" description="Rezultatet e kërkimit në Lemza News" />
+    </head>
+    <body class="bg-white flex flex-col min-h-screen overflow-x-hidden w-full">
+        <Header />
+
+        <div id="banner-wrapper">
+            <EditorialBanner title="Rezultate për:" subtitle="..." />
+        </div>
+        
+        <div class="w-full max-w-[1600px] mx-auto px-4 pt-10 md:px-8 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 flex-grow">
+            
+            <main class="lg:col-span-8 w-full">
+
+                <div id="no-results-message" class="hidden text-center py-16 bg-slate-50 rounded-xl border border-slate-100 w-full mb-10">
+                    <div class="text-[#DC2626] mb-4 flex justify-center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3 class="font-bookerly font-black text-2xl text-[#0f172a] mb-2">Nuk gjetëm asgjë!</h3>
+                    <p class="text-slate-500 font-sans text-base">Provo të kërkosh me ndonjë fjalë tjetër ose me emër personazhi.</p>
+                </div>
+
+                <div id="search-results" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+                    {posts.map((post) => (
+                        <article 
+                            class="search-card hidden flex-col group cursor-pointer"
+                            data-search-content={`${post.data.title.toLowerCase()} ${post.data.description?.toLowerCase() || ''} ${(post.data.tags || []).join(' ').toLowerCase()}`}
+                        >
+                            <a href={`/${post.slug}`} class="no-underline flex flex-col h-full">
+                                
+                                {post.data.heroImage && (
+                                    <div class="relative w-full aspect-[16/9] mb-4 overflow-hidden rounded-lg bg-slate-100 shadow-sm">
+                                        <Image 
+                                            src={post.data.heroImage} 
+                                            alt={post.data.title} 
+                                            width={600} 
+                                            height={338} 
+                                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                                        />
+                                        
+                                        <div class="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
+                                            {post.data.tags && post.data.tags.length > 0 ? (
+                                                post.data.tags.map((tag: string) => (
+                                                    <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
+                                                        {tagNames[tag] || tag}
+                                                    </span>
+                                                ))
+                                            ) : (
+                                                <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
+                                                    LAJM
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                <h3 class="font-bookerly font-black text-xl md:text-2xl text-[#0f172a] leading-[1.2] mb-3 group-hover:text-[#DC2626] transition-colors decoration-2 underline-offset-4 group-hover:underline">
+                                    {post.data.title}
+                                </h3>
+                                <p class="font-sans text-slate-600 text-sm md:text-[15px] leading-relaxed line-clamp-2 mb-4 flex-grow">
+                                    {post.data.description}
+                                </p>
+                                
+                                <div class="mt-auto flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-t border-slate-100 pt-4">
+                                    <FormattedDate date={post.data.pubDate} />
+                                    <span class="text-slate-200">|</span>
+                                    <span>Nga: <span class="text-slate-600">Redaksia Lemza</span></span>
+                                </div>
+                            </a>
+                        </article>
+                    ))}
+                </div>
+
+            </main>
+
+            <aside class="hidden lg:block lg:col-span-4 lg:pl-10 border-l border-slate-100">
+                <div class="sticky top-24">
+                    <Sidebar />
+                </div>
+            </aside>
+
+        </div>
+        
+        <Footer />
+
+        <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    
+    // Kapim Titullin dhe Nëntitullin (duke i treguar TypeScript që është HTMLElement)
+    const bannerTitle = document.querySelector('#banner-wrapper h1');
+    const bannerSubtitle = document.querySelector('#banner-wrapper p') as HTMLElement | null;
+    
+    const noResultsMsg = document.getElementById('no-results-message');
+    const searchCards = document.querySelectorAll('.search-card');
+
+    if (query && query.trim() !== '') {
+        if (bannerTitle) bannerTitle.textContent = "REZULTATE PËR:";
+        if (bannerSubtitle) {
+            bannerSubtitle.textContent = `"${query}"`;
+            bannerSubtitle.classList.add('text-3xl', 'md:text-4xl', 'font-black', 'text-white', 'mt-2');
+            bannerSubtitle.style.display = 'block';
+        }
+        
+        const searchTerm = query.toLowerCase().trim();
+        let matchCount = 0;
+
+        searchCards.forEach(card => {
+            const content = card.getAttribute('data-search-content') || '';
+            if (content.includes(searchTerm)) {
+                card.classList.remove('hidden');
+                card.classList.add('flex'); 
+                matchCount++;
+            } else {
+                card.classList.add('hidden');
+                card.classList.remove('flex');
+            }
+        });
+
+        if (matchCount === 0 && noResultsMsg) {
+            noResultsMsg.classList.remove('hidden');
+        }
+    } else {
+        if (bannerTitle) bannerTitle.textContent = "KËRKIM I ZBRAZËT";
+        if (bannerSubtitle) bannerSubtitle.style.display = 'none';
+        if (noResultsMsg) noResultsMsg.classList.remove('hidden');
+    }
+</script>
+    </body>
+</html>

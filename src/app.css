@@ -40,10 +40,25 @@ p {
 
 /* --- ANIMATIONS --- */
 @keyframes hiccup {
-    0% { transform: scale(1) rotate(0deg); }
-    40% { transform: scale(1.15) rotate(-4deg); }
-    60% { transform: scale(1.1) rotate(2deg); }
-    100% { transform: scale(1) rotate(0deg); }
+    0% { transform: scale(1) rotate(0deg) translateZ(0); }
+    40% { transform: scale(1.15) rotate(-4deg) translateZ(0); }
+    60% { transform: scale(1.1) rotate(2deg) translateZ(0); }
+    100% { transform: scale(1) rotate(0deg) translateZ(0); }
+}
+
+.lemza-icon {
+    /* Ndalon efektin fantazmë/mjegullim gjatë animacionit hiccup */
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.lemza-text {
+    transition: transform 0.3s ease-out;
+    /* Ndalon efektin fantazmë/mjegullim në tekst kur lëviz */
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .group:hover .lemza-icon {
@@ -51,11 +66,8 @@ p {
 }
 
 .group:hover .lemza-text {
-    transform: translateX(5px);
-}
-
-.lemza-text {
-    transition: transform 0.3s ease-out;
+    /* E lëvizim djathtas duke ruajtur cilësinë grafike 3D */
+    transform: translateX(5px) translateZ(0);
 }
 
 /* --- BLOG STYLES --- */

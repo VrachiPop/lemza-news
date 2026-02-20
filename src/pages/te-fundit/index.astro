@@ -74,9 +74,19 @@ function getPostUrl(slug: string) {
                                 )}
 
                                 {/* Tagu i Kuq (Floating) */}
-                                <span class="absolute top-4 left-4 bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-md shadow-lg z-10">
-                                    {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (tagNames as any)[featuredPost.data.tags[0]] : 'LAJM'}
-                                </span>
+                                <div class="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
+                                    {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (
+                                        featuredPost.data.tags.map((tag: string) => (
+                                            <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-md shadow-lg">
+                                                {(tagNames as any)[tag] || tag}
+                                            </span>
+                                        ))
+                                    ) : (
+                                        <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-md shadow-lg">
+                                            LAJM
+                                        </span>
+                                    )}
+                                </div>
                             </div>
 
                             {/* Përmbajtja e Madhe */}
@@ -119,9 +129,19 @@ function getPostUrl(slug: string) {
                                     )}
                                     
                                     {/* Tagu i Kuq (Floating Small) */}
-                                    <span class="absolute top-3 left-3 bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-md z-10">
-                                        {post.data.tags && post.data.tags.length > 0 ? (tagNames as any)[post.data.tags[0]] : 'LAJM'}
-                                    </span>
+                                    <div class="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
+                                        {post.data.tags && post.data.tags.length > 0 ? (
+                                            post.data.tags.map((tag: string) => (
+                                                <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-md">
+                                                    {(tagNames as any)[tag] || tag}
+                                                </span>
+                                            ))
+                                        ) : (
+                                            <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-md">
+                                                LAJM
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Content Right */}
