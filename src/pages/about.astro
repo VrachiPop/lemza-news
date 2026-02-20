@@ -14,16 +14,42 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
 <html lang="sq">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    </head>
-    <body class="bg-white flex flex-col min-h-screen overflow-x-hidden w-full">
-        <Header />
+        <style>
+            body { margin: 0; padding: 0; }
+            
+            /* SKELETI NGA PRIVACY.ASTRO */
+            .page-container {
+                width: 100%;
+                max-width: 1600px;
+                margin: 0 auto;
+                padding: 3rem 1rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                box-sizing: border-box;
+            }
+            .sidebar-wrapper { display: none; }
 
+            @media (min-width: 1024px) {
+                .page-container {
+                    grid-template-columns: 8fr 4fr;
+                    padding: 4rem 2rem;
+                }
+                .sidebar-wrapper {
+                    display: block;
+                    padding-left: 2.5rem;
+                    border-left: 1px solid #e5e7eb;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-white overflow-x-hidden w-full">
+        <Header />
         <EditorialBanner title="Rreth Nesh" />
                         
-        <div class="w-full max-w-[1600px] mx-auto px-4 pt-6 md:px-8 pb-12 grid grid-cols-1 lg:grid-cols-12 gap-12 flex-grow">
-            
-            <main class="lg:col-span-8">
-                <div class="max-w-4xl w-full">
+        <div class="page-container">
+            <main style="min-width: 0;">
+                <div class="w-full overflow-hidden box-border">
 
                     <div class="prose prose-slate max-w-none break-words overflow-hidden w-full
                         prose-headings:font-serif prose-headings:font-bold prose-headings:text-[#0f172a] 
@@ -42,20 +68,17 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                             Lemza News beson se humori është mjeti më efikas për të kritikuar fenomenet negative të shoqërisë, pa sulmuar individët.
                         </p>
 
-                        <div class="bg-slate-50 border-l-4 border-[#DC2626] p-6 my-10 rounded-r-lg font-sans shadow-sm w-full">
+                        <div class="bg-slate-50 border-l-4 border-[#DC2626] p-6 my-10 rounded-r-lg font-sans shadow-sm w-full box-border">
                             <h4 class="text-[#0f172a] mt-0 mb-3 uppercase tracking-widest text-xs font-black">
                                 Deklaratë mbi Natyrën e Përmbajtjes
                             </h4>
                             <p class="text-sm text-slate-600 mb-0 font-sans italic">
-                                Lemza News është një <strong>publikim satirik</strong>. Të gjithë artikujt, lajmet dhe editorialet e publikuara në këtë faqe janë fiktive dhe kanë për qëllim argëtimin (Entertainment purpose only). 
-                                Emrat e përdorur, përveç figurave publike që janë subjekt i satirës, janë pjellë e imagjinatës. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme.
+                                Lemza News është një <strong>publikim satirik</strong>. Të gjithë artikujt, lajmet dhe editorialet e publikuara në këtë faqe janë fiktive dhe kanë për qëllim argëtimin (Entertainment purpose only). Emrat e përdorur, përveç figurave publike që janë subjekt i satirës, janë pjellë e imagjinatës. Çdo ngjashmëri me persona realë, të gjallë apo të vdekur, është krejtësisht e rastësishme.
                             </p>
                         </div>
 
                         <h4 class="text-xl md:text-2xl">Politika Editoriale</h4>
-                        <p>
-                            Edhe pse një faqe satire, Lemza News merr seriozisht përgjegjësinë ndaj publikut dhe partnerëve (përfshirë platformat e reklamimit).
-                        </p>
+                        <p>Edhe pse një faqe satire, Lemza News merr seriozisht përgjegjësinë ndaj publikut dhe partnerëve (përfshirë platformat e reklamimit).</p>
                         <ul class="marker:text-[#DC2626] space-y-2">
                             <li><strong>Pa Gjuhë Urrejtjeje:</strong> Lemza News nuk toleron dhe nuk publikon përmbajtje që nxit dhunë, diskriminim apo urrejtje.</li>
                             <li><strong>Satirë, jo Dezinformim:</strong> Qëllimi i Lemza News është të bëjë lexuesin të qeshë, jo ta mashtrojë. Stili i shkrimit e bën të qartë natyrën parodike të lajmit.</li>
@@ -63,9 +86,7 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                         </ul>
 
                        <h3 class="mt-12! text-2xl md:text-3xl">Kontakti & Bashkëpunimi</h3>
-                        <p>
-                            Lemza News është gjithmonë e hapur për sugjerime dhe ankesa.
-                        </p>
+                        <p>Lemza News është gjithmonë e hapur për sugjerime dhe ankesa.</p>
                         <p>
                             Për çdo pyetje serioze lidhur me përmbajtjen, reklamat apo të drejtat e autorit, ju lutemi kontaktoni në:
                             <br />
@@ -76,8 +97,8 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                 </div>
             </main>
 
-            <aside class="hidden lg:block lg:col-span-4 lg:pl-10 border-l border-slate-100">
-                <div class="sticky top-24">
+            <aside class="sidebar-wrapper">
+                <div style="position: sticky; top: 2rem;">
                     <Sidebar />
                 </div>
             </aside>
