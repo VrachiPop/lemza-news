@@ -1,5 +1,5 @@
 ---
-title: Historike / Trump përmend numrin e këmbës të Ramës
+title: Historike / Trump përmend numrin e këmbës së Ramës
 pubDate: 2026-02-19 20:09
 heroImage: ../../assets/images/trump_board_of_peace_74860.jpg.webp
 description: UASHINGTON – Marrëdhëniet shqiptaro-amerikane hynë sot në një fazë
