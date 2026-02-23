@@ -11,6 +11,7 @@ tags:
   - teknologji
   - shkence
   - sociale
+  - bota
 ---
 **HAMBURG** — Në një zbulim historik për introvertët, njerëzit e lodhur nga puna dhe ata me tiroide, gjiganti i kujdesit personal *Nivea* ka prezantuar sot produktin e tij më inovativ: *Nivea Quantum Cancel 48h*. Sipas kompanisë, ky anti-perspirant përmban grimca të avancuara të udhëtimit në kohë, të cilat aktivizohen sapo e spërkatni nën sqetull, duke ju kthyer mbrapa në momentin e saktë kur po bënit plane dhe duke ju detyruar t'i anuloni ato. Për vite të tëra, shkencëtarët e kozmetikës janë përpjekur të gjejnë formulën perfekte për të mbajtur trupin të thatë gjatë situatave stresuese sociale. Por *Nivea* vendosi të godasë problemin në rrënjë.
 
