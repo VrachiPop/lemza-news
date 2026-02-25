@@ -83,7 +83,7 @@
         margin-left: -50vw !important;
         margin-right: -50vw !important;
         padding: 0 !important;
-        height: calc(100dvh - 70px) !important;
+        height: 100dvh !important;
         min-height: 500px !important;
     }
 
@@ -97,16 +97,16 @@
 
     /* Teksti dhe Titulli në Hero */
     section.relative.bg-slate-900.group .absolute.bottom-0 {
-        padding-bottom: 2rem !important; /* E ngremë pak nga fundi */
-        padding-inline: 1rem !important; /* Pak hapësirë anash për tekstin */
+        padding-bottom: 4rem !important; /* E ngremë pak më shumë nga fundi */
+        padding-inline: 1.5rem !important; /* Pak hapësirë anash për tekstin */
     }
 
     /* Titulli Gjigand rregullohet për ekran të vogël */
     section.relative.bg-slate-900.group h1 {
-        /* FIX PËR TITULLIN: E zvogëlojmë në 1.5rem (24px) */
-        font-size: 1rem !important;
+        /* FIX PËR TITULLIN: E rritim fontin */
+        font-size: 2.25rem !important;
         line-height: 1.1 !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
     }
 
     /* Tagu në Hero */
