@@ -2,7 +2,7 @@
 title: Kasieri tenton të fusë në bisedë me klientët faktin që ka lexuar Mitin e
   Sizifit
 pubDate: 2026-02-26 11:31
-heroImage: ../../assets/images/22_1116_leadership_the-sisyphus-dynamic_1021x640.jpg
+heroImage: ../../assets/images/sizifi.png
 description: "TIRANË — Në një përpjekje të dëshpëruar për të vërtetuar se
   diploma e tij në degën e Filozofisë nuk ishte një gabim fatal financiar, Erald
   Berasi, një kasier 24-vjeçar në një supermarket të lagjes, raportohet se po
