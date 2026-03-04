@@ -10,7 +10,7 @@ import EditorialBanner from '../../components/EditorialBanner.astro';
 import { Image } from 'astro:assets';
 import '../../app.css';
 
-// --- LOGJIKA STATIKE (getStaticPaths) ---
+
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
   
@@ -36,7 +36,6 @@ export async function getStaticPaths() {
   });
 }
 
-// --- MARRJA E TË DHËNAVE DHE NDARJA ---
 const { tag } = Astro.params;
 const { posts } = Astro.props; 
 
@@ -45,7 +44,7 @@ const featuredPost = posts[0];
 // Të tjerët (nga i dyti e tutje) janë lista
 const restPosts = posts.slice(1);
 
-// --- DICTIONARY (Përkthimet) ---
+
 const tagNames = {
     'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
     'kronike': 'Kronikë', 'sport': 'Sport', 'kulture': 'Kulturë',
@@ -54,10 +53,13 @@ const tagNames = {
 };
 
 const capitalize = (s: any) => s && s[0].toUpperCase() + s.slice(1);
-const cleanTag = tag.toLowerCase().trim(); 
+
+
+const safeTag = tag || ""; 
+const cleanTag = safeTag.toLowerCase().trim(); 
 const pageTitle = (tagNames as any)[cleanTag] || capitalize(cleanTag);
 
-// --- HELPER FUNKSIONE ---
+
 function getPostUrl(slug: string) {
     const cleanSlug = slug.split('/').pop()?.replace(/\.md$/, '') || slug;
     return `/${cleanSlug}/`;
@@ -153,7 +155,8 @@ function getFallbackImage(body: string) {
 
                         {/* LISTA E LAJMEVE TË TJERA TË KËTIJ TAG-U */}
                         <div class="flex flex-col divide-y divide-slate-200">
-                            {restPosts.map((post) => (
+                            {/* FIX 3: (post: any) */}
+                            {restPosts.map((post: any) => (
                                 <article class="group py-8 first:pt-0">
                                     <a href={getPostUrl(post.slug)} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                                         
