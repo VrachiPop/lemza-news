@@ -32,7 +32,9 @@ const tagNames: Record<string, string> = {
     kronike: "Kronikë",
     sport: "Sport",
     kulture: "Kulturë",
-    "tekno-shkence": "Tekno & Shkencë",
+    teknologji: "Teknologji",
+    shkence: "Shkencë",
+    udhetime: "Udhëtime",
     shendeti: "Shëndeti",
     rajoni: "Rajoni",
     bota: "Bota",
@@ -50,7 +52,7 @@ function getDisplayTag(tag: string) {
 <!DOCTYPE html>
 <html lang="sq">
     <head>
-        <BaseHead title={title} description={description} image={heroImage} />
+        <BaseHead title={title} description={description} image={heroImage?.src || heroImage} />
         <style is:global>
             /* GLOBAL STYLES FIX */
             * {
