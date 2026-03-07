@@ -2,7 +2,7 @@
 title: CERN braktis energjinë bërthamore për energjinë që emetojnë femrat kur
   fshijnë njollat nga fustani
 pubDate: 2026-03-06 08:45
-heroImage: ../../assets/images/cern-femrat.png
+heroImage: ../../assets/images/cern-femrat.webp
 description: GJENEVË — Organizata Evropiane për Kërkime Bërthamore (CERN) ka
   njoftuar sot mbylljen e menjëhershme të Përshpejtuesit të Madh të Grimcave dhe
   braktisjen e kërkimeve mbi shkrirjen bërthamore. Ky vendim historik erdhi pas

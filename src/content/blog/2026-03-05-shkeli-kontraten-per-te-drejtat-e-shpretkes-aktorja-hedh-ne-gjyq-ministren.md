@@ -1,7 +1,7 @@
 ---
 title: Shkeli kontratën për të drejtat e shpretkës / Aktorja hedh në gjyq ministren
 pubDate: 2026-03-05 18:20
-heroImage: ../../assets/images/shpretka-ministrore.png
+heroImage: ../../assets/images/shpretka-ministrore.webp
 description: TIRANË — Aktorja e njohur e teatrit, Sonila Shpeza, ka paditur
   zyrtarisht Ministren e Varfërisë, Bjonde Gështenja, duke i kërkuar t'i kthejë
   menjëherë shpretkën e saj, pasi kjo e fundit ka shkelur në mënyrë flagrante

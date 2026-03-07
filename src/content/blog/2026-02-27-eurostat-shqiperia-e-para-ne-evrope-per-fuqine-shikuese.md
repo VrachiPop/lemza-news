@@ -1,7 +1,7 @@
 ---
 title: 'Eurostat: Shqipëria e para në Evropë për "Fuqinë Shikuese"'
 pubDate: 2026-02-27 13:33
-heroImage: ../../assets/images/fuqi-shikuese.png
+heroImage: ../../assets/images/fuqi-shikuese.webp
 description: 'LUKSEMBURG / TIRANË — Një raport i ri i publikuar sot nga Agjencia
   Evropiane e Statistikave (Eurostat) ka konfirmuar atë që shumë e dyshonin prej
   kohësh: Shqipëria ka thyer çdo rekord duke u renditur e para në Evropë për

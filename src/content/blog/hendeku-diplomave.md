@@ -3,7 +3,7 @@ title: 'Zgjerohet hendeku / Të pasurit blejnë 34 diploma më shumë në vit se
 description: 'TIRANË - Zgjerohet edhe më tej hendeku mes shtresave në Shqipëri. Shifrat më të fundit të publikuara nga...'
 pubDate: '2026-02-07'
 tags: ['ekonomi']
-heroImage: "../../assets/images/hendeku-diplomave.jpg"
+heroImage: "../../assets/images/hendeku-diplomave.webp"
 ---
 
 **TIRANË** - Zgjerohet edhe më tej hendeku mes shtresave në Shqipëri. Shifrat më të fundit të publikuara nga KOSTAT tregojnë se familjet më të pasura të vendit blejnë mesatarisht 34 diploma më shumë në vit se familjet e varfra. 

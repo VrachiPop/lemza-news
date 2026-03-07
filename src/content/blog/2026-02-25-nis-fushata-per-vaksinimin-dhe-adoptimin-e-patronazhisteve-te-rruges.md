@@ -1,7 +1,7 @@
 ---
 title: Nis fushata për vaksinimin dhe adoptimin e patronazhistëve të rrugës
 pubDate: 2026-02-25 08:34
-heroImage: ../../assets/images/patronazh-vaksina.png
+heroImage: ../../assets/images/patronazh-vaksina.webp
 description: TIRANË — Bashkia e Tiranës, në bashkëpunim me disa organizata për
   mbrojtjen e specieve politike, kanë nisur një fushatë mbarëkombëtare për
   kapjen, vaksinimin dhe adoptimin e patronazhistëve të braktisur që po enden

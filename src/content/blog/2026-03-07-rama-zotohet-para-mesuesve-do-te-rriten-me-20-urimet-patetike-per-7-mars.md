@@ -1,7 +1,7 @@
 ---
 title: "Rama zotohet para mësuesve: Do të rriten me 20% urimet patetike për 7 mars"
 pubDate: 2026-03-07 09:23
-heroImage: ../../assets/images/5c80d41fa5e26rama.jpg
+heroImage: ../../assets/images/5c80d41fa5e26rama.webp
 description: TIRANË — Në një takim me mësues të zonës së Surrelit me rastin e 7
   marsit, KM bëri një zotim të paprecedentë për të rritur me 20% statuset
   mallëngjyese, urimet patetike dhe shtrëngimet e duarve para kamerave, duke

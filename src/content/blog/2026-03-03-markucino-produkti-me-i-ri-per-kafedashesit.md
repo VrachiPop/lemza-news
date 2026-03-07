@@ -1,7 +1,7 @@
 ---
 title: Markuçino, produkti më i ri për kafedashësit
 pubDate: 2026-03-03 11:07
-heroImage: ../../assets/images/mokra.png
+heroImage: ../../assets/images/mokra.webp
 description: TIRANË — Për t'iu përgjigjur kërkesës së paprecedentë të
   shqiptarëve për kafeinë, lideri i kafeneve në vend “Mokra” ka prezantuar sot
   inovacionin më të fundit, quajtur Markuçino. Kjo pije e re nuk shërbehet as në

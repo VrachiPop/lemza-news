@@ -3,7 +3,7 @@ title: 'Skandal në Superligë / Bomberi nuk di të pështyjë'
 description: 'TRIBUNA B – Futbolli shqiptar u trondit sërish këtë javë, jo për trukime ndeshjesh apo paga të prapambetura. Këtë herë kriza është më ekzistenciale: bomberi i ekipit Zetori të Superligës është kapur në flagrancë...'
 pubDate: '2026-02-08'
 tags: ['sport']
-heroImage: "../../assets/images/bomberi-peshtyn.jpg"
+heroImage: "../../assets/images/bomberi-peshtyn.webp"
 ---
 
 **TRIBUNA B** – Futbolli shqiptar u trondit sërish këtë javë, jo për trukime ndeshjesh apo paga të prapambetura. Këtë herë kriza është më ekzistenciale: bomberi i ekipit Zetori të Superligës është kapur në flagrancë duke mos ditur të pështyjë.

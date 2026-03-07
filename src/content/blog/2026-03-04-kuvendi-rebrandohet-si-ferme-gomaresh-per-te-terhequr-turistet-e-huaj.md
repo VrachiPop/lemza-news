@@ -1,7 +1,7 @@
 ---
 title: Kuvendi rebrandohet si fermë gomarësh për të tërhequr turistët e huaj
 pubDate: 2026-03-04 11:43
-heroImage: ../../assets/images/kuvendi-ferme.png
+heroImage: ../../assets/images/kuvendi-ferme.webp
 description: TIRANË — Përballë kërkesës gjithnjë e në rritje të turistëve të
   huaj për eksperienca autentike dhe agroturizëm të egër, Ministria e Turizmit
   dhe Kryesia e Kuvendit kanë marrë një vendim historik. Duke filluar nga muaji

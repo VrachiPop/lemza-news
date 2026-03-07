@@ -1,7 +1,7 @@
 ---
 title: Nënshkruhet marrëveshja e Bordit të Paçes
 pubDate: 2026-02-19 18:27
-heroImage: ../../assets/images/bordi-paches.jpg
+heroImage: ../../assets/images/bordi-paches.webp
 description: UASHINGTON – Kryeministri udhëtoi sot drejt SHBA-ve për t'iu
   bashkuar Presidentit Trump me rastin e marrëveshjes së Bordit të Paqes. Më
   parë KM e konsideroi ftesën si një moment historik për diplomacinë shqiptare.

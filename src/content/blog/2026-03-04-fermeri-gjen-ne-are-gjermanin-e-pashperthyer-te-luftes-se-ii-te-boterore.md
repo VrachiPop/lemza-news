@@ -1,7 +1,7 @@
 ---
 title: Fermeri gjen në arë gjermanin e pashpërthyer të Luftës së II-të Botërore
 pubDate: 2026-03-04 17:00
-heroImage: ../../assets/images/gjermani-myzeqe.png
+heroImage: ../../assets/images/gjermani-myzeqe.webp
 description: LUSHNJË — Një ditë e zakonshme pune për pak u kthye në një incident
   të rëndë për një fermer nga Myzeqeja, kur plugu i traktorit të tij zbuloi një
   ushtar gjerman të pashpërthyer të Luftës së II-të Botërore, i cili kishte

@@ -7,7 +7,7 @@ description: ZAGREB - Një kontroll rutinë në Kroaci shkaktoi një tjetër ska
   përmbanin...”
 pubDate: '2026-02-17'
 tags: [rajoni]
-heroImage: "../../assets/images/kroacia-bllokon-pesticide.jpeg"
+heroImage: "../../assets/images/kroacia-bllokon-pesticide.webp"
 ---
 
 **ZAGREB** - Një kontroll rutinë në Kroaci shkaktoi një tjetër skandal institucional në Tiranë, pasi inspektorët e doganës kroate konfiskuan një ngarkesë pesticidesh me origjinë nga Shqipëria që, sipas një eksperti, përmbanin *“nivele alarmante të reçelit të pjeshkës.”*

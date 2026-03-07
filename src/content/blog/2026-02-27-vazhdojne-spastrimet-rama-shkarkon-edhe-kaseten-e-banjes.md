@@ -1,7 +1,7 @@
 ---
 title: Vazhdojnë spastrimet / Rama shkarkon edhe kasetën e banjës
 pubDate: 2026-02-27 15:49
-heroImage: ../../assets/images/shkarkim-kasete.png
+heroImage: ../../assets/images/shkarkim-kasete.webp
 description: TIRANË — Dita e djeshme ka qenë një maratonë e vërtetë
   "shkarkimesh" në Kryeministri. Pasi firmosi me shpejtësi shkarkimin e disa
   ministrave, Kryeministri i vendit ka vazhduar vrullin e tij të pastrimit total

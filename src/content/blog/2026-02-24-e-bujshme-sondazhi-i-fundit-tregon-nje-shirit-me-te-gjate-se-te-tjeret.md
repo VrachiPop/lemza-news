@@ -1,7 +1,7 @@
 ---
 title: E bujshme / Sondazhi i fundit tregon një shirit më të gjatë se të tjerët
 pubDate: 2026-02-24 09:44
-heroImage: ../../assets/images/sondazhi.png
+heroImage: ../../assets/images/sondazhi.webp
 description: TIRANË – Një sondazh i publikuar së fundmi nga kompania lider në
   këtë fushë, Gërdup, ka shkaktuar reagime të forta në opinionin publik, pasi
   grafiku shoqërues tregon...

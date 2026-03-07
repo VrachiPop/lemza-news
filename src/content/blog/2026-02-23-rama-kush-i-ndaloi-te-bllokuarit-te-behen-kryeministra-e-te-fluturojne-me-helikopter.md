@@ -2,7 +2,7 @@
 title: "Rama: Kush i ndaloi të bllokuarit të bëhen kryeministra e të fluturojnë
   me helikopter?"
 pubDate: 2026-02-23 16:41
-heroImage: ../../assets/images/rama-helikopter.png
+heroImage: ../../assets/images/rama-helikopter.webp
 description: NË AJËR — I lodhur nga ankesat e pafundme të qytetarëve që kanë
   mbetur të izoluar prej orësh në aksin Prrenjas-Librazhd, si pasojë e
   rrëshqitjes së rrugës, Kryeministri ka dalë sot me një reagim të ashpër, duke

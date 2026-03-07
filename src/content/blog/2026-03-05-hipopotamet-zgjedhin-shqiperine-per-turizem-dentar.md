@@ -1,7 +1,7 @@
 ---
 title: Hipopotamët zgjedhin Shqipërinë për turizëm dentar
 pubDate: 2026-03-05 08:55
-heroImage: ../../assets/images/hipo-dentar.jpeg
+heroImage: ../../assets/images/hipo-dentar.webp
 description: TIRANË — Pas fluksit të pandalshëm të qytetarëve italianë që
   vërshuan nëpër klinikat e kryeqytetit për të rregulluar dhëmbët, industria e
   turizmit dentar në Shqipëri ka kapur një tjetër target-grup masiv. Gjatë

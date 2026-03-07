@@ -1,7 +1,7 @@
 ---
 title: Situata e rrugëve / Google Maps shton shtigjet e mushkave si mënyrë udhëtimi
 pubDate: 2026-02-26 15:02
-heroImage: ../../assets/images/maps-mushka.png
+heroImage: ../../assets/images/maps-mushka.webp
 description: "KORIA E DUSHKUT - Pasi algoritmet e tij inteligjente arritën në
   përfundimin logjik se asnjë mjet me rrota nuk mund të mbijetojë më në
   infrastrukturën rrugore shqiptare, gjiganti i teknologjisë Google ka lëshuar

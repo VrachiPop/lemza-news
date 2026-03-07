@@ -2,7 +2,7 @@
 title: Shpopullimi bën kërdinë / 12,800 më pak bullizues në bankat e shkollave
   këtë vit
 pubDate: 2025-09-08 10:38
-heroImage: ../../assets/images/bullizmi.png
+heroImage: ../../assets/images/bullizmi.webp
 description: "Shpopullimi i vendit shënon një tjetër viktimë: bullizuesit e
   shkollave. Statistikat zyrtare të publikuara këtë javë nga KOSTAT (Kombinati i
   Statistikave) tregojnë se janë ulur në banka 12,800 bullizues më pak në

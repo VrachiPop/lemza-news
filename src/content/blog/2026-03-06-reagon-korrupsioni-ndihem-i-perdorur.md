@@ -1,7 +1,7 @@
 ---
 title: "Reagon Korrupsioni: Ndihem i përdorur"
 pubDate: 2026-03-06 21:37
-heroImage: ../../assets/images/korrupsioni-balluku.png
+heroImage: ../../assets/images/korrupsioni-balluku.webp
 description: TIRANË — Pas deklaratës së ftohtë të ish-ministres se me
   Korrupsionin nuk ka fare lidhje, ai vendosi të thyejë heshtjen. I kapur nga i
   dërguari ynë në një kafene pranë Unazës së Re...

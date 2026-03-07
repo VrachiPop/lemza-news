@@ -2,7 +2,7 @@
 title: Nivea nxjerr në treg deodorantin e ri që kthen përdoruesit mbrapa në kohë
   dhe i bind të rrinë në shtëpi
 pubDate: 2026-02-23 17:41
-heroImage: ../../assets/images/nivea-quantum.png
+heroImage: ../../assets/images/nivea-quantum.webp
 description: HAMBURG — Në një zbulim historik për introvertët, njerëzit e lodhur
   nga puna dhe ata me tiroide, gjiganti i kujdesit personal Nivea ka prezantuar
   sot produktin e tij më inovativ: Nivea Quantum Cancel 48h. Sipas kompanisë, ky

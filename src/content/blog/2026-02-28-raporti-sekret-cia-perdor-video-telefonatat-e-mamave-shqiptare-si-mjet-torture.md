@@ -2,7 +2,7 @@
 title: Raporti sekret / CIA përdor video-telefonatat e mamave shqiptare si mjet
   torture
 pubDate: 2026-02-28 14:41
-heroImage: ../../assets/images/video-telefonata.png
+heroImage: ../../assets/images/video-telefonata.webp
 description: LENGLI, VIRXHINIA — Një raport i rrjedhur së fundmi nga burime të
   brendshme të inteligjencës amerikane ka zbuluar një ndryshim drastik në
   manualin e marrjes në pyetje të CIA-s. Sipas dokumenteve sekrete, agjentët

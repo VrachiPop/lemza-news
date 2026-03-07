@@ -1,7 +1,7 @@
 ---
 title: Nga sot protestuesit mund të porositin thyerjen e kockave në e-Albania
 pubDate: 2026-03-02 13:12
-heroImage: ../../assets/images/thyerje-kockash-porosi.png
+heroImage: ../../assets/images/thyerje-kockash-porosi.webp
 description: TIRANË — Në kuadër të revolucionit digjital dhe përpjekjeve për të
   modernizuar menaxhimin e tubimeve qytetare, Agjencia Kombëtare e Shoqërisë së
   Informacionit (AKSHI) në bashkëpunim me Drejtorinë e Përgjithshme të Policisë
