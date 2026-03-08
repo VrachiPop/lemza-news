@@ -179,38 +179,38 @@ const restPosts = isFirstPage ? page.data.slice(1) : page.data;
                 </div>
 
                 {/* ========================================== */}
-{/* OPSIONI 2: STILI MODERN PILL (ELEGANT)     */}
+{/* OPSIONI 2: STILI MODERN PILL (MOBILE FIXED)*/}
 {/* ========================================== */}
-<div class="flex justify-center mt-16 pt-8">
-    <div class="inline-flex items-center bg-white border border-slate-200 p-1.5 rounded-full shadow-lg">
+<div class="flex justify-center mt-16 pt-8 px-2">
+    <div class="inline-flex items-center bg-white border border-slate-200 p-1 sm:p-1.5 rounded-full shadow-lg max-w-full overflow-hidden">
         
         {/* Butoni PARA */}
         {page.url.prev ? (
-            <a href={page.url.prev} class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-700 font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
+            <a href={page.url.prev} class="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-full bg-transparent text-slate-700 font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group shrink-0">
                 <span class="group-hover:-translate-x-1 transition-transform">&larr;</span> <span class="hidden sm:inline">Të reja</span>
             </a>
         ) : (
-            <span class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-300 font-extrabold text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
+            <span class="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-full bg-transparent text-slate-300 font-extrabold text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed shrink-0">
                 &larr; <span class="hidden sm:inline">Të reja</span>
             </span>
         )}
 
-        <div class="w-px h-8 bg-slate-200 mx-1 md:mx-3"></div>
+        <div class="w-px h-5 sm:h-8 bg-slate-200 mx-1 sm:mx-3 shrink-0"></div>
 
         {/* INFO E FAQES */}
-        <span class="px-4 font-black text-slate-800 text-sm">
+        <span class="px-2 sm:px-4 font-black text-slate-800 text-sm whitespace-nowrap shrink-0">
             {page.currentPage} <span class="text-slate-400 font-medium mx-1">nga</span> {page.lastPage}
         </span>
 
-        <div class="w-px h-8 bg-slate-200 mx-1 md:mx-3"></div>
+        <div class="w-px h-5 sm:h-8 bg-slate-200 mx-1 sm:mx-3 shrink-0"></div>
 
         {/* Butoni TJETRA */}
         {page.url.next ? (
-            <a href={page.url.next} class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-700 font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
+            <a href={page.url.next} class="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-full bg-transparent text-slate-700 font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group shrink-0">
                 <span class="hidden sm:inline">Të vjetra</span> <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
             </a>
         ) : (
-            <span class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-300 font-extrabold text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
+            <span class="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-full bg-transparent text-slate-300 font-extrabold text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed shrink-0">
                 <span class="hidden sm:inline">Të vjetra</span> &rarr;
             </span>
         )}

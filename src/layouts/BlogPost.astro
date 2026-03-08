@@ -5,10 +5,11 @@ import Footer from "../components/Footer.astro";
 import Sidebar from "../components/Sidebar.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import "../app.css";
 
-// Importi i trurit qendror për kategoritë
-import { getDisplayTag } from "../utils/helpers";
+// Importi i trurit qendror për kategoritë dhe url
+import { getDisplayTag, getPostUrl } from "../utils/helpers";
 
 interface Props {
     title: string;
@@ -17,6 +18,7 @@ interface Props {
     updatedDate?: Date;
     heroImage?: any;
     tags?: string[];
+    // slug nuk na duhet më, e hoqa
 }
 
 const {
@@ -28,6 +30,39 @@ const {
     tags,
 } = Astro.props;
 
+// ==========================================
+// LOGJIKA PËR LAJMET E NGJASHME (Fix për lajmin aktual)
+// ==========================================
+// 1. Marrim të gjitha lajmet dhe i rendisim nga më i riu
+const allPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// 2. Heqim lajmin aktual që po lexohet (Duke përdorur TITULLIN, e sigurt 100%)
+const otherPosts = allPosts.filter(post => post.data.title !== title);
+
+// 3. Gjejmë lajme që kanë TË PAKTËN NJË nga kategoritë e lajmit aktual
+const currentTags = tags?.map(t => t.toLowerCase().trim()) || [];
+let relatedPosts = otherPosts.filter(post => {
+    const postTags = post.data.tags?.map(t => t.toLowerCase().trim()) || [];
+    return postTags.some(t => currentTags.includes(t));
+});
+
+// 4. Krijojmë një "pishinë" me deri në 10 lajmet e para të ngjashme
+let candidatePosts = relatedPosts.slice(0, 10);
+
+// 5. Nëse pishina nuk ka 10 lajme, e mbushim me lajmet e tjera më të fundit
+if (candidatePosts.length < 10) {
+    const needed = 10 - candidatePosts.length;
+    // Sigurohemi që lajmet shtesë të mos jenë tashmë në listën e kandidatëve
+    const remainingPosts = otherPosts.filter(p => !candidatePosts.some(cp => cp.data.title === p.data.title));
+    candidatePosts = [...candidatePosts, ...remainingPosts.slice(0, needed)];
+}
+
+// 6. Zgjedhim 3 lajme RASTËSISHT nga pishina prej 10 lajmesh
+const finalRelatedPosts = [...candidatePosts]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
 ---
 
 <!DOCTYPE html>
@@ -249,6 +284,46 @@ const {
                             serioze.
                         </p>
                     </div>
+
+                    {/* ========================================== */}
+                    {/* SEKSIONI "LEXO MË SHUMË"                   */}
+                    {/* ========================================== */}
+                    {finalRelatedPosts.length > 0 && (
+                        <div class="mt-20 border-t-2 border-slate-900 pt-10 w-full">
+                            <h3 class="font-serif font-black text-2xl text-slate-900 mb-8 flex items-center gap-3">
+                                <span class="w-3 h-3 bg-[#DC2626] inline-block"></span> Lexo Më Shumë
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                {finalRelatedPosts.map((post) => (
+                                    <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
+                                        <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
+                                            {post.data.heroImage ? (
+                                                <Image 
+                                                    src={post.data.heroImage} 
+                                                    alt={post.data.title || ""} 
+                                                    width={400}   
+                                                    height={225}
+                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
+                                                />
+                                            ) : (
+                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                            )}
+                                        </div>
+                                        
+                                        <div class="flex flex-col gap-2">
+                                            <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
+                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                                            </div>
+                                            <h4 class="font-serif font-bold text-lg text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
+                                                {post.data.title}
+                                            </h4>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </article>
             </main>
 
