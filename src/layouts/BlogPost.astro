@@ -7,6 +7,9 @@ import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import "../app.css";
 
+// Importi i trurit qendror për kategoritë
+import { getDisplayTag } from "../utils/helpers";
+
 interface Props {
     title: string;
     description?: string;
@@ -25,28 +28,6 @@ const {
     tags,
 } = Astro.props;
 
-const tagNames: Record<string, string> = {
-    politike: "Politikë",
-    ekonomi: "Ekonomi",
-    showbiz: "Showbiz",
-    kronike: "Kronikë",
-    sport: "Sport",
-    kulture: "Kulturë",
-    teknologji: "Teknologji",
-    shkence: "Shkencë",
-    udhetime: "Udhëtime",
-    shendeti: "Shëndeti",
-    rajoni: "Rajoni",
-    bota: "Bota",
-};
-
-function getDisplayTag(tag: string) {
-    if (!tag) return "LAJME";
-    return (
-        tagNames[tag.trim().toLowerCase()] ||
-        tag.charAt(0).toUpperCase() + tag.slice(1)
-    );
-}
 ---
 
 <!DOCTYPE html>
@@ -93,54 +74,20 @@ function getDisplayTag(tag: string) {
             .lemza-artikull {
                 width: 100%;
                 overflow: hidden;
-            }
-            .lemza-artikull p {
-                margin-bottom: 1.5rem;
-                text-align: justify;
-                font-size: 1.2rem;
-                line-height: 1.8;
-                color: #1e293b;
-                font-family: "Literata", Georgia, serif;
-                word-wrap: break-word;
-            }
-            .lemza-artikull h2,
-            .lemza-artikull h3 {
-                margin-top: 2.5rem;
-                margin-bottom: 1rem;
-                font-weight: 800;
-                color: #0f172a;
-                line-height: 1.3;
-                font-family: "Literata", Georgia, serif;
-            }
-            .lemza-artikull ul,
-            .lemza-artikull ol {
-                margin-bottom: 1.5rem;
-                padding-left: 20px;
-                font-size: 1.125rem;
-                color: #1e293b;
-            }
-            .lemza-artikull li {
-                margin-bottom: 0.5rem;
-            }
-            .lemza-artikull img,
-            .lemza-artikull video,
-            .lemza-artikull iframe {
-                max-width: 100%;
-                height: auto;
-                border-radius: 8px;
-                margin: 2rem auto;
-                display: block;
-            }
-            .lemza-artikull a {
-                color: #dc2626;
-                font-weight: bold;
-                text-decoration: none;
-                word-wrap: break-word;
-            }
-            .lemza-artikull a:hover {
-                text-decoration: underline;
+                font-family: "Literata", Georgia, serif; 
             }
 
+            /* RIKTHEJMË SAKTËSISHT PARAGRAFËT E TU ORIGJINALË */
+            .lemza-artikull.prose p {
+                margin-bottom: 1.5rem !important;
+                text-align: justify !important;
+                font-size: 1.1rem !important;
+                line-height: 1.6 !important;
+                color: #1e293b !important;
+                word-wrap: break-word;
+            }
+
+            /* L-ja e kuqe në fund */
             .lemza-artikull p:last-of-type::after {
                 content: "L";
                 display: inline-block;
@@ -276,7 +223,7 @@ function getDisplayTag(tag: string) {
                         }
                     </header>
 
-                    <div class="lemza-artikull">
+                    <div class="lemza-artikull prose prose-lg prose-slate max-w-none w-full mx-auto prose-a:text-[#DC2626]">
                         <slot />
                     </div>
 

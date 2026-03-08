@@ -10,6 +10,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
 import '../app.css';
 
+// Importi i magjisë nga helpers (DRY)
+import { getDisplayTag, getPostUrl } from '../utils/helpers';
+
 // 1. Merr të gjitha postimet dhe renditi sipas datës (Më e reja -> Më e vjetra)
 const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -24,19 +27,6 @@ const featuredPost = gridPosts[0];
 
 // Lista fillon nga i dyti i këtij grupi (pra i 6-ti në total) e tutje
 const restPosts = gridPosts.slice(1);
-
-const tagNames = {
-   'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
-   'sport': 'Sport', 'kulture': 'Kulturë', 'kronike': 'Kronikë',
-   'sociale': 'Sociale', 'tekno-shkence': 'Tekno & Shkencë',
-   'shendeti': 'Shëndeti', 'rajoni': 'Rajoni', 'bota': 'Bota'
-};
-
-function getPostUrl(slug: string) {
-    const fileName = slug.split('/').pop() || '';
-    const cleanSlug = fileName.replace(/\.md$/, '');
-    return `/${cleanSlug}/`;
-}
 ---
 
 <!doctype html>
@@ -91,7 +81,7 @@ function getPostUrl(slug: string) {
                                         {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (
                                             featuredPost.data.tags.map((tag: string) => (
                                                 <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-sm shadow-lg">
-                                                    {(tagNames as any)[tag] || tag}
+                                                    {getDisplayTag(tag)}
                                                 </span>
                                             ))
                                         ) : (
@@ -146,7 +136,7 @@ function getPostUrl(slug: string) {
                                             {post.data.tags && post.data.tags.length > 0 ? (
                                                 post.data.tags.map((tag: string) => (
                                                     <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
-                                                        {(tagNames as any)[tag] || tag}
+                                                        {getDisplayTag(tag)}
                                                     </span>
                                                 ))
                                             ) : (

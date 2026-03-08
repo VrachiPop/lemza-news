@@ -10,6 +10,8 @@ import EditorialBanner from '../../components/EditorialBanner.astro';
 import { Image } from 'astro:assets';
 import '../../app.css';
 
+// Importi qendror nga Helpers
+import { getDisplayTag, getPostUrl } from '../../utils/helpers';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
@@ -44,26 +46,13 @@ const featuredPost = posts[0];
 // Të tjerët (nga i dyti e tutje) janë lista
 const restPosts = posts.slice(1);
 
-
-const tagNames = {
-    'politike': 'Politikë', 'ekonomi': 'Ekonomi', 'showbiz': 'Showbiz',
-    'kronike': 'Kronikë', 'sport': 'Sport', 'kulture': 'Kulturë',
-    'shkence': 'Shkencë', 'shendeti': 'Shëndeti', 'teknologji': 'Teknologji',
-    'rajoni': 'Rajoni', 'bota': 'Bota', 'sociale': 'Sociale', 'udhetime': 'Udhëtime',
-};
-
 const capitalize = (s: any) => s && s[0].toUpperCase() + s.slice(1);
-
 
 const safeTag = tag || ""; 
 const cleanTag = safeTag.toLowerCase().trim(); 
-const pageTitle = (tagNames as any)[cleanTag] || capitalize(cleanTag);
 
-
-function getPostUrl(slug: string) {
-    const cleanSlug = slug.split('/').pop()?.replace(/\.md$/, '') || slug;
-    return `/${cleanSlug}/`;
-}
+// Përdorim funksionin getDisplayTag për të marrë emrin e bukur të tag-ut për titullin e faqes
+const pageTitle = getDisplayTag(cleanTag) !== "LAJME" ? getDisplayTag(cleanTag) : capitalize(cleanTag);
 
 function getFallbackImage(body: string) {
     const imageMatch = body.match(/!\[.*?\]\((.*?)\)/);
@@ -123,7 +112,7 @@ function getFallbackImage(body: string) {
                                             {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (
                                                 featuredPost.data.tags.map((tag: string) => (
                                                     <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-md shadow-lg">
-                                                        {(tagNames as any)[tag] || tag}
+                                                        {getDisplayTag(tag)}
                                                     </span>
                                                 ))
                                             ) : (
@@ -155,7 +144,6 @@ function getFallbackImage(body: string) {
 
                         {/* LISTA E LAJMEVE TË TJERA TË KËTIJ TAG-U */}
                         <div class="flex flex-col divide-y divide-slate-200">
-                            {/* FIX 3: (post: any) */}
                             {restPosts.map((post: any) => (
                                 <article class="group py-8 first:pt-0">
                                     <a href={getPostUrl(post.slug)} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
@@ -183,7 +171,7 @@ function getFallbackImage(body: string) {
                                                 {post.data.tags && post.data.tags.length > 0 ? (
                                                     post.data.tags.map((tag: string) => (
                                                         <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-md">
-                                                            {(tagNames as any)[tag] || tag}
+                                                            {getDisplayTag(tag)}
                                                         </span>
                                                     ))
                                                 ) : (
