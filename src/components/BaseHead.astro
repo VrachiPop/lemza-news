@@ -2,6 +2,8 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../app.css";
+// SHTESA 1: Importojmë ClientRouter (Emri i ri në Astro 5)
+import { ClientRouter } from 'astro:transitions'; 
 
 interface Props {
     title: string;
@@ -41,6 +43,7 @@ const { title, description, image = "/social.svg" } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.site || Astro.url).href} />
 
+<ClientRouter />
 
 <script
     async
