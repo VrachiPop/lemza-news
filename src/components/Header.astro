@@ -636,219 +636,224 @@ import imgTeknologji from "../assets/banners/teknologji.png";
 </header>
 
 <script>
-    // Menyja e Celularit & Kërkimi
-    const header = document.querySelector("header");
-    const menuBtn = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
+    // Mbështjellim të gjithë logjikën brenda dëgjuesit të Astro-s
+    document.addEventListener('astro:page-load', () => {
+        
+        // Menyja e Celularit & Kërkimi
+        const header = document.querySelector("header");
+        const menuBtn = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-    const iconHamburger = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-    const iconClose = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+        const iconHamburger = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+        const iconClose = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
 
-    menuBtn?.addEventListener("click", () => {
-        mobileMenu?.classList.toggle("hidden");
-        mobileMenu?.classList.toggle("flex");
-        document.body.classList.toggle("overflow-hidden");
-        if (mobileMenu?.classList.contains("flex")) {
-            menuBtn.innerHTML = iconClose;
-        } else {
-            menuBtn.innerHTML = iconHamburger;
-        }
-    });
-
-    window.addEventListener("scroll", () => {
-        if (!mobileMenu?.classList.contains("flex")) {
-            if (window.scrollY > 50) {
-                header?.classList.add("-translate-y-full");
+        menuBtn?.addEventListener("click", () => {
+            mobileMenu?.classList.toggle("hidden");
+            mobileMenu?.classList.toggle("flex");
+            document.body.classList.toggle("overflow-hidden");
+            if (mobileMenu?.classList.contains("flex")) {
+                menuBtn.innerHTML = iconClose;
             } else {
-                header?.classList.remove("-translate-y-full");
-            }
-        }
-    });
-
-    const searchToggle = document.getElementById("search-toggle");
-    const searchClose = document.getElementById("search-close");
-    const searchOverlay = document.getElementById("search-overlay");
-    const searchInput = document.getElementById("search-input");
-
-    function openSearch() {
-        searchOverlay?.classList.remove("hidden");
-        setTimeout(() => {
-            searchOverlay?.classList.remove("opacity-0", "pointer-events-none");
-            searchOverlay?.classList.add("opacity-100", "pointer-events-auto");
-            searchInput?.focus();
-            document.body.classList.add("overflow-hidden");
-        }, 10);
-    }
-
-    function closeSearch() {
-        searchOverlay?.classList.remove("opacity-100", "pointer-events-auto");
-        searchOverlay?.classList.add("opacity-0", "pointer-events-none");
-        document.body.classList.remove("overflow-hidden");
-        setTimeout(() => {
-            searchOverlay?.classList.add("hidden");
-        }, 300);
-    }
-
-    searchToggle?.addEventListener("click", openSearch);
-    searchClose?.addEventListener("click", closeSearch);
-
-    document.addEventListener("keydown", (e) => {
-        if (
-            e.key === "Escape" &&
-            searchOverlay?.classList.contains("opacity-100")
-        ) {
-            closeSearch();
-        }
-    });
-
-    // ====================================================================
-    // LOGJIKA KRYESORE PËR AAVE-STYLE FLUID MEGA MENU
-    // ====================================================================
-    const desktopNav = document.getElementById("desktop-nav");
-    const triggers = document.querySelectorAll(".nav-trigger");
-    const standardLinks = document.querySelectorAll(".standard-link");
-    const viewport = document.getElementById("fluid-viewport");
-    const contents = document.querySelectorAll(".menu-content");
-
-    // I tregojmë TypeScript-it saktësisht çfarë lloji është ky variabël
-    let closeTimeout: ReturnType<typeof setTimeout>;
-    let currentLeft = 0;
-
-    function closeViewport() {
-        closeTimeout = setTimeout(() => {
-            // Kontrollojmë nëse viewport ekziston para se ta prekim
-            if (viewport) {
-                viewport.style.opacity = "0";
-                viewport.style.transform = `translateX(${currentLeft}px) translateY(10px)`;
-                viewport.classList.add("pointer-events-none");
-                viewport.classList.remove("pointer-events-auto");
-            }
-            triggers.forEach((t) => t.classList.remove("active-trigger"));
-        }, 150);
-    }
-
-    triggers.forEach((trigger) => {
-        trigger.addEventListener("mouseenter", () => {
-            clearTimeout(closeTimeout);
-            const targetId = trigger.getAttribute("data-target");
-            const targetContent = document.getElementById(`menu-${targetId}`);
-
-            triggers.forEach((t) => t.classList.remove("active-trigger"));
-            trigger.classList.add("active-trigger");
-
-            contents.forEach((c) => {
-                c.classList.remove(
-                    "opacity-100",
-                    "pointer-events-auto",
-                    "z-10",
-                    "translate-x-0"
-                );
-                c.classList.add(
-                    "opacity-0",
-                    "pointer-events-none",
-                    "z-0",
-                    "-translate-x-3"
-                );
-            });
-
-            // Ekzekutojmë logjikën vetëm nëse të gjitha elementet ekzistojnë
-            if (targetContent && viewport && desktopNav) {
-                targetContent.classList.remove(
-                    "opacity-0",
-                    "pointer-events-none",
-                    "z-0",
-                    "-translate-x-3"
-                );
-                targetContent.classList.add(
-                    "opacity-100",
-                    "pointer-events-auto",
-                    "z-10",
-                    "translate-x-0"
-                );
-
-                const width = targetContent.offsetWidth;
-                const height = targetContent.offsetHeight;
-
-                const triggerRect = trigger.getBoundingClientRect();
-                const navRect = desktopNav.getBoundingClientRect();
-
-                const left =
-                    triggerRect.left -
-                    navRect.left +
-                    triggerRect.width / 2 -
-                    width / 2;
-                currentLeft = left;
-
-                viewport.style.width = `${width}px`;
-                viewport.style.height = `${height}px`;
-                viewport.style.transform = `translateX(${left}px) translateY(0px)`;
-                viewport.style.opacity = "1";
-                viewport.classList.remove("pointer-events-none");
-                viewport.classList.add("pointer-events-auto");
+                menuBtn.innerHTML = iconHamburger;
             }
         });
-    });
 
-    standardLinks.forEach((link) =>
-        link.addEventListener("mouseenter", closeViewport)
-    );
-
-    // Përdorim ?. (optional chaining) për t'u mbrojtur nga vlerat 'null'
-    viewport?.addEventListener("mouseenter", () => clearTimeout(closeTimeout));
-    desktopNav?.addEventListener("mouseleave", closeViewport);
-
-    // ====================================================================
-    // LOGJIKA PËR FOTOT E NËNKATEGORIVE BRENDA DRITARES
-    // ====================================================================
-    const megaMenus = document.querySelectorAll(".mega-menu-container");
-
-    megaMenus.forEach((menu) => {
-        const links = menu.querySelectorAll(".mega-link");
-        const panels = menu.querySelectorAll(".mega-panel");
-
-        // I tregojmë TypeScript-it që targetId është string ose null
-        function activateTab(targetId: string | null) {
-            if (!targetId) return;
-
-            panels.forEach((p) => {
-                p.classList.remove("opacity-100");
-                p.classList.add("opacity-0", "pointer-events-none");
-            });
-            links.forEach((l) => l.classList.remove("is-active"));
-
-            const activePanel = menu.querySelector(
-                `.mega-panel[data-id="${targetId}"]`
-            );
-            const activeLink = menu.querySelector(
-                `.mega-link[data-target="${targetId}"]`
-            );
-
-            if (activePanel) {
-                activePanel.classList.remove(
-                    "opacity-0",
-                    "pointer-events-none"
-                );
-                activePanel.classList.add("opacity-100");
+        window.addEventListener("scroll", () => {
+            if (!mobileMenu?.classList.contains("flex")) {
+                if (window.scrollY > 50) {
+                    header?.classList.add("-translate-y-full");
+                } else {
+                    header?.classList.remove("-translate-y-full");
+                }
             }
-            if (activeLink) {
-                activeLink.classList.add("is-active");
-            }
+        });
+
+        const searchToggle = document.getElementById("search-toggle");
+        const searchClose = document.getElementById("search-close");
+        const searchOverlay = document.getElementById("search-overlay");
+        const searchInput = document.getElementById("search-input");
+
+        function openSearch() {
+            searchOverlay?.classList.remove("hidden");
+            setTimeout(() => {
+                searchOverlay?.classList.remove("opacity-0", "pointer-events-none");
+                searchOverlay?.classList.add("opacity-100", "pointer-events-auto");
+                searchInput?.focus();
+                document.body.classList.add("overflow-hidden");
+            }, 10);
         }
 
-        if (links.length > 0) {
-            activateTab(links[0].getAttribute("data-target"));
+        function closeSearch() {
+            searchOverlay?.classList.remove("opacity-100", "pointer-events-auto");
+            searchOverlay?.classList.add("opacity-0", "pointer-events-none");
+            document.body.classList.remove("overflow-hidden");
+            setTimeout(() => {
+                searchOverlay?.classList.add("hidden");
+            }, 300);
         }
 
-        links.forEach((link) => {
-            link.addEventListener("mouseenter", () => {
-                activateTab(link.getAttribute("data-target"));
+        searchToggle?.addEventListener("click", openSearch);
+        searchClose?.addEventListener("click", closeSearch);
+
+        document.addEventListener("keydown", (e) => {
+            if (
+                e.key === "Escape" &&
+                searchOverlay?.classList.contains("opacity-100")
+            ) {
+                closeSearch();
+            }
+        });
+
+        // ====================================================================
+        // LOGJIKA KRYESORE PËR AAVE-STYLE FLUID MEGA MENU
+        // ====================================================================
+        const desktopNav = document.getElementById("desktop-nav");
+        const triggers = document.querySelectorAll(".nav-trigger");
+        const standardLinks = document.querySelectorAll(".standard-link");
+        const viewport = document.getElementById("fluid-viewport");
+        const contents = document.querySelectorAll(".menu-content");
+
+        // I tregojmë TypeScript-it saktësisht çfarë lloji është ky variabël
+        let closeTimeout: ReturnType<typeof setTimeout>;
+        let currentLeft = 0;
+
+        function closeViewport() {
+            closeTimeout = setTimeout(() => {
+                // Kontrollojmë nëse viewport ekziston para se ta prekim
+                if (viewport) {
+                    viewport.style.opacity = "0";
+                    viewport.style.transform = `translateX(${currentLeft}px) translateY(10px)`;
+                    viewport.classList.add("pointer-events-none");
+                    viewport.classList.remove("pointer-events-auto");
+                }
+                triggers.forEach((t) => t.classList.remove("active-trigger"));
+            }, 150);
+        }
+
+        triggers.forEach((trigger) => {
+            trigger.addEventListener("mouseenter", () => {
+                clearTimeout(closeTimeout);
+                const targetId = trigger.getAttribute("data-target");
+                const targetContent = document.getElementById(`menu-${targetId}`);
+
+                triggers.forEach((t) => t.classList.remove("active-trigger"));
+                trigger.classList.add("active-trigger");
+
+                contents.forEach((c) => {
+                    c.classList.remove(
+                        "opacity-100",
+                        "pointer-events-auto",
+                        "z-10",
+                        "translate-x-0"
+                    );
+                    c.classList.add(
+                        "opacity-0",
+                        "pointer-events-none",
+                        "z-0",
+                        "-translate-x-3"
+                    );
+                });
+
+                // Ekzekutojmë logjikën vetëm nëse të gjitha elementet ekzistojnë
+                if (targetContent && viewport && desktopNav) {
+                    targetContent.classList.remove(
+                        "opacity-0",
+                        "pointer-events-none",
+                        "z-0",
+                        "-translate-x-3"
+                    );
+                    targetContent.classList.add(
+                        "opacity-100",
+                        "pointer-events-auto",
+                        "z-10",
+                        "translate-x-0"
+                    );
+
+                    const width = targetContent.offsetWidth;
+                    const height = targetContent.offsetHeight;
+
+                    const triggerRect = trigger.getBoundingClientRect();
+                    const navRect = desktopNav.getBoundingClientRect();
+
+                    const left =
+                        triggerRect.left -
+                        navRect.left +
+                        triggerRect.width / 2 -
+                        width / 2;
+                    currentLeft = left;
+
+                    viewport.style.width = `${width}px`;
+                    viewport.style.height = `${height}px`;
+                    viewport.style.transform = `translateX(${left}px) translateY(0px)`;
+                    viewport.style.opacity = "1";
+                    viewport.classList.remove("pointer-events-none");
+                    viewport.classList.add("pointer-events-auto");
+                }
             });
         });
 
-        menu.addEventListener("mouseleave", () => {
+        standardLinks.forEach((link) =>
+            link.addEventListener("mouseenter", closeViewport)
+        );
+
+        // Përdorim ?. (optional chaining) për t'u mbrojtur nga vlerat 'null'
+        viewport?.addEventListener("mouseenter", () => clearTimeout(closeTimeout));
+        desktopNav?.addEventListener("mouseleave", closeViewport);
+
+        // ====================================================================
+        // LOGJIKA PËR FOTOT E NËNKATEGORIVE BRENDA DRITARES
+        // ====================================================================
+        const megaMenus = document.querySelectorAll(".mega-menu-container");
+
+        megaMenus.forEach((menu) => {
+            const links = menu.querySelectorAll(".mega-link");
+            const panels = menu.querySelectorAll(".mega-panel");
+
+            // I tregojmë TypeScript-it që targetId është string ose null
+            function activateTab(targetId: string | null) {
+                if (!targetId) return;
+
+                panels.forEach((p) => {
+                    p.classList.remove("opacity-100");
+                    p.classList.add("opacity-0", "pointer-events-none");
+                });
+                links.forEach((l) => l.classList.remove("is-active"));
+
+                const activePanel = menu.querySelector(
+                    `.mega-panel[data-id="${targetId}"]`
+                );
+                const activeLink = menu.querySelector(
+                    `.mega-link[data-target="${targetId}"]`
+                );
+
+                if (activePanel) {
+                    activePanel.classList.remove(
+                        "opacity-0",
+                        "pointer-events-none"
+                    );
+                    activePanel.classList.add("opacity-100");
+                }
+                if (activeLink) {
+                    activeLink.classList.add("is-active");
+                }
+            }
+
             if (links.length > 0) {
                 activateTab(links[0].getAttribute("data-target"));
             }
+
+            links.forEach((link) => {
+                link.addEventListener("mouseenter", () => {
+                    activateTab(link.getAttribute("data-target"));
+                });
+            });
+
+            menu.addEventListener("mouseleave", () => {
+                if (links.length > 0) {
+                    activateTab(links[0].getAttribute("data-target"));
+                }
+            });
         });
-    });
+        
+    }); // <-- Këtu mbyllet dëgjuesi i Astro-s
 </script>
