@@ -179,41 +179,46 @@ const restPosts = isFirstPage ? page.data.slice(1) : page.data;
                 </div>
 
                 {/* ========================================== */}
-{/* BUTONAT E PAGINIMIT (MODERN PILL - COMPACT) */}
+{/* BUTONAT E PAGINIMIT (ULTRA COMPACT PILL)   */}
 {/* ========================================== */}
-<div class="flex justify-center mt-12 pt-8">
-    <div class="inline-flex items-center bg-white border border-slate-200 p-1 rounded-full shadow-lg">
+<div class="flex justify-center mt-12 pt-8 w-full px-2">
+    {/* Hoqëm 'p-1.5' dhe vumë 'p-0.5' që të mos ketë hapësirë të tepërt brenda */}
+    <div class="inline-flex items-center bg-white border border-slate-200 p-0.5 rounded-full shadow-md">
         
         {/* Butoni PARA */}
         {page.url.prev ? (
-            <a href={page.url.prev || ""} class="flex items-center justify-center gap-1 px-3 py-2 sm:px-5 sm:py-3 rounded-full bg-transparent text-slate-700 font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
-                <span class="group-hover:-translate-x-1 transition-transform">&larr;</span> 
-                <span>Të reja</span>
+            <a href={page.url.prev || ""} class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-transparent text-slate-700 hover:bg-[#DC2626] hover:text-white transition-all group whitespace-nowrap">
+                <span class="text-[10px] sm:text-xs group-hover:-translate-x-1 transition-transform">&larr;</span> 
+                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të reja</span>
             </a>
         ) : (
-            <span class="flex items-center justify-center gap-1 px-3 py-2 sm:px-5 sm:py-3 rounded-full bg-transparent text-slate-300 font-black text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
-                &larr; <span>Të reja</span>
+            <span class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-slate-300 whitespace-nowrap cursor-not-allowed">
+                <span class="text-[10px] sm:text-xs">&larr;</span> 
+                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të reja</span>
             </span>
         )}
 
-        <div class="w-px h-4 sm:h-8 bg-slate-200 mx-1 sm:mx-3"></div>
+        {/* Vija Ndarëse më e shkurtër */}
+        <div class="w-px h-4 sm:h-5 bg-slate-200 mx-0.5 sm:mx-1"></div>
 
         {/* INFO E FAQES */}
-        <span class="flex items-center justify-center px-2 sm:px-4 font-black text-slate-800 text-[11px] sm:text-sm whitespace-nowrap">
-            {page.currentPage} <span class="text-slate-400 font-medium mx-1">nga</span> {page.lastPage}
+        <span class="flex items-center justify-center px-2 sm:px-4 font-black text-slate-800 text-[10px] sm:text-sm whitespace-nowrap">
+            {page.currentPage} <span class="text-slate-400 font-medium mx-1 sm:mx-1.5">nga</span> {page.lastPage}
         </span>
 
-        <div class="w-px h-4 sm:h-8 bg-slate-200 mx-1 sm:mx-3"></div>
+        {/* Vija Ndarëse më e shkurtër */}
+        <div class="w-px h-4 sm:h-5 bg-slate-200 mx-0.5 sm:mx-1"></div>
 
         {/* Butoni TJETRA */}
         {page.url.next ? (
-            <a href={page.url.next || ""} class="flex items-center justify-center gap-1 px-3 py-2 sm:px-5 sm:py-3 rounded-full bg-transparent text-slate-700 font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
-                <span>Të vjetra</span> 
-                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+            <a href={page.url.next || ""} class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-transparent text-slate-700 hover:bg-[#DC2626] hover:text-white transition-all group whitespace-nowrap">
+                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të vjetra</span> 
+                <span class="text-[10px] sm:text-xs group-hover:translate-x-1 transition-transform">&rarr;</span>
             </a>
         ) : (
-            <span class="flex items-center justify-center gap-1 px-3 py-2 sm:px-5 sm:py-3 rounded-full bg-transparent text-slate-300 font-black text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
-                <span>Të vjetra</span> &rarr;
+            <span class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-slate-300 whitespace-nowrap cursor-not-allowed">
+                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të vjetra</span> 
+                <span class="text-[10px] sm:text-xs">&rarr;</span>
             </span>
         )}
     </div>
