@@ -20,6 +20,31 @@ import imgUdhetime from "../assets/banners/udhetime.jpg";
 import imgShendeti from "../assets/banners/shendeti.png";
 import imgShkence from "../assets/banners/shkence.jpg";
 import imgTeknologji from "../assets/banners/teknologji.png";
+
+// ==========================================
+// TË DHËNAT E MENYSË (DRY REFACTOR)
+// ==========================================
+const aktualitetLinks = [
+    { id: "politike", label: "Politikë", image: imgPolitike },
+    { id: "ekonomi", label: "Ekonomi", image: imgEkonomi },
+    { id: "kronike", label: "Kronikë", image: imgKronike },
+    { id: "rajoni", label: "Rajoni", image: imgRajoni },
+    { id: "bota", label: "Bota", image: imgBota },
+    { id: "sociale", label: "Sociale", image: imgSociale },
+];
+
+const argetimLinks = [
+    { id: "sport", label: "Sport", image: imgSport },
+    { id: "kulture", label: "Kulturë", image: imgKulture },
+    { id: "showbiz", label: "Showbiz", image: imgShowbiz },
+    { id: "udhetime", label: "Udhëtime", image: imgUdhetime },
+];
+
+const teTjeraLinks = [
+    { id: "shendeti", label: "Shëndeti", image: imgShendeti },
+    { id: "shkence", label: "Shkencë", image: imgShkence },
+    { id: "teknologji", label: "Teknologji", image: imgTeknologji },
+];
 ---
 
 <style is:global>
@@ -152,256 +177,102 @@ import imgTeknologji from "../assets/banners/teknologji.png";
                 class="absolute top-full left-0 bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.12)] rounded-2xl z-50 overflow-hidden transform-gpu will-change-[width,height,transform] pointer-events-none opacity-0"
                 style="transition: width 300ms cubic-bezier(0.25, 1, 0.5, 1), height 300ms cubic-bezier(0.25, 1, 0.5, 1), transform 300ms cubic-bezier(0.25, 1, 0.5, 1), opacity 200ms ease-out; transform: translateX(0) translateY(10px); width: 480px; height: 300px;"
             >
+                {/* AKTUALITET MENU */}
                 <div
                     id="menu-aktualitet"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[480px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div
-                        class="links-wrapper flex-1 flex flex-col relative z-10 pr-2"
-                    >
-                        <a
-                            href="/tags/politike"
-                            data-target="politike"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Politikë</a
-                        >
-                        <a
-                            href="/tags/ekonomi"
-                            data-target="ekonomi"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Ekonomi</a
-                        >
-                        <a
-                            href="/tags/kronike"
-                            data-target="kronike"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Kronikë</a
-                        >
-                        <a
-                            href="/tags/rajoni"
-                            data-target="rajoni"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Rajoni</a
-                        >
-                        <a
-                            href="/tags/bota"
-                            data-target="bota"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Bota</a
-                        >
-                        <a
-                            href="/tags/sociale"
-                            data-target="sociale"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Sociale</a
-                        >
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2">
+                        {aktualitetLinks.map(link => (
+                            <a
+                                href={`/tags/${link.id}`}
+                                data-target={link.id}
+                                class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
                     </div>
 
-                    <div
-                        class="w-[200px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox"
-                    >
-                        <div
-                            data-id="politike"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgPolitike}
-                                alt="Politikë"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="ekonomi"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgEkonomi}
-                                alt="Ekonomi"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="kronike"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgKronike}
-                                alt="Kronikë"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="rajoni"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgRajoni}
-                                alt="Rajoni"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="bota"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgBota}
-                                alt="Bota"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="sociale"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgSociale}
-                                alt="Sociale"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
+                    <div class="w-[200px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
+                        {aktualitetLinks.map(link => (
+                            <div
+                                data-id={link.id}
+                                class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
+                            >
+                                <Image
+                                    src={link.image}
+                                    alt={link.label}
+                                    class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* ARGËTIM MENU */}
                 <div
                     id="menu-argetim"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[440px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div
-                        class="links-wrapper flex-1 flex flex-col relative z-10 pr-2"
-                    >
-                        <a
-                            href="/tags/sport"
-                            data-target="sport"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Sport</a
-                        >
-                        <a
-                            href="/tags/kulture"
-                            data-target="kulture"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Kulturë</a
-                        >
-                        <a
-                            href="/tags/showbiz"
-                            data-target="showbiz"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Showbiz</a
-                        >
-                        <a
-                            href="/tags/udhetime"
-                            data-target="udhetime"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Udhëtime</a
-                        >
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2">
+                        {argetimLinks.map(link => (
+                            <a
+                                href={`/tags/${link.id}`}
+                                data-target={link.id}
+                                class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
                     </div>
 
-                    <div
-                        class="w-[180px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox"
-                    >
-                        <div
-                            data-id="sport"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgSport}
-                                alt="Sport"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="kulture"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgKulture}
-                                alt="Kulturë"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="showbiz"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgShowbiz}
-                                alt="Showbiz"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="udhetime"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgUdhetime}
-                                alt="Udhëtime"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
+                    <div class="w-[180px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
+                        {argetimLinks.map(link => (
+                            <div
+                                data-id={link.id}
+                                class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
+                            >
+                                <Image
+                                    src={link.image}
+                                    alt={link.label}
+                                    class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* TË TJERA MENU */}
                 <div
                     id="menu-te-tjera"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[400px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div
-                        class="links-wrapper flex-1 flex flex-col relative z-10 pr-2"
-                    >
-                        <a
-                            href="/tags/shendeti"
-                            data-target="shendeti"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Shëndeti</a
-                        >
-                        <a
-                            href="/tags/shkence"
-                            data-target="shkence"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Shkencë</a
-                        >
-                        <a
-                            href="/tags/teknologji"
-                            data-target="teknologji"
-                            class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                            >Teknologji</a
-                        >
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2">
+                        {teTjeraLinks.map(link => (
+                            <a
+                                href={`/tags/${link.id}`}
+                                data-target={link.id}
+                                class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
                     </div>
 
-                    <div
-                        class="w-[180px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox"
-                    >
-                        <div
-                            data-id="shendeti"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgShendeti}
-                                alt="Shëndeti"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="shkence"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgShkence}
-                                alt="Shkencë"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
-                        <div
-                            data-id="teknologji"
-                            class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                        >
-                            <Image
-                                src={imgTeknologji}
-                                alt="Teknologji"
-                                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                            />
-                        </div>
+                    <div class="w-[180px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
+                         {teTjeraLinks.map(link => (
+                            <div
+                                data-id={link.id}
+                                class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
+                            >
+                                <Image
+                                    src={link.image}
+                                    alt={link.label}
+                                    class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -455,6 +326,7 @@ import imgTeknologji from "../assets/banners/teknologji.png";
         </div>
     </nav>
 
+    {/* MOBILE MENU (Gjithashtu Refaktoruar) */}
     <div
         class="hidden flex-col absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-[#0f172a]/98 backdrop-blur-2xl shadow-2xl z-50 pointer-events-auto border-t border-slate-800/60 transition-opacity duration-300"
         id="mobile-menu"
@@ -467,94 +339,50 @@ import imgTeknologji from "../assets/banners/teknologji.png";
             >
 
             <div class="flex flex-col gap-5 border-b border-slate-800/60 pb-6">
-                <span
-                    class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest"
-                    >Aktualitet</span
-                >
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">
+                    Aktualitet
+                </span>
                 <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
-                    <a
-                        href="/tags/politike"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Politikë</a
-                    >
-                    <a
-                        href="/tags/ekonomi"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Ekonomi</a
-                    >
-                    <a
-                        href="/tags/kronike"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Kronikë</a
-                    >
-                    <a
-                        href="/tags/rajoni"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Rajoni</a
-                    >
-                    <a
-                        href="/tags/bota"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Bota</a
-                    >
-                    <a
-                        href="/tags/sociale"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Sociale</a
-                    >
+                    {aktualitetLinks.map(link => (
+                        <a
+                            href={`/tags/${link.id}`}
+                            class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
                 </div>
             </div>
 
             <div class="flex flex-col gap-5 border-b border-slate-800/60 pb-6">
-                <span
-                    class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest"
-                    >Argëtim</span
-                >
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">
+                    Argëtim
+                </span>
                 <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
-                    <a
-                        href="/tags/sport"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Sport</a
-                    >
-                    <a
-                        href="/tags/kulture"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Kulturë</a
-                    >
-                    <a
-                        href="/tags/showbiz"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Showbiz</a
-                    >
-                    <a
-                        href="/tags/udhetime"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Udhëtime</a
-                    >
+                    {argetimLinks.map(link => (
+                         <a
+                            href={`/tags/${link.id}`}
+                            class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
                 </div>
             </div>
 
             <div class="flex flex-col gap-5 pb-4">
-                <span
-                    class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest"
-                    >Të tjera</span
-                >
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">
+                    Të tjera
+                </span>
                 <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
-                    <a
-                        href="/tags/shendeti"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Shëndeti</a
-                    >
-                    <a
-                        href="/tags/shkence"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Shkencë</a
-                    >
-                    <a
-                        href="/tags/teknologji"
-                        class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
-                        >Teknologji</a
-                    >
+                     {teTjeraLinks.map(link => (
+                         <a
+                            href={`/tags/${link.id}`}
+                            class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
                 </div>
             </div>
         </div>
