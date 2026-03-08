@@ -9,26 +9,44 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import '../../app.css';
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 // Importi qendror nga Helpers
 import { getDisplayTag, getPostUrl } from '../../utils/helpers';
 
-// 1. Merr të gjitha postimet dhe renditi (Më e reja -> Më e vjetra)
-const posts = (await getCollection('blog')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+// LOGJIKA E PAGINIMIT NË ASTRO
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+    // 1. Merr të gjitha postimet dhe renditi (Më e reja -> Më e vjetra)
+    const posts = (await getCollection('blog')).sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    );
 
-// 2. LOGJIKA E NDARJES
-// I pari fare është "Featured"
-const featuredPost = posts[0];
-// Të tjerët (nga i dyti e tutje) janë lista
-const restPosts = posts.slice(1);
+    // 2. I themi Astro-s t'i ndajë nga 20 për çdo faqe
+    return paginate(posts, { pageSize: 20 });
+}
+
+// I tregojmë TypeScript-it që 'page' mban lajme nga koleksioni 'blog'
+interface Props {
+    page: Page<CollectionEntry<'blog'>>;
+}
+
+const { page } = Astro.props;
+
+// Kontrollojmë nëse jemi në faqen e parë (Faqja 1)
+const isFirstPage = page.currentPage === 1;
+
+// "Featured Post" (Lajmi i madh) shfaqet VETËM në faqen 1
+const featuredPost = isFirstPage ? page.data[0] : null;
+
+// Lista e lajmeve: Nëse jemi në faqen 1 heqim të parin, nëse jemi në faqet e tjera i tregojmë të gjitha 20
+const restPosts = isFirstPage ? page.data.slice(1) : page.data;
 ---
 
 <!doctype html>
 <html lang="sq">
     <head>
-        <BaseHead title={`Të Fundit - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+        <BaseHead title={`Të Fundit - Faqja ${page.currentPage} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
         <style>
              html, body {
                 background-color: #F8FAFC;
@@ -100,7 +118,7 @@ const restPosts = posts.slice(1);
                 )}
 
                 <div class="flex flex-col divide-y divide-slate-200">
-                    {restPosts.map((post) => (
+                    {restPosts.map((post: any) => (
                         <article class="group py-8 first:pt-0">
                             <a href={getPostUrl(post.slug)} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                                 
@@ -159,6 +177,46 @@ const restPosts = posts.slice(1);
                         </article>
                     ))}
                 </div>
+
+                {/* ========================================== */}
+{/* OPSIONI 2: STILI MODERN PILL (ELEGANT)     */}
+{/* ========================================== */}
+<div class="flex justify-center mt-16 pt-8">
+    <div class="inline-flex items-center bg-white border border-slate-200 p-1.5 rounded-full shadow-lg">
+        
+        {/* Butoni PARA */}
+        {page.url.prev ? (
+            <a href={page.url.prev} class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-700 font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
+                <span class="group-hover:-translate-x-1 transition-transform">&larr;</span> <span class="hidden sm:inline">Të reja</span>
+            </a>
+        ) : (
+            <span class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-300 font-extrabold text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
+                &larr; <span class="hidden sm:inline">Të reja</span>
+            </span>
+        )}
+
+        <div class="w-px h-8 bg-slate-200 mx-1 md:mx-3"></div>
+
+        {/* INFO E FAQES */}
+        <span class="px-4 font-black text-slate-800 text-sm">
+            {page.currentPage} <span class="text-slate-400 font-medium mx-1">nga</span> {page.lastPage}
+        </span>
+
+        <div class="w-px h-8 bg-slate-200 mx-1 md:mx-3"></div>
+
+        {/* Butoni TJETRA */}
+        {page.url.next ? (
+            <a href={page.url.next} class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-700 font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
+                <span class="hidden sm:inline">Të vjetra</span> <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </a>
+        ) : (
+            <span class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-300 font-extrabold text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
+                <span class="hidden sm:inline">Të vjetra</span> &rarr;
+            </span>
+        )}
+    </div>
+</div>
+
             </main>
 
             <aside class="lg:col-span-4 lg:pl-10 border-l border-slate-200 hidden lg:block">

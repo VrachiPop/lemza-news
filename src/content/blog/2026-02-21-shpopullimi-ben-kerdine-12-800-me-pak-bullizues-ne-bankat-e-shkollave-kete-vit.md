@@ -10,7 +10,7 @@ description: "Shpopullimi i vendit shënon një tjetër viktimë: bullizuesit e
 tags:
   - sociale
 ---
-Shpopullimi i vendit shënon një tjetër viktimë: bullizuesit e shkollave. Statistikat zyrtare të publikuara nga KOSTAT (Kombinati i Statistikave) tregojnë se janë ulur në banka 12,800 bullizues më pak në krahasim me vitin e kaluar, duke lënë të shtangur mësuesit dhe psikologët e institucioneve arsimore.
+**TIRANË** - Shpopullimi i vendit shënon një tjetër viktimë: bullizuesit e shkollave. Statistikat zyrtare të publikuara nga KOSTAT (Kombinati i Statistikave) tregojnë se janë ulur në banka 12,800 bullizues më pak në krahasim me vitin e kaluar, duke lënë të shtangur mësuesit dhe psikologët e institucioneve arsimore.
 
 *"Bullizmi është pjesë e rëndësishme e formimit të karakterit të të rinjve. Kush nuk është bullizuar në shkollë, nuk është i gatshëm për tregun e punës dhe emigracionin,"* u shpreh një ekspert, i cili u fsheh pas anonimatit nga frika se mos e dhunonin kolegët. *“E vërteta e hidhur është që largimi nga vendi po na merr talentet më të mira në kopaçitje. Imagjino pak një adoleshent gjerman që trajtohet me dhunën më cilësore të Evropës Juglindore. Ai bëhet i pandalshëm!”*
 

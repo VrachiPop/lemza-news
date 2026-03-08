@@ -1,19 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Sidebar from '../../components/Sidebar.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import FormattedDate from '../../components/FormattedDate.astro';
-import EditorialBanner from '../../components/EditorialBanner.astro';
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import EditorialBanner from '../../../components/EditorialBanner.astro';
 import { Image } from 'astro:assets';
-import '../../app.css';
+import '../../../app.css';
 
 // Importi qendror nga Helpers
-import { getDisplayTag, getPostUrl } from '../../utils/helpers';
+import { getDisplayTag, getPostUrl } from '../../../utils/helpers';
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const allPosts = await getCollection('blog');
   
   // 1. Gjej tag-et unike dhe pastroji
@@ -24,37 +24,49 @@ export async function getStaticPaths() {
     .map(tag => tag.toLowerCase().trim()) 
   )];
 
-  // 2. Gjenero faqet për secilin tag
-  return uniqueTags.map((tag) => {
-    // Filtro postimet për këtë tag specifik dhe renditi (Më e reja -> Më e vjetra)
+  // 2. Gjenero faqet me Paginim për secilin tag
+  return uniqueTags.flatMap((tag) => {
+    // Filtro postimet për këtë tag specifik dhe renditi
     const filteredPosts = allPosts
       .filter((post) => post.data.tags?.some(t => t.toLowerCase().trim() === tag))
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     
-    return {
-      params: { tag: tag },
-      props: { posts: filteredPosts },
-    };
+    // I themi Astro-s t'i ndajë nga 10 për faqe, dhe ia kalojmë 'tag'-un si parametër shtesë
+    return paginate(filteredPosts, {
+        params: { tag: tag },
+        pageSize: 10
+    });
   });
 }
 
+// I tregojmë VS Code-it tipet e sakta
+interface Props {
+    page: any;
+}
+
 const { tag } = Astro.params;
-const { posts } = Astro.props; 
+const { page } = Astro.props; 
 
-// I pari fare është "Featured"
-const featuredPost = posts[0];
-// Të tjerët (nga i dyti e tutje) janë lista
-const restPosts = posts.slice(1);
+// Kontrollojmë nëse jemi në faqen e parë të kësaj kategorie
+const isFirstPage = page.currentPage === 1;
 
-const capitalize = (s: any) => s && s[0].toUpperCase() + s.slice(1);
+// I pari fare është "Featured" (vetëm në faqen 1)
+const featuredPost = isFirstPage ? page.data[0] : null;
+
+// Të tjerët janë lista
+const restPosts = isFirstPage ? page.data.slice(1) : page.data;
+
+// E detyrojmë të kthejë gjithmonë string (qoftë edhe bosh)
+const capitalize = (s: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
 
 const safeTag = tag || ""; 
 const cleanTag = safeTag.toLowerCase().trim(); 
 
-// Përdorim funksionin getDisplayTag për të marrë emrin e bukur të tag-ut për titullin e faqes
-const pageTitle = getDisplayTag(cleanTag) !== "LAJME" ? getDisplayTag(cleanTag) : capitalize(cleanTag);
+// Titulli i faqes i sigurt 100% si string
+const pageTitle = (getDisplayTag(cleanTag) !== "LAJME" ? getDisplayTag(cleanTag) : capitalize(cleanTag)) || "Kategoria";
 
-function getFallbackImage(body: string) {
+function getFallbackImage(body: any) {
+    if (!body || typeof body !== 'string') return null;
     const imageMatch = body.match(/!\[.*?\]\((.*?)\)/);
     return imageMatch ? imageMatch[1] : null;
 }
@@ -63,7 +75,7 @@ function getFallbackImage(body: string) {
 <!doctype html>
 <html lang="sq">
     <head>
-        <BaseHead title={`${pageTitle} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+        <BaseHead title={`${pageTitle} - Faqja ${page.currentPage} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
         <style>
              html, body {
                 background-color: #F8FAFC;
@@ -74,26 +86,26 @@ function getFallbackImage(body: string) {
     <body>
         <Header />
         
-        <EditorialBanner title={pageTitle} />
+        <EditorialBanner title={pageTitle || "Kategoria"} />
 
         <div class="w-full max-w-[1600px] mx-auto px-2 pt-6 md:px-8 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <main class="lg:col-span-8">
 
-                {posts.length === 0 ? (
+                {page.data.length === 0 ? (
                     <p class="text-slate-500 italic font-serif text-lg">Nuk u gjetën lajme në këtë kategori.</p>
                 ) : (
                     <>
                         {/* FEATURED POST (Lajmi Kryesor i Tag-ut) */}
                         {featuredPost && (
                             <article class="group mb-12 pb-12 border-b border-slate-200">
-                                <a href={getPostUrl(featuredPost.slug)} class="no-underline text-inherit block">
+                                <a href={getPostUrl(featuredPost.slug || "")} class="no-underline text-inherit block">
                                     
                                     <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl shadow-sm mb-6 bg-slate-100">
                                         {featuredPost.data.heroImage ? (
                                             <Image 
                                                 src={featuredPost.data.heroImage} 
-                                                alt={featuredPost.data.title} 
+                                                alt={featuredPost.data.title || ""} 
                                                 width={1000}   
                                                 height={600}
                                                 class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
@@ -146,20 +158,20 @@ function getFallbackImage(body: string) {
                         <div class="flex flex-col divide-y divide-slate-200">
                             {restPosts.map((post: any) => (
                                 <article class="group py-8 first:pt-0">
-                                    <a href={getPostUrl(post.slug)} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                                    <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                                         
                                         <div class="md:col-span-4 lg:col-span-5 relative aspect-[16/10] overflow-hidden rounded-lg bg-slate-100 shadow-sm">
                                             {post.data.heroImage ? (
                                                 <Image 
                                                     src={post.data.heroImage} 
-                                                    alt={post.data.title} 
+                                                    alt={post.data.title || ""} 
                                                     width={500}   
                                                     height={300} 
                                                     class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
                                                 />
-                                            ) : getFallbackImage(post.body) ? (
+                                            ) : getFallbackImage(post.body || "") ? (
                                                 <img 
-                                                    src={getFallbackImage(post.body)} 
+                                                    src={getFallbackImage(post.body || "")} 
                                                     alt="" 
                                                     class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
                                                 />
@@ -205,6 +217,45 @@ function getFallbackImage(body: string) {
                                 </article>
                             ))}
                         </div>
+                        
+                        {/* ========================================== */}
+{/* BUTONAT E PAGINIMIT (MODERN PILL)          */}
+{/* ========================================== */}
+<div class="flex justify-center mt-16 pt-8">
+    <div class="inline-flex items-center bg-white border border-slate-200 p-1.5 rounded-full shadow-lg">
+        
+        {/* Butoni PARA */}
+        {page.url.prev ? (
+            <a href={page.url.prev || ""} class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-700 font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
+                <span class="group-hover:-translate-x-1 transition-transform">&larr;</span> <span class="hidden sm:inline">Të reja</span>
+            </a>
+        ) : (
+            <span class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-300 font-black text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
+                &larr; <span class="hidden sm:inline">Të reja</span>
+            </span>
+        )}
+
+        <div class="w-px h-8 bg-slate-200 mx-1 md:mx-3"></div>
+
+        {/* INFO E FAQES */}
+        <span class="px-4 font-black text-slate-800 text-sm">
+            {page.currentPage} <span class="text-slate-400 font-medium mx-1">nga</span> {page.lastPage}
+        </span>
+
+        <div class="w-px h-8 bg-slate-200 mx-1 md:mx-3"></div>
+
+        {/* Butoni TJETRA */}
+        {page.url.next ? (
+            <a href={page.url.next || ""} class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-700 font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#DC2626] hover:text-white transition-all group">
+                <span class="hidden sm:inline">Të vjetra</span> <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </a>
+        ) : (
+            <span class="flex items-center gap-2 px-5 py-3 rounded-full bg-transparent text-slate-300 font-black text-[10px] md:text-xs uppercase tracking-widest cursor-not-allowed">
+                <span class="hidden sm:inline">Të vjetra</span> &rarr;
+            </span>
+        )}
+    </div>
+</div>
                     </>
                 )}
             </main>

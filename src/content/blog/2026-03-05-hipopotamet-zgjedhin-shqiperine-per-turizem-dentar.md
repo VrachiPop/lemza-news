@@ -10,7 +10,7 @@ tags:
   - shendeti
   - udhetime
 ---
-TIRANË — Pas fluksit të pandalshëm të qytetarëve italianë që mbushën klinikat e kryeqytetit për të rregulluar dhëmbët, industria e turizmit dentar në Shqipëri ka kapur një tjetër target-grup masiv. Gjatë javëve të fundit, qindra hipopotamë kanë zbritur në Aeroportin e Rinasit, të etur për t'i veshur çatajtë e tyre 50-centimetërsh me zirkon dhe për të marrë atë "Hollywood Smile" të shumëkërkuar, me një fraksion të çmimit evropian. Sipas Shoqatës së Stomatologëve, kjo klientelë e re po shpëton ekonominë, edhe pse po shkatërron plotësisht karriget e klinikave.
+**TIRANË** — Pas fluksit të pandalshëm të qytetarëve italianë që mbushën klinikat e kryeqytetit për të rregulluar dhëmbët, industria e turizmit dentar në Shqipëri ka kapur një tjetër target-grup masiv. Gjatë javëve të fundit, qindra hipopotamë kanë zbritur në Aeroportin e Rinasit, të etur për t'i veshur çatajtë e tyre 50-centimetërsh me zirkon dhe për të marrë atë "Hollywood Smile" të shumëkërkuar, me një fraksion të çmimit evropian. Sipas Shoqatës së Stomatologëve, kjo klientelë e re po shpëton ekonominë, edhe pse po shkatërron plotësisht karriget e klinikave.
 
 Arsyeja pse këta gjigantë 3-tonësh po braktisin Evropën për klinikat e Astirit dhe Komunës së Parisit është thjesht ekonomike. Një agjenci turistike dentare e sapohapur, Nile Smile Dental, ofron paketa të papërballueshme për konkurrencën e huaj. Për vetëm 2,500 Euro, një hipopotam përfiton:
 
