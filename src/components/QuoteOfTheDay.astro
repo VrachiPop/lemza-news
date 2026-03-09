@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import { getPostUrl } from '../utils/helpers';
+
+// 1. Marrim të gjitha lajmet dhe i rendisim nga më i riu
+const allPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// 2. Gjejmë lajmin e fundit që ka të plotësuar fushën 'quoteOfTheDay'
+const quotePost = allPosts.find(post => post.data.quoteOfTheDay);
+
+// 3. Përgatisim të dhënat
+const quoteText = quotePost?.data.quoteOfTheDay || "Sot të gjithë heshtën. Ose po gënjejnë në heshtje.";
+const quoteUrl = quotePost ? getPostUrl(quotePost.slug || "") : "/";
+---
+
+<div class="relative bg-white border border-slate-200 p-8 md:p-10 rounded-xl shadow-sm group hover:shadow-md hover:border-slate-300 transition-all mb-8 mt-4">
+    {/* Stema që thyen vizën e sipërme */}
+    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#DC2626] px-4 py-1 rounded-full shadow-sm">
+        <span class="text-white font-black text-sm tracking-normal uppercase">
+            Thënia e Ditës
+        </span>
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center text-center mt-2">
+        {/* Thonjëz e vogël e kuqe dekorative */}
+        <span class="text-[#DC2626] text-6xl font-serif leading-none mb-1">&ldquo;</span>
+
+        <p class="font-serif text-base md:text-lg font-normal text-slate-800 leading-relaxed mb-6 italic">
+            {quoteText}
+        </p>
+        
+        <div class="w-12 h-0.5 bg-slate-200 mb-4 transition-all duration-300 group-hover:bg-[#DC2626] group-hover:w-16"></div>
+        
+        <a href={quoteUrl} class="flex items-center gap-2 text-xs font-bold text-slate-500 tracking-widest uppercase hover:text-[#DC2626] transition-colors no-underline">
+            Lexoni më shumë <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+    </div>
+</div>

@@ -63,8 +63,9 @@ const teTjeraLinks = [
     class="fixed top-0 left-0 w-full z-[1000] transition-transform duration-300 pointer-events-none"
 >
     <nav
-        class="flex items-center justify-between h-[80px] max-w-[1600px] mx-auto px-4 md:px-8 pointer-events-auto"
+        class="relative flex items-center justify-between h-[80px] max-w-[1600px] mx-auto px-4 md:px-8 pointer-events-auto"
     >
+        {/* LOGO (E ankoruar Majtas) */}
         <a
             href="/"
             class="flex items-center gap-3 group no-underline h-full py-2 select-none"
@@ -72,7 +73,7 @@ const teTjeraLinks = [
             <div
                 class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105"
             >
-                <span class="font-bookerly font-black text-3xl! leading-none"
+                <span class="font-bookerly font-black text-3xl leading-none"
                     >L</span
                 >
             </div>
@@ -90,14 +91,15 @@ const teTjeraLinks = [
             </div>
         </a>
 
+        {/* MENYJA E QENDRËS (Tekst i bardhë normal, Pilulë e kuqe në Hover) */}
         <div
             id="desktop-nav"
-            class="hidden xl:flex h-full items-center pt-1 relative"
+            class="hidden xl:flex absolute left-1/2 -translate-x-1/2 top-0 h-full items-center z-50"
         >
-            <div class="flex gap-6 h-full items-center">
+            <div class="flex gap-2 h-full items-center">
                 <a
                     href="/te-fundit"
-                    class="standard-link relative text-white font-bookerly font-bold text-[15px] tracking-normal no-underline transition-colors duration-300 hover:text-slate-200 after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#ff8a8a] after:left-0 after:-bottom-1.5 after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                    class="standard-link px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
                 >
                     Të fundit
                 </a>
@@ -107,7 +109,7 @@ const teTjeraLinks = [
                     data-target="aktualitet"
                 >
                     <span
-                        class="relative text-white font-bookerly font-bold text-[15px] tracking-normal transition-colors duration-300 group-hover:text-slate-200 group-[.active-trigger]:text-slate-200 flex items-center gap-1 after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#ff8a8a] after:left-0 after:-bottom-1.5 after:scale-x-0 after:origin-left group-hover:after:scale-x-100 group-[.active-trigger]:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                        class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
                     >
                         Aktualitet
                         <svg
@@ -130,7 +132,7 @@ const teTjeraLinks = [
                     data-target="argetim"
                 >
                     <span
-                        class="relative text-white font-bookerly font-bold text-[15px] tracking-normal transition-colors duration-300 group-hover:text-slate-200 group-[.active-trigger]:text-slate-200 flex items-center gap-1 after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#ff8a8a] after:left-0 after:-bottom-1.5 after:scale-x-0 after:origin-left group-hover:after:scale-x-100 group-[.active-trigger]:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                        class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
                     >
                         Argëtim
                         <svg
@@ -153,7 +155,7 @@ const teTjeraLinks = [
                     data-target="te-tjera"
                 >
                     <span
-                        class="relative text-white font-bookerly font-bold text-[15px] tracking-normal transition-colors duration-300 group-hover:text-slate-200 group-[.active-trigger]:text-slate-200 flex items-center gap-1 after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#ff8a8a] after:left-0 after:-bottom-1.5 after:scale-x-0 after:origin-left group-hover:after:scale-x-100 group-[.active-trigger]:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                        class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
                     >
                         Të tjera
                         <svg
@@ -172,9 +174,10 @@ const teTjeraLinks = [
                 </div>
             </div>
 
+            {/* FLUID VIEWPORT PËR MEGA MENUNË */}
             <div
                 id="fluid-viewport"
-                class="absolute top-full left-0 bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.12)] rounded-2xl z-50 overflow-hidden transform-gpu will-change-[width,height,transform] pointer-events-none opacity-0"
+                class="absolute top-[calc(100%-10px)] left-0 bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.12)] rounded-2xl z-50 overflow-hidden transform-gpu will-change-[width,height,transform] pointer-events-none opacity-0"
                 style="transition: width 300ms cubic-bezier(0.25, 1, 0.5, 1), height 300ms cubic-bezier(0.25, 1, 0.5, 1), transform 300ms cubic-bezier(0.25, 1, 0.5, 1), opacity 200ms ease-out; transform: translateX(0) translateY(10px); width: 480px; height: 300px;"
             >
                 {/* AKTUALITET MENU */}
@@ -182,19 +185,19 @@ const teTjeraLinks = [
                     id="menu-aktualitet"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[480px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2">
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 gap-1">
                         {aktualitetLinks.map(link => (
                             <a
                                 href={`/tags/${link.id}`}
                                 data-target={link.id}
-                                class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                                class="mega-link block px-5 py-2.5 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white"
                             >
                                 {link.label}
                             </a>
                         ))}
                     </div>
 
-                    <div class="w-[200px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
+                    <div class="w-[200px] shrink-0 rounded-2xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
                         {aktualitetLinks.map(link => (
                             <div
                                 data-id={link.id}
@@ -215,19 +218,19 @@ const teTjeraLinks = [
                     id="menu-argetim"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[440px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2">
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 gap-1">
                         {argetimLinks.map(link => (
                             <a
                                 href={`/tags/${link.id}`}
                                 data-target={link.id}
-                                class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                                class="mega-link block px-5 py-2.5 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white"
                             >
                                 {link.label}
                             </a>
                         ))}
                     </div>
 
-                    <div class="w-[180px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
+                    <div class="w-[180px] shrink-0 rounded-2xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
                         {argetimLinks.map(link => (
                             <div
                                 data-id={link.id}
@@ -248,19 +251,19 @@ const teTjeraLinks = [
                     id="menu-te-tjera"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[400px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2">
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 gap-1">
                         {teTjeraLinks.map(link => (
                             <a
                                 href={`/tags/${link.id}`}
                                 data-target={link.id}
-                                class="mega-link relative block px-4 py-2.5 rounded-xl text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline overflow-hidden transition-all duration-300 ease-out hover:bg-slate-50 hover:text-[#DC2626] hover:translate-x-1 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                                class="mega-link block px-5 py-2.5 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white"
                             >
                                 {link.label}
                             </a>
                         ))}
                     </div>
 
-                    <div class="w-[180px] shrink-0 rounded-xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
+                    <div class="w-[180px] shrink-0 rounded-2xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
                          {teTjeraLinks.map(link => (
                             <div
                                 data-id={link.id}
@@ -278,10 +281,11 @@ const teTjeraLinks = [
             </div>
         </div>
 
+        {/* IKONAT KËRKIM & MENY (Të rikthyera në të bardhë) */}
         <div class="flex items-center gap-5 text-white">
             <button
                 id="search-toggle"
-                class="bg-transparent border-none cursor-pointer p-0 text-white hover:opacity-60 transition-opacity duration-300"
+                class="bg-transparent border-none cursor-pointer p-0 text-white hover:text-[#DC2626] hover:scale-110 transition-all duration-300"
                 aria-label="Kërko"
             >
                 <svg
@@ -302,7 +306,7 @@ const teTjeraLinks = [
                 </svg>
             </button>
             <button
-                class="xl:hidden bg-transparent border-none cursor-pointer p-0 text-white hover:opacity-60 transition-opacity duration-300"
+                class="xl:hidden bg-transparent border-none cursor-pointer p-0 text-white hover:text-[#DC2626] hover:scale-110 transition-all duration-300"
                 id="menu-toggle"
                 aria-label="Menu"
             >

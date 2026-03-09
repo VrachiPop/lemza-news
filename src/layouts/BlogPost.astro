@@ -286,44 +286,48 @@ const finalRelatedPosts = [...candidatePosts]
                     </div>
 
                     {/* ========================================== */}
-                    {/* SEKSIONI "LEXO MË SHUMË"                   */}
-                    {/* ========================================== */}
-                    {finalRelatedPosts.length > 0 && (
-                        <div class="mt-20 border-t-2 border-slate-800/50 pt-10 w-full">
-                            <h3 class="font-serif font-serif text-xl text-slate-900 mb-8 flex items-center gap-3">
-                                <span class="w-1 h-5 bg-[#DC2626] inline-block"></span> Lexo më shumë
-                            </h3>
-                            
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                                {finalRelatedPosts.map((post) => (
-                                    <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
-                                        <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
-                                            {post.data.heroImage ? (
-                                                <Image 
-                                                    src={post.data.heroImage} 
-                                                    alt={post.data.title || ""} 
-                                                    width={400}   
-                                                    height={225}
-                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
-                                                />
-                                            ) : (
-                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
-                                            )}
-                                        </div>
-                                        
-                                        <div class="flex flex-col gap-2">
-                                            <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
-                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
-                                            </div>
-                                            <h4 class="font-serif font-serif text-base text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
-                                                {post.data.title}
-                                            </h4>
-                                        </div>
-                                    </a>
-                                ))}
-                            </div>
+{/* SEKSIONI "LEXO MË SHUMË"                   */}
+{/* ========================================== */}
+{finalRelatedPosts.length > 0 && (
+    <div class="relative mt-20 border-t-2 border-slate-800/50 pt-12 w-full">
+        
+        {/* Stema e Kuqe mbi vijën ndarëse */}
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0f172a] px-6 py-1.5 rounded-full shadow-sm whitespace-nowrap z-10">
+            <span class="text-white font-black text-xs md:text-sm tracking-widest uppercase">
+                Sugjerime për ty
+            </span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {finalRelatedPosts.map((post) => (
+                <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
+                    <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
+                        {post.data.heroImage ? (
+                            <Image 
+                                src={post.data.heroImage} 
+                                alt={post.data.title || ""} 
+                                width={400}   
+                                height={225}
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
+                            />
+                        ) : (
+                            <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                        )}
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
+                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
                         </div>
-                    )}
+                        <h4 class="font-serif font-serif text-base text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
+                            {post.data.title}
+                        </h4>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+)}
                 </article>
             </main>
 
