@@ -48,14 +48,10 @@ const teTjeraLinks = [
 ---
 
 <style is:global>
-    /* Klasa që e mban "të ndezur" linkun kur shohim foton */
-    .mega-link.is-active {
-        background-color: #f8fafc !important; /* bg-slate-50 */
-        color: #dc2626 !important;
-        transform: translateX(0.25rem) !important; /* translate-x-1 */
-    }
-    .mega-link.is-active::before {
-        transform: scaleY(1) !important; /* Viza anësore mbetet absolute */
+    /* Pilula e kuqe aktive për drop-down (Tani targeton elementin e brendshëm .pill-shape) */
+    .mega-link.is-active .pill-shape {
+        background-color: #DC2626 !important;
+        color: #FFFFFF !important;
     }
 </style>
 
@@ -185,14 +181,18 @@ const teTjeraLinks = [
                     id="menu-aktualitet"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[480px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 gap-1">
+                    {/* Mbështjellësi e lë linkun <a> të zgjerohet 100% */}
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 mt-1 ml-1">
                         {aktualitetLinks.map(link => (
                             <a
                                 href={`/tags/${link.id}`}
                                 data-target={link.id}
-                                class="mega-link block px-5 py-2.5 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white"
+                                class="mega-link group block w-full py-0.5 no-underline cursor-pointer"
                             >
-                                {link.label}
+                                {/* Kjo është pilula e vërtetë që merr ngjyrë nga 'group-hover' i <a> */}
+                                <span class="pill-shape inline-block px-4 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
+                                    {link.label}
+                                </span>
                             </a>
                         ))}
                     </div>
@@ -218,14 +218,16 @@ const teTjeraLinks = [
                     id="menu-argetim"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[440px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 gap-1">
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 mt-1 ml-1">
                         {argetimLinks.map(link => (
                             <a
                                 href={`/tags/${link.id}`}
                                 data-target={link.id}
-                                class="mega-link block px-5 py-2.5 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white"
+                                class="mega-link group block w-full py-0.5 no-underline cursor-pointer"
                             >
-                                {link.label}
+                                <span class="pill-shape inline-block px-4 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
+                                    {link.label}
+                                </span>
                             </a>
                         ))}
                     </div>
@@ -251,14 +253,16 @@ const teTjeraLinks = [
                     id="menu-te-tjera"
                     class="menu-content mega-menu-container absolute top-0 left-0 w-[400px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
                 >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 gap-1">
+                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 mt-1 ml-1">
                         {teTjeraLinks.map(link => (
                             <a
                                 href={`/tags/${link.id}`}
                                 data-target={link.id}
-                                class="mega-link block px-5 py-2.5 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white"
+                                class="mega-link group block w-full py-0.5 no-underline cursor-pointer"
                             >
-                                {link.label}
+                                <span class="pill-shape inline-block px-4 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
+                                    {link.label}
+                                </span>
                             </a>
                         ))}
                     </div>
@@ -330,27 +334,33 @@ const teTjeraLinks = [
         </div>
     </nav>
 
-    {/* MOBILE MENU (Gjithashtu Refaktoruar) */}
+    {/* MOBILE MENU (Pilulat e Kuqe të Integruara) */}
     <div
         class="hidden flex-col absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-[#0f172a]/98 backdrop-blur-2xl shadow-2xl z-50 pointer-events-auto border-t border-slate-800/60 transition-opacity duration-300"
         id="mobile-menu"
     >
-        <div class="flex flex-col p-6 md:p-8 gap-8 pb-32">
-            <a
-                href="/te-fundit"
-                class="text-white font-bookerly font-black text-2xl tracking-wide no-underline border-b border-slate-800/60 pb-5 hover:text-[#DC2626] transition-colors duration-300"
-                >Të fundit</a
-            >
+        <div class="flex flex-col p-6 md:p-8 gap-6 pb-32">
+            
+            {/* Pilula kryesore "Të fundit" */}
+            <div class="border-b border-slate-800/60 pb-6">
+                <a
+                    href="/te-fundit"
+                    class="inline-block w-fit px-5 py-2.5 -ml-5 rounded-full text-white font-bookerly font-black text-2xl tracking-wide no-underline transition-all duration-300 hover:bg-[#DC2626] active:bg-[#DC2626]"
+                >
+                    Të fundit
+                </a>
+            </div>
 
-            <div class="flex flex-col gap-5 border-b border-slate-800/60 pb-6">
-                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">
+            {/* AKTUALITET */}
+            <div class="flex flex-col gap-4 border-b border-slate-800/60 pb-6">
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest pl-1">
                     Aktualitet
                 </span>
-                <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
+                <div class="grid grid-cols-2 gap-y-1 gap-x-2">
                     {aktualitetLinks.map(link => (
                         <a
                             href={`/tags/${link.id}`}
-                            class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                            class="block px-4 py-2.5 rounded-full text-slate-200 text-[17px] font-bookerly no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white active:bg-[#DC2626] active:text-white"
                         >
                             {link.label}
                         </a>
@@ -358,15 +368,16 @@ const teTjeraLinks = [
                 </div>
             </div>
 
-            <div class="flex flex-col gap-5 border-b border-slate-800/60 pb-6">
-                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">
+            {/* ARGËTIM */}
+            <div class="flex flex-col gap-4 border-b border-slate-800/60 pb-6">
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest pl-1">
                     Argëtim
                 </span>
-                <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
+                <div class="grid grid-cols-2 gap-y-1 gap-x-2">
                     {argetimLinks.map(link => (
                          <a
                             href={`/tags/${link.id}`}
-                            class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                            class="block px-4 py-2.5 rounded-full text-slate-200 text-[17px] font-bookerly no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white active:bg-[#DC2626] active:text-white"
                         >
                             {link.label}
                         </a>
@@ -374,21 +385,23 @@ const teTjeraLinks = [
                 </div>
             </div>
 
-            <div class="flex flex-col gap-5 pb-4">
-                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest">
+            {/* TË TJERA */}
+            <div class="flex flex-col gap-4 pb-4">
+                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest pl-1">
                     Të tjera
                 </span>
-                <div class="grid grid-cols-2 gap-y-5 gap-x-4 pl-1">
+                <div class="grid grid-cols-2 gap-y-1 gap-x-2">
                      {teTjeraLinks.map(link => (
                          <a
                             href={`/tags/${link.id}`}
-                            class="relative text-slate-200 text-[17px] font-bookerly no-underline hover:text-[#DC2626] block transition-all duration-400 ease-out hover:translate-x-2 pl-3 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[2px] before:bg-[#DC2626] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:transition-transform before:duration-300 before:ease-out"
+                            class="block px-4 py-2.5 rounded-full text-slate-200 text-[17px] font-bookerly no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white active:bg-[#DC2626] active:text-white"
                         >
                             {link.label}
                         </a>
                     ))}
                 </div>
             </div>
+            
         </div>
     </div>
 
