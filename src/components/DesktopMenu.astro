@@ -1,0 +1,79 @@
+---
+// src/components/DesktopMenu.astro
+import { Image } from "astro:assets";
+
+interface Props {
+    aktualitetLinks: any[];
+    argetimLinks: any[];
+    teTjeraLinks: any[];
+}
+const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
+---
+<div
+    id="desktop-nav"
+    class="hidden xl:flex absolute left-1/2 -translate-x-1/2 top-0 h-full items-center z-50"
+>
+    <div class="flex gap-2 h-full items-center">
+        <a
+            href="/te-fundit"
+            class="standard-link px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
+        >
+            Të fundit
+        </a>
+
+        {["aktualitet", "argetim", "te-tjera"].map((id) => (
+            <div
+                class="nav-trigger group h-full flex items-center cursor-pointer"
+                data-target={id}
+            >
+                <span
+                    class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
+                >
+                    {id === "aktualitet" ? "Aktualitet" : id === "argetim" ? "Argëtim" : "Të tjera"}
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-180 group-[.active-trigger]:rotate-180"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </div>
+        ))}
+    </div>
+
+    {/* FLUID VIEWPORT: Hoqëm lartësinë fikse 300px nga 'style' */}
+    <div
+        id="fluid-viewport"
+        class="absolute top-[calc(100%-10px)] left-0 bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.12)] rounded-2xl z-50 overflow-hidden transform-gpu will-change-[width,height,transform] pointer-events-none opacity-0"
+        style="transition: width 300ms cubic-bezier(0.25, 1, 0.5, 1), height 300ms cubic-bezier(0.25, 1, 0.5, 1), transform 300ms cubic-bezier(0.25, 1, 0.5, 1), opacity 200ms ease-out;"
+    >
+        {[
+            { id: "aktualitet", links: aktualitetLinks, width: "480px" },
+            { id: "argetim", links: argetimLinks, width: "440px" },
+            { id: "te-tjera", links: teTjeraLinks, width: "400px" }
+        ].map((section) => (
+            <div
+                id={`menu-${section.id}`}
+                class={`menu-content mega-menu-container absolute top-0 left-0 flex transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3`}
+                style={`width: ${section.width};`}
+            >
+                {/* Kolona e linqeve dikton lartësinë natyrale të dritares */}
+                <div class="links-wrapper shrink-0 w-[140px] flex flex-col py-5 pl-5 pr-1 relative z-10 gap-0.5">
+                    {section.links.map((link: any) => (
+                        <a href={`/tags/${link.id}`} data-target={link.id} class="mega-link group block w-full py-0.5 no-underline cursor-pointer">
+                            <span class="pill-shape block w-full px-3.5 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[13px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
+                                {link.label}
+                            </span>
+                        </a>
+                    ))}
+                </div>
+
+                {/* Imazhi merr lartësinë e kolonës së linqeve falë 'self-stretch' të flex-it */}
+                <div class="flex-1 p-3 flex">
+                    <div class="w-full h-full relative overflow-hidden rounded-xl bg-slate-100 group/imagebox border border-slate-200/40 shadow-inner">
+                        {section.links.map((link: any) => (
+                            <div data-id={link.id} class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none">
+                                <Image src={link.image} alt={link.label} class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>

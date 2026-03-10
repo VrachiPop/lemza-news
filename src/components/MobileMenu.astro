@@ -1,0 +1,95 @@
+---
+// src/components/MobileMenu.astro
+interface Props {
+    aktualitetLinks: any[];
+    argetimLinks: any[];
+    teTjeraLinks: any[];
+}
+const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
+
+const sections = [
+  { id: "mobile-aktualitet", label: "Aktualitet", links: aktualitetLinks },
+  { id: "mobile-argetim", label: "Argëtim", links: argetimLinks },
+  { id: "mobile-te-tjera", label: "Të tjera", links: teTjeraLinks }
+];
+---
+<div
+    class="hidden flex-col absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-[#0f172a]/95 backdrop-blur-2xl shadow-2xl z-50 pointer-events-auto border-t border-slate-800/40 transition-all duration-300"
+    id="mobile-menu"
+>
+    <div class="flex flex-col p-6 gap-4 pb-32">
+        
+        {/* 1. Të Fundit - Tani me ngjyrë si të tjerat */}
+        <a href="/te-fundit" class="group block w-full no-underline">
+            <span class="block w-full px-6 py-4 rounded-full bg-slate-800/40 border border-slate-700/30 text-white font-bookerly font-black text-xl tracking-wide transition-all active:scale-[0.97] active:bg-[#DC2626] text-left">
+                Të fundit
+            </span>
+        </a>
+
+        {/* 2. Kategoritë "Spawnable" */}
+        {sections.map((section) => (
+            <div class="flex flex-col gap-2">
+                <button 
+                    data-accordion-target={section.id}
+                    class="mobile-accordion-trigger w-full flex items-center justify-between px-6 py-4 rounded-full bg-slate-800/40 border border-slate-700/30 text-white transition-all active:scale-[0.97] active:bg-[#DC2626]"
+                >
+                    <span class="font-bookerly font-black text-xl tracking-wide">{section.label}</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="chevron-icon transition-transform duration-300"><path d="M6 9l6 6 6-6"></path></svg>
+                </button>
+
+                <div 
+                    id={section.id} 
+                    class="mobile-accordion-content hidden flex-col gap-1 overflow-hidden transition-all duration-300 opacity-0 h-0"
+                >
+                    <div class="grid grid-cols-2 gap-2 p-2 bg-slate-900/40 rounded-3xl mt-1 border border-slate-800/50">
+                        {section.links.map((link: any) => (
+                            <a
+                                href={`/tags/${link.id}`}
+                                class="group block py-1 no-underline"
+                            >
+                                <span class="block text-center px-4 py-2.5 rounded-full text-slate-300 font-bookerly font-bold text-[15px] transition-all group-active:bg-[#DC2626] group-active:text-white">
+                                    {link.label}
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const triggers = document.querySelectorAll('.mobile-accordion-trigger');
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const targetId = trigger.getAttribute('data-accordion-target');
+                const content = document.getElementById(targetId!);
+                const chevron = trigger.querySelector('.chevron-icon');
+
+                document.querySelectorAll('.mobile-accordion-content').forEach(el => {
+                    if (el.id !== targetId) {
+                        el.classList.add('hidden');
+                        (el as HTMLElement).style.height = '0';
+                        (el as HTMLElement).style.opacity = '0';
+                        el.previousElementSibling?.querySelector('.chevron-icon')?.classList.remove('rotate-180');
+                    }
+                });
+
+                if (content?.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    (content as HTMLElement).style.height = 'auto'; 
+                    (content as HTMLElement).style.opacity = '1';
+                    chevron?.classList.add('rotate-180');
+                } else {
+                    content?.classList.add('hidden');
+                    (content as HTMLElement).style.height = '0';
+                    (content as HTMLElement).style.opacity = '0';
+                    chevron?.classList.remove('rotate-180');
+                }
+            });
+        });
+    });
+</script>

@@ -21,6 +21,12 @@ import imgShendeti from "../assets/banners/shendeti.png";
 import imgShkence from "../assets/banners/shkence.jpg";
 import imgTeknologji from "../assets/banners/teknologji.png";
 
+// Importojmë Komponentët e rinj
+import Logo from "./Logo.astro";
+import DesktopMenu from "./DesktopMenu.astro";
+import MobileMenu from "./MobileMenu.astro";
+import SearchOverlay from "./SearchOverlay.astro";
+
 // ==========================================
 // TË DHËNAT E MENYSË (DRY REFACTOR)
 // ==========================================
@@ -61,231 +67,17 @@ const teTjeraLinks = [
     <nav
         class="relative flex items-center justify-between h-[80px] max-w-[1600px] mx-auto px-4 md:px-8 pointer-events-auto"
     >
-        {/* LOGO (E ankoruar Majtas) */}
-        <a
-            href="/"
-            class="flex items-center gap-3 group no-underline h-full py-2 select-none"
-        >
-            <div
-                class="lemza-icon bg-[#DC2626] text-white w-10 h-10 flex items-center justify-center rounded-sm shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105"
-            >
-                <span class="font-bookerly font-black text-3xl leading-none"
-                    >L</span
-                >
-            </div>
-            <div
-                class="lemza-text flex flex-col justify-center h-10 text-white"
-            >
-                <span
-                    class="font-black text-2xl leading-[0.8] tracking-tight uppercase font-bookerly"
-                    >LEMZA</span
-                >
-                <span
-                    class="font-bold text-2xl leading-none tracking-tight uppercase font-bookerly"
-                    >NEWS</span
-                >
-            </div>
-        </a>
+        {/* LOGO */}
+        <Logo />
 
-        {/* MENYJA E QENDRËS (Tekst i bardhë normal, Pilulë e kuqe në Hover) */}
-        <div
-            id="desktop-nav"
-            class="hidden xl:flex absolute left-1/2 -translate-x-1/2 top-0 h-full items-center z-50"
-        >
-            <div class="flex gap-2 h-full items-center">
-                <a
-                    href="/te-fundit"
-                    class="standard-link px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
-                >
-                    Të fundit
-                </a>
+        {/* DESKTOP MENU & MEGA MENU */}
+        <DesktopMenu 
+            aktualitetLinks={aktualitetLinks} 
+            argetimLinks={argetimLinks} 
+            teTjeraLinks={teTjeraLinks} 
+        />
 
-                <div
-                    class="nav-trigger group h-full flex items-center cursor-pointer"
-                    data-target="aktualitet"
-                >
-                    <span
-                        class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
-                    >
-                        Aktualitet
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="transition-transform duration-300 group-hover:rotate-180 group-[.active-trigger]:rotate-180"
-                            ><path d="M6 9l6 6 6-6"></path>
-                        </svg>
-                    </span>
-                </div>
-
-                <div
-                    class="nav-trigger group h-full flex items-center cursor-pointer"
-                    data-target="argetim"
-                >
-                    <span
-                        class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
-                    >
-                        Argëtim
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="transition-transform duration-300 group-hover:rotate-180 group-[.active-trigger]:rotate-180"
-                            ><path d="M6 9l6 6 6-6"></path>
-                        </svg>
-                    </span>
-                </div>
-
-                <div
-                    class="nav-trigger group h-full flex items-center cursor-pointer"
-                    data-target="te-tjera"
-                >
-                    <span
-                        class="px-5 py-2.5 rounded-full text-white font-bookerly font-bold text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
-                    >
-                        Të tjera
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="transition-transform duration-300 group-hover:rotate-180 group-[.active-trigger]:rotate-180"
-                            ><path d="M6 9l6 6 6-6"></path>
-                        </svg>
-                    </span>
-                </div>
-            </div>
-
-            {/* FLUID VIEWPORT PËR MEGA MENUNË */}
-            <div
-                id="fluid-viewport"
-                class="absolute top-[calc(100%-10px)] left-0 bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.12)] rounded-2xl z-50 overflow-hidden transform-gpu will-change-[width,height,transform] pointer-events-none opacity-0"
-                style="transition: width 300ms cubic-bezier(0.25, 1, 0.5, 1), height 300ms cubic-bezier(0.25, 1, 0.5, 1), transform 300ms cubic-bezier(0.25, 1, 0.5, 1), opacity 200ms ease-out; transform: translateX(0) translateY(10px); width: 480px; height: 300px;"
-            >
-                {/* AKTUALITET MENU */}
-                <div
-                    id="menu-aktualitet"
-                    class="menu-content mega-menu-container absolute top-0 left-0 w-[480px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
-                >
-                    {/* Mbështjellësi e lë linkun <a> të zgjerohet 100% */}
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 mt-1 ml-1">
-                        {aktualitetLinks.map(link => (
-                            <a
-                                href={`/tags/${link.id}`}
-                                data-target={link.id}
-                                class="mega-link group block w-full py-0.5 no-underline cursor-pointer"
-                            >
-                                {/* Kjo është pilula e vërtetë që merr ngjyrë nga 'group-hover' i <a> */}
-                                <span class="pill-shape inline-block px-4 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
-                                    {link.label}
-                                </span>
-                            </a>
-                        ))}
-                    </div>
-
-                    <div class="w-[200px] shrink-0 rounded-2xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
-                        {aktualitetLinks.map(link => (
-                            <div
-                                data-id={link.id}
-                                class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                            >
-                                <Image
-                                    src={link.image}
-                                    alt={link.label}
-                                    class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* ARGËTIM MENU */}
-                <div
-                    id="menu-argetim"
-                    class="menu-content mega-menu-container absolute top-0 left-0 w-[440px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
-                >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 mt-1 ml-1">
-                        {argetimLinks.map(link => (
-                            <a
-                                href={`/tags/${link.id}`}
-                                data-target={link.id}
-                                class="mega-link group block w-full py-0.5 no-underline cursor-pointer"
-                            >
-                                <span class="pill-shape inline-block px-4 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
-                                    {link.label}
-                                </span>
-                            </a>
-                        ))}
-                    </div>
-
-                    <div class="w-[180px] shrink-0 rounded-2xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
-                        {argetimLinks.map(link => (
-                            <div
-                                data-id={link.id}
-                                class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                            >
-                                <Image
-                                    src={link.image}
-                                    alt={link.label}
-                                    class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* TË TJERA MENU */}
-                <div
-                    id="menu-te-tjera"
-                    class="menu-content mega-menu-container absolute top-0 left-0 w-[400px] p-3 flex gap-2 transition-all duration-300 ease-out opacity-0 pointer-events-none z-0 -translate-x-3"
-                >
-                    <div class="links-wrapper flex-1 flex flex-col relative z-10 pr-2 mt-1 ml-1">
-                        {teTjeraLinks.map(link => (
-                            <a
-                                href={`/tags/${link.id}`}
-                                data-target={link.id}
-                                class="mega-link group block w-full py-0.5 no-underline cursor-pointer"
-                            >
-                                <span class="pill-shape inline-block px-4 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[14px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
-                                    {link.label}
-                                </span>
-                            </a>
-                        ))}
-                    </div>
-
-                    <div class="w-[180px] shrink-0 rounded-2xl relative overflow-hidden shadow-sm bg-slate-100 group/imagebox">
-                         {teTjeraLinks.map(link => (
-                            <div
-                                data-id={link.id}
-                                class="mega-panel absolute inset-0 transition-opacity duration-400 opacity-0 pointer-events-none"
-                            >
-                                <Image
-                                    src={link.image}
-                                    alt={link.label}
-                                    class="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 group-hover/imagebox:scale-110 group-hover/imagebox:brightness-110"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {/* IKONAT KËRKIM & MENY (Të rikthyera në të bardhë) */}
+        {/* IKONAT KËRKIM & MENY */}
         <div class="flex items-center gap-5 text-white">
             <button
                 id="search-toggle"
@@ -334,150 +126,15 @@ const teTjeraLinks = [
         </div>
     </nav>
 
-    {/* MOBILE MENU (Pilulat e Kuqe të Integruara) */}
-    <div
-        class="hidden flex-col absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-[#0f172a]/98 backdrop-blur-2xl shadow-2xl z-50 pointer-events-auto border-t border-slate-800/60 transition-opacity duration-300"
-        id="mobile-menu"
-    >
-        <div class="flex flex-col p-6 md:p-8 gap-6 pb-32">
-            
-            {/* Pilula kryesore "Të fundit" */}
-            <div class="border-b border-slate-800/60 pb-6">
-                <a
-                    href="/te-fundit"
-                    class="inline-block w-fit px-5 py-2.5 -ml-5 rounded-full text-white font-bookerly font-black text-2xl tracking-wide no-underline transition-all duration-300 hover:bg-[#DC2626] active:bg-[#DC2626]"
-                >
-                    Të fundit
-                </a>
-            </div>
+    {/* MOBILE MENU */}
+    <MobileMenu 
+        aktualitetLinks={aktualitetLinks} 
+        argetimLinks={argetimLinks} 
+        teTjeraLinks={teTjeraLinks} 
+    />
 
-            {/* AKTUALITET */}
-            <div class="flex flex-col gap-4 border-b border-slate-800/60 pb-6">
-                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest pl-1">
-                    Aktualitet
-                </span>
-                <div class="grid grid-cols-2 gap-y-1 gap-x-2">
-                    {aktualitetLinks.map(link => (
-                        <a
-                            href={`/tags/${link.id}`}
-                            class="block px-4 py-2.5 rounded-full text-slate-200 text-[17px] font-bookerly no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white active:bg-[#DC2626] active:text-white"
-                        >
-                            {link.label}
-                        </a>
-                    ))}
-                </div>
-            </div>
-
-            {/* ARGËTIM */}
-            <div class="flex flex-col gap-4 border-b border-slate-800/60 pb-6">
-                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest pl-1">
-                    Argëtim
-                </span>
-                <div class="grid grid-cols-2 gap-y-1 gap-x-2">
-                    {argetimLinks.map(link => (
-                         <a
-                            href={`/tags/${link.id}`}
-                            class="block px-4 py-2.5 rounded-full text-slate-200 text-[17px] font-bookerly no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white active:bg-[#DC2626] active:text-white"
-                        >
-                            {link.label}
-                        </a>
-                    ))}
-                </div>
-            </div>
-
-            {/* TË TJERA */}
-            <div class="flex flex-col gap-4 pb-4">
-                <span class="text-[#DC2626] font-black text-[11px] uppercase tracking-widest pl-1">
-                    Të tjera
-                </span>
-                <div class="grid grid-cols-2 gap-y-1 gap-x-2">
-                     {teTjeraLinks.map(link => (
-                         <a
-                            href={`/tags/${link.id}`}
-                            class="block px-4 py-2.5 rounded-full text-slate-200 text-[17px] font-bookerly no-underline transition-all duration-300 hover:bg-[#DC2626] hover:text-white active:bg-[#DC2626] active:text-white"
-                        >
-                            {link.label}
-                        </a>
-                    ))}
-                </div>
-            </div>
-            
-        </div>
-    </div>
-
-    <div
-        id="search-overlay"
-        class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[2000] flex justify-center items-start pt-[12vh] md:pt-[20vh] opacity-0 pointer-events-none transition-all duration-300 hidden"
-    >
-        <button
-            id="search-close"
-            class="absolute top-4 right-4 md:top-8 md:right-8 text-slate-400 hover:text-white transition-colors cursor-pointer bg-slate-800/50 hover:bg-slate-700 p-2.5 md:p-3 rounded-full border border-slate-700 shadow-sm"
-        >
-            <svg
-                width="22"
-                height="22"
-                class="md:w-6 md:h-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><line x1="18" y1="6" x2="6" y2="18"></line><line
-                    x1="6"
-                    y1="6"
-                    x2="18"
-                    y2="18"></line>
-            </svg>
-        </button>
-        <form action="/kerko" method="GET" class="w-full max-w-3xl mx-4">
-            <div
-                class="flex items-center bg-white rounded-xl md:rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden pr-1.5 md:pr-2 pl-3 md:pl-6 py-1.5 md:py-2 border border-slate-200"
-            >
-                <svg
-                    width="20"
-                    height="20"
-                    class="md:w-7 md:h-7 shrink-0 ml-1"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#94a3b8"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    ><circle cx="11" cy="11" r="8"></circle><line
-                        x1="21"
-                        y1="21"
-                        x2="16.65"
-                        y2="16.65"></line>
-                </svg>
-                <input
-                    type="text"
-                    name="q"
-                    id="search-input"
-                    placeholder="Kërko..."
-                    class="w-full bg-transparent border-none text-slate-800 text-lg md:text-2xl font-bookerly font-light py-3 md:py-4 px-3 md:px-4 outline-none placeholder:text-slate-400 placeholder:font-medium"
-                    autocomplete="off"
-                    required
-                />
-                <button
-                    type="submit"
-                    class="bg-[#DC2626] hover:bg-red-700 text-white font-black uppercase text-[10px] md:text-xs tracking-widest px-4 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl transition-colors cursor-pointer border-none shrink-0"
-                    >KËRKO</button
-                >
-            </div>
-            <p
-                class="hidden md:block text-center mt-6 text-slate-400 font-news text-sm font-medium"
-            >
-                Shtyp <kbd
-                    class="bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 mx-1 font-mono text-xs shadow-sm"
-                    >Enter</kbd
-                > për të kërkuar ose <kbd
-                    class="bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 mx-1 font-mono text-xs shadow-sm"
-                    >ESC</kbd
-                > për të mbyllur
-            </p>
-        </form>
-    </div>
+    {/* SEARCH OVERLAY */}
+    <SearchOverlay />
 </header>
 
 <script>
@@ -558,13 +215,11 @@ const teTjeraLinks = [
         const viewport = document.getElementById("fluid-viewport");
         const contents = document.querySelectorAll(".menu-content");
 
-        // I tregojmë TypeScript-it saktësisht çfarë lloji është ky variabël
         let closeTimeout: ReturnType<typeof setTimeout>;
         let currentLeft = 0;
 
         function closeViewport() {
             closeTimeout = setTimeout(() => {
-                // Kontrollojmë nëse viewport ekziston para se ta prekim
                 if (viewport) {
                     viewport.style.opacity = "0";
                     viewport.style.transform = `translateX(${currentLeft}px) translateY(10px)`;
@@ -599,7 +254,6 @@ const teTjeraLinks = [
                     );
                 });
 
-                // Ekzekutojmë logjikën vetëm nëse të gjitha elementet ekzistojnë
                 if (targetContent && viewport && desktopNav) {
                     targetContent.classList.remove(
                         "opacity-0",
@@ -641,7 +295,6 @@ const teTjeraLinks = [
             link.addEventListener("mouseenter", closeViewport)
         );
 
-        // Përdorim ?. (optional chaining) për t'u mbrojtur nga vlerat 'null'
         viewport?.addEventListener("mouseenter", () => clearTimeout(closeTimeout));
         desktopNav?.addEventListener("mouseleave", closeViewport);
 
@@ -654,7 +307,6 @@ const teTjeraLinks = [
             const links = menu.querySelectorAll(".mega-link");
             const panels = menu.querySelectorAll(".mega-panel");
 
-            // I tregojmë TypeScript-it që targetId është string ose null
             function activateTab(targetId: string | null) {
                 if (!targetId) return;
 
@@ -691,12 +343,6 @@ const teTjeraLinks = [
                 link.addEventListener("mouseenter", () => {
                     activateTab(link.getAttribute("data-target"));
                 });
-            });
-
-            menu.addEventListener("mouseleave", () => {
-                if (links.length > 0) {
-                    activateTab(links[0].getAttribute("data-target"));
-                }
             });
         });
         

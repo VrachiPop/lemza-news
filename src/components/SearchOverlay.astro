@@ -1,0 +1,76 @@
+---
+// src/components/SearchOverlay.astro
+---
+<div
+    id="search-overlay"
+    class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[2000] flex justify-center items-start pt-[12vh] md:pt-[20vh] opacity-0 pointer-events-none transition-all duration-300 hidden"
+>
+    <button
+        id="search-close"
+        class="absolute top-4 right-4 md:top-8 md:right-8 text-slate-400 hover:text-white transition-colors cursor-pointer bg-slate-800/50 hover:bg-slate-700 p-2.5 md:p-3 rounded-full border border-slate-700 shadow-sm"
+    >
+        <svg
+            width="22"
+            height="22"
+            class="md:w-6 md:h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><line x1="18" y1="6" x2="6" y2="18"></line><line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"></line>
+        </svg>
+    </button>
+    <form action="/kerko" method="GET" class="w-full max-w-3xl mx-4">
+        <div
+            class="flex items-center bg-white rounded-xl md:rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden pr-1.5 md:pr-2 pl-3 md:pl-6 py-1.5 md:py-2 border border-slate-200"
+        >
+            <svg
+                width="20"
+                height="20"
+                class="md:w-7 md:h-7 shrink-0 ml-1"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#94a3b8"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><circle cx="11" cy="11" r="8"></circle><line
+                    x1="21"
+                    y1="21"
+                    x2="16.65"
+                    y2="16.65"></line>
+            </svg>
+            <input
+                type="text"
+                name="q"
+                id="search-input"
+                placeholder="Kërko..."
+                class="w-full bg-transparent border-none text-slate-800 text-lg md:text-2xl font-bookerly font-light py-3 md:py-4 px-3 md:px-4 outline-none placeholder:text-slate-400 placeholder:font-medium"
+                autocomplete="off"
+                required
+            />
+            <button
+                type="submit"
+                class="bg-[#DC2626] hover:bg-red-700 text-white font-black uppercase text-[10px] md:text-xs tracking-widest px-4 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl transition-colors cursor-pointer border-none shrink-0"
+                >KËRKO</button
+            >
+        </div>
+        <p
+            class="hidden md:block text-center mt-6 text-slate-400 font-news text-sm font-medium"
+        >
+            Shtyp <kbd
+                class="bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 mx-1 font-mono text-xs shadow-sm"
+                >Enter</kbd
+            > për të kërkuar ose <kbd
+                class="bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700 mx-1 font-mono text-xs shadow-sm"
+                >ESC</kbd
+            > për të mbyllur
+        </p>
+    </form>
+</div>
