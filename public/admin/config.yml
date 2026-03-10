@@ -29,5 +29,6 @@ collections:
         widget: "list"
         default: ["Lajme"]
       - {label: "Përmbajtja", name: "body", widget: "markdown"}
+      - { label: "Thënia e Ditës (Opsionale)", name: "quoteOfTheDay", widget: "string", required: false }
 
 local_backend: false
