@@ -7,7 +7,7 @@ description: TIRANË — Autoriteti Rrugor Shqiptar (ARRSH) ka befasuar sot treg
   drithërave për mëngjes. Duke vërejtur se si asfalti i sapo shtruar i
   Korridorit 8...
 tags:
-  - Lajme
+  - ekonomi, shendeti
 quoteOfTheDay: Pse ta lëmë rrugën e shembur të iki kot, kur mund ta hanë
   qytetarët që e kanë paguar me taksat e tyre?
 ---
