@@ -1,16 +1,17 @@
 ---
+// src/components/EditorialBanner.astro
 import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
-  subtitle?: string;
+  subtitle?: string; 
 }
 
 const { title, subtitle } = Astro.props;
 const normalizedTitle = title.toLowerCase();
 
-// 1. Lidh titujt me emrat bazë të skedarëve
 const fileMap: Record<string, string> = {
+    "lemza news": "home",
     "të fundit": "te-fundit",
     "politikë": "politike",
     "ekonomi": "ekonomi",
@@ -32,18 +33,12 @@ const fileMap: Record<string, string> = {
 };
 
 const fileName = fileMap[normalizedTitle];
-
-// 2. Skanon dosjen për të gjitha fotot e mundshme
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/banners/*.{jpeg,jpg,png,webp}');
 
-// 3. LOGJIKA E RE: Gjej shtegun e saktë pavarësisht prapashtesës (.png, .jpg, etj)
-// Kërkojmë nëse ndonjë nga files që gjeti mbaron me "/te-fundit.png" ose "/te-fundit.jpg" etj.
 const matchingKey = Object.keys(images).find(key => key.includes(`/${fileName}.`));
 const defaultKey = Object.keys(images).find(key => key.includes(`/default-banner.`));
 
 let bgImageUrl = "";
-
-// 4. Ngarko foton nëse u gjet
 if (fileName && matchingKey) {
     const imgModule = await images[matchingKey]();
     bgImageUrl = imgModule.default.src;
@@ -61,22 +56,126 @@ const overlayColorClass = "bg-[#0f172a]";
         <div 
             class="absolute inset-0 w-full h-full bg-cover bg-center z-0"
             style={`background-image: url('${bgImageUrl}');`}
-            role="img"
-            aria-label={title}
         ></div>
     )}
 
-    <div class={`absolute inset-0 ${overlayColorClass} ${bgImageUrl !== "" ? "opacity-80" : "opacity-100"} z-10`}></div>
+    <div class={`absolute inset-0 ${overlayColorClass} ${bgImageUrl !== "" ? "opacity-80" : "opacity-100"} mix-blend-multiply z-10`}></div>
 
-    <div class="relative z-20 max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col items-start justify-end text-left text-white pt-[80px] pb-16 h-full w-full">
-        <h1 class="font-black text-4xl md:text-5xl lg:text-5xl uppercase tracking-tight mb-3 drop-shadow-md">
+    <div class="relative z-20 max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col items-center text-center text-white pt-[80px] justify-center h-full w-full">
+        {/* Shtova klasën 'fade-up-title' */}
+        <h1 class="fade-up-title font-black text-4xl md:text-5xl lg:text-5xl uppercase tracking-tight mb-4 drop-shadow-xl">
             {title}
         </h1>
 
+        {/* Shtova klasën 'fade-up-subtitle' */}
         {subtitle && (
-            <p class="text-lg md:text-2xl max-w-2xl font-medium opacity-90 drop-shadow-sm leading-relaxed">
-                {subtitle}
-            </p>
+            <p 
+                class="fade-up-subtitle text-xl md:text-2xl font-serif uppercase tracking-[0.1em] drop-shadow-sm leading-relaxed"
+                set:html={subtitle} 
+            />
         )}
     </div>
 </section>
+
+<style is:global>
+    /* ========================================= */
+    /* 1. ANIMACIONET E HYRJES (FADE UP)         */
+    /* ========================================= */
+    .fade-up-title {
+        animation: fadeUpAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        will-change: transform, opacity;
+    }
+
+    .fade-up-subtitle {
+        animation: fadeUpAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        will-change: transform, opacity;
+    }
+
+    @keyframes fadeUpAnim {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ========================================= */
+    /* 2. LOGJIKA E STRIKETHROUGH                */
+    /* ========================================= */
+    .strike-text {
+        position: relative;
+        display: inline-block;
+        animation: fadeOutText 0.4s ease 1.2s both;
+    }
+
+    .strike-text::after {
+        content: "";
+        position: absolute;
+        left: -5%;
+        top: 50%;
+        height: 4px;
+        background-color: #DC2626;
+        transform: translateY(-50%) rotate(-2deg);
+        border-radius: 2px;
+        box-shadow: 0 0 8px rgba(220, 38, 38, 0.4);
+        animation: drawStrike 0.2s cubic-bezier(0.65, 0, 0.35, 1) 0.8s both;
+    }
+
+    /* ========================================= */
+    /* 3. SHFAQJA E "RRENA" (KUTIA E JASHTME)    */
+    /* ========================================= */
+    .reveal-text {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        color: white; 
+        text-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+        white-space: nowrap; /* E mban fjalën në një rresht */
+        /* Kutia hapet butësisht (0.4s) për t'i bërë vend shkronjave */
+        animation: expandBox 0.4s ease-out 1s both;
+    }
+
+    /* ========================================= */
+    /* 4. TYPEWRITER EFFECT PËR SHKRONJAT        */
+    /* ========================================= */
+    .type-letter {
+        opacity: 0;
+        display: inline-block;
+    }
+
+    /* Viza mbaron në 1.4s. Fillojmë të shkruajmë direkt! */
+    .type-letter:nth-child(1) { animation: typePop 0.05s both 1.4s; }  /* rr */
+    .type-letter:nth-child(2) { animation: typePop 0.05s both 1.5s; }  /* e */
+    .type-letter:nth-child(3) { animation: typePop 0.05s both 1.6s; }  /* n */
+    .type-letter:nth-child(4) { animation: typePop 0.05s both 1.7s; }  /* a. */
+
+    /* KEYFRAMES */
+    @keyframes fadeOutText {
+        0% { color: rgba(255, 255, 255, 1); }
+        100% { color: rgba(255, 255, 255, 0.4); }
+    }
+
+    @keyframes drawStrike {
+        0% { width: 0; }
+        100% { width: 110%; }
+    }
+
+    @keyframes expandBox {
+        0% {
+            max-width: 0;
+            opacity: 0;
+        }
+        100% {
+            max-width: 150px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes typePop {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+</style>
