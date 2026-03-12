@@ -13,6 +13,19 @@ const allPosts = (await getCollection("blog")).sort(
 );
 
 const mainPost = allPosts[0];
+
+// ==========================================
+// LOGJIKA E MADHËSISË SË TITULLIT
+// ==========================================
+const titleText = mainPost.data.title;
+// 90 karaktere është afërsisht 13-15 fjalë (një fjali normale). 
+// Mund ta ndryshosh këtë numër nëse do që pragu të jetë më i lartë ose i ulët.
+const isShortTitle = titleText.length < 90;
+
+// Zgjedhim klasat e Tailwind bazuar te gjatësia
+const dynamicTitleSize = isShortTitle 
+    ? "text-2xl sm:text-3xl md:text-4xl lg:text-4xl" // I shkurtër -> I Madh
+    : "text-xl sm:text-2xl md:text-2xl lg:text-2xl"; // I gjatë -> Më i vogël
 ---
 
 {/* Ndryshuam përmasat: Hoqëm lartësinë fikse dhe vendosëm 'aspect-video' (16:9) */}
@@ -51,17 +64,12 @@ const mainPost = allPosts[0];
                 }
             </span>
 
+            {/* Këtu injektojmë variablën dynamicTitleSize në vend të madhësive fikse */}
             <h1
-                class="font-bookerly max-w-full text-2xl sm:text-2xl md:text-3xl lg:text-3xl font-black leading-tight text-white drop-shadow-2xl mb-2 md:mb-4 group-hover:text-slate-100 transition-colors px-2 line-clamp-4"
+                class={`font-bookerly max-w-full font-black leading-tight text-white drop-shadow-2xl mb-1 md:mb-1 group-hover:text-slate-100 transition-colors px-2 line-clamp-4 ${dynamicTitleSize}`}
             >
-                {mainPost.data.title}
+                {titleText}
             </h1>
-
-            <div
-                class="text-white/80 text-[10px] md:text-sm font-bold uppercase tracking-widest flex items-center gap-2 mt-1 md:mt-2"
-            >
-                <FormattedDate date={mainPost.data.pubDate} />
-            </div>
         </div>
     </a>
 </section>
