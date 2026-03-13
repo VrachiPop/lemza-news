@@ -15,29 +15,37 @@ const allPosts = (await getCollection("blog")).sort(
 const mainPost = allPosts[0];
 
 // ==========================================
-// LOGJIKA E MADHËSISË SË TITULLIT
+// LOGJIKA E AVANCUAR E MADHËSISË SË TITULLIT
 // ==========================================
 const titleText = mainPost.data.title;
-// 90 karaktere është afërsisht 13-15 fjalë (një fjali normale). 
-// Mund ta ndryshosh këtë numër nëse do që pragu të jetë më i lartë ose i ulët.
-const isShortTitle = titleText.length < 90;
+const titleLength = titleText.length;
 
-// Zgjedhim klasat e Tailwind bazuar te gjatësia
-const dynamicTitleSize = isShortTitle 
-    ? "text-2xl sm:text-3xl md:text-4xl lg:text-4xl" // I shkurtër -> I Madh
-    : "text-xl sm:text-2xl md:text-2xl lg:text-2xl"; // I gjatë -> Më i vogël
+let dynamicTitleSize = "";
+
+if (titleLength > 120) {
+    // 1. TITULL SHUMË I GJATË (Mbi 120 karaktere / ~3 fjali)
+    // Zvogëlojmë shkronjat ndjeshëm që të mos mbysin ekranin
+    dynamicTitleSize = "text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-4xl";
+} else if (titleLength > 70) {
+    // 2. TITULL MESATAR (70 - 120 karaktere / ~2 fjali)
+    // Madhësia normale
+    dynamicTitleSize = "text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-5xl";
+} else {
+    // 3. TITULL I SHKURTËR (Nën 70 karaktere / ~1 fjali)
+    // Shkronja gjigante, goditëse
+    dynamicTitleSize = "text-2xl sm:text-3xl md:text-4xl lg:text-6xl max-w-6xl";
+}
 ---
 
-{/* Ndryshuam përmasat: Hoqëm lartësinë fikse dhe vendosëm 'aspect-video' (16:9) */}
-<section class="relative w-full aspect-video min-h-[350px] sm:min-h-0 overflow-hidden bg-slate-900 group rounded-2xl mb-12 shadow-md">
+<section class="relative w-full h-[100dvh] overflow-hidden bg-slate-900 group">
     <a href={getPostUrl(mainPost.slug)} class="block w-full h-full">
         {
             mainPost.data.heroImage && (
                 <Image
                     src={mainPost.data.heroImage}
                     alt={mainPost.data.title}
-                    width={1600}
-                    height={900}
+                    width={2000}
+                    height={1125}
                     loading="eager"
                     fetchpriority="high"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105"
@@ -46,16 +54,15 @@ const dynamicTitleSize = isShortTitle
         }
 
         <div
-            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"
+            class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"
         >
         </div>
 
-        {/* Rregulluam padding-un (hapësirat) që teksti të përshtatet perfekt në 16:9 edhe në celular */}
         <div
-            class="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end p-4 pb-8 md:p-8 md:pb-12 text-center z-20 h-full"
+            class="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end p-6 pb-16 md:p-6 md:pb-24 text-center z-20 mx-auto"
         >
             <span
-                class="bg-[#DC2626] text-white px-4 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-widest rounded-sm shadow-lg mb-3 md:mb-5"
+                class="bg-[#DC2626] text-white px-4 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-widest rounded-sm shadow-lg mb-4 md:mb-6"
             >
                 {
                     mainPost.data.tags && mainPost.data.tags.length > 0
@@ -64,12 +71,18 @@ const dynamicTitleSize = isShortTitle
                 }
             </span>
 
-            {/* Këtu injektojmë variablën dynamicTitleSize në vend të madhësive fikse */}
+            {/* Injektimi i klasave dinamike të madhësisë dhe gjerësisë */}
             <h1
-                class={`font-bookerly max-w-full font-black leading-tight text-white drop-shadow-2xl mb-1 md:mb-1 group-hover:text-slate-100 transition-colors px-2 line-clamp-4 ${dynamicTitleSize}`}
+                class={`font-bookerly font-black leading-tight text-white drop-shadow-2xl mb-3 md:mb-6 group-hover:text-slate-100 transition-colors px-4 line-clamp-4 mx-auto ${dynamicTitleSize}`}
             >
                 {titleText}
             </h1>
+
+            <div
+                class="text-white/80 text-[10px] md:text-sm font-black uppercase tracking-widest flex items-center gap-2 mt-1 md:mt-2"
+            >
+                <FormattedDate date={mainPost.data.pubDate} />
+            </div>
         </div>
     </a>
 </section>

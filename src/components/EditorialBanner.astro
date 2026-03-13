@@ -61,13 +61,12 @@ const overlayColorClass = "bg-[#0f172a]";
 
     <div class={`absolute inset-0 ${overlayColorClass} ${bgImageUrl !== "" ? "opacity-80" : "opacity-100"} mix-blend-multiply z-10`}></div>
 
-    <div class="relative z-20 max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col items-center text-center text-white pt-[80px] justify-center h-full w-full">
-        {/* Shtova klasën 'fade-up-title' */}
-        <h1 class="fade-up-title font-black text-4xl md:text-5xl lg:text-5xl uppercase tracking-tight mb-4 drop-shadow-xl">
+    {/* NDRYSHIMI KËTU: items-start, text-left, justify-end, dhe pb-12 md:pb-16 */}
+    <div class="relative z-20 max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col items-start text-left text-white pt-[80px] pb-12 md:pb-16 justify-end h-full w-full">
+        <h1 class="fade-up-title font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight mb-4 drop-shadow-xl">
             {title}
         </h1>
 
-        {/* Shtova klasën 'fade-up-subtitle' */}
         {subtitle && (
             <p 
                 class="fade-up-subtitle text-xl md:text-2xl font-serif uppercase tracking-[0.1em] drop-shadow-sm leading-relaxed"

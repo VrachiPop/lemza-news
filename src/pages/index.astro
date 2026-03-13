@@ -6,7 +6,6 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Hero from '../components/home/Hero.astro';
-import EditorialBanner from '../components/EditorialBanner.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
 import '../app.css';
@@ -22,12 +21,12 @@ const allPosts = (await getCollection('blog')).sort(
 // 2. Kapërce të parin (sepse ai ndodhet në Hero) dhe merr 6 lajme
 const gridPosts = allPosts.slice(1, 7);
 
-// 3. LOGJIKA E RE PËR LAYOUT-in
-// Dy postimet më të rëndësishme që do shfaqen në 2 kolona (Fokus)
-const topTwoPosts = gridPosts.slice(0, 2);
+// 3. LOGJIKA E THJESHTË E LAYOUT-it
+// Lajmi i madh Kryesore (i pari pas Hero-s)
+const featuredPost = gridPosts[0];
 
-// Pjesa e mbetur (4 lajme) që do shfaqen në formë liste poshtë tyre
-const restPosts = gridPosts.slice(2);
+// Lista e lajmeve poshtë tij
+const restPosts = gridPosts.slice(1);
 ---
 
 <!doctype html>
@@ -43,7 +42,7 @@ const restPosts = gridPosts.slice(2);
                 scroll-behavior: smooth;
             }
             .news-container {
-                padding-top: 3rem;
+                padding-top: 4rem; 
                 padding-bottom: 5rem;
             }
         </style>
@@ -52,83 +51,75 @@ const restPosts = gridPosts.slice(2);
         
         <Header />
 
-        {/* BANNERI NË FILLIM TË EKRANIT */}
-        <EditorialBanner 
-    title="Lemza News" 
-    subtitle='Të parët te <span class="strike-text">lajmi</span><span class="reveal-text">&nbsp;<span class="type-letter">rr</span><span class="type-letter">e</span><span class="type-letter">n</span><span class="type-letter">a</span></span>' 
-/>
+        {/* ========================================== */}
+        {/* HERO (Paris Match style - Full Screen)     */}
+        {/* ========================================== */}
+        <Hero />
 
         <div class="news-container">
             <div class="w-full max-w-[1600px] mx-auto px-2 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
                 <main class="lg:col-span-8">
 
-                    {/* HERO LAJMI KRYESOR */}
-                    <Hero />
-
                     {/* ========================================== */}
-                    {/* LAJMET E DYTA DHE TË TRETA (2 KOLONA) */}
+                    {/* LAJMI KRYESOR (I MADH)                     */}
                     {/* ========================================== */}
-                    {topTwoPosts.length > 0 && (
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b border-slate-200">
-                            {topTwoPosts.map((post) => (
-                                <article class="group flex flex-col h-full">
-                                    <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-col h-full">
-                                        
-                                        {/* Imazhi */}
-                                        <div class="relative w-full aspect-[16/10] overflow-hidden rounded-xl shadow-sm mb-5 bg-slate-100 shrink-0">
-                                            {post.data.heroImage ? (
-                                                <Image 
-                                                    src={post.data.heroImage} 
-                                                    alt={post.data.title} 
-                                                    width={600}   
-                                                    height={400}
-                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                                                />
-                                            ) : (
-                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
-                                            )}
+                    {featuredPost && (
+                        <article class="group mb-12 pb-12 border-b border-slate-200">
+                            <a href={getPostUrl(featuredPost.slug)} class="no-underline text-inherit block">
+                                
+                                {/* Imazhi i Madh */}
+                                <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl shadow-sm mb-6 bg-slate-100">
+                                    {featuredPost.data.heroImage ? (
+                                        <Image 
+                                            src={featuredPost.data.heroImage} 
+                                            alt={featuredPost.data.title} 
+                                            width={1000}   
+                                            height={562}
+                                            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
+                                        />
+                                    ) : (
+                                        <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                    )}
 
-                                            {/* TAGU I KUQ */}
-                                            <div class="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
-                                                {post.data.tags && post.data.tags.length > 0 ? (
-                                                    post.data.tags.map((tag: string) => (
-                                                        <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-sm shadow-md">
-                                                            {getDisplayTag(tag)}
-                                                        </span>
-                                                    ))
-                                                ) : (
-                                                    <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-sm shadow-md">
-                                                        FOKUS
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
+                                    {/* TAGU I KUQ */}
+                                    <div class="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
+                                        {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (
+                                            featuredPost.data.tags.map((tag: string) => (
+                                                <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-sm shadow-md">
+                                                    {getDisplayTag(tag)}
+                                                </span>
+                                            ))
+                                        ) : (
+                                            <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-sm shadow-md">
+                                                KRYESORE
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
 
-                                        {/* Përmbajtja */}
-                                        <div class="flex flex-col flex-1 gap-2">
-                                            <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                                                <FormattedDate date={post.data.pubDate} />
-                                                <span class="text-[#DC2626]">&bull;</span>
-                                                <span class="text-[#DC2626]">Fokus</span>
-                                            </div>
+                                {/* Content i Madh */}
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                        <FormattedDate date={featuredPost.data.pubDate} />
+                                        <span class="text-[#DC2626]">&bull;</span>
+                                        <span class="text-[#DC2626]">Kryesore</span>
+                                    </div>
 
-                                            <h3 class="text-xl md:text-xl font-serif font-black text-slate-900 leading-tight group-hover:text-[#0f172a] group-hover:underline decoration-3 underline-offset-4 transition-all">
-                                                {post.data.title}
-                                            </h3>
+                                    <h3 class="text-2xl md:text-3xl font-serif font-black text-slate-900 leading-tight group-hover:text-[#0f172a] group-hover:underline decoration-4 underline-offset-8 transition-all">
+                                        {featuredPost.data.title}
+                                    </h3>
 
-                                            <p class="text-slate-600 leading-relaxed line-clamp-3 font-sans mt-1">
-                                                {post.data.description}
-                                            </p>
-                                        </div>
-                                    </a>
-                                </article>
-                            ))}
-                        </div>
+                                    <p class="text-lg text-slate-600 leading-relaxed line-clamp-3 font-sans mt-2">
+                                        {featuredPost.data.description}
+                                    </p>
+                                </div>
+                            </a>
+                        </article>
                     )}
 
                     {/* ========================================== */}
-                    {/* LISTA E LAJMEVE TË TJERA TË GRID-IT */}
+                    {/* LISTA E LAJMEVE TË TJERA TË GRID-IT        */}
                     {/* ========================================== */}
                     <div class="flex flex-col divide-y divide-slate-200 border-b border-slate-200">
                         {restPosts.map((post) => (
@@ -197,6 +188,9 @@ const restPosts = gridPosts.slice(2);
                     </div>
                 </main>
 
+                {/* ========================================== */}
+                {/* SIDEBAR                                    */}
+                {/* ========================================== */}
                 <aside class="lg:col-span-4 mt-12 lg:mt-0 lg:pl-10 border-l border-slate-200">
                     <div class="sticky top-24">
                         <Sidebar />
