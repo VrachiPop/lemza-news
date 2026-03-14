@@ -97,28 +97,33 @@ const ignoredPosts = allPosts.slice(6, 20).sort(() => 0.5 - Math.random()).slice
                 </div>
 
                 {bottomRowPosts.length > 0 && (
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-4">
-                        {bottomRowPosts.map((post) => (
-                            <article class="group">
-                                <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-col h-full">
-                                    <div class="relative w-full aspect-[16/10] overflow-hidden rounded-md shadow-sm mb-3 bg-slate-100">
-                                        {post.data.heroImage && (
-                                            <Image src={post.data.heroImage} alt={post.data.title} width={300} height={187} class="w-full h-full object-cover" />
-                                        )}
-                                    </div>
-                                    <div class="flex flex-col gap-1.5">
-                                        <div class="text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
-                                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
-                                        </div>
-                                        <h3 class="text-base font-serif font-bold text-slate-800 leading-snug group-hover:underline decoration-2 underline-offset-4 transition-colors line-clamp-3">
-                                            {post.data.title}
-                                        </h3>
-                                    </div>
-                                </a>
-                            </article>
-                        ))}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 pb-4">
+        {bottomRowPosts.map((post) => (
+            <article class="group">
+                {/* RREGULLIM MOBILE: flex-row për celular, flex-col për desktop */}
+                <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-row sm:flex-col gap-4 sm:gap-0 h-full items-center sm:items-start">
+                    
+                    {/* Imazhi: Katror i vogël majtas në celular, full width në desktop */}
+                    <div class="relative w-[110px] sm:w-full shrink-0 aspect-[4/3] sm:aspect-[16/10] overflow-hidden rounded-md shadow-sm sm:mb-3 bg-slate-100">
+                        {post.data.heroImage && (
+                            <Image src={post.data.heroImage} alt={post.data.title} width={300} height={187} class="w-full h-full object-cover" />
+                        )}
                     </div>
-                )}
+                    
+                    {/* Teksti djathtas */}
+                    <div class="flex flex-col gap-1 sm:gap-1.5 flex-1 py-1 sm:py-0">
+                        <div class="text-[10px] font-bold text-[#DC2626] uppercase tracking-widest leading-none mb-0.5">
+                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
+                        </div>
+                        <h3 class="text-[14px] sm:text-base font-serif font-bold text-slate-800 leading-snug group-hover:underline decoration-2 underline-offset-4 transition-colors line-clamp-3">
+                            {post.data.title}
+                        </h3>
+                    </div>
+                </a>
+            </article>
+        ))}
+    </div>
+)}
 
             </main>
         </div>
