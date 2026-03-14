@@ -16,7 +16,7 @@ const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
     <div class="flex gap-2 h-full items-center">
         <a
             href="/te-fundit"
-            class="standard-link px-5 py-2 rounded-full text-white font-bookerly font-black text-[15px] tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
+            class="standard-link px-5 py-2 rounded-full text-white font-bookerly font-black text-[12px] uppercase tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
         >
             Të fundit
         </a>
@@ -27,7 +27,7 @@ const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
                 data-target={id}
             >
                 <span
-                    class="px-5 py-2 rounded-full text-white font-bookerly font-black text-[15px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
+                    class="px-5 py-2 rounded-full text-white font-bookerly font-black uppercase text-[12px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-[.active-trigger]:bg-[#DC2626] flex items-center gap-1.5"
                 >
                     {id === "aktualitet" ? "Aktualitet" : id === "argetim" ? "Argëtim" : "Të tjera"}
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-180 group-[.active-trigger]:rotate-180"><path d="M6 9l6 6 6-6"></path></svg>
@@ -56,7 +56,7 @@ const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
                 <div class="links-wrapper shrink-0 w-[140px] flex flex-col py-5 pl-5 pr-1 relative z-10 gap-0.5">
                     {section.links.map((link: any) => (
                         <a href={`/tags/${link.id}`} data-target={link.id} class="mega-link group block w-full py-0.5 no-underline cursor-pointer">
-                            <span class="pill-shape block w-full px-3.5 py-2 rounded-full text-slate-800 font-bookerly font-bold text-[13px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
+                            <span class="pill-shape block w-full px-3.5 py-2 rounded-full text-slate-800 font-bookerly font-black uppercase text-[12px] tracking-normal transition-all duration-300 group-hover:bg-[#DC2626] group-hover:text-white">
                                 {link.label}
                             </span>
                         </a>

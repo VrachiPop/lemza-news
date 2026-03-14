@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
-import Sidebar from '../../../components/Sidebar.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
 import FormattedDate from '../../../components/FormattedDate.astro';
 import EditorialBanner from '../../../components/EditorialBanner.astro';
@@ -266,12 +265,6 @@ function getFallbackImage(body: any) {
                     </>
                 )}
             </main>
-
-            <aside class="lg:col-span-4 lg:pl-10 border-l border-slate-200 hidden lg:block">
-                <div class="sticky top-24">
-                    <Sidebar />
-                </div>
-            </aside>
         </div>
 
         <Footer />

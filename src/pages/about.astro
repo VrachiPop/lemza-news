@@ -2,7 +2,6 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Sidebar from '../components/Sidebar.astro';
 import EditorialBanner from '../components/EditorialBanner.astro';
 import '../app.css';
 
@@ -38,11 +37,6 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                     grid-template-columns: 8fr 4fr;
                     padding: 4rem 2rem;
                     gap: 3rem;
-                }
-                .sidebar-wrapper {
-                    display: block;
-                    padding-left: 2.5rem;
-                    border-left: 1px solid #e5e7eb;
                 }
             }
 
@@ -121,13 +115,7 @@ const SITE_DESCRIPTION = "Misioni, politikat redaksionale dhe natyra satirike e 
                     </p>
 
                 </div>
-            </main>
-
-            <aside class="sidebar-wrapper hidden lg:block">
-                <div style="position: sticky; top: 2rem;">
-                    <Sidebar />
-                </div>
-            </aside>
+            </main>    
         </div>
         
         <Footer />

@@ -1,22 +1,35 @@
-<a href="/sondazh" class="block w-full no-underline group relative">
+---
+// src/components/PollBaner.astro (Shto importet nëse ke, përndryshe lëre bosh pjesën lart)
+---
+<a href="/sondazh" class="block w-full no-underline group mt-6 md:mt-4">
     
-    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-sm border border-slate-800 relative hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-out bg-[#0f172a]">
+    <div class="relative w-full transition-transform duration-300 ease-out group-hover:-translate-y-1">
         
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0f172a] to-[#1e293b] z-0"></div>
-        
-        <div class="absolute inset-0 bg-[#DC2626] opacity-0 group-hover:opacity-5 transition-opacity duration-300 z-0"></div>
+        <div class="absolute -top-3 md:-top-3.5 left-1/2 -translate-x-1/2 bg-[#DC2626] px-3 md:px-4 py-1 md:py-1.5 rounded-full shadow-md whitespace-nowrap z-20 group-hover:bg-[#DC2626] transition-colors duration-300">
+            <span class="text-white font-black text-[10px] md:text-sm uppercase tracking-widest md:tracking-normal">
+                Sondazhi
+            </span>
+        </div>
 
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-6 text-center">
+        <div class="w-full aspect-[21/9] md:aspect-[4/3] rounded-xl overflow-hidden shadow-sm group-hover:shadow-xl border border-slate-200 relative bg-white transition-shadow duration-300">
             
-            <h3 class="font-bookerly font-black text-3xl md:text-4xl tracking-tight drop-shadow-md group-hover:scale-105 transition-transform duration-500">
-                Voto!
-            </h3>
+            <div class="absolute inset-0 bg-gradient-to-br from-white to-slate-50 z-0"></div>
             
-            <div class="w-12 h-1 bg-[#DC2626] mt-5 mb-4 group-hover:w-20 transition-all duration-500 ease-out"></div>
-            
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-300 group-hover:text-white transition-colors">
-                <span>Jep mendimin tënd</span>
-                <span class="text-[#DC2626] text-lg leading-none transform group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+            <div class="absolute inset-0 bg-[#DC2626] opacity-0 group-hover:opacity-5 transition-opacity duration-300 z-0"></div>
+
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-900 z-10 p-4 md:p-6 text-center">
+                
+                <h3 class="font-bookerly font-black text-2xl md:text-4xl tracking-tight group-hover:scale-105 transition-transform duration-500">
+                    Voto!
+                </h3>
+                
+                <div class="w-8 md:w-12 h-1 bg-[#DC2626] mt-3 md:mt-5 mb-3 md:mb-4 group-hover:w-16 md:group-hover:w-20 transition-all duration-500 ease-out"></div>
+                
+                <div class="flex items-center gap-1.5 md:gap-2 text-[10px] md:text-[12px] font-bold tracking-widest text-slate-600 group-hover:text-slate-900 transition-colors">
+                    <span>Zëri yt (s)'ka rëndësi</span>
+                    <span class="text-[#DC2626] text-sm md:text-lg leading-none transform group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+                </div>
+
             </div>
 
         </div>

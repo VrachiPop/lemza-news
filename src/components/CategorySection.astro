@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import FormattedDate from './FormattedDate.astro';
+import { getPostUrl } from '../utils/helpers';
+
+interface Props {
+    categoryTag: string;
+    sectionTitle: string;
+}
+
+const { categoryTag, sectionTitle } = Astro.props;
+
+const allPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const categoryPosts = allPosts.filter(post => {
+    const tags = post.data.tags?.map(t => t.toLowerCase().trim()) || [];
+    return tags.includes(categoryTag.toLowerCase().trim());
+});
+
+const latestFour = categoryPosts.slice(0, 3);
+
+if (latestFour.length === 0) {
+    return;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/banners/*.{jpeg,jpg,png,webp}');
+const matchingKey = Object.keys(images).find(key => key.includes(`/${categoryTag.toLowerCase()}.`));
+const defaultKey = Object.keys(images).find(key => key.includes(`/default-banner.`));
+
+let categoryBgImage;
+if (matchingKey) {
+    const imgModule = await images[matchingKey]();
+    categoryBgImage = imgModule.default;
+} else if (defaultKey) {
+    const imgModule = await images[defaultKey]();
+    categoryBgImage = imgModule.default;
+}
+---
+
+{/* Seksioni zë 100% të ekranit */}
+<section class="relative w-full h-[100dvh] min-h-[600px] overflow-hidden flex flex-col justify-end bg-slate-900 border-t border-slate-800">
+    
+    {/* Sfondi i Kategorisë */}
+    {categoryBgImage && (
+        <Image 
+            src={categoryBgImage} 
+            alt={`Kategoria ${sectionTitle}`} 
+            width={2000} 
+            height={1125} 
+            class="absolute inset-0 w-full h-full object-cover opacity-60"
+        />
+    )}
+
+    {/* Gradienti thellë nga poshtë që tekstet dhe lajmet të duken qartë */}
+    <div class="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
+
+    {/* PËRMBAJTJA (Në fund të ekranit) */}
+    <div class="relative z-20 w-full max-w-[1300px] mx-auto px-4 md:px-8 pb-8 md:pb-12">
+        
+        {/* Titulli i Kategorisë dhe Butoni */}
+        <div class="flex items-end justify-between mb-6 md:mb-8 border-b border-slate-600/50 pb-4">
+            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bookerly font-black text-white tracking-normal uppercase drop-shadow-md">
+                {sectionTitle}
+            </h2>
+            <a href={`/tags/${categoryTag}`} class="hidden md:inline-flex items-center justify-center gap-2 bg-[#DC2626] text-white hover:bg-white hover:text-[#0f172a] px-6 py-3 rounded-full font-black uppercase tracking-widest text-[11px] transition-all duration-300 shadow-md">
+                Më shumë <span class="text-base leading-none">&rarr;</span>
+            </a>
+        </div>
+
+        {/* RREGULLIMI PËR MOBILE: 
+            Kthyer nga `grid` në `flex overflow-x-auto` për celularët.
+            Në desktop (md:grid) kthehet saktësisht ashtu siç e kishe.
+        */}
+        <div class="flex md:grid md:grid-cols-3 gap-3 md:gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-2 md:pb-0">
+            {latestFour.map((post) => (
+                <article class="group relative w-[85%] sm:w-[60%] md:w-full shrink-0 snap-start aspect-video overflow-hidden rounded-xl shadow-lg bg-slate-800 border border-slate-600">
+                    <a href={getPostUrl(post.slug)} class="block w-full h-full no-underline">
+                        {post.data.heroImage ? (
+                            <Image 
+                                src={post.data.heroImage} 
+                                alt={post.data.title} 
+                                width={400}   
+                                height={225}
+                                class="w-full h-full object-cover" 
+                            />
+                        ) : (
+                            <div class="w-full h-full flex items-center justify-center text-slate-500 bg-slate-200">IMG</div>
+                        )}
+                        
+                        {/* Gradienti i brendshëm i kartës */}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                        
+                        {/* Të dhënat brenda */}
+                        <div class="absolute bottom-0 left-0 w-full p-4 flex flex-col gap-1.5">
+                            <h3 class="font-bookerly text-sm md:text-base text-white font-black leading-snug group-hover:underline decoration-2 underline-offset-4 line-clamp-3">
+                                {post.data.title}
+                            </h3>
+                        </div>
+                    </a>
+                </article>
+            ))}
+        </div>
+        
+        {/* Butoni "Pill" për Mobile (Shfaqet vetëm në celular) */}
+        <div class="mt-8 flex justify-center md:hidden">
+             <a href={`/tags/${categoryTag}`} class="inline-flex items-center justify-center gap-2 bg-[#DC2626] text-white hover:bg-white hover:text-[#0f172a] px-8 py-3.5 rounded-full font-black uppercase tracking-widest text-[11px] transition-all duration-300 shadow-md">
+                Më shumë <span class="text-base leading-none">&rarr;</span>
+            </a>
+        </div>
+
+    </div>
+</section>

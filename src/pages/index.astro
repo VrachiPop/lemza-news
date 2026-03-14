@@ -4,29 +4,24 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import Sidebar from '../components/Sidebar.astro';
+import CategorySection from '../components/CategorySection.astro';
 import Hero from '../components/home/Hero.astro';
+import QuoteOfTheDay from '../components/QuoteOfTheDay.astro'; 
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
 import '../app.css';
-
-// Importi i magjisë nga helpers (DRY)
+import HoroscopeWidget from '../components/HoroscopeWidget.astro';
 import { getDisplayTag, getPostUrl } from '../utils/helpers';
+import PollBaner from '../components/PollBaner.astro';
+import EditorsPick from '../components/EditorsPick.astro';
 
-// 1. Merr të gjitha postimet dhe renditi sipas datës
 const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// 2. Kapërce të parin (sepse ai ndodhet në Hero) dhe merr 6 lajme
-const gridPosts = allPosts.slice(1, 7);
-
-// 3. LOGJIKA E THJESHTË E LAYOUT-it
-// Lajmi i madh Kryesore (i pari pas Hero-s)
-const featuredPost = gridPosts[0];
-
-// Lista e lajmeve poshtë tij
-const restPosts = gridPosts.slice(1);
+const featuredPost = allPosts[1]; 
+const bottomRowPosts = allPosts.slice(2, 6); 
+const ignoredPosts = allPosts.slice(6, 20).sort(() => 0.5 - Math.random()).slice(0, 8);
 ---
 
 <!doctype html>
@@ -37,169 +32,147 @@ const restPosts = gridPosts.slice(1);
             html, body {
                 margin: 0;
                 padding: 0;
-                background-color: #F8FAFC;
+                background-color: #ffffff;
                 color: #1e293b;
                 scroll-behavior: smooth;
             }
             .news-container {
                 padding-top: 4rem; 
-                padding-bottom: 5rem;
             }
         </style>
     </head>
     <body>
         
         <Header />
-
-        {/* ========================================== */}
-        {/* HERO (Paris Match style - Full Screen)     */}
-        {/* ========================================== */}
         <Hero />
 
         <div class="news-container">
-            <div class="w-full max-w-[1600px] mx-auto px-2 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <main class="w-full max-w-[1300px] mx-auto px-4 md:px-8 flex flex-col gap-10">
                 
-                <main class="lg:col-span-8">
-
-                    {/* ========================================== */}
-                    {/* LAJMI KRYESOR (I MADH)                     */}
-                    {/* ========================================== */}
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+                    
                     {featuredPost && (
-                        <article class="group mb-12 pb-12 border-b border-slate-200">
-                            <a href={getPostUrl(featuredPost.slug)} class="no-underline text-inherit block">
-                                
-                                {/* Imazhi i Madh */}
-                                <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl shadow-sm mb-6 bg-slate-100">
-                                    {featuredPost.data.heroImage ? (
-                                        <Image 
-                                            src={featuredPost.data.heroImage} 
-                                            alt={featuredPost.data.title} 
-                                            width={1000}   
-                                            height={562}
-                                            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
-                                        />
-                                    ) : (
-                                        <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
-                                    )}
-
-                                    {/* TAGU I KUQ */}
-                                    <div class="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
-                                        {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (
-                                            featuredPost.data.tags.map((tag: string) => (
-                                                <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-sm shadow-md">
-                                                    {getDisplayTag(tag)}
-                                                </span>
-                                            ))
-                                        ) : (
-                                            <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-sm shadow-md">
-                                                KRYESORE
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {/* Content i Madh */}
-                                <div class="flex flex-col gap-3">
-                                    <div class="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                        <FormattedDate date={featuredPost.data.pubDate} />
-                                        <span class="text-[#DC2626]">&bull;</span>
-                                        <span class="text-[#DC2626]">Kryesore</span>
-                                    </div>
-
-                                    <h3 class="text-2xl md:text-3xl font-serif font-black text-slate-900 leading-tight group-hover:text-[#0f172a] group-hover:underline decoration-4 underline-offset-8 transition-all">
-                                        {featuredPost.data.title}
-                                    </h3>
-
-                                    <p class="text-lg text-slate-600 leading-relaxed line-clamp-3 font-sans mt-2">
-                                        {featuredPost.data.description}
-                                    </p>
-                                </div>
-                            </a>
-                        </article>
-                    )}
-
-                    {/* ========================================== */}
-                    {/* LISTA E LAJMEVE TË TJERA TË GRID-IT        */}
-                    {/* ========================================== */}
-                    <div class="flex flex-col divide-y divide-slate-200 border-b border-slate-200">
-                        {restPosts.map((post) => (
-                            <article class="group py-8 first:pt-0">
-                                <a href={getPostUrl(post.slug)} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                                    
-                                    {/* Image Left */}
-                                    <div class="md:col-span-4 lg:col-span-5 relative aspect-[16/10] overflow-hidden rounded-lg bg-slate-100 shadow-sm">
-                                        {post.data.heroImage ? (
+                        <div class="lg:col-span-8">
+                            <article class="group relative flex flex-col h-full">
+                                <a href={getPostUrl(featuredPost.slug)} class="no-underline text-inherit flex flex-col h-full">
+                                    <div class="relative w-full aspect-[16/9] md:aspect-[2/1] overflow-hidden rounded-xl shadow-sm mb-5 bg-slate-100 shrink-0">
+                                        {featuredPost.data.heroImage ? (
                                             <Image 
-                                                src={post.data.heroImage} 
-                                                alt={post.data.title} 
-                                                width={500}   
-                                                height={300}
-                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                                                src={featuredPost.data.heroImage} 
+                                                alt={featuredPost.data.title} 
+                                                width={900}   
+                                                height={450}
+                                                class="w-full h-full object-cover" 
                                             />
                                         ) : (
-                                            <div class="w-full h-full bg-slate-200 text-slate-400 flex items-center justify-center">IMG</div>
+                                            <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
                                         )}
-                                        
-                                        {/* TAGU I KUQ */}
-                                        <div class="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
-                                            {post.data.tags && post.data.tags.length > 0 ? (
-                                                post.data.tags.map((tag: string) => (
-                                                    <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
-                                                        {getDisplayTag(tag)}
-                                                    </span>
-                                                ))
-                                            ) : (
-                                                <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
-                                                    LAJM
-                                                </span>
-                                            )}
+                                        <div class="absolute top-4 left-4 z-10">
+                                            <span class="bg-[#DC2626] text-white text-[11px] font-black uppercase tracking-widest px-3 py-1.5 rounded-sm shadow-md">
+                                                {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? getDisplayTag(featuredPost.data.tags[0]) : 'KRYESORE'}
+                                            </span>
                                         </div>
                                     </div>
-
-                                    {/* Content Right */}
-                                    <div class="md:col-span-8 lg:col-span-7 flex flex-col justify-between h-full">
-                                        <div>
-                                            <div class="flex items-center gap-2 mb-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                                                <FormattedDate date={post.data.pubDate} />
-                                            </div>
-
-                                            <h3 class="text-xl font-serif font-bold text-slate-800 leading-tight mb-2 group-hover:text-[#0f172a] group-hover:underline decoration-2 underline-offset-4 transition-colors">
-                                                {post.data.title}
-                                            </h3>
-
-                                            <p class="text-slate-600 text-sm leading-relaxed line-clamp-2 font-sans">
-                                                {post.data.description}
-                                            </p>
+                                    <div class="flex flex-col gap-3 flex-1">
+                                        <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                            <FormattedDate date={featuredPost.data.pubDate} />
                                         </div>
-                                        
-                                        <div class="mt-3 md:mt-auto pt-2 flex items-center text-[#0f172a] font-bold text-xs uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                                            Lexo të plotë &rarr;
+                                        <h3 class="text-xl md:text-2xl lg:text-3xl font-serif font-black text-slate-900 leading-tight group-hover:text-[#0f172a] group-hover:underline decoration-4 underline-offset-8 transition-all">
+                                            {featuredPost.data.title}
+                                        </h3>
+                                        <p class="text-lg text-slate-600 leading-relaxed font-sans mt-1">
+                                            {featuredPost.data.description}
+                                        </p>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                    )}
+
+                    <div class="lg:col-span-4 flex flex-col gap-6">
+                        <QuoteOfTheDay />
+                        
+                        <PollBaner />
+                    </div>
+                </div>
+
+                {bottomRowPosts.length > 0 && (
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-4">
+                        {bottomRowPosts.map((post) => (
+                            <article class="group">
+                                <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-col h-full">
+                                    <div class="relative w-full aspect-[16/10] overflow-hidden rounded-md shadow-sm mb-3 bg-slate-100">
+                                        {post.data.heroImage && (
+                                            <Image src={post.data.heroImage} alt={post.data.title} width={300} height={187} class="w-full h-full object-cover" />
+                                        )}
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <div class="text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
+                                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
                                         </div>
+                                        <h3 class="text-base font-serif font-bold text-slate-800 leading-snug group-hover:underline decoration-2 underline-offset-4 transition-colors line-clamp-3">
+                                            {post.data.title}
+                                        </h3>
                                     </div>
                                 </a>
                             </article>
                         ))}
                     </div>
+                )}
 
-                    <div class="mt-12 text-center">
-                        <a href="/te-fundit" class="inline-block px-10 py-4 border border-slate-400 text-slate-600 font-bold uppercase tracking-widest text-xs hover:border-[#0f172a] hover:text-white hover:bg-[#0f172a] transition-all rounded-sm">
-                            Shiko të gjitha
-                        </a>
-                    </div>
-                </main>
-
-                {/* ========================================== */}
-                {/* SIDEBAR                                    */}
-                {/* ========================================== */}
-                <aside class="lg:col-span-4 mt-12 lg:mt-0 lg:pl-10 border-l border-slate-200">
-                    <div class="sticky top-24">
-                        <Sidebar />
-                    </div>
-                </aside>
-
-            </div>
+            </main>
         </div>
-        
+
+       <div class="flex items-center gap-6 mt-10 mb-16 w-full">
+    <div class="flex-1 h-[1px] bg-slate-200"></div>
+    <a href="/te-fundit" 
+        class="mr-8 md:mr-12 shrink-0 inline-flex items-center justify-center gap-2 bg-[#0f172a] text-white hover:bg-[#DC2626] px-4 py-3 rounded-full font-black uppercase tracking-widest text-[11px] transition-all duration-300 shadow-md hover:-translate-y-0.5">
+        Shiko të gjitha 
+        <span class="text-base leading-none">&rarr;</span>
+    </a>
+</div>
+
+        <CategorySection categoryTag="politike" sectionTitle="Politikë" />
+
+        <section class="w-full bg-white py-20 px-4 md:px-8">
+            <div class="max-w-[1300px] mx-auto">
+                <div class="flex items-center gap-4 mb-10">
+                    <span class="bg-[#0f172a] text-white text-[12px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-sm">
+                        Më të injoruarat
+                    </span>
+                    <div class="h-[1px] flex-1 bg-slate-200"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+                    {ignoredPosts.map((post, index) => (
+                        <article class="group">
+                            <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-col h-full">
+                                <div class="relative w-full aspect-[16/10] overflow-hidden rounded-md shadow-sm mb-3 bg-slate-100">
+                                    {post.data.heroImage && (
+                                        <Image src={post.data.heroImage} alt={post.data.title} width={400} height={250} class="w-full h-full object-cover" />
+                                    )}
+                                    <div class="absolute top-0 left-0 bg-[#DC2626] text-white text-[10px] font-black px-2 py-1 rounded-br-md z-10 shadow-sm">
+                                        #{index + 1}
+                                    </div>
+                                </div>
+                                <h4 class="font-serif font-bold text-base text-slate-800 leading-snug group-hover:underline decoration-2 underline-offset-4 transition-colors">
+                                    {post.data.title}
+                                </h4>
+                            </a>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <CategorySection categoryTag="ekonomi" sectionTitle="Ekonomi" />
+
+        <HoroscopeWidget />
+
+        <CategorySection categoryTag="sociale" sectionTitle="Sociale" />
+
+        <EditorsPick/>
+
         <Footer />
     </body>
 </html>

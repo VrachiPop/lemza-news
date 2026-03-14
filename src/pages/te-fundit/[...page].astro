@@ -2,7 +2,6 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Sidebar from '../../components/Sidebar.astro';
 import EditorialBanner from '../../components/EditorialBanner.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
@@ -225,14 +224,7 @@ const restPosts = isFirstPage ? page.data.slice(1) : page.data;
 </div>
 
             </main>
-
-            <aside class="lg:col-span-4 lg:pl-10 border-l border-slate-200 hidden lg:block">
-                <div class="sticky top-24">
-                    <Sidebar />
-                </div>
-            </aside>
         </div>
 
         <Footer />
     </body>
-</html>

@@ -31,4 +31,31 @@ collections:
       - {label: "Përmbajtja", name: "body", widget: "markdown"}
       - { label: "Thënia e Ditës", name: "quoteOfTheDay", widget: "string", required: false }
 
+# KOLEKSIONI PËR JSON (SINGLETONS)
+  - name: "settings"
+    label: "Cilësimet dhe Të dhënat"
+    delete: false # Nuk lejohet fshirja e skedarëve të të dhënave
+    files:
+      # EDITOR'S PICKS
+      - label: "Editor's Picks"
+        name: "curated"
+        file: "src/data/curated.json"
+        fields:
+          - label: "Artikujt e Zgjedhur"
+            name: "picks"
+            widget: "list"
+            field: { label: "Slug i Artikullit", name: "item", widget: "string" }
+
+      # HOROSKOPI
+      - label: "Horoskopi"
+        name: "horoscope"
+        file: "src/data/horoscope.json"
+        fields:
+          - label: "Parashikimet"
+            name: "predictions"
+            widget: "list"
+            fields:
+              - { label: "Shenja", name: "sign", widget: "string" }
+              - { label: "Teksti", name: "text", widget: "text" }
+
 local_backend: false

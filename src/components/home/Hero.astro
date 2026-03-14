@@ -4,37 +4,14 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../FormattedDate.astro";
 import "../../app.css";
 
-// Importi i trurit qendror për kategoritë dhe linqet
 import { getDisplayTag, getPostUrl } from "../../utils/helpers";
 
-// 1. Merr VETËM postimin e fundit
 const allPosts = (await getCollection("blog")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const mainPost = allPosts[0];
-
-// ==========================================
-// LOGJIKA E AVANCUAR E MADHËSISË SË TITULLIT
-// ==========================================
 const titleText = mainPost.data.title;
-const titleLength = titleText.length;
-
-let dynamicTitleSize = "";
-
-if (titleLength > 120) {
-    // 1. TITULL SHUMË I GJATË (Mbi 120 karaktere / ~3 fjali)
-    // Zvogëlojmë shkronjat ndjeshëm që të mos mbysin ekranin
-    dynamicTitleSize = "text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-4xl";
-} else if (titleLength > 70) {
-    // 2. TITULL MESATAR (70 - 120 karaktere / ~2 fjali)
-    // Madhësia normale
-    dynamicTitleSize = "text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-5xl";
-} else {
-    // 3. TITULL I SHKURTËR (Nën 70 karaktere / ~1 fjali)
-    // Shkronja gjigante, goditëse
-    dynamicTitleSize = "text-2xl sm:text-3xl md:text-4xl lg:text-6xl max-w-6xl";
-}
 ---
 
 <section class="relative w-full h-[100dvh] overflow-hidden bg-slate-900 group">
@@ -54,15 +31,15 @@ if (titleLength > 120) {
         }
 
         <div
-            class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
         >
         </div>
 
         <div
-            class="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end p-6 pb-16 md:p-6 md:pb-24 text-center z-20 mx-auto"
+            class="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end p-5 pb-20 md:p-8 md:pb-24 text-center z-20 mx-auto max-w-[1300px]"
         >
             <span
-                class="bg-[#DC2626] text-white px-4 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-widest rounded-sm shadow-lg mb-4 md:mb-6"
+                class="bg-[#DC2626] text-white px-3 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs font-black uppercase tracking-widest rounded-full shadow-lg mb-3 md:mb-6"
             >
                 {
                     mainPost.data.tags && mainPost.data.tags.length > 0
@@ -71,15 +48,15 @@ if (titleLength > 120) {
                 }
             </span>
 
-            {/* Injektimi i klasave dinamike të madhësisë dhe gjerësisë */}
+            {/* Madhësi fikse dhe responsive e titullit, e integruar direkt në klasat e HTML */}
             <h1
-                class={`font-bookerly font-black leading-tight text-white drop-shadow-2xl mb-3 md:mb-6 group-hover:text-slate-100 transition-colors px-4 line-clamp-4 mx-auto ${dynamicTitleSize}`}
+                class="font-bookerly font-black leading-tight text-white drop-shadow-2xl mb-3 md:mb-5 group-hover:text-slate-100 transition-colors px-2 md:px-4 line-clamp-4 mx-auto text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-6xl"
             >
                 {titleText}
             </h1>
 
             <div
-                class="text-white/80 text-[10px] md:text-sm font-black uppercase tracking-widest flex items-center gap-2 mt-1 md:mt-2"
+                class="text-white/80 text-[10px] md:text-sm font-black uppercase tracking-widest flex items-center gap-2 mt-2 md:mt-3"
             >
                 <FormattedDate date={mainPost.data.pubDate} />
             </div>

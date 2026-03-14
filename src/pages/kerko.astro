@@ -2,7 +2,6 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Sidebar from '../components/Sidebar.astro';
 import EditorialBanner from '../components/EditorialBanner.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
@@ -54,11 +53,6 @@ const tagNames: Record<string, string> = {
                     grid-template-columns: 8fr 4fr;
                     padding: 4rem 2rem;
                     gap: 3rem;
-                }
-                .sidebar-wrapper {
-                    display: block;
-                    padding-left: 2.5rem;
-                    border-left: 1px solid #e5e7eb;
                 }
             }
         </style>
@@ -134,12 +128,6 @@ const tagNames: Record<string, string> = {
                 </div>
 
             </main>
-
-            <aside class="sidebar-wrapper hidden lg:block">
-                <div style="position: sticky; top: 2rem;">
-                    <Sidebar />
-                </div>
-            </aside>
 
         </div>
         

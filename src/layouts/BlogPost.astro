@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Sidebar from "../components/Sidebar.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
@@ -84,24 +83,17 @@ const finalRelatedPosts = [...candidatePosts]
 
             .page-container {
                 width: 100%;
-                max-width: 1600px;
+                max-width: 900px; /* Ndryshuar për një artikull qendror, të fokusuar */
                 margin: 0 auto;
                 padding: 2rem 1rem;
-                display: grid;
-                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
                 gap: 2rem;
             }
 
             @media (min-width: 1024px) {
                 .page-container {
-                    grid-template-columns: 8fr 4fr;
                     padding: 4rem 2rem;
-                    gap: 3rem;
-                }
-                .sidebar-wrapper {
-                    display: block;
-                    padding-left: 2.5rem;
-                    border-left: 1px solid #e5e7eb;
                 }
             }
 
@@ -161,7 +153,7 @@ const finalRelatedPosts = [...candidatePosts]
             >
             </div>
 
-            <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 z-10">
+            <div class="relative max-w-[900px] mx-auto px-4 md:px-8 z-10">
                 <div
                     class="flex flex-wrap items-center gap-2 text-[11px] md:text-xs font-black uppercase tracking-tight mb-4 md:mb-6"
                 >
@@ -187,7 +179,7 @@ const finalRelatedPosts = [...candidatePosts]
                 </div>
 
                 <h1
-                    class="font-serif font-black text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-[1.1] tracking-tight max-w-5xl drop-shadow-md"
+                    class="font-serif font-black text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-[1.1] tracking-tight max-w-full drop-shadow-md"
                 >
                     {title}
                 </h1>
@@ -286,56 +278,50 @@ const finalRelatedPosts = [...candidatePosts]
                     </div>
 
                     {/* ========================================== */}
-{/* SEKSIONI "LEXO MË SHUMË"                   */}
-{/* ========================================== */}
-{finalRelatedPosts.length > 0 && (
-    <div class="relative mt-20 border-t-2 border-slate-800/50 pt-12 w-full">
-        
-        {/* Stema e Kuqe mbi vijën ndarëse */}
-        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0f172a] px-6 py-1.5 rounded-full shadow-sm whitespace-nowrap z-10">
-            <span class="text-white font-black text-xs md:text-sm tracking-widest uppercase">
-                Sugjerime për ty
-            </span>
-        </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {finalRelatedPosts.map((post) => (
-                <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
-                    <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
-                        {post.data.heroImage ? (
-                            <Image 
-                                src={post.data.heroImage} 
-                                alt={post.data.title || ""} 
-                                width={400}   
-                                height={225}
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
-                            />
-                        ) : (
-                            <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
-                        )}
-                    </div>
-                    
-                    <div class="flex flex-col gap-2">
-                        <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
-                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                    {/* SEKSIONI "LEXO MË SHUMË"                   */}
+                    {/* ========================================== */}
+                    {finalRelatedPosts.length > 0 && (
+                        <div class="relative mt-20 border-t-2 border-slate-800/50 pt-12 w-full">
+                            
+                            {/* Stema e Kuqe mbi vijën ndarëse */}
+                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0f172a] px-6 py-1.5 rounded-full shadow-sm whitespace-nowrap z-10">
+                                <span class="text-white font-black text-xs md:text-sm tracking-widest uppercase">
+                                    Sugjerime për ty
+                                </span>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                {finalRelatedPosts.map((post) => (
+                                    <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
+                                        <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
+                                            {post.data.heroImage ? (
+                                                <Image 
+                                                    src={post.data.heroImage} 
+                                                    alt={post.data.title || ""} 
+                                                    width={400}   
+                                                    height={225}
+                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
+                                                />
+                                            ) : (
+                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                            )}
+                                        </div>
+                                        
+                                        <div class="flex flex-col gap-2">
+                                            <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
+                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                                            </div>
+                                            <h4 class="font-serif text-base text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
+                                                {post.data.title}
+                                            </h4>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
                         </div>
-                        <h4 class="font-serif font-serif text-base text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
-                            {post.data.title}
-                        </h4>
-                    </div>
-                </a>
-            ))}
-        </div>
-    </div>
-)}
+                    )}
                 </article>
             </main>
-
-            <aside class="sidebar-wrapper hidden lg:block">
-                <div style="position: sticky; top: 2rem;">
-                    <Sidebar />
-                </div>
-            </aside>
         </div>
 
         <Footer />
