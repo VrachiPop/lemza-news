@@ -22,19 +22,18 @@ const pickedPosts = editorsPicksSlugs
     <section class="w-full bg-white py-16 md:py-24 px-4 md:px-8 border-t border-slate-200">
         <div class="max-w-[1300px] mx-auto">
             
-            <div class="flex items-center gap-4 md:gap-6 mb-6 md:mb-12">
+            <div class="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
                 <span class="bg-[#DC2626] text-white text-[10px] md:text-[11px] font-black uppercase tracking-widest px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm whitespace-nowrap">
                     Të zgjedhura
                 </span>
                 <div class="h-[1px] flex-1 bg-slate-200"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                 {pickedPosts.map((post) => (
                     <article class="group">
-                        <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-row md:flex-col gap-4 md:gap-0 h-full items-center md:items-start">
-                            
-                            <div class="relative w-[110px] md:w-full shrink-0 aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-xl shadow-sm md:mb-5 bg-slate-100">
+                        <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-col h-full">
+                            <div class="relative w-full aspect-[16/10] overflow-hidden rounded-xl shadow-sm mb-3 md:mb-5 bg-slate-100">
                                 {post.data.heroImage && (
                                     <Image 
                                         src={post.data.heroImage} 
@@ -44,21 +43,21 @@ const pickedPosts = editorsPicksSlugs
                                         class="w-full h-full object-cover" 
                                     />
                                 )}
-                                <div class="absolute top-1.5 right-1.5 md:top-3 md:right-3 bg-white/90 backdrop-blur-sm p-1 md:p-2 rounded-full shadow-sm">
+                                <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-full shadow-sm">
                                     <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#eccd00]" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                                     </svg>
                                 </div>
                             </div>
                             
-                            <div class="flex flex-col gap-1 md:gap-3 flex-1 py-1 md:py-0 justify-center">
-                                <div class="text-[9px] md:text-[10px] font-bold text-[#DC2626] uppercase tracking-widest leading-none md:leading-normal">
+                            <div class="flex flex-col gap-2 md:gap-3">
+                                <div class="text-[9px] md:text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
                                     <FormattedDate date={post.data.pubDate} />
                                 </div>
-                                <h3 class="text-[14px] md:text-2xl font-serif font-bold text-slate-900 leading-snug md:leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all line-clamp-3">
+                                <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all">
                                     {post.data.title}
                                 </h3>
-                                <p class="hidden md:block text-xs md:text-sm text-slate-500 leading-relaxed line-clamp-2 md:line-clamp-3 italic">
+                                <p class="text-xs md:text-sm text-slate-500 leading-relaxed line-clamp-2 md:line-clamp-3 italic">
                                     {post.data.description}
                                 </p>
                             </div>

@@ -8,7 +8,8 @@ const sortedPosts = allPostsRaw.sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const randomPosts = sortedPosts.slice(10).sort(() => 0.5 - Math.random()).slice(0, 8);
+// Marr 5 lajme rastësore
+const randomPosts = sortedPosts.slice(10).sort(() => 0.5 - Math.random()).slice(0, 5);
 
 const tagNames = { 
     'politike': 'Politikë', 
@@ -25,66 +26,62 @@ const tagNames = {
 };
 ---
 
-<div class="relative bg-white border border-slate-200 p-4 md:p-6 rounded-xl shadow-sm mt-6">
-    
-    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0f172a] px-3 md:px-4 py-1 rounded-full shadow-sm whitespace-nowrap z-10">
-        <span class="text-white font-black text-[10px] md:text-xs tracking-widest uppercase">
+<div class="bg-white rounded-[2rem] p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mt-6 md:mt-0">
+
+    {/* Header Premium: Vetëm pika e kuqe dhe titulli, i pastër pa vija */}
+    <div class="flex items-center gap-3 md:gap-4 mb-8 md:mb-10">
+        <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#DC2626]"></div>
+        <h3 class="text-slate-900 font-serif text-lg md:text-xl font-bold italic tracking-wide">
             Më të injoruarat
-        </span>
+        </h3>
     </div>
 
-    <div class="flex flex-col divide-y divide-slate-200 mt-2">
-        {randomPosts.map((post, index) => {
+    {/* Lista */}
+    <div class="flex flex-col gap-6 md:gap-8">
+        {randomPosts.map((post) => {
             const fileName = post.slug.split('/').pop() || '';
             const cleanSlug = fileName.replace(/\.md$/, '');
             const finalUrl = `/${cleanSlug}/`;
 
             return (
-                <a href={finalUrl} class="group flex gap-3 md:gap-4 py-3 md:py-4 first:pt-0 no-underline items-start md:items-center">
-                    
-                    {/* FOTO: Nga katror u bë drejtkëndësh (aspect-[4/3]) si te fotoja e referencës */}
-                    <div class="relative shrink-0 w-[100px] md:w-[120px] aspect-[4/3] rounded-md overflow-hidden bg-slate-100 shadow-sm group-hover:shadow-md transition-all duration-300">
+                <a href={finalUrl} class="group flex items-center gap-4 md:gap-6 no-underline">
+
+                    {/* Fotoja Premium: Pa numra, theksi i bie direkt imazhit */}
+                    <div class="relative shrink-0 w-[90px] md:w-[150px] lg:w-[170px] aspect-[4/3] md:aspect-[16/10] rounded-2xl overflow-hidden bg-slate-100 shadow-sm group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-y-1">
                         {post.data.heroImage ? (
                             <Image 
                                 src={post.data.heroImage} 
                                 alt={post.data.title}
-                                width={150}
-                                height={112}
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                width={300}
+                                height={200}
+                                class="w-full h-full object-cover" 
                             />
                         ) : (
                             <div class="w-full h-full flex items-center justify-center bg-slate-100 text-slate-300">
                                 <span class="text-[9px]">IMG</span>
                             </div>
                         )}
-
-                        <div class="absolute top-0 left-0 bg-[#0f172a] text-white text-[9px] md:text-[10px] font-black px-1.5 md:px-2 py-0.5 md:py-1 rounded-br-md z-10 font-sans shadow-sm">
-                            #{index + 1}
-                        </div>
                     </div>
 
-                    {/* TEKSTI: U hoq lartësia fikse h-[75px] që teksti të rrjedhë natyrshëm */}
-                    <div class="flex flex-col justify-center py-0 w-full">
-                        
-                        <div class="flex flex-col gap-1">
-                            <div class="flex flex-wrap gap-x-2 gap-y-1">
-                                {post.data.tags && post.data.tags.length > 0 ? (
-                                    post.data.tags.map((tag: string) => (
-                                        <span class="text-[9px] font-bold text-[#DC2626] uppercase tracking-widest leading-none">
-                                            {(tagNames as any)[tag] || tag}
-                                        </span>
-                                    ))
-                                ) : (
-                                    <span class="text-[9px] font-bold text-[#DC2626] uppercase tracking-widest leading-none">
-                                        LAJM
+                    {/* Teksti */}
+                    <div class="flex flex-col flex-1 justify-center py-1">
+                        <div class="flex flex-wrap gap-x-2 gap-y-1 mb-1.5 md:mb-2">
+                            {post.data.tags && post.data.tags.length > 0 ? (
+                                post.data.tags.map((tag: string) => (
+                                    <span class="text-[9px] md:text-[10px] font-sans font-black text-slate-400 uppercase tracking-[0.2em]">
+                                        {(tagNames as any)[tag] || tag}
                                     </span>
-                                )}
-                            </div>
-
-                            <h4 class="font-bookerly font-light text-slate-800 text-[14px] md:text-[15px] leading-snug group-hover:text-[#0f172a] group-hover:underline decoration-2 underline-offset-2 transition-all duration-200 line-clamp-3">
-                                {post.data.title}
-                            </h4>
+                                ))
+                            ) : (
+                                <span class="text-[9px] md:text-[10px] font-sans font-black text-slate-400 uppercase tracking-[0.2em]">
+                                    LAJM
+                                </span>
+                            )}
                         </div>
+
+                        <h4 class="font-bookerly text-slate-900 font-bold text-[15px] md:text-[19px] leading-snug md:leading-tight group-hover:text-[#DC2626] transition-colors duration-300 line-clamp-3 md:line-clamp-2">
+                            {post.data.title}
+                        </h4>
                     </div>
                 </a>
             );
