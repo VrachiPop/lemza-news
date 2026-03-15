@@ -19,12 +19,12 @@ const pickedPosts = editorsPicksSlugs
 ---
 
 {pickedPosts.length > 0 && (
-    <section class="w-full bg-white py-16 md:py-24 px-4 md:px-8 border-t border-slate-200">
+    <section class="w-full bg-white py-6 md:py-14 px-4 md:px-8">
         <div class="max-w-[1300px] mx-auto">
             
             <div class="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-                <span class="bg-[#DC2626] text-white text-[10px] md:text-[11px] font-black uppercase tracking-widest px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm whitespace-nowrap">
-                    Të zgjedhura
+                <span class="text-black text-base md:text-lg font-normal uppercase tracking-normal">
+                    Të zgjedhura nga redaksia
                 </span>
                 <div class="h-[1px] flex-1 bg-slate-200"></div>
             </div>
@@ -54,7 +54,7 @@ const pickedPosts = editorsPicksSlugs
                                 <div class="text-[9px] md:text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
                                     <FormattedDate date={post.data.pubDate} />
                                 </div>
-                                <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all">
+                                <h3 class="text-lg md:text-xl font-serif font-bold text-slate-900 leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all">
                                     {post.data.title}
                                 </h3>
                                 <p class="text-xs md:text-sm text-slate-500 leading-relaxed line-clamp-2 md:line-clamp-3 italic">
