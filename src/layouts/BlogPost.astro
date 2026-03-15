@@ -62,6 +62,18 @@ if (candidatePosts.length < 10) {
 const finalRelatedPosts = [...candidatePosts]
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
+
+// ==========================================
+// LOGJIKA PËR SIDEBAR-IN E DJATHTË
+// ==========================================
+// 7. Përgatisim pishinën për Sidebar-in e djathtë (Të gjitha lajmet nga i 10-ti e pas)
+const poolForSidebar = allPosts.slice(10).map(post => ({
+    title: post.data.title,
+    slug: getPostUrl(post.slug),
+    heroImage: post.data.heroImage ? post.data.heroImage.src : '',
+    tag: post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM',
+}));
+
 ---
 
 <!DOCTYPE html>
@@ -83,8 +95,8 @@ const finalRelatedPosts = [...candidatePosts]
 
             .page-container {
                 width: 100%;
-                max-width: 900px; /* Ndryshuar për një artikull qendror, të fokusuar */
-                margin: 0 auto;
+                /* Heqim margin: 0 auto që e mbante në qendër */
+                margin: 0; 
                 padding: 2rem 1rem;
                 display: flex;
                 flex-direction: column;
@@ -93,7 +105,9 @@ const finalRelatedPosts = [...candidatePosts]
 
             @media (min-width: 1024px) {
                 .page-container {
-                    padding: 4rem 2rem;
+                    padding: 4rem 0; /* Heqim padding anësor sepse po e kontrollojmë me margin */
+                    max-width: 55vw; /* Zë pak më shumë se gjysmën e ekranit */
+                    margin-left: 4vw; /* Margjinë e vogël majtas (rreth 4% e ekranit) */
                 }
             }
 
@@ -153,8 +167,7 @@ const finalRelatedPosts = [...candidatePosts]
             >
             </div>
 
-            <div class="relative max-w-[900px] mx-auto px-4 md:px-8 z-10">
-                <div
+            <div class="relative w-full px-4 lg:px-[4vw] z-10">                    <div
                     class="flex flex-wrap items-center gap-2 text-[11px] md:text-xs font-black uppercase tracking-tight mb-4 md:mb-6"
                 >
                     {
@@ -201,7 +214,7 @@ const finalRelatedPosts = [...candidatePosts]
 
                     <button
                         id="share-button"
-                        class="shrink-0 flex items-center justify-center gap-2 text-[11px] font-black text-slate-300 hover:text-white uppercase tracking-widest transition-all group cursor-pointer bg-slate-800/50 hover:bg-[#DC2626] px-4 py-2 md:px-6 md:py-3 rounded-full border border-slate-700 hover:border-[#DC2626]"
+                        class="shrink-0 flex items-center justify-start md:justify-center gap-2 text-[11px] font-black text-slate-300 hover:text-white uppercase tracking-widest transition-all group cursor-pointer md:bg-slate-800/50 md:hover:bg-[#DC2626] py-2 md:px-6 md:py-3 rounded-full md:border md:border-slate-700 md:hover:border-[#DC2626]"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +226,7 @@ const finalRelatedPosts = [...candidatePosts]
                             stroke-width="3"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="w-4 h-4 md:w-5 md:h-5"
+                            class="w-4 h-4 md:w-5 md:h-5 text-[#DC2626] md:text-current"
                         >
                             <circle cx="18" cy="5" r="3"></circle>
                             <circle cx="6" cy="12" r="3"></circle>
@@ -223,7 +236,8 @@ const finalRelatedPosts = [...candidatePosts]
                             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"
                             ></line>
                         </svg>
-                        <span class="hidden md:inline group-hover:underline"
+                        {/* Hoqa klasën 'hidden' që teksti të dalë edhe në mobile */}
+                        <span class="inline group-hover:underline"
                             >Shpërndaje</span
                         >
                     </button>
@@ -231,98 +245,120 @@ const finalRelatedPosts = [...candidatePosts]
             </div>
         </div>
 
-        <div class="page-container">
-            <main>
-                <article class="w-full">
-                    <header class="mb-8 w-full">
-                        {
-                            heroImage && (
-                                <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-slate-50 shadow-sm mb-8">
-                                    <Image
-                                        width={1200}
-                                        height={675}
-                                        src={heroImage}
-                                        alt={title || ""}
-                                        class="absolute inset-0 w-full h-full object-cover"
-                                    />
-                                </div>
-                            )
-                        }
-                    </header>
+        {/* KUTIA E RE FLEKSIBLE: Mban Artikullin Majtas dhe Sidebar-in Djathtas */}
+        <div class="flex flex-col lg:flex-row w-full lg:pr-[4vw] justify-between items-start">
+            
+            <div class="page-container shrink-0">
+                <main>
+                    <article class="w-full">
+                        <header class="mb-8 w-full">
+                            {
+                                heroImage && (
+                                    <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-slate-50 shadow-sm mb-8">
+                                        <Image
+                                            width={1200}
+                                            height={675}
+                                            src={heroImage}
+                                            alt={title || ""}
+                                            class="absolute inset-0 w-full h-full object-cover"
+                                        />
+                                    </div>
+                                )
+                            }
+                        </header>
 
-                    <div class="lemza-artikull prose prose-lg prose-slate max-w-none w-full mx-auto prose-a:text-[#DC2626]">
-                        <slot />
-                    </div>
-
-                    <div
-                        class="mt-16 p-6 bg-slate-50 border-l-4 border-[#DC2626] rounded-r-lg w-full box-border"
-                    >
-                        <h4
-                            class="text-[#DC2626] font-black text-xs uppercase tracking-widest mb-2 mt-0"
-                        >
-                            Mohim Përgjegjësie
-                        </h4>
-                        <p
-                            class="text-slate-600 text-sm leading-relaxed m-0 italic font-sans break-words"
-                        >
-                            Lemza News është një publikim satirik. Artikujt,
-                            historitë dhe përmbajtja e publikuar në këtë faqe
-                            janë pjellë e imagjinatës ose parodi të ngjarjeve
-                            reale. Emrat e përdorur, përveç atyre të figurave
-                            publike të cilët janë subjekt i satirës, janë
-                            fiktivë. Çdo ngjashmëri me persona realë, të gjallë
-                            apo të vdekur, është krejtësisht e rastësishme.
-                            Përmbajtja nuk duhet të merret si faktike apo
-                            serioze.
-                        </p>
-                    </div>
-
-                    {/* ========================================== */}
-                    {/* SEKSIONI "LEXO MË SHUMË"                   */}
-                    {/* ========================================== */}
-                    {finalRelatedPosts.length > 0 && (
-                        <div class="relative mt-20 border-t-2 border-slate-800/50 pt-12 w-full">
-                            
-                            {/* Stema e Kuqe mbi vijën ndarëse */}
-                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0f172a] px-6 py-1.5 rounded-full shadow-sm whitespace-nowrap z-10">
-                                <span class="text-white font-black text-xs md:text-sm tracking-widest uppercase">
-                                    Sugjerime për ty
-                                </span>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                                {finalRelatedPosts.map((post) => (
-                                    <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
-                                        <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
-                                            {post.data.heroImage ? (
-                                                <Image 
-                                                    src={post.data.heroImage} 
-                                                    alt={post.data.title || ""} 
-                                                    width={400}   
-                                                    height={225}
-                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
-                                                />
-                                            ) : (
-                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
-                                            )}
-                                        </div>
-                                        
-                                        <div class="flex flex-col gap-2">
-                                            <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
-                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
-                                            </div>
-                                            <h4 class="font-serif text-base text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
-                                                {post.data.title}
-                                            </h4>
-                                        </div>
-                                    </a>
-                                ))}
-                            </div>
+                        <div class="lemza-artikull prose prose-lg prose-slate max-w-none w-full mx-auto prose-a:text-[#DC2626]">
+                            <slot />
                         </div>
-                    )}
-                </article>
-            </main>
-        </div>
+
+                        <div
+                            class="mt-16 p-6 bg-slate-50 border-l-4 border-[#DC2626] rounded-r-lg w-full box-border"
+                        >
+                            <h4
+                                class="text-[#DC2626] font-black text-xs uppercase tracking-widest mb-2 mt-0"
+                            >
+                                Mohim Përgjegjësie
+                            </h4>
+                            <p
+                                class="text-slate-600 text-sm leading-relaxed m-0 italic font-sans break-words"
+                            >
+                                Lemza News është një publikim satirik. Artikujt,
+                                historitë dhe përmbajtja e publikuar në këtë faqe
+                                janë pjellë e imagjinatës ose parodi të ngjarjeve
+                                reale. Emrat e përdorur, përveç atyre të figurave
+                                publike të cilët janë subjekt i satirës, janë
+                                fiktivë. Çdo ngjashmëri me persona realë, të gjallë
+                                apo të vdekur, është krejtësisht e rastësishme.
+                                Përmbajtja nuk duhet të merret si faktike apo
+                                serioze.
+                            </p>
+                        </div>
+
+                        {/* ========================================== */}
+                        {/* SEKSIONI "LEXO MË SHUMË"                   */}
+                        {/* ========================================== */}
+                        {finalRelatedPosts.length > 0 && (
+                            <div class="relative mt-20 border-t-2 border-slate-800/50 pt-12 w-full">
+                                
+                                {/* Stema e Kuqe mbi vijën ndarëse */}
+                                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0f172a] px-6 py-1.5 rounded-full shadow-sm whitespace-nowrap z-10">
+                                    <span class="text-white font-black text-xs md:text-sm tracking-widest uppercase">
+                                        Sugjerime për ty
+                                    </span>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                    {finalRelatedPosts.map((post) => (
+                                        <a href={getPostUrl(post.slug || "")} class="group block no-underline text-inherit">
+                                            <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-sm mb-4 bg-slate-100">
+                                                {post.data.heroImage ? (
+                                                    <Image 
+                                                        src={post.data.heroImage} 
+                                                        alt={post.data.title || ""} 
+                                                        width={400}   
+                                                        height={225}
+                                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
+                                                    />
+                                                ) : (
+                                                    <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                                )}
+                                            </div>
+                                            
+                                            <div class="flex flex-col gap-2">
+                                                <div class="flex items-center gap-2 text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
+                                                    {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                                                </div>
+                                                <h4 class="font-serif text-base text-slate-800 leading-tight group-hover:text-[#DC2626] transition-colors line-clamp-3 m-0">
+                                                    {post.data.title}
+                                                </h4>
+                                            </div>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </article>
+                </main>
+            </div>
+
+            {/* SIDEBAR-i I DJATHTË PËR KOMPJUTER */}
+            <aside class="hidden lg:block w-[32vw] pt-[4rem] pb-12">
+                <div> {/* Hoqa klasën "sticky top-24" siç kërkove */}
+                    <div class="flex items-center gap-3 mb-6">
+                        <h2 class="text-[15px] md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
+                            Më të injoruarat
+                        </h2>
+                        <div class="flex-1 h-[1px] bg-slate-500 mt-1"></div>
+                    </div>
+                    
+                    {/* Këtu do të printohen 8 lajmet nga JavaScript */}
+                    <div id="sidebar-random-posts" class="flex flex-col gap-5">
+                        <p class="text-slate-400 italic text-sm">Po gërrmojmë arkivën...</p>
+                    </div>
+                </div>
+            </aside>
+
+        </div> {/* <-- Këtu mbyllet Kutia e Re Fleksible */}
 
         <Footer />
 
@@ -355,5 +391,47 @@ const finalRelatedPosts = [...candidatePosts]
                 }
             });
         </script>
+
+        {/* ========================================== */}
+        {/* SKRIPTI PËR RANDOMIZIMIN E SIDEBAR-IT       */}
+        {/* ========================================== */}
+        <script is:inline define:vars={{ poolForSidebar }}>
+            const initSidebar = () => {
+                const container = document.getElementById('sidebar-random-posts');
+                if (!container) return;
+
+                const shuffled = [...poolForSidebar].sort(() => 0.5 - Math.random());
+                const selected = shuffled.slice(0, 6); // Zgjedhim fiks 8 lajme
+
+                if(selected.length > 0) {
+                    container.innerHTML = selected.map(post => `
+                        <article class="group !p-0">
+                            <a href="${post.slug}" class="no-underline text-inherit flex flex-col gap-2">
+                                <div class="w-[85%] xl:w-[75%] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm shadow-sm">
+                                    <img src="${post.heroImage}" alt="${post.title}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" />
+                                </div>
+                                
+                                <div class="flex flex-col w-[85%] xl:w-[75%] mt-1">
+                                    <div class="text-[9px] font-bold text-[#b91c1c] uppercase tracking-wider mb-0.5 font-sans">
+                                        ${post.tag}
+                                    </div>
+                                    <h3 class="font-serif text-[14px] xl:text-[15px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                        ${post.title}
+                                    </h3>
+                                </div>
+                            </a>
+                        </article>
+                    `).join('');
+                }
+            };
+
+            // Sigurohemi që ekzekutohet gjithmonë
+            initSidebar();
+            document.addEventListener('astro:page-load', initSidebar);
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted) initSidebar();
+            });
+        </script>
+
     </body>
 </html>
