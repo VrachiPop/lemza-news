@@ -50,13 +50,13 @@ const titleText = mainPost.data.title;
 
             {/* Madhësi fikse dhe responsive e titullit, e integruar direkt në klasat e HTML */}
             <h1
-                class="font-bookerly font-black leading-tight text-white drop-shadow-2xl mb-3 md:mb-5 group-hover:text-slate-100 transition-colors px-2 md:px-4 line-clamp-4 mx-auto text-base sm:text-xl md:text-3xl lg:text-4xl max-w-6xl"
+                class="font-bookerly font-black leading-tight text-white drop-shadow-2xl mb-3 md:mb-5 group-hover:text-slate-100 transition-colors px-2 md:px-4 mx-auto text-lg sm:text-lg md:text-3xl lg:text-4xl max-w-6xl"
             >
                 {titleText}
             </h1>
 
             <div
-                class="text-white/80 text-[10px] md:text-sm font-black uppercase tracking-widest flex items-center gap-2 mt-2 md:mt-3"
+                class="text-white/80 text-[10px] md:text-xs font-black uppercase tracking-widest flex items-center gap-2 mt-2 md:mt-3"
             >
                 <FormattedDate date={mainPost.data.pubDate} />
             </div>

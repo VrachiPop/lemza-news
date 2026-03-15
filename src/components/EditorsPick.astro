@@ -19,45 +19,47 @@ const pickedPosts = editorsPicksSlugs
 ---
 
 {pickedPosts.length > 0 && (
-    <section class="w-full bg-white py-6 md:py-14 px-4 md:px-8">
-        <div class="max-w-[1300px] mx-auto">
+    <section class="w-full bg-white py-6 md:py-14 px-2 md:px-8">
+        <div class="max-w-[1250px] mx-auto">
             
-            <div class="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-                <span class="text-black text-base md:text-lg font-normal uppercase tracking-normal">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-8">
+                <h2 class="text-[15px] md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
                     Të zgjedhura nga redaksia
-                </span>
-                <div class="h-[1px] flex-1 bg-slate-200"></div>
+                </h2>
+                <div class="flex-1 h-[1px] bg-slate-500 mt-1"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-8 md:gap-y-12">
                 {pickedPosts.map((post) => (
                     <article class="group">
                         <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex flex-col h-full">
-                            <div class="relative w-full aspect-[16/10] overflow-hidden rounded-xl shadow-sm mb-3 md:mb-5 bg-slate-100">
+                            <div class="relative w-full aspect-[16/10] overflow-hidden rounded-sm shadow-sm mb-2.5 md:mb-4 bg-slate-100">
                                 {post.data.heroImage && (
                                     <Image 
                                         src={post.data.heroImage} 
                                         alt={post.data.title} 
                                         width={500} 
                                         height={312} 
-                                        class="w-full h-full object-cover" 
+                                        class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" 
                                     />
                                 )}
-                                <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-full shadow-sm">
+                                <div class="absolute top-2 right-2 md:top-3 md:right-3 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-full shadow-sm">
                                     <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#eccd00]" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                                     </svg>
                                 </div>
                             </div>
                             
-                            <div class="flex flex-col gap-2 md:gap-3">
-                                <div class="text-[9px] md:text-[10px] font-bold text-[#DC2626] uppercase tracking-widest">
-                                    <FormattedDate date={post.data.pubDate} />
+                            <div class="flex flex-col">
+                                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 md:mb-1.5 font-sans">
+                                    <span class="text-[#b91c1c]">
+                                        <FormattedDate date={post.data.pubDate} />
+                                    </span>
                                 </div>
-                                <h3 class="text-lg md:text-xl font-serif font-bold text-slate-900 leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all">
+                                <h3 class="text-[18px] md:text-[20px] font-serif font-bold text-black leading-tight mb-1.5 md:mb-2 group-hover:text-slate-600 transition-colors">
                                     {post.data.title}
                                 </h3>
-                                <p class="text-xs md:text-sm text-slate-500 leading-relaxed line-clamp-2 md:line-clamp-3 italic">
+                                <p class="text-[13px] md:text-[14px] font-serif text-slate-700 leading-snug line-clamp-2 md:line-clamp-3">
                                     {post.data.description}
                                 </p>
                             </div>
