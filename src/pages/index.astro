@@ -19,13 +19,12 @@ const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// 1. Lajmet për Gridin Kryesor (Mbeten Statike)
+// 1. Lajmet për Gridin Kryesor
 const featuredPost = allPosts[1]; 
 const middlePosts = allPosts.slice(2, 5); 
 const rightPosts = allPosts.slice(5, 8); 
 
 // 2. Përgatisim Lajmet për t'u përzier në Client-Side
-// Marrim 15 lajmet pas lajmit të 10-të për t'i pasur si "rezervuar"
 const poolForIgnored = allPosts.slice(10, 25).map(post => ({
     title: post.data.title,
     slug: getPostUrl(post.slug),
@@ -40,7 +39,7 @@ const quotePost = allPosts.find(post => post.data.quoteOfTheDay);
 const quoteText = quotePost?.data.quoteOfTheDay || "Sot të gjithë heshtën. Ose po gënjejnë në heshtje.";
 const quoteUrl = quotePost ? getPostUrl(quotePost.slug || "") : "/";
 
-// 4. Horoskopi (E kalojmë të gjithë listën te Clienti)
+// 4. Horoskopi 
 const allHoroscopes = horoscopeData.predictions;
 ---
 
@@ -65,28 +64,32 @@ const allHoroscopes = horoscopeData.predictions;
         {/* MOBILE: LAJMI 1 I MADH */}
         <Hero /> 
 
-        <div class="w-full max-w-[1250px] mx-auto px-3 md:px-8 mt-10 md:mt-12 mb-12">
+        {/* px-2 krijon margjina mikroskopike në mobile */}
+        <div class="w-full max-w-[1250px] mx-auto px-2 md:px-8 mt-6 md:mt-12 mb-12">
 
             {/* HEADER I SEKSIONIT 1 */}
-            <div class="flex items-center gap-4 mb-5 md:mb-6">
-                <h2 class="text-base md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <h2 class="text-[15px] md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
                     Lajmet e Fundit
                 </h2>
+                
                 <div class="flex-1 h-[1px] bg-slate-500 mt-1"></div>
+                
                <a href="/te-fundit" class="hidden md:flex shrink-0 bg-white text-black border border-slate-300 hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] px-3 md:px-4 py-1.5 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold font-serif uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm">
                     Shiko të gjitha <span class="text-sm leading-none">&rarr;</span>
                 </a>
             </div>
 
             {/* BLLOKU EDITORIAL 1 */}
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 md:gap-y-10 border-b border-black pb-8">
+            {/* gap-y-6 bën që rreshtat në mobile të jenë super të ngjeshur */}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-6 md:gap-y-10 border-b border-black pb-6 md:pb-8">
 
-                {/* LAJMI I MADH */}
+                {/* MOBILE: LAJMI 2 I MADH */}
                 <div class="lg:col-span-4 flex flex-col lg:pr-5 lg:border-r lg:border-slate-300">
                     {featuredPost && (
                         <article class="group flex flex-col">
                             <a href={getPostUrl(featuredPost.slug)} class="no-underline text-inherit flex flex-col h-full">
-                                <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-sm">
+                                <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-2.5 md:mb-3 rounded-sm">
                                     {featuredPost.data.heroImage && (
                                         <Image src={featuredPost.data.heroImage} alt={featuredPost.data.title} width={600} height={337} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
                                     )}
@@ -100,7 +103,7 @@ const allHoroscopes = horoscopeData.predictions;
                                     <FormattedDate date={featuredPost.data.pubDate} />
                                 </div>
 
-                                <h3 class="text-[16px] md:text-xl lg:text-[18px] font-serif font-bold text-black leading-tight mb-2 group-hover:text-slate-600 transition-colors">
+                                <h3 class="text-[16px] md:text-xl lg:text-[18px] font-serif font-bold text-black leading-tight mb-1.5 md:mb-2 group-hover:text-slate-600 transition-colors">
                                     {featuredPost.data.title}
                                 </h3>
                                 
@@ -112,8 +115,9 @@ const allHoroscopes = horoscopeData.predictions;
                     )}
                 </div>
 
-                {/* KOLONA E MESIT */}
-                <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-4 md:gap-5">
+                {/* MOBILE: LISTA E LAJMEVE */}
+                {/* gap-3 në mobile ngjesh lajmet listë me njëri tjetrin */}
+                <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-3 md:gap-5">
                     {middlePosts.map((post) => (
                         <article class="group">
                             <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4">
@@ -128,7 +132,7 @@ const allHoroscopes = horoscopeData.predictions;
                                             {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
                                         </span>
                                     </div>
-                                    <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                    <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors line-clamp-3">
                                         {post.data.title}
                                     </h3>
                                 </div>
@@ -137,8 +141,8 @@ const allHoroscopes = horoscopeData.predictions;
                     ))}
                 </div>
 
-                {/* KOLONA E DJATHTË */}
-                <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-4 md:gap-5">
+                {/* MOBILE: LISTA E LAJMEVE */}
+                <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-3 md:gap-5">
                     {rightPosts.map((post) => (
                         <article class="group">
                             <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4">
@@ -153,7 +157,7 @@ const allHoroscopes = horoscopeData.predictions;
                                             {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
                                         </span>
                                     </div>
-                                    <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                    <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors line-clamp-3">
                                         {post.data.title}
                                     </h3>
                                 </div>
@@ -164,32 +168,35 @@ const allHoroscopes = horoscopeData.predictions;
 
             </div>
 
-            {/* Butoni "Lajmet e Fundit" për mobile */}
-            <div class="flex justify-center mt-6 md:hidden">
-                <a href="/te-fundit" class="bg-white text-black border border-slate-300 px-5 py-2 rounded-full text-[11px] font-bold font-serif uppercase tracking-widest flex items-center gap-1 shadow-sm">
+            {/* Butoni "Lajmet e Fundit" doli këtu poshtë VETËM për mobile */}
+            <div class="flex justify-center mt-4 md:hidden">
+                <a href="/te-fundit" class="bg-white text-black border border-slate-300 px-5 py-1.5 rounded-full text-[10px] font-bold font-serif uppercase tracking-widest flex items-center gap-1 shadow-sm">
                     Shiko të gjitha <span class="text-sm leading-none">&rarr;</span>
                 </a>
             </div>
 
             {/* SEKSIONI I EDITORIALEVE TË VOGLA */}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 pt-8 pb-4 border-b border-black">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-10 pt-6 md:pt-8 pb-4 border-b border-black">
                 
                 {/* 1. THËNIA E DITËS */}
-                <div class="flex flex-col lg:border-r lg:border-slate-300 lg:pr-8 h-full">
-                    <h4 class="font-sans font-bold text-[11px] tracking-[0.15em] uppercase border-b border-black pb-1.5 mb-4 md:mb-5 text-slate-900">
+                <div class="flex flex-col lg:border-r lg:border-slate-300 lg:pr-8 h-full border-b md:border-b-0 border-slate-200 pb-5 md:pb-0">
+                    <h4 class="font-sans font-bold text-[11px] tracking-[0.15em] uppercase border-b border-black pb-1 mb-3 md:mb-5 text-slate-900">
                         Thënia e Ditës
                     </h4>
-                    <p class="font-serif italic text-[17px] md:text-xl text-slate-800 leading-relaxed">
+                    <p class="font-serif italic text-[16px] md:text-xl text-slate-800 leading-relaxed">
                         "{quoteText}"
                     </p>
+                    {/* Linku TEXT për mobile */}
+                    <a href={quoteUrl} class="mt-2 text-[#b91c1c] text-[10px] font-bold uppercase tracking-widest md:hidden flex items-center gap-1">Lexo më shumë <span class="text-sm leading-none">&rarr;</span></a>
+                    {/* Butoni PILL për Desktop */}
                     <a href={quoteUrl} class="hidden md:inline-flex mt-8 w-max bg-white text-black border border-slate-200 hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] px-3 md:px-4 py-1.5 rounded-full text-[10px] font-bold font-sans uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm">
                         Lexo më shumë <span class="text-sm leading-none">&rarr;</span>
                     </a>
                 </div>
 
                 {/* 2. HOROSKOPI (Mbushet nga JS) */}
-                <div class="flex flex-col lg:border-r lg:border-slate-300 lg:pr-8 h-full">
-                    <h4 class="font-sans font-bold text-[11px] tracking-[0.15em] uppercase border-b border-black pb-1.5 mb-4 md:mb-5 text-slate-900">
+                <div class="flex flex-col lg:border-r lg:border-slate-300 lg:pr-8 h-full border-b md:border-b-0 border-slate-200 pb-5 md:pb-0">
+                    <h4 class="font-sans font-bold text-[11px] tracking-[0.15em] uppercase border-b border-black pb-1 mb-3 md:mb-5 text-slate-900">
                         Horoskopi
                     </h4>
                     <div id="horoscope-container">
@@ -198,17 +205,20 @@ const allHoroscopes = horoscopeData.predictions;
                 </div>
 
                 {/* 3. SONDAZHI */}
-                <div class="flex flex-col h-full">
-                    <h4 class="font-sans font-bold text-[11px] tracking-[0.15em] uppercase border-b border-black pb-1.5 mb-4 md:mb-5 text-slate-900">
+                <div class="flex flex-col h-full pb-2 md:pb-0">
+                    <h4 class="font-sans font-bold text-[11px] tracking-[0.15em] uppercase border-b border-black pb-1 mb-3 md:mb-5 text-slate-900">
                         Sondazhi i Javës
                     </h4>
                     <a href="/sondazh" class="block group no-underline flex flex-col h-full">
-                        <h3 class="font-serif font-bold text-xl md:text-2xl text-black group-hover:text-[#b91c1c] transition-colors mb-2">
+                        <h3 class="font-serif font-bold text-[18px] md:text-2xl text-black group-hover:text-[#b91c1c] transition-colors mb-1.5 md:mb-2">
                             A ka rëndësi zëri yt?
                         </h3>
                         <p class="font-serif text-[14px] md:text-[16px] text-slate-700 leading-snug">
                             Shpreh mendimin tënd në sondazhin e kësaj jave. Çdo votë numërohet dhe rezultatet publikohen çdo të premte.
                         </p>
+                        {/* Linku TEXT për mobile */}
+                        <span class="mt-2 text-[#b91c1c] text-[10px] font-bold uppercase tracking-widest md:hidden flex items-center gap-1">Voto Tani <span class="text-sm leading-none">&rarr;</span></span>
+                        {/* Butoni PILL për Desktop */}
                        <span class="hidden md:inline-flex mt-8 w-max bg-white text-black border border-slate-200 group-hover:bg-[#DC2626] group-hover:text-white group-hover:border-[#DC2626] px-3 md:px-4 py-1.5 rounded-full text-[10px] font-black font-serif uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm">
                             Voto Tani <span class="text-sm leading-none">&rarr;</span>
                         </span>
@@ -218,15 +228,15 @@ const allHoroscopes = horoscopeData.predictions;
             </div>
 
             {/* HEADER I SEKSIONIT TË INJORUARA */}
-            <div class="flex items-center gap-4 mb-5 md:mb-6 mt-10">
-                <h2 class="text-base md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 mt-8 md:mt-10">
+                <h2 class="text-[15px] md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
                     Më të injoruarat
                 </h2>
                 <div class="flex-1 h-[1px] bg-slate-500 mt-1"></div>
             </div>
 
             {/* BLLOKU EDITORIAL 2: MË TË INJORUARAT (Mbushet nga JS) */}
-            <div id="ignored-posts-container" class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 md:gap-y-10 pb-4">
+            <div id="ignored-posts-container" class="grid grid-cols-1 lg:grid-cols-12 gap-y-6 md:gap-y-10 pb-4">
                 <p class="col-span-12 text-center text-slate-400 italic">Po kërkojmë lajmet e fshehura...</p>
             </div>
 
@@ -257,11 +267,11 @@ const allHoroscopes = horoscopeData.predictions;
                 const symbol = getZodiacSymbol(randomSign.sign);
                 
                 const horoscopeHTML = `
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="text-2xl leading-none">${symbol}</span>
-                        <span class="font-serif font-bold text-xl capitalize text-black">${randomSign.sign}</span>
+                    <div class="flex items-center gap-2 mb-2 md:mb-3">
+                        <span class="text-2xl md:text-2xl leading-none">${symbol}</span>
+                        <span class="font-serif font-bold text-xl md:text-xl capitalize text-black">${randomSign.sign}</span>
                     </div>
-                    <p class="font-serif text-[15px] md:text-[16px] text-slate-700 leading-snug">
+                    <p class="font-serif text-[14px] md:text-[16px] text-slate-700 leading-snug">
                         "${randomSign.text}"
                     </p>
                 `;
@@ -269,22 +279,19 @@ const allHoroscopes = horoscopeData.predictions;
 
 
                 // --- 2. RANDOMIZIMI I LAJMEVE TË INJORUARA ---
-                // Përziejmë listën e rezervuar
                 const shuffledPosts = [...poolForIgnored].sort(() => 0.5 - Math.random());
-                const selectedPosts = shuffledPosts.slice(0, 7); // Marrim 7 lajme
+                const selectedPosts = shuffledPosts.slice(0, 7); 
 
                 if(selectedPosts.length === 7) {
                     const feat = selectedPosts[0];
                     const midPosts = selectedPosts.slice(1, 4);
                     const rightPosts = selectedPosts.slice(4, 7);
 
-                    // Funksion ndihmës për të formatuar datën thjeshtë në JS (Opsionale, mund ta heqësh nëse s'të duhet)
                     const formatDate = (dateString) => {
                         const date = new Date(dateString);
                         return date.toLocaleDateString('sq-AL', { year: 'numeric', month: 'short', day: 'numeric' });
                     };
 
-                    // Gjenerojmë kolonat e vogla
                     const generateSmallCols = (posts) => {
                         return posts.map(post => `
                             <article class="group">
@@ -296,7 +303,7 @@ const allHoroscopes = horoscopeData.predictions;
                                         <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-0.5 md:mb-1 font-sans flex items-center gap-1.5 flex-wrap">
                                             <span class="text-[#b91c1c]">${post.tag}</span>
                                         </div>
-                                        <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                        <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors line-clamp-3">
                                             ${post.title}
                                         </h3>
                                     </div>
@@ -309,7 +316,7 @@ const allHoroscopes = horoscopeData.predictions;
                         <div class="lg:col-span-4 flex flex-col lg:pr-5 lg:border-r lg:border-slate-300">
                             <article class="group flex flex-col">
                                 <a href="${feat.slug}" class="no-underline text-inherit flex flex-col h-full">
-                                    <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-sm">
+                                    <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-2.5 md:mb-3 rounded-sm">
                                         <img src="${feat.heroImage}" alt="${feat.title}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" />
                                     </div>
                                     
@@ -319,7 +326,7 @@ const allHoroscopes = horoscopeData.predictions;
                                         <span>${formatDate(feat.date)}</span>
                                     </div>
 
-                                    <h3 class="text-[16px] md:text-xl lg:text-[18px] font-serif font-bold text-black leading-tight mb-2 group-hover:text-slate-600 transition-colors">
+                                    <h3 class="text-[16px] md:text-xl lg:text-[18px] font-serif font-bold text-black leading-tight mb-1.5 md:mb-2 group-hover:text-slate-600 transition-colors">
                                         ${feat.title}
                                     </h3>
                                     
@@ -330,11 +337,11 @@ const allHoroscopes = horoscopeData.predictions;
                             </article>
                         </div>
 
-                        <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-4 md:gap-5">
+                        <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-3 md:gap-5">
                             ${generateSmallCols(midPosts)}
                         </div>
 
-                        <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-4 md:gap-5">
+                        <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-3 md:gap-5">
                             ${generateSmallCols(rightPosts)}
                         </div>
                     `;
