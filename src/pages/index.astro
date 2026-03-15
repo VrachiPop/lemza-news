@@ -79,7 +79,7 @@ const allHoroscopes = horoscopeData.predictions;
 
                 {/* LAJMI I MADH */}
                 <div class="lg:col-span-4 flex flex-col lg:pr-5 lg:border-r lg:border-slate-300">
-                    <article class="group flex flex-col">
+                    <article class="group !p-0 flex flex-col">
                         <a href={getPostUrl(featuredPost?.slug || '')} class="no-underline text-inherit flex flex-col h-full">
                             <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-sm md:rounded-sm">
                                 {featuredPost?.data.heroImage && (
@@ -96,7 +96,7 @@ const allHoroscopes = horoscopeData.predictions;
                                     {featuredPost && <FormattedDate date={featuredPost.data.pubDate} />}
                                 </div>
 
-                                <h3 class="text-[18px] md:text-[20px] font-serif font-bold text-black leading-tight mb-2 group-hover:text-slate-600 transition-colors">
+                                <h3 class="text-[16px] md:text-[18px] font-serif font-bold text-black leading-tight mb-2 group-hover:text-slate-600 transition-colors">
                                     {featuredPost?.data.title}
                                 </h3>
                                 
@@ -111,19 +111,18 @@ const allHoroscopes = horoscopeData.predictions;
                 {/* KOLONA E MESIT (Lista Mobile) */}
                 <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-4 md:gap-5 mt-2 md:mt-0">
                     {middlePosts.map((post) => (
-                        <article class="group">
+                        <article class="group !p-0">
                             <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4">
-                                <div class="shrink-0 w-[95px] md:w-[120px] aspect-[4/3] overflow-hidden bg-slate-100 rounded-sm">
+                                <div class="shrink-0 w-[95px] md:w-[120px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
                                     {post.data.heroImage && (
-                                        <Image src={post.data.heroImage} alt={post.data.title} width={300} height={225} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                        <Image src={post.data.heroImage} alt={post.data.title} width={300} height={169} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
                                     )}
                                 </div>
                                 <div class="flex flex-col flex-1">
                                     <div class="text-[9px] font-bold text-[#b91c1c] uppercase tracking-wider mb-0.5 font-sans">
                                         {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
                                     </div>
-                                    {/* Titujt u zvogëluan në text-[13px] për mobile */}
-                                    <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                    <h3 class="font-serif text-[12px] md:text-[13px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
                                         {post.data.title}
                                     </h3>
                                 </div>
@@ -135,18 +134,18 @@ const allHoroscopes = horoscopeData.predictions;
                 {/* KOLONA E DJATHTË (Lista Mobile) */}
                 <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-4 md:gap-5 mt-1 md:mt-0">
                     {rightPosts.map((post) => (
-                        <article class="group">
+                        <article class="group !p-0">
                             <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4">
-                                <div class="shrink-0 w-[95px] md:w-[120px] aspect-[4/3] overflow-hidden bg-slate-100 rounded-sm">
+                                <div class="shrink-0 w-[95px] md:w-[120px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
                                     {post.data.heroImage && (
-                                        <Image src={post.data.heroImage} alt={post.data.title} width={300} height={225} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                        <Image src={post.data.heroImage} alt={post.data.title} width={300} height={169} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
                                     )}
                                 </div>
                                 <div class="flex flex-col flex-1">
                                     <div class="text-[9px] font-bold text-[#b91c1c] uppercase tracking-wider mb-0.5 font-sans">
                                         {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : 'LAJM'}
                                     </div>
-                                    <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                    <h3 class="font-serif text-[12px] md:text-[13px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
                                         {post.data.title}
                                     </h3>
                                 </div>
@@ -268,16 +267,16 @@ const allHoroscopes = horoscopeData.predictions;
 
                     const generateSmallCols = (posts) => {
                         return posts.map(post => `
-                            <article class="group">
+                            <article class="group !p-0">
                                 <a href="${post.slug}" class="no-underline text-inherit flex items-start gap-4">
-                                    <div class="shrink-0 w-[85px] md:w-[120px] aspect-[4/3] overflow-hidden bg-slate-100 rounded-sm">
+                                    <div class="shrink-0 w-[95px] md:w-[120px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
                                         <img src="${post.heroImage}" alt="${post.title}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" />
                                     </div>
                                     <div class="flex flex-col flex-1">
                                         <div class="text-[9px] font-bold text-[#b91c1c] uppercase tracking-wider mb-1 font-sans">
                                             ${post.tag}
                                         </div>
-                                        <h3 class="font-serif text-[13px] md:text-[14px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
+                                        <h3 class="font-serif text-[12px] md:text-[13px] font-bold text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-colors">
                                             ${post.title}
                                         </h3>
                                     </div>
@@ -288,18 +287,18 @@ const allHoroscopes = horoscopeData.predictions;
 
                     const ignoredHTML = `
                         <div class="lg:col-span-4 flex flex-col lg:pr-5 lg:border-r lg:border-slate-300">
-                            <article class="group flex flex-col">
+                            <article class="group !p-0 flex flex-col">
                                 <a href="${feat.slug}" class="no-underline text-inherit flex flex-col h-full">
                                     <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-none md:rounded-sm">
                                         <img src="${feat.heroImage}" alt="${feat.title}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" />
                                     </div>
-                                    <div class="px-4 md:px-0 flex flex-col">
+                                    <div class="flex flex-col">
                                         <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5 font-sans">
                                             <span class="text-[#b91c1c]">${feat.tag}</span>
                                             <span>&bull;</span>
                                             <span>${formatDate(feat.date)}</span>
                                         </div>
-                                        <h3 class="text-[18px] md:text-[20px] font-serif font-bold text-black leading-tight mb-2 group-hover:text-slate-600 transition-colors">
+                                        <h3 class="text-[16px] md:text-[18px] font-serif font-bold text-black leading-tight mb-2 group-hover:text-slate-600 transition-colors">
                                             ${feat.title}
                                         </h3>
                                         <p class="text-[14px] font-serif text-slate-700 leading-snug line-clamp-2">
@@ -310,11 +309,11 @@ const allHoroscopes = horoscopeData.predictions;
                             </article>
                         </div>
 
-                        <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-5 px-4 md:px-0 mt-2 md:mt-0">
+                        <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-5 mt-2 md:mt-0">
                             ${generateSmallCols(midPosts)}
                         </div>
 
-                        <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-5 px-4 md:px-0 mt-1 md:mt-0">
+                        <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-5 mt-1 md:mt-0">
                             ${generateSmallCols(rightPosts)}
                         </div>
                     `;
