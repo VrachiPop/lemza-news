@@ -19,14 +19,14 @@ const sections = [
 >
     <div class="flex flex-col p-6 gap-4 pb-32">
         
-        {/* 1. Të Fundit - Tani me ngjyrë si të tjerat */}
+        {/* 1. Të Fundit */}
         <a href="/te-fundit" class="group block w-full no-underline">
             <span class="block w-full px-6 py-4 rounded-full bg-slate-800/40 border border-slate-700/30 text-white font-bookerly font-black text-xl tracking-wide transition-all active:scale-[0.97] active:bg-[#DC2626] text-left">
                 Të fundit
             </span>
         </a>
 
-        {/* 2. Kategoritë "Spawnable" */}
+        {/* 2. Kategoritë "Spawnable" (Dropdowns) */}
         {sections.map((section) => (
             <div class="flex flex-col gap-2">
                 <button 
@@ -56,6 +56,14 @@ const sections = [
                 </div>
             </div>
         ))}
+
+        {/* 3. E RE: OP-ED (Buton i Madh si Të Fundit) */}
+        <a href="/tags/op-ed" class="group block w-full no-underline mt-2">
+            <span class="block w-full px-6 py-4 rounded-full bg-slate-800/40 border border-slate-700/30 text-white font-bookerly font-black text-xl tracking-wide transition-all active:scale-[0.97] active:bg-[#DC2626] text-left">
+                Op-Ed
+            </span>
+        </a>
+
     </div>
 </div>
 

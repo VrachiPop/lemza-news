@@ -216,7 +216,7 @@ const allHoroscopes = horoscopeData.predictions;
                             Zëri yt nuk ka rëndësi.
                         </h3>
                         <p class="font-serif text-[14px] md:text-[15px] text-slate-700 leading-snug mb-5">
-                            Sidoqoftë, mund të shprehësh mendimin tënd në sondazhin e kësaj jave.
+                            Sidoqoftë, mund të shprehësh mendimin tënd në sondazhin e ditës.
                         </p>
                         
                         {/* MOBILE: Vetëm tekst i pastër */}
@@ -262,7 +262,10 @@ const allHoroscopes = horoscopeData.predictions;
                 // Siguresë: Nëse nuk i gjen kontejnerët në këtë faqe, ndalo skriptin
                 if (!horoscopeContainer || !ignoredContainer) return;
 
-                // --- 1. RANDOMIZIMI I HOROSKOPIT ---
+                // Krijojmë datën e sotme vetëm një herë për ta përdorur kudo
+                const todayStr = new Date().toLocaleDateString('sq-AL');
+
+                // --- 1. RANDOMIZIMI I HOROSKOPIT (1 HERË NË DITË) ---
                 const getZodiacSymbol = (signName) => {
                     const symbols = {
                         "dashi": "♈", "demi": "♉", "binjakët": "♊", "binjaket": "♊",
@@ -273,26 +276,71 @@ const allHoroscopes = horoscopeData.predictions;
                     return symbols[signName.toLowerCase()] || "✨";
                 };
 
-                const randomSign = allHoroscopes[Math.floor(Math.random() * allHoroscopes.length)];
-                const symbol = getZodiacSymbol(randomSign.sign);
+                let selectedSign = null;
+
+                // Kontrollojmë kujtesën për horoskopin e sotëm
+                try {
+                    const cachedHoroscope = localStorage.getItem('lemza_horoscope_daily');
+                    if (cachedHoroscope) {
+                        const parsedCache = JSON.parse(cachedHoroscope);
+                        if (parsedCache.date === todayStr && parsedCache.signData) {
+                            selectedSign = parsedCache.signData;
+                        }
+                    }
+                } catch(e) { console.error("Kujtesa e horoskopit nuk funksionoi", e); }
+
+                // Nëse s'ka asgjë për sot, zgjedhim një të ri dhe e ruajmë
+                if (!selectedSign) {
+                    selectedSign = allHoroscopes[Math.floor(Math.random() * allHoroscopes.length)];
+                    try {
+                        localStorage.setItem('lemza_horoscope_daily', JSON.stringify({
+                            date: todayStr,
+                            signData: selectedSign
+                        }));
+                    } catch(e) {}
+                }
+
+                const symbol = getZodiacSymbol(selectedSign.sign);
                 
                 const horoscopeHTML = `
                     <div class="flex items-center gap-2 mb-2 md:mb-3">
                         <span class="text-[28px] md:text-2xl leading-none font-serif text-slate-900">${symbol}</span>
-                        <span class="font-serif font-bold text-[18px] md:text-xl capitalize text-black tracking-tight">${randomSign.sign}</span>
+                        <span class="font-serif font-bold text-[18px] md:text-xl capitalize text-black tracking-tight">${selectedSign.sign}</span>
                     </div>
                     <p class="font-serif text-[14px] md:text-[16px] text-slate-800 leading-relaxed">
-                        "${randomSign.text}"
+                        "${selectedSign.text}"
                     </p>
                 `;
                 horoscopeContainer.innerHTML = horoscopeHTML;
 
 
-                // --- 2. RANDOMIZIMI I LAJMEVE TË INJORUARA ---
-                const shuffledPosts = [...poolForIgnored].sort(() => 0.5 - Math.random());
-                const selectedPosts = shuffledPosts.slice(0, 7); 
+                // --- 2. RANDOMIZIMI I LAJMEVE TË INJORUARA (1 HERË NË DITË) ---
+                let selectedPosts = [];
 
-                // Zëvendësuar nga === 7 në > 0 për siguri maksimale që s'del bosh
+                // Kontrollojmë kujtesën për lajmet e sotme
+                try {
+                    const cachedIgnored = localStorage.getItem('lemza_ignored_daily');
+                    if (cachedIgnored) {
+                        const parsedCache = JSON.parse(cachedIgnored);
+                        if (parsedCache.date === todayStr && parsedCache.posts && parsedCache.posts.length > 0) {
+                            selectedPosts = parsedCache.posts;
+                        }
+                    }
+                } catch(e) { console.error("Kujtesa e lajmeve nuk funksionoi", e); }
+
+                // Nëse NUK gjetëm lajme për sot, zgjedhim 7 të reja dhe i ruajmë!
+                if (selectedPosts.length === 0) {
+                    const shuffledPosts = [...poolForIgnored].sort(() => 0.5 - Math.random());
+                    selectedPosts = shuffledPosts.slice(0, 7);
+                    
+                    try {
+                        localStorage.setItem('lemza_ignored_daily', JSON.stringify({
+                            date: todayStr,
+                            posts: selectedPosts
+                        }));
+                    } catch(e) {}
+                }
+
                 if(selectedPosts.length > 0) {
                     const feat = selectedPosts[0];
                     const midPosts = selectedPosts.slice(1, 4);

@@ -17,7 +17,7 @@ interface Props {
     updatedDate?: Date;
     heroImage?: any;
     tags?: string[];
-    // slug nuk na duhet më, e hoqa
+    author?: string; // <-- Shtuar variabli për emrin e autorit
 }
 
 const {
@@ -27,6 +27,7 @@ const {
     updatedDate,
     heroImage,
     tags,
+    author, // <-- Marrja e autorit nga CMS
 } = Astro.props;
 
 // ==========================================
@@ -207,7 +208,7 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                             class="text-slate-600">|</span
                         ><span
                             >Nga: <span class="text-slate-200"
-                                >Redaksia Lemza</span
+                                >{author ? author : "Redaksia Lemza"}</span
                             >
                         </span>
                     </div>
@@ -236,7 +237,6 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"
                             ></line>
                         </svg>
-                        {/* Hoqa klasën 'hidden' që teksti të dalë edhe në mobile */}
                         <span class="inline group-hover:underline"
                             >Shpërndaje</span
                         >
@@ -343,7 +343,7 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
 
             {/* SIDEBAR-i I DJATHTË PËR KOMPJUTER */}
             <aside class="hidden lg:block w-[32vw] pt-[4rem] pb-12">
-                <div> {/* Hoqa klasën "sticky top-24" siç kërkove */}
+                <div>
                     <div class="flex items-center gap-3 mb-6">
                         <h2 class="text-[15px] md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
                             Më të injoruarat
@@ -351,7 +351,7 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                         <div class="flex-1 h-[1px] bg-slate-500 mt-1"></div>
                     </div>
                     
-                    {/* Këtu do të printohen 8 lajmet nga JavaScript */}
+                    {/* Këtu do të printohen 6 lajmet nga JavaScript */}
                     <div id="sidebar-random-posts" class="flex flex-col gap-5">
                         <p class="text-slate-400 italic text-sm">Po gërrmojmë arkivën...</p>
                     </div>
@@ -400,9 +400,34 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                 const container = document.getElementById('sidebar-random-posts');
                 if (!container) return;
 
-                const shuffled = [...poolForSidebar].sort(() => 0.5 - Math.random());
-                const selected = shuffled.slice(0, 6); // Zgjedhim fiks 8 lajme
+                const todayStr = new Date().toLocaleDateString('sq-AL');
+                let selected = [];
 
+                // 1. Kontrollojmë kujtesën për sidebar-in e sotëm
+                try {
+                    const cachedSidebar = localStorage.getItem('lemza_sidebar_daily');
+                    if (cachedSidebar) {
+                        const parsedCache = JSON.parse(cachedSidebar);
+                        if (parsedCache.date === todayStr && parsedCache.posts && parsedCache.posts.length > 0) {
+                            selected = parsedCache.posts;
+                        }
+                    }
+                } catch(e) { console.error("Kujtesa nuk funksionoi", e); }
+
+                // 2. Nëse nuk ka asgjë për sot, zgjedhim 6 të reja dhe i ruajmë!
+                if (selected.length === 0) {
+                    const shuffled = [...poolForSidebar].sort(() => 0.5 - Math.random());
+                    selected = shuffled.slice(0, 6);
+
+                    try {
+                        localStorage.setItem('lemza_sidebar_daily', JSON.stringify({
+                            date: todayStr,
+                            posts: selected
+                        }));
+                    } catch(e) {}
+                }
+
+                // 3. Afishimi HTML
                 if(selected.length > 0) {
                     container.innerHTML = selected.map(post => `
                         <article class="group !p-0">

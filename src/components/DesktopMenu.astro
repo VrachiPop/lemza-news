@@ -14,6 +14,8 @@ const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
     class="hidden xl:flex absolute left-1/2 -translate-x-1/2 top-0 h-full items-center z-50"
 >
     <div class="flex gap-2 h-full items-center">
+        
+        {/* LINKU STATIK: TË FUNDIT */}
         <a
             href="/te-fundit"
             class="standard-link px-5 py-2 rounded-full text-white font-bookerly font-black text-[12px] uppercase tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
@@ -21,6 +23,7 @@ const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
             Të fundit
         </a>
 
+        {/* MENYTË DROPDOWN */}
         {["aktualitet", "argetim", "te-tjera"].map((id) => (
             <div
                 class="nav-trigger group h-full flex items-center cursor-pointer"
@@ -34,6 +37,15 @@ const { aktualitetLinks, argetimLinks, teTjeraLinks } = Astro.props;
                 </span>
             </div>
         ))}
+
+        {/* E RE: OP-ED (Link i thjeshtë pas Të Tjera) */}
+        <a
+            href="/tags/op-ed"
+            class="standard-link px-5 py-2 rounded-full text-white font-bookerly font-black text-[12px] uppercase tracking-normal no-underline transition-all duration-300 hover:bg-[#DC2626]"
+        >
+            Op-Ed
+        </a>
+        
     </div>
 
     {/* FLUID VIEWPORT: Hoqëm lartësinë fikse 300px nga 'style' */}

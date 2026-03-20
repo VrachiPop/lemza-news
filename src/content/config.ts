@@ -7,6 +7,7 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     quoteOfTheDay: z.string().optional(),
+    author: z.string().optional(),
     
     // 2. Change heroImage to use the image() helper
     heroImage: image().optional(), 
