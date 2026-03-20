@@ -83,7 +83,8 @@ const allHoroscopes = horoscopeData.predictions;
                 {/* LAJMI I MADH */}
                 <div class="lg:col-span-4 flex flex-col lg:pr-5 lg:border-r lg:border-slate-300">
                     <article class="group !p-0 flex flex-col">
-                        <a href={getPostUrl(featuredPost?.slug || '')} class="no-underline text-inherit flex flex-col h-full">
+                        {/* EFEKTI TOUCH I SHTUAR */}
+                        <a href={getPostUrl(featuredPost?.slug || '')} class="no-underline text-inherit flex flex-col h-full max-md:active:bg-slate-100 max-md:active:scale-[0.98] max-md:rounded-xl max-md:p-2 max-md:-mx-2 transition-all duration-200">
                             <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-sm md:rounded-sm">
                                 {featuredPost?.data.heroImage && (
                                     <Image src={featuredPost.data.heroImage} alt={featuredPost.data.title} width={600} height={337} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
@@ -115,7 +116,8 @@ const allHoroscopes = horoscopeData.predictions;
                 <div class="lg:col-span-4 flex flex-col lg:px-5 lg:border-r lg:border-slate-300 gap-4 md:gap-5 mt-2 md:mt-0">
                     {middlePosts.map((post) => (
                         <article class="group !p-0">
-                            <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4">
+                            {/* EFEKTI TOUCH I SHTUAR */}
+                            <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4 max-md:active:bg-slate-100 max-md:active:scale-[0.98] max-md:rounded-xl max-md:p-2 max-md:-mx-2 transition-all duration-200">
                                 <div class="shrink-0 w-[105px] md:w-[180px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
                                     {post.data.heroImage && (
                                         <Image src={post.data.heroImage} alt={post.data.title} width={300} height={169} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
@@ -138,7 +140,8 @@ const allHoroscopes = horoscopeData.predictions;
                 <div class="lg:col-span-4 flex flex-col lg:pl-5 gap-4 md:gap-5 mt-1 md:mt-0">
                     {rightPosts.map((post) => (
                         <article class="group !p-0">
-                            <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4">
+                            {/* EFEKTI TOUCH I SHTUAR */}
+                            <a href={getPostUrl(post.slug)} class="no-underline text-inherit flex items-start gap-3 md:gap-4 max-md:active:bg-slate-100 max-md:active:scale-[0.98] max-md:rounded-xl max-md:p-2 max-md:-mx-2 transition-all duration-200">
                                 <div class="shrink-0 w-[105px] md:w-[180px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
                                     {post.data.heroImage && (
                                         <Image src={post.data.heroImage} alt={post.data.title} width={300} height={169} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
@@ -161,7 +164,7 @@ const allHoroscopes = horoscopeData.predictions;
                 <div class="col-span-1 lg:col-span-12 flex justify-center md:justify-end mt-0 md:mt-0 pt-1 md:pt-1">
                     
                     {/* MOBILE: Vetëm tekst i pastër */}
-                    <a href="/te-fundit" class="md:hidden text-[11px] font-bold font-sans uppercase tracking-widest text-slate-500 hover:text-black transition-colors inline-flex items-center gap-1">
+                    <a href="/te-fundit" class="md:hidden text-[11px] font-bold font-sans uppercase tracking-widest text-slate-500 hover:text-black transition-colors inline-flex items-center gap-1 active:scale-[0.95] transition-transform">
                         Shiko të gjitha <span class="text-[14px] leading-none">&rarr;</span>
                     </a>
 
@@ -178,21 +181,26 @@ const allHoroscopes = horoscopeData.predictions;
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-0 md:gap-y-10 pt-6 md:pt-8 pb-4 px-4 md:px-0">
                 
                 {/* 1. THËNIA E DITËS */}
-                <div class="flex flex-col lg:border-r lg:border-slate-300 lg:pr-8 h-full border-b md:border-b-0 border-slate-200 py-6 md:py-0 md:pb-0">
+                {/* EFEKTI TOUCH PËR BLLOKUN E THËNIES (Meqë është një bllok me link mbështjellës të pavarur) */}
+                <div class="flex flex-col lg:border-r lg:border-slate-300 lg:pr-8 h-full border-b md:border-b-0 border-slate-200 py-6 md:py-0 md:pb-0 transition-all duration-200">
                     <h4 class="w-max font-sans font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase border-b border-slate-300 pb-1.5 mb-4 md:mb-5 text-slate-500">
                         Thënia e Ditës
                     </h4>
-                    <p class="font-serif italic text-[16px] md:text-[19px] text-slate-900 leading-relaxed mb-4">
-                        "{quoteText}"
-                    </p>
-                    {/* MOBILE: Vetëm tekst i pastër */}
-                    <a href={quoteUrl} class="md:hidden mt-auto text-[10px] font-sans font-bold uppercase tracking-widest text-[#b91c1c] hover:text-black transition-colors inline-flex items-center gap-1 w-max">
-                        Lexo më shumë <span class="text-[14px] leading-none">&rarr;</span>
-                    </a>
+                    
+                    {/* Bëmë të gjithë tekstin dhe butonin të klikueshëm si një bllok */}
+                    <a href={quoteUrl} class="flex flex-col h-full no-underline text-inherit group max-md:active:bg-slate-50 max-md:active:scale-[0.98] max-md:rounded-xl transition-all duration-200 max-md:-mx-3 max-md:p-3">
+                        <p class="font-serif italic text-[16px] md:text-[19px] text-slate-900 leading-relaxed mb-4">
+                            "{quoteText}"
+                        </p>
+                        {/* MOBILE: Vetëm tekst i pastër */}
+                        <span class="md:hidden mt-auto text-[10px] font-sans font-bold uppercase tracking-widest text-[#b91c1c] group-hover:text-black transition-colors inline-flex items-center gap-1 w-max">
+                            Lexo më shumë <span class="text-[14px] leading-none">&rarr;</span>
+                        </span>
 
-                    {/* DESKTOP: Butoni Pill elegant */}
-                    <a href={quoteUrl} class="hidden md:inline-flex mt-auto bg-white text-black border border-slate-200 hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] px-4 py-1.5 rounded-full text-[10px] font-bold font-serif uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm w-max">
-                        Lexo më shumë
+                        {/* DESKTOP: Butoni Pill elegant */}
+                        <span class="hidden md:inline-flex mt-auto bg-white text-black border border-slate-200 group-hover:bg-[#DC2626] group-hover:text-white group-hover:border-[#DC2626] px-4 py-1.5 rounded-full text-[10px] font-bold font-serif uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm w-max">
+                            Lexo më shumë
+                        </span>
                     </a>
                 </div>
 
@@ -201,7 +209,7 @@ const allHoroscopes = horoscopeData.predictions;
                     <h4 class="w-max font-sans font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase border-b border-slate-300 pb-1.5 mb-4 md:mb-5 text-slate-500">
                         Horoskopi
                     </h4>
-                    <div id="horoscope-container">
+                    <div id="horoscope-container" class="active:scale-[0.98] transition-transform duration-200">
                         <p class="text-sm text-slate-400 italic font-serif">Po konsultojmë yjet...</p>
                     </div>
                 </div>
@@ -211,7 +219,8 @@ const allHoroscopes = horoscopeData.predictions;
                     <h4 class="w-max font-sans font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase border-b border-slate-300 pb-1.5 mb-4 md:mb-5 text-slate-500">
                         Sondazhi
                     </h4>
-                    <a href="/sondazh" class="block group no-underline flex flex-col h-full">
+                    {/* EFEKTI TOUCH I SHTUAR NË BLLOKUN E SONDAZHIT */}
+                    <a href="/sondazh" class="block group no-underline flex flex-col h-full max-md:active:bg-slate-50 max-md:active:scale-[0.98] max-md:rounded-xl transition-all duration-200 max-md:-mx-3 max-md:p-3">
                         <h3 class="font-serif font-bold text-[18px] md:text-2xl text-black group-hover:text-[#b91c1c] transition-colors mb-2 md:mb-2">
                             Zëri yt nuk ka rëndësi.
                         </h3>
@@ -220,13 +229,13 @@ const allHoroscopes = horoscopeData.predictions;
                         </p>
                         
                         {/* MOBILE: Vetëm tekst i pastër */}
-                        <a href="/sondazh" class="md:hidden mt-auto text-[10px] font-sans font-bold uppercase tracking-widest text-[#b91c1c] hover:text-black transition-colors inline-flex items-center gap-1 w-max">
+                        <span class="md:hidden mt-auto text-[10px] font-sans font-bold uppercase tracking-widest text-[#b91c1c] group-hover:text-black transition-colors inline-flex items-center gap-1 w-max">
                             Voto tani <span class="text-[14px] leading-none">&rarr;</span>
-                        </a>
+                        </span>
 
-                        <a href="/sondazh" class="hidden md:inline-flex mt-auto bg-white text-black border border-slate-200 hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] px-4 py-1.5 rounded-full text-[10px] font-bold font-serif uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm w-max">
-                        Voto tani
-                        </a>
+                        <span class="hidden md:inline-flex mt-auto bg-white text-black border border-slate-200 group-hover:bg-[#DC2626] group-hover:text-white group-hover:border-[#DC2626] px-4 py-1.5 rounded-full text-[10px] font-bold font-serif uppercase tracking-widest transition-all duration-300 items-center gap-1 shadow-sm w-max">
+                            Voto tani
+                        </span>
                     </a>
                 </div>
 
@@ -354,7 +363,7 @@ const allHoroscopes = horoscopeData.predictions;
                     const generateSmallCols = (posts) => {
                         return posts.map(post => `
                             <article class="group !p-0">
-                                <a href="${post.slug}" class="no-underline text-inherit flex items-start gap-4">
+                                <a href="${post.slug}" class="no-underline text-inherit flex items-start gap-4 max-md:active:bg-slate-100 max-md:active:scale-[0.98] max-md:rounded-xl max-md:p-2 max-md:-mx-2 transition-all duration-200">
                                     <div class="shrink-0 w-[105px] md:w-[180px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
                                         <img src="${post.heroImage}" alt="${post.title}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" />
                                     </div>
@@ -374,7 +383,7 @@ const allHoroscopes = horoscopeData.predictions;
                     const ignoredHTML = `
                         <div class="lg:col-span-4 flex flex-col lg:pr-5 lg:border-r lg:border-slate-300">
                             <article class="group !p-0 flex flex-col">
-                                <a href="${feat.slug}" class="no-underline text-inherit flex flex-col h-full">
+                                <a href="${feat.slug}" class="no-underline text-inherit flex flex-col h-full max-md:active:bg-slate-100 max-md:active:scale-[0.98] max-md:rounded-xl max-md:p-2 max-md:-mx-2 transition-all duration-200">
                                     <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-none md:rounded-sm">
                                         <img src="${feat.heroImage}" alt="${feat.title}" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" loading="lazy" />
                                     </div>

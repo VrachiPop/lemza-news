@@ -15,30 +15,25 @@ import { getDisplayTag, getPostUrl } from '../../../utils/helpers';
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const allPosts = await getCollection('blog');
   
-  // 1. Gjej tag-et unike dhe pastroji
   const uniqueTags = [...new Set(allPosts
     .map((post) => post.data.tags)
     .flat()
-    .filter(tag => tag) // Heqim vlerat null/undefined
+    .filter(tag => tag) 
     .map(tag => tag.toLowerCase().trim()) 
   )];
 
-  // 2. Gjenero faqet me Paginim për secilin tag
   return uniqueTags.flatMap((tag) => {
-    // Filtro postimet për këtë tag specifik dhe renditi
     const filteredPosts = allPosts
       .filter((post) => post.data.tags?.some(t => t.toLowerCase().trim() === tag))
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     
-    // I themi Astro-s t'i ndajë nga 10 për faqe, dhe ia kalojmë 'tag'-un si parametër shtesë
     return paginate(filteredPosts, {
         params: { tag: tag },
-        pageSize: 10
+        pageSize: 14
     });
   });
 }
 
-// I tregojmë VS Code-it tipet e sakta
 interface Props {
     page: any;
 }
@@ -46,22 +41,10 @@ interface Props {
 const { tag } = Astro.params;
 const { page } = Astro.props; 
 
-// Kontrollojmë nëse jemi në faqen e parë të kësaj kategorie
-const isFirstPage = page.currentPage === 1;
-
-// I pari fare është "Featured" (vetëm në faqen 1)
-const featuredPost = isFirstPage ? page.data[0] : null;
-
-// Të tjerët janë lista
-const restPosts = isFirstPage ? page.data.slice(1) : page.data;
-
-// E detyrojmë të kthejë gjithmonë string (qoftë edhe bosh)
 const capitalize = (s: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
-
 const safeTag = tag || ""; 
 const cleanTag = safeTag.toLowerCase().trim(); 
 
-// Titulli i faqes i sigurt 100% si string
 const pageTitle = (getDisplayTag(cleanTag) !== "LAJME" ? getDisplayTag(cleanTag) : capitalize(cleanTag)) || "Kategoria";
 
 function getFallbackImage(body: any) {
@@ -69,6 +52,21 @@ function getFallbackImage(body: any) {
     const imageMatch = body.match(/!\[.*?\]\((.*?)\)/);
     return imageMatch ? imageMatch[1] : null;
 }
+
+// ==========================================
+// NDARJA E LAJMEVE
+// ==========================================
+const allPosts = page.data;
+
+// Për Mobile: 1 e madhe, 9 të vogla (Pjesa tjetër)
+const mobileFeatured = allPosts[0];
+const mobileList = allPosts.slice(1);
+
+// Për Desktop (Stili NBC): 2 të mëdha sipër, 12 në 3 kolona
+const desktopTopTwo = allPosts.slice(0, 2);
+const desktopColOne = allPosts.slice(2, 6);
+const desktopColTwo = allPosts.slice(6, 10);
+const desktopColThree = allPosts.slice(10, 14);
 ---
 
 <!doctype html>
@@ -77,194 +75,267 @@ function getFallbackImage(body: any) {
         <BaseHead title={`${pageTitle} - Faqja ${page.currentPage} - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
         <style>
              html, body {
-                background-color: #F8FAFC;
-                color: #1e293b;
+                background-color: #ffffff;
+                color: #000000;
             }
         </style>
     </head>
-    <body>
+    <body class="overflow-x-hidden w-full">
         <Header />
         
         <EditorialBanner title={pageTitle || "Kategoria"} />
 
-        <div class="w-full max-w-[1600px] mx-auto px-2 pt-6 md:px-8 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            <main class="lg:col-span-8">
+        {/* ========================================== */}
+        {/* 1. VERSIONI PËR CELULAR (ME EFEKTET E PREKJES) */}
+        {/* ========================================== */}
+        <div class="block lg:hidden w-full max-w-[1250px] mx-auto px-2 pt-6 pb-10">
+            {allPosts.length === 0 ? (
+                <p class="text-slate-500 italic font-serif text-lg">Nuk u gjetën lajme në këtë kategori.</p>
+            ) : (
+                <>
+                    {/* Lajmi Kryesor Mobile */}
+                    {mobileFeatured && (
+                        <article class="group mb-6 pb-6 border-b border-black flex flex-col">
+                            {/* EFEKTI TOUCH KËTU: active:bg-slate-100 active:scale-[0.99] rounded-xl p-2 -mx-2 */}
+                            <a href={getPostUrl(mobileFeatured.slug || "")} class="no-underline text-inherit flex flex-col h-full active:bg-slate-100 active:scale-[0.99] rounded-xl p-2 -mx-2 transition-all duration-200">
+                                <div class="w-full aspect-[16/9] overflow-hidden bg-slate-100 mb-3 rounded-sm">
+                                    {mobileFeatured.data.heroImage ? (
+                                        <Image src={mobileFeatured.data.heroImage} alt="" width={600} height={337} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                    ) : getFallbackImage(mobileFeatured.body) ? (
+                                        <img src={getFallbackImage(mobileFeatured.body)} alt="" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                    ) : (
+                                        <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                    )}
+                                </div>
+                                
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 font-sans">
+                                        <span class="text-[#b91c1c]">
+                                            {mobileFeatured.data.tags && mobileFeatured.data.tags.length > 0 ? getDisplayTag(mobileFeatured.data.tags[0]) : "LAJM"}
+                                        </span>
+                                        <span>&bull;</span>
+                                        <FormattedDate date={mobileFeatured.data.pubDate} />
+                                    </div>
 
-                {page.data.length === 0 ? (
-                    <p class="text-slate-500 italic font-serif text-lg">Nuk u gjetën lajme në këtë kategori.</p>
-                ) : (
-                    <>
-                        {/* FEATURED POST (Lajmi Kryesor i Tag-ut) */}
-                        {featuredPost && (
-                            <article class="group mb-12 pb-12 border-b border-slate-200">
-                                <a href={getPostUrl(featuredPost.slug || "")} class="no-underline text-inherit block">
+                                    <h3 class="text-[16px] font-serif font-bold text-black leading-tight mb-2 group-hover:underline decoration-2 underline-offset-2 transition-all">
+                                        {mobileFeatured.data.title}
+                                    </h3>
                                     
-                                    <div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl shadow-sm mb-6 bg-slate-100">
-                                        {featuredPost.data.heroImage ? (
-                                            <Image 
-                                                src={featuredPost.data.heroImage} 
-                                                alt={featuredPost.data.title || ""} 
-                                                width={1000}   
-                                                height={600}
-                                                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
-                                            />
-                                        ) : getFallbackImage(featuredPost.body) ? (
-                                            <img 
-                                                src={getFallbackImage(featuredPost.body)} 
-                                                alt="" 
-                                                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
-                                            />
+                                    <p class="text-[13px] font-serif text-slate-700 leading-snug line-clamp-2">
+                                        {mobileFeatured.data.description}
+                                    </p>
+                                </div>
+                            </a>
+                        </article>
+                    )}
+
+                    {/* Lista e Lajmeve të tjera Mobile */}
+                    <div class="flex flex-col gap-4">
+                        {mobileList.map((post: any) => (
+                            <article class="group !p-0">
+                                {/* EFEKTI TOUCH KËTU: active:bg-slate-100 active:scale-[0.98] rounded-xl p-2 -mx-2 */}
+                                <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit flex items-start gap-3 active:bg-slate-100 active:scale-[0.98] rounded-xl p-2 -mx-2 transition-all duration-200">
+                                    <div class="shrink-0 w-[105px] aspect-[16/9] overflow-hidden bg-slate-100 rounded-sm">
+                                        {post.data.heroImage ? (
+                                            <Image src={post.data.heroImage} alt="" width={300} height={169} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                        ) : getFallbackImage(post.body || "") ? (
+                                            <img src={getFallbackImage(post.body || "")} alt="" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
                                         ) : (
                                             <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
                                         )}
-
-                                        <div class="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
-                                            {featuredPost.data.tags && featuredPost.data.tags.length > 0 ? (
-                                                featuredPost.data.tags.map((tag: string) => (
-                                                    <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-md shadow-lg">
-                                                        {getDisplayTag(tag)}
-                                                    </span>
-                                                ))
-                                            ) : (
-                                                <span class="bg-[#DC2626] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-md shadow-lg">
-                                                    LAJM
-                                                </span>
-                                            )}
-                                        </div>
                                     </div>
-
-                                    <div class="flex flex-col gap-3">
-                                        <div class="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                            <FormattedDate date={featuredPost.data.pubDate} />
-                                            <span class="text-[#DC2626]">&bull;</span>
-                                            <span class="text-[#DC2626]">Kryesore</span>
+                                    <div class="flex flex-col flex-1">
+                                        <div class="text-[9px] font-bold text-[#b91c1c] uppercase tracking-wider mb-0.5 font-sans">
+                                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
                                         </div>
-
-                                        <h3 class="text-3xl md:text-4xl font-serif font-black text-slate-900 leading-tight group-hover:text-[#0f172a] group-hover:underline decoration-4 underline-offset-8 transition-all">
-                                            {featuredPost.data.title}
+                                        <h3 class="font-serif text-[14px] font-normal text-black leading-snug group-hover:underline decoration-1 underline-offset-2 transition-all">
+                                            {post.data.title}
                                         </h3>
-
-                                        <p class="text-lg text-slate-600 leading-relaxed line-clamp-3 font-sans mt-2">
-                                            {featuredPost.data.description}
-                                        </p>
                                     </div>
                                 </a>
                             </article>
-                        )}
+                        ))}
+                    </div>
 
-                        {/* LISTA E LAJMEVE TË TJERA TË KËTIJ TAG-U */}
-                        <div class="flex flex-col divide-y divide-slate-200">
-                            {restPosts.map((post: any) => (
-                                <article class="group py-8 first:pt-0">
-                                    <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                                        
-                                        <div class="md:col-span-4 lg:col-span-5 relative aspect-[16/10] overflow-hidden rounded-lg bg-slate-100 shadow-sm">
+                    {/* Paginimi Mobile (Tekst) */}
+                    <div class="flex w-full justify-between items-center text-[12px] font-bold font-sans uppercase tracking-widest text-slate-500 mt-8 border-t border-black pt-6 px-1">
+                        {page.url.prev ? (
+                            <a href={page.url.prev} class="hover:text-black transition-colors">&larr; Të reja</a>
+                        ) : <span class="opacity-50">&larr; Të reja</span>}
+                        <span class="text-slate-400 font-normal">Faqja {page.currentPage}</span>
+                        {page.url.next ? (
+                            <a href={page.url.next} class="hover:text-black transition-colors">Të vjetra &rarr;</a>
+                        ) : <span class="opacity-50">Të vjetra &rarr;</span>}
+                    </div>
+                </>
+            )}
+        </div>
+
+
+        {/* ========================================== */}
+        {/* 2. VERSIONI PËR DESKTOP (Gridi me 3 kolona)  */}
+        {/* ========================================== */}
+        <div class="hidden lg:flex flex-col w-full max-w-[1400px] mx-auto px-8 py-12">
+            
+            {allPosts.length === 0 ? (
+                <p class="text-slate-500 italic font-serif text-lg text-center mt-10">Nuk u gjetën lajme në këtë kategori.</p>
+            ) : (
+                <>
+                    {/* BLLOKU SIPËR: 2 Lajmet Gjigante */}
+                    <div class="grid grid-cols-2 gap-10 mb-10">
+                        {desktopTopTwo.map((post: any) => (
+                            <article class="group">
+                                <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit block">
+                                    <div class="w-full aspect-[16/9] overflow-hidden rounded-sm bg-slate-100 mb-3 shadow-sm">
+                                        {post.data.heroImage ? (
+                                            <Image src={post.data.heroImage} alt="" width={800} height={450} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                        ) : getFallbackImage(post.body || "") ? (
+                                            <img src={getFallbackImage(post.body || "")} alt="" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                        ) : (
+                                            <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                        )}
+                                    </div>
+
+                                    <div class="flex flex-col mt-4">
+                                        <div class="text-[11px] font-black text-[#DC2626] uppercase tracking-widest mb-1.5 font-sans">
+                                            {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                                        </div>
+                                        <h3 class="text-[24px] xl:text-[28px] font-serif font-black text-slate-900 leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all">
+                                            {post.data.title}
+                                        </h3>
+                                    </div>
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+
+                    {/* Viza Ndarëse Masive */}
+                    <div class="w-full border-t border-slate-300 mb-10"></div>
+
+                    {/* BLLOKU POSHTË: Rrjeta me 3 Kolona fiks me lajmet e kategorisë */}
+                    <div class="grid grid-cols-3 divide-x divide-slate-300 mb-12">
+                        
+                        {/* Kolona 1 */}
+                        <div class="flex flex-col gap-6 pr-8">
+                            {desktopColOne.map((post: any) => (
+                                <article class="group !p-0">
+                                    <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit flex items-start gap-4">
+                                        <div class="shrink-0 w-[100px] xl:w-[120px] aspect-[4/3] overflow-hidden bg-slate-100 rounded-sm shadow-sm">
                                             {post.data.heroImage ? (
-                                                <Image 
-                                                    src={post.data.heroImage} 
-                                                    alt={post.data.title || ""} 
-                                                    width={500}   
-                                                    height={300} 
-                                                    class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
-                                                />
+                                                <Image src={post.data.heroImage} alt="" width={300} height={225} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
                                             ) : getFallbackImage(post.body || "") ? (
-                                                <img 
-                                                    src={getFallbackImage(post.body || "")} 
-                                                    alt="" 
-                                                    class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
-                                                />
+                                                <img src={getFallbackImage(post.body || "")} alt="" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
                                             ) : (
                                                 <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
                                             )}
-                                            
-                                            <div class="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
-                                                {post.data.tags && post.data.tags.length > 0 ? (
-                                                    post.data.tags.map((tag: string) => (
-                                                        <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-md">
-                                                            {getDisplayTag(tag)}
-                                                        </span>
-                                                    ))
-                                                ) : (
-                                                    <span class="bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-md">
-                                                        LAJM
-                                                    </span>
-                                                )}
-                                            </div>
                                         </div>
-
-                                        <div class="md:col-span-8 lg:col-span-7 flex flex-col justify-between h-full">
-                                            <div>
-                                                <div class="flex items-center gap-2 mb-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                                                    <FormattedDate date={post.data.pubDate} />
-                                                </div>
-
-                                                <h3 class="text-xl font-serif font-bold text-slate-800 leading-tight mb-2 group-hover:text-[#0f172a] group-hover:underline decoration-2 underline-offset-4 transition-colors">
-                                                    {post.data.title}
-                                                </h3>
-
-                                                <p class="text-slate-600 text-sm leading-relaxed line-clamp-2 font-sans">
-                                                    {post.data.description}
-                                                </p>
+                                        <div class="flex flex-col flex-1 mt-0.5">
+                                            <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-1 font-sans">
+                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
                                             </div>
-                                            
-                                            <div class="mt-3 md:mt-auto pt-2 flex items-center text-[#0f172a] font-bold text-xs uppercase tracking-widest opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                                                Lexo të plotë &rarr;
-                                            </div>
+                                            <h3 class="font-serif text-[14px] xl:text-[15px] font-normal text-slate-900 leading-snug group-hover:underline decoration-1 underline-offset-2 transition-all line-clamp-3">
+                                                {post.data.title}
+                                            </h3>
                                         </div>
                                     </a>
                                 </article>
                             ))}
                         </div>
-                        
-                        {/* ========================================== */}
-{/* BUTONAT E PAGINIMIT (ULTRA COMPACT PILL)   */}
-{/* ========================================== */}
-<div class="flex justify-center mt-12 pt-8 w-full px-2">
-    {/* Hoqëm 'p-1.5' dhe vumë 'p-0.5' që të mos ketë hapësirë të tepërt brenda */}
-    <div class="inline-flex items-center bg-white border border-slate-200 p-0.5 rounded-full shadow-md">
-        
-        {/* Butoni PARA */}
-        {page.url.prev ? (
-            <a href={page.url.prev || ""} class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-transparent text-slate-700 hover:bg-[#DC2626] hover:text-white transition-all group whitespace-nowrap">
-                <span class="text-[10px] sm:text-xs group-hover:-translate-x-1 transition-transform">&larr;</span> 
-                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të reja</span>
-            </a>
-        ) : (
-            <span class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-slate-300 whitespace-nowrap cursor-not-allowed">
-                <span class="text-[10px] sm:text-xs">&larr;</span> 
-                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të reja</span>
-            </span>
-        )}
 
-        {/* Vija Ndarëse më e shkurtër */}
-        <div class="w-px h-4 sm:h-5 bg-slate-200 mx-0.5 sm:mx-1"></div>
+                        {/* Kolona 2 */}
+                        <div class="flex flex-col gap-6 px-8">
+                            {desktopColTwo.map((post: any) => (
+                                <article class="group !p-0">
+                                    <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit flex items-start gap-4">
+                                        <div class="shrink-0 w-[100px] xl:w-[120px] aspect-[4/3] overflow-hidden bg-slate-100 rounded-sm shadow-sm">
+                                            {post.data.heroImage ? (
+                                                <Image src={post.data.heroImage} alt="" width={300} height={225} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                            ) : getFallbackImage(post.body || "") ? (
+                                                <img src={getFallbackImage(post.body || "")} alt="" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                            ) : (
+                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                            )}
+                                        </div>
+                                        <div class="flex flex-col flex-1 mt-0.5">
+                                            <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-1 font-sans">
+                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                                            </div>
+                                            <h3 class="font-serif text-[14px] xl:text-[15px] font-normal text-slate-900 leading-snug group-hover:underline decoration-1 underline-offset-2 transition-all line-clamp-3">
+                                                {post.data.title}
+                                            </h3>
+                                        </div>
+                                    </a>
+                                </article>
+                            ))}
+                        </div>
 
-        {/* INFO E FAQES */}
-        <span class="flex items-center justify-center px-2 sm:px-4 font-black text-slate-800 text-[10px] sm:text-sm whitespace-nowrap">
-            {page.currentPage} <span class="text-slate-400 font-medium mx-1 sm:mx-1.5">nga</span> {page.lastPage}
-        </span>
+                        {/* Kolona 3 */}
+                        <div class="flex flex-col gap-6 pl-8">
+                            {desktopColThree.map((post: any) => (
+                                <article class="group !p-0">
+                                    <a href={getPostUrl(post.slug || "")} class="no-underline text-inherit flex items-start gap-4">
+                                        <div class="shrink-0 w-[100px] xl:w-[120px] aspect-[4/3] overflow-hidden bg-slate-100 rounded-sm shadow-sm">
+                                            {post.data.heroImage ? (
+                                                <Image src={post.data.heroImage} alt="" width={300} height={225} class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                            ) : getFallbackImage(post.body || "") ? (
+                                                <img src={getFallbackImage(post.body || "")} alt="" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+                                            ) : (
+                                                <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
+                                            )}
+                                        </div>
+                                        <div class="flex flex-col flex-1 mt-0.5">
+                                            <div class="text-[10px] font-black text-[#DC2626] uppercase tracking-widest mb-1 font-sans">
+                                                {post.data.tags && post.data.tags.length > 0 ? getDisplayTag(post.data.tags[0]) : "LAJM"}
+                                            </div>
+                                            <h3 class="font-serif text-[14px] xl:text-[15px] font-normal text-slate-900 leading-snug group-hover:underline decoration-1 underline-offset-2 transition-all line-clamp-3">
+                                                {post.data.title}
+                                            </h3>
+                                        </div>
+                                    </a>
+                                </article>
+                            ))}
+                        </div>
 
-        {/* Vija Ndarëse më e shkurtër */}
-        <div class="w-px h-4 sm:h-5 bg-slate-200 mx-0.5 sm:mx-1"></div>
+                    </div>
 
-        {/* Butoni TJETRA */}
-        {page.url.next ? (
-            <a href={page.url.next || ""} class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-transparent text-slate-700 hover:bg-[#DC2626] hover:text-white transition-all group whitespace-nowrap">
-                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të vjetra</span> 
-                <span class="text-[10px] sm:text-xs group-hover:translate-x-1 transition-transform">&rarr;</span>
-            </a>
-        ) : (
-            <span class="flex items-center justify-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-slate-300 whitespace-nowrap cursor-not-allowed">
-                <span class="font-black text-[9px] sm:text-xs uppercase tracking-wider">Të vjetra</span> 
-                <span class="text-[10px] sm:text-xs">&rarr;</span>
-            </span>
-        )}
-    </div>
-</div>
-                    </>
-                )}
-            </main>
+                    {/* Paginimi Desktop (Pill Elegante e Lemzës) */}
+                    <div class="flex justify-center w-full mb-8">
+                        <div class="inline-flex items-center bg-white border border-slate-200 p-0.5 rounded-full shadow-sm">
+                            {page.url.prev ? (
+                                <a href={page.url.prev} class="flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full bg-transparent text-slate-700 hover:bg-[#DC2626] hover:text-white transition-all group whitespace-nowrap">
+                                    <span class="text-xs group-hover:-translate-x-1 transition-transform">&larr;</span> 
+                                    <span class="font-black text-xs uppercase tracking-wider">Të reja</span>
+                                </a>
+                            ) : (
+                                <span class="flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-slate-300 whitespace-nowrap cursor-not-allowed">
+                                    <span class="text-xs">&larr;</span> 
+                                    <span class="font-black text-xs uppercase tracking-wider">Të reja</span>
+                                </span>
+                            )}
+
+                            <div class="w-px h-5 bg-slate-200 mx-1"></div>
+
+                            <span class="flex items-center justify-center px-5 font-black text-slate-800 text-sm whitespace-nowrap">
+                                {page.currentPage} <span class="text-slate-400 font-medium mx-1.5">nga</span> {page.lastPage}
+                            </span>
+
+                            <div class="w-px h-5 bg-slate-200 mx-1"></div>
+
+                            {page.url.next ? (
+                                <a href={page.url.next} class="flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full bg-transparent text-slate-700 hover:bg-[#DC2626] hover:text-white transition-all group whitespace-nowrap">
+                                    <span class="font-black text-xs uppercase tracking-wider">Të vjetra</span> 
+                                    <span class="text-xs group-hover:translate-x-1 transition-transform">&rarr;</span>
+                                </a>
+                            ) : (
+                                <span class="flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-slate-300 whitespace-nowrap cursor-not-allowed">
+                                    <span class="font-black text-xs uppercase tracking-wider">Të vjetra</span> 
+                                    <span class="text-xs">&rarr;</span>
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
 
         <Footer />
