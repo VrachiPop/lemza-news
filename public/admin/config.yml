@@ -30,6 +30,7 @@ collections:
         default: ["Lajme"]
       - {label: "Përmbajtja", name: "body", widget: "markdown"}
       - { label: "Thënia e Ditës", name: "quoteOfTheDay", widget: "string", required: false }
+      - { laberl: "Autori", name: "author", widget: "string", required: false }
 
 # KOLEKSIONI PËR JSON (SINGLETONS)
   - name: "settings"
