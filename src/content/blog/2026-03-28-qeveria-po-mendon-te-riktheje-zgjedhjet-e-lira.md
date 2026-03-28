@@ -1,7 +1,7 @@
 ---
 title: Qeveria po mendon të rikthejë zgjedhjet e lira
 pubDate: 2026-03-28 13:52
-heroImage: ../../assets/images/gemini_generated_image_w9t3ozw9t3ozw9t3.jpeg
+heroImage: ../../assets/images/rikthehet-vota-lire.jpeg
 description: "TIRANË — Duke folur para Asamblesë së Partisë të shtunën, KM
   theksoi ambicien e tij më të re dhe më të guximshme deri më sot: t'u jepet
   mundësia qytetarëve të votojnë pa pasur frikë për vendin e punës..."
