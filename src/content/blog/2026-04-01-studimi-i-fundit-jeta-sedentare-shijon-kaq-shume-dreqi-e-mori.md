@@ -1,7 +1,7 @@
 ---
 title: Studimi i fundit / Jeta sedentare shijon kaq shumë dreqi e mori
 pubDate: 2026-04-01 10:28
-heroImage: ../../assets/images/jeta-sedentare.jpeg
+heroImage: ../../assets/images/jeta-sedentare-1.jpeg
 description: "BOSTON — Një studim i ri mbarëbotëror, i cili pritet të
   shkatërrojë përfundimisht industrinë miliarda dollarëshe të fitnesit, ka dalë
   në një përfundim tronditës: të rrish shtrirë gjithë ditën në divan shijon kaq
