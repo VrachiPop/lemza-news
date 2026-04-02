@@ -1,5 +1,5 @@
 ---
-title: "Arsyeja pse vonohen zjarrfikëset / Arkeologët duan 1 orë t'i shgroposin "
+title: "Arsyeja pse vonohen zjarrfikëset / Arkeologët duan 1 orë t'i zhgroposin "
 pubDate: 2026-04-02 11:12
 heroImage: ../../assets/images/zjarrfiksja-arkeologji.jpeg
 description: TIRANË — Banorët e një pallati në Astir që prisnin me dëshpërim
