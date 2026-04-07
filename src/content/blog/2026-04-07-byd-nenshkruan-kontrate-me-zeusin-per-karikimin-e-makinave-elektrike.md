@@ -7,6 +7,7 @@ description: SHENZHEN / MALI I OLIMPIT — Gjiganti kinez i prodhimit të makina
   njoftuar një marrëveshje historike dhe...
 tags:
   - teknologji
+  - bota
 ---
 **SHENZHEN / MALI I OLIMPIT** — Gjiganti kinez i prodhimit të makinave elektrike, BYD, ka tronditur tregun global të energjisë këtë mëngjes duke njoftuar një marrëveshje historike dhe jashtëtokësore. Për të zgjidhur përfundimisht problemin e mungesës së infrastrukturës së karikimit të makinave, kompania ka nënshkruar një kontratë ekskluzive furnizimi me Zeusin, Zotin e Qiejve dhe Rrufeve.
 
