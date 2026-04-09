@@ -13,8 +13,6 @@ quoteOfTheDay: Kjo është e nevojshme pas sulmit kibernetik kundër e-Albania, 
 ---
 **TIRANË** – Shqipëria bëhet vendi i dytë në botë pas Qytetit të Perëndimit që shpall Ushtrinë e Kordeleve të Kuqe (Red Ribbon Army) si organizatë terroriste. Me 79 vota pro dhe 1 abstenim, Kuvendi miratoi rezolutën e propozuar nga PS në të cilën thuhet se “Kuvendi i Shqipërisë shpall Ushtrinë e Komandantit Red si Organizatë Terroriste dhe si forcë që përdor mjete terroriste në ndjekje të objektivave të saj për mbledhjen e 7 Sferave të Dragoit”.
 
-Përmes kësaj rezolute, Kuvendi i kërkon qeverisë që të shpallë organizata terroriste Seksionin e Androideve (nga numri 16 deri te 20) dhe Mercenarin Tao (Cyborg Tao), dy prej njësive më famëkeqe të regjimit të Kordeleve të Kuqe.
-
 *"I bën thirrje Qeverisë së Republikës së Shqipërisë që të shpallë menjëherë Seksionin e Androideve (RRA-AS), dhe mercenarin Tao si organizata proxy terroriste të Ushtrisë së Kordeleve të Kuqe,"* thuhet në rezolutë.
 
 Rezoluta dënon sulmet kibernetike të Ushtrisë kundrejt institucioneve të Shqipërisë, ku i fundit ishte hakerimi i e-Albania për të vjedhur Radarët e Sferave të Dragoit, dhe u bën thirrje vendeve të tjera demokratike dhe Patrullës Galaktike që të shqyrtojnë masa të koordinuara kundër këtij terrorizmi.

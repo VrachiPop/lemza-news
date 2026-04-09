@@ -18,22 +18,6 @@ Ekspertët e tregut ia faturojnë këtë rritje artificiale të çmimeve shtrenj
 
 Sipas raportit, shumë nga këto fole luksoze në qendër të Tiranës rrinë bosh për 9 muaj të vitit, duke u përdorur thjesht si "investim kapital" nga pronarët.
 
-Kriteret që po rrisin çmimin me 40% përfshijnë:
-
-\- Orientimi Jug-Lindje
-
-Për të marrë rrezet e para të diellit dhe për të tharë puplat shpejt pas shiut.
-
-\- Akses në Infrastrukturë
-
-Fole që ndodhen pranë fast-food-eve ose furrave të bukës (për qasje të shpejtë te thërrimet) konsiderohen zona "Premium".
-
-\- Siguria
-
-Ballkonet e rrethuara me rrjeta mushkonjash, të cilat ofrojnë mbrojtje nga macet e lagjes, shiten me çmimin e "Komplekseve të Mbyllura Rezidenciale".
-
-Një fole e përfunduar mirë, me pamje të lirë drejt një pellgu me baltë apo një kazani plehrash, po shitet me çmime që rivalizojnë metrin katror të njeriut.
-
 Për çiftet e reja të dallëndysheve, ëndrra për të pasur një fole të tyren po zbehet. Bankat e shpendëve kanë ashpërsuar kushtet e dhënies së kredisë, duke kërkuar kolateral të lartë dhe norma interesi që arrijnë deri në 8% të insekteve të kapura gjatë ditës.
 
 *"Po mendojmë të transferohemi në Kamëz ose në Paskuqan,"* shprehet e dëshpëruar një dallëndyshe e re, ndërkohë që kërkonte një cep të lirë poshtë një ulluku dritareje. *"Tirana është bërë e pajetueshme. Të ardhurat tona nuk kanë ndryshyuar, kapim po aq miza sa vjet, por një fole e thjeshtë garsoniere tani kushton sa kursimet e një jete të tërë.”*

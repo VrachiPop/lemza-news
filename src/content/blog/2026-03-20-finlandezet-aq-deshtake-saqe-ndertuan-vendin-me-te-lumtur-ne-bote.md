@@ -14,7 +14,7 @@ U publikua edhe sivjet Raporti i OKB-së për lumturinë në botë dhe, për të
 
 Le të flasim troç. Pse i duhet një finlandezi që shteti t'i japë arsim falas, rrugë pa gropa, pagë të lartë, ajër të pastër dhe zero korrupsion? Sepse janë një tufë mjeranësh pa asnjë aftësi mbijetese!
 
-Nëse një finlandezi i vonohet autobusi 4 minuta, i fillojnë spazmat. Nëse faturisti i dritave u flet me zë pak më të lartë se normalja, ata marrin dy javë leje nga puna për t’u rikuperuar nga trauma. Ata janë aq të ndjeshëm saqë e detyruan qeverinë e tyre të bëhej 100% e ndershme. Zemra e tyre e vockël nordike nuk e përballon dot që kryetari i bashkisë të fusë ca lekë xhepi nga tenderët e rrugëve. Mos përmendim pastaj saunat, dhomat e torturës me 90 gradë, të cilat i shpikën nga nevoja për të pasur plazhin e Currilave një furgon larg.
+Nëse një finlandezi i vonohet autobusi 4 minuta, i fillojnë spazmat. Nëse shefi i punës u flet me zë pak më të lartë se normalja, ata traumatizohen për jetë. Janë aq të brishtë saqë e detyruan qeverinë e tyre të bëhej 100% e ndershme. Zemra e tyre e vockël nordike nuk e përballon dot që kryetari i bashkisë të fusë ca lekë xhepi nga tenderët e rrugëve. Mos përmendim pastaj saunat, dhomat e torturës me 90 gradë, të cilat i shpikën nga nevoja për të pasur plazhin e Currilave një furgon larg.
 
 Lumturia e tyre është një lumturi e rreme, e mbajtur gjallë me aparatura shtetërore. Shteti i tyre i mirëqenies është thjesht një inkubator gjigant për njerëz që nuk e përballojnë dot realitetin. Pty, ditëzinjtë e dreqit!
 

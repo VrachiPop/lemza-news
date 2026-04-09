@@ -8,7 +8,9 @@ description: KALIFORNI — Një ekip ndërkombëtar i përbërë nga fizikanë t
 tags:
   - shkence
 ---
-**KALIFORNI** — Një ekip ndërkombëtar i përbërë nga fizikanë të Universitetit Stanford dhe të fejuar që presin në divan të dëshpëruar prej orësh, ka publikuar sot një studim tronditës në revistën shkencore *Nature*. Pas dekadash matjesh ekzakte me kronometër jashtë dyerve të tualetit, shkencëtarët kanë vërtetuar se ekziston një tavan absolut i vonesës femërore. Teoria e re hedh poshtë besimin popullor se një grua mund të vonohet në pafundësi. Sipas studimit, është matematikisht dhe biologjikisht e pamundur që ato të vonohen edhe “disa orë më shumë” pasi çdo minutë shtesë përtej këtij limiti do të çonte në kolaps total të kohë-hapësirës.
+**KALIFORNI** — Një ekip ndërkombëtar i përbërë nga fizikanë të Universitetit Stanford dhe të fejuar që presin në divan të dëshpëruar prej orësh, ka publikuar sot një studim tronditës në revistën shkencore *Nature*. Pas dekadash matjesh ekzakte me kronometër jashtë dyerve të tualetit, shkencëtarët kanë vërtetuar se ekziston një tavan absolut i vonesës femërore. 
+
+Teoria e re hedh poshtë stereotipin se një grua mund të vonohet në pafundësi. Sipas studimit, është matematikisht dhe biologjikisht e pamundur që ato të vonohen edhe “disa orë më shumë” pasi çdo minutë shtesë përtej këtij limiti do të çonte në kolaps total të kohë-hapësirës.
 
 Në dosjen e publikuar, studiuesit shpjegojnë fenomenin që ndryshe njihet si Paradoksi i Dollapit. Ky fenomen ndodh kur një femër qëndron përballë një dollapi plot me rroba dhe deklaron se "nuk ka çfarë të veshë". Në këtë moment, graviteti i dhomës ndryshon dhe koha fillon të ecë më ngadalë për atë, por shumë më shpejt për mashkullin që pret te dera. Sidoqoftë, pas kalimit të 4 orëve nga orari i caktuar i takimit, ajo thjesht resht së përgatituri për darkë, sepse darka nuk ekziston më si koncept, duke bërë që universi të degëzohet në versione paralele.
 

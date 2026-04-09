@@ -12,7 +12,7 @@ heroImage: "../../assets/images/kroacia-bllokon-pesticide.webp"
 
 **ZAGREB** - Një kontroll rutinë në Kroaci shkaktoi një tjetër skandal institucional në Tiranë, pasi inspektorët e doganës kroate konfiskuan një ngarkesë pesticidesh me origjinë nga Shqipëria që, sipas një eksperti, përmbanin *“nivele alarmante të reçelit të pjeshkës.”*
 
-Zyrtarët në Zagreb shpjeguan se ngarkesa e konfiskuar, e etiketuar si&nbsp;*“SuperTox Ultra 3000”*, po lëshonte një aromë të dyshimtë frutash. *“Në vend të duhmës së zakonshme kimike që të çan hundët, na erdhi një aromë kompostoje pjeshkash,”* tha njëri prej inspektorëve. *“Me sa duket, reçeli i gjyshes ishte mykur.”*
+Zyrtarët në Zagreb shpjeguan se ngarkesa e konfiskuar, e etiketuar si *“SuperTox Ultra 3000”*, po lëshonte një aromë të dyshimtë frutash. *“Në vend të duhmës së zakonshme kimike që të çan hundët, na erdhi një aromë kompostoje pjeshkash,”* tha njëri prej inspektorëve. *“Me sa duket, reçeli i gjyshes ishte mykur.”*
 
 Analiza laboratorike konfirmoi se ngarkesa përbëhej nga rreth 70% reçel pjeshke, i certifikuar organikisht dhe *"i pasur me potasium"*, ndërsa 30% e pjesës së mbetur, përmbante gjurmë pesticidesh.
 

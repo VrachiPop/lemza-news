@@ -9,7 +9,7 @@ heroImage: "../../assets/images/dhunohet-gazetari.webp"
 
 **SARANDË** - Gazetaria e pavarur dhe liria e shprehjes mori një tjetër goditje pasditen e djeshme kur gazetari i Lemzës, Sabian Qameti, u dhunua nga e ëma ndërkohë që kryente detyrën e tij legjitime në shtëpinë e prindërve në Sarandë.
 
-Çdo gjë nisi kur Sabiani gjeti një fije floku në pastiçon greke. Me zorrët në grykë, nisi menjëherë hetimin për të zotin e asaj qimeje. Kur u ndesh me kundërshtinë e prindërve, ai vendosi ta marrë qimen me vete për të analizuar ADN-në e saj në një laborator biologjik në kryeqytet. Sabiani nuk pati as mundësinë për ta futur fijen e flokut në një qese hermetike, kur një shapkë e rëndë prej gome ia errësoi sytë fluturimthi.
+Çdo gjë nisi kur Sabiani gjeti një fije floku në pastiçon greke. Me zorrët në grykë, nisi menjëherë hetimin për të zotin e asaj qimeje. Kur u ndesh me kundërshtinë e prindërve, ai vendosi ta marrë qimen me vete për të analizuar ADN-në e saj në një laborator biologjik në kryeqytet, kur një shapkë e rëndë prej gome ia errësoi sytë fluturimthi.
 
 *“Është akti më i rëndë i agresionit që kam marrë ndonjëherë në karrierë,”* pohoi Sabiani tek mbante një qese me akull në syrin e majtë. *“Dhe ju kujtoj që unë kam qenë i pranishëm në dajakun e shekullit që na dha Drejtori i UKT-së vjet për Krishtlindje.”*
 

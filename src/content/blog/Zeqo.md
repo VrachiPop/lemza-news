@@ -6,7 +6,7 @@ tags: ['kulture', 'showbiz']
 heroImage: "../../assets/images/zeqo.webp"
 ---
 
-**TIRANË** – Një skandal seksual ka tronditur botën akademike këtë të martë, pasi një nga gjuhëtarët më të respektuar të vendit, prof. dr. Pirro Ypi, u kap nga bashkëshortja në shtrat me të ëmën e Zeqos*.*
+**TIRANË** – Një skandal seksual ka tronditur botën akademike këtë të martë. Një nga gjuhëtarët më të respektuar të vendit, prof. dr. Pirro Ypi, u kap nga bashkëshortja në shtrat me të ëmën e Zeqos*.*
 
 Shprehja “Flet si e ëma e Zeqos majë thanës,” e përdorur prej dekadash për të satirizuar kotësinë verbale, duket se ka zbritur nga rrafshi frazeologjik dhe është shndërruar në një grua prej mishi e gjaku. 
 
@@ -16,6 +16,6 @@ Akademia e Shkencave mbajti një konferencë urgjente. *“Prej vitesh kemi para
 
 Kolegët e gjuhëtarit janë ndarë në dy kampe. Disa e quajnë “një eksperiment të guximshëm në albanologji.” Të tjerë e akuzojnë se “e ka bërë gjithë disiplinën gazin e botës, sikur të mos mungonin hallet e tjera.”
 
-Skandali ka ngjallur reagim të ashpër nga shoqatat feministe. *“E ëma e Zeqos, si figurë folklorike, nuk ka dhënë kurrë pëlqimin e saj. Ajo madje nuk ka as emër, por njihet vetëm si e ëma e një mashkulli,”* theksoi aktivistja Loreta Krak. *“Tani po shfrytëzohet sërish prej burrave sa për një natë pasioni. Kur gratë prej mishi nuk i frymëzojnë më, burrat kthehen te gratë metaforike të shpikura nga lopçarët katërqind vjet më parë.”*
+Skandali ka ngjallur reagim të ashpër nga shoqatat feministe. *“E ëma e Zeqos, si figurë folklorike, nuk ka dhënë kurrë pëlqimin e saj. Ajo madje nuk ka as emër, por njihet vetëm si e ëma e një mashkulli,”* theksoi aktivistja Loreta Hoxha. *“Tani po shfrytëzohet sërish prej burrave sa për një natë pasioni. Kur gratë prej mishi nuk i frymëzojnë më, burrat kthehen te gratë metaforike të shpikura nga lopçarët katërqind vjet më parë.”*
 
 Sa për të ëmën e Zeqos, raportohet se ajo është kthyer majë thanës, duke përmbushur me pikë e me presje arsyen e ekzistencës së saj përballë mikrofonit të gazetarëve.

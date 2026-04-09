@@ -10,9 +10,7 @@ heroImage: "../../assets/images/duhanpirja-tufine.webp"
 
 Raporti thekson se problemi lidhet me traditën shqiptare të lënies së cigareve për ata që s’jetojnë më. *“Familjarët furnizojnë vazhdimisht të afërmit e ndjerë me duhan,”* shkruhet në dokument. *“Rezultati është një ekonomi e zezë e nikotinës që vazhdon përtej jetës.”*
 
-Ndërkaq, shumë banorë të nëntokës kanë paraqitur ankesa formale.
-
-*“Unë e lashë duhanin në ’98-n,”* deklaroi një ish-mësues, ndarë nga jeta në një aksident rrugor. *“Tani jam i detyruar ta kaloj përjetësinë mbytur nga tymi i duhanit.”*
+Ndërkaq, shumë banorë të nëntokës kanë paraqitur ankesa formale. *“Unë e lashë duhanin në ’98-n,”* deklaroi një ish-mësues, ndarë nga jeta në një aksident rrugor. *“Tani jam i detyruar ta kaloj përjetësinë mbytur nga tymi i duhanit.”*
 
 Të tjerë raportojnë kollë fantazmë, fishkëllimë torakale dhe irritim kronik të fytit.
 

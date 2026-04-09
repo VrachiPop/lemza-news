@@ -9,7 +9,7 @@ tags:
   - ekonomi
   - bota
 ---
-**TIRANË** — Vetëm pak ditë pas përshkallëzimit të tensioneve ushtarake dhe lëshimit të raketave në Lindjen e Mesme, tregjet shqiptare kanë reaguar me shpejtësi rrufe. Produkti i parë që ka pësuar një rritje drastike të çmimit në bursën e Pazarit të Ri nuk ishte as nafta dhe as ari, por djathi i bardhë i dhive të Tepelenës, i cili kërceu nga 1,200 Lekë në 1,600 Lekë për kilogram. Ekspertët e ekonomisë dhe tregtarët e bulmetit janë bërë bashkë për t'u shpjeguar qytetarëve të irrituar lidhjen e drejtpërdrejtë dhe të pashmangshme mes ngushticës së Hormuzit dhe kullotave të Progonatit.
+**TIRANË** — Vetëm pak ditë pas përshkallëzimit të tensioneve ushtarake dhe lëshimit të raketave në Lindjen e Mesme, tregjet shqiptare kanë reaguar me shpejtësi rrufe. Produkti i parë që ka pësuar një rritje të çmimit në bursën e Pazarit të Ri nuk ishte as nafta dhe as ari, por djathi i bardhë i dhive të Tepelenës, i cili kërceu nga 1,200 Lekë në 1,600 Lekë për kilogram. Ekspertët e ekonomisë dhe tregtarët e bulmetit janë bërë bashkë për t'u shpjeguar qytetarëve të irrituar lidhjen e drejtpërdrejtë dhe të pashmangshme mes ngushticës së Hormuzit dhe kullotave të Progonatit.
 
 Në një intervistë për mediat mëngjesin e sotëm, Xhevit Napa, një tregtar bulmeti me 20 vite përvojë, shpjegoi se pse qytetarët nuk duhet të ankohen për çmimin e ri. *“O zotëri, jetojmë në globalizëm, jo në mesjetë,"* argumentoi ai. *"A e dini ju se barinjtë shohin lajmet në telefon gjatë gjithë ditës? Kur dëgjojnë për dronë dhe raketa ballistike, bariu stresohet. Stresi i kalon dhisë gjatë mjeljes. Dhia nxjerr më pak qumësht. Bie prodhimi, rritet çmimi. Është ligji i ofertës dhe kërkesës, ju lutem shumë tani!”*
 
