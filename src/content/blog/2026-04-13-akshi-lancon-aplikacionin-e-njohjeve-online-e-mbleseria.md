@@ -1,7 +1,7 @@
 ---
 title: AKSHI lançon aplikacionin e njohjeve online e-Mblesëria
 pubDate: 2026-04-13 09:08
-heroImage: ../../assets/images/e-mbleseria.png
+heroImage: ../../assets/images/e-mbleseria-1.png
 description: TIRANË — Për t'i bërë ballë krizës së thellë demografike dhe uljes
   së lindshmërisë, AKSHI njoftoi sot lançimin e aplikacionit shtetëror për
   "dating" quajtur...
