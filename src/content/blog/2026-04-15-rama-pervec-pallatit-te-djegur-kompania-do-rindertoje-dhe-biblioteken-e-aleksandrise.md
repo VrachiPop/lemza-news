@@ -1,6 +1,6 @@
 ---
-title: "Rama: Përveç pallatit të djegur, kompania do rindërtojë dhe Bibliotekën
-  e Aleksandrisë"
+title: "Rama: Përveç pallatit të djegur, ndërtuesi do bëjë nga e para edhe
+  Bibliotekën e Aleksandrisë"
 pubDate: 2026-04-15 14:14
 heroImage: ../../assets/images/rama-aleksandria.jpg
 description: TIRANË — Në një konferencë për shtyp që ka lënë pa fjalë si banorët
