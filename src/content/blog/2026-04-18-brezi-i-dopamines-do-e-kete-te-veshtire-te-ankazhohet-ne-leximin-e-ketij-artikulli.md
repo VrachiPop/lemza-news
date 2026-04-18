@@ -1,5 +1,5 @@
 ---
-title: Brezi i dopaminës do e ketë të vështirë të ankazhohet në leximin e këtij
+title: Brezi i dopaminës do e ketë të vështirë të angazhohet në leximin e këtij
   artikulli
 pubDate: 2026-04-18 07:58
 heroImage: ../../assets/images/brezi-dopamines.jpeg
