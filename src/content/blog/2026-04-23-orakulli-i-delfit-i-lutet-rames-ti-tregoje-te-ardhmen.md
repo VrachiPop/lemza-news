@@ -1,7 +1,7 @@
 ---
 title: Orakulli i Delfit i lutet Ramës t'i tregojë të ardhmen
 pubDate: 2026-04-23 09:29
-heroImage: ../../assets/images/rama-delfi.jpeg
+heroImage: ../../assets/images/ipi-albania-pm-edi-rama-mfrr-letter-06-07-2022-2.jpg
 description: DELFI — Një ngjarje e paprecedentë, që ka shokuar si historianët e
   antikitetit, është regjistruar dje gjatë punimeve të Forumit Ekonomik të
   Delfit...
