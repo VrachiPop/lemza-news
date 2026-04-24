@@ -483,7 +483,7 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                     }
                 } catch(e) { console.error("Kujtesa nuk funksionoi", e); }
 
-                // 2. Nëse nuk ka asgjë për sot, zgjedhim 6 të reja dhe i ruajmë!
+                // 2. Nëse nuk ka asgjë për sot, zgjedhim 5 të reja dhe i ruajmë!
                 if (selected.length === 0) {
                     const shuffled = [...poolForSidebar].sort(() => 0.5 - Math.random());
                     selected = shuffled.slice(0, 5);
