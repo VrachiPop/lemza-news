@@ -57,6 +57,15 @@ const allHoroscopes = horoscopeData.predictions;
             html {
                 font-size: 16px;
             }
+            
+            /* Animimi për shiritat që ecin */
+            @keyframes scrollStripes {
+                0% { background-position: 0 0; }
+                100% { background-position: 28px 0; } 
+            }
+            .animate-stripes {
+                animation: scrollStripes 1.5s linear infinite;
+            }
         </style>
     </head>
     <body>
@@ -252,6 +261,37 @@ const allHoroscopes = horoscopeData.predictions;
             {/* BLLOKU EDITORIAL 2: MË TË INJORUARAT (Mbushet nga JS) */}
             <div id="ignored-posts-container" class="grid grid-cols-1 lg:grid-cols-12 gap-y-6 md:gap-y-10 pb-4">
                 <p class="col-span-12 text-center text-slate-400 italic">Po kërkojmë lajmet e fshehura...</p>
+            </div>
+
+            {/* ========================================== */}
+            {/* PATREON HOMEPAGE BANNER (FULL WIDTH)       */}
+            {/* ========================================== */}
+            <div class="relative w-full bg-[#0f172a] border border-slate-700/60 mt-12 mb-8 overflow-hidden rounded-lg hover:border-[#DC2626]/50 transition-colors duration-300">
+                
+                <div class="absolute top-0 left-0 w-full h-[5px] bg-[#DC2626]"></div>
+
+                <div class="p-6 md:p-10 pt-8 md:pt-12 flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center justify-between">
+                    
+                    <h4 class="text-white font-serif font-black text-[22px] md:text-3xl leading-snug m-0">
+                        Gazetaria jonë është e rreme,{" "}
+                        <br class="hidden md:block" />
+                        <span class="text-slate-400">por jo tarifat e serverit.</span>
+                    </h4>
+
+                    <a 
+                        href="https://www.patreon.com/cw/LemzaNews" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#b91c1c] active:bg-[#991b1b] text-white font-black uppercase tracking-widest text-[11px] px-4 py-3 transition-colors duration-150 no-underline shrink-0 rounded-sm"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14.82 2.41C18.78 2.41 22 5.65 22 9.62c0 3.96-3.22 7.18-7.18 7.18-3.96 0-7.17-3.22-7.17-7.18 0-3.97 3.21-7.21 7.17-7.21M2 21.6h3.5V2.41H2V21.6z"/>
+                        </svg>
+                        Na Mbështet në Patreon
+                    </a>
+                </div>
+
+                <div class="absolute bottom-0 right-0 w-16 h-16 border-b-[3px] border-r-[3px] border-[#DC2626]/20 pointer-events-none"></div>
             </div>
 
         </div>

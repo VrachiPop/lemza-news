@@ -336,12 +336,82 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                                 </div>
                             </div>
                         )}
+
+                        {/* ========================================== */}
+                        {/* PATREON MOBILE: SATIRA GRAFIKE ME ANIMIM   */}
+                        {/* ========================================== */}
+                        {/* Shfaqet vetëm në celular (block lg:hidden) dhe është w-full */}
+                        <div class="block lg:hidden relative w-full bg-[#0f172a] border border-slate-700/60 mt-16 mb-6 overflow-hidden rounded-lg">
+
+    <div class="absolute top-0 left-0 w-full h-[5px] bg-[#DC2626]"></div>
+
+    <div class="p-5 pt-7 flex flex-col gap-3">
+
+        <h4 class="text-white font-serif font-black text-[18px] leading-snug m-0">
+            Sipas studimeve,{" "}
+            <span class="text-slate-400">donacionet rrisin inteligjencën.</span>
+        </h4>
+
+        <a 
+            href="https://www.patreon.com/cw/LemzaNews" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#b91c1c] active:bg-[#991b1b] text-white font-black uppercase tracking-widest text-[11px] px-4 py-3 transition-colors duration-150 no-underline w-fit rounded-sm"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.82 2.41C18.78 2.41 22 5.65 22 9.62c0 3.96-3.22 7.18-7.18 7.18-3.96 0-7.17-3.22-7.17-7.18 0-3.97 3.21-7.21 7.17-7.21M2 21.6h3.5V2.41H2V21.6z"/>
+            </svg>
+            Na Mbështet në Patreon
+        </a>
+    </div>
+
+    <div class="absolute bottom-0 right-0 w-16 h-16 border-b-[3px] border-r-[3px] border-[#DC2626]/20 pointer-events-none"></div>
+</div>
+
                     </article>
                 </main>
             </div>
 
             {/* SIDEBAR-i I DJATHTË PËR KOMPJUTER */}
             <aside class="hidden lg:block w-[32vw] pt-[4rem] pb-12">
+
+                {/* ========================================== */}
+                {/* PATREON SIDEBAR: TEMË LEMZA                */}
+                {/* ========================================== */}
+                <div class="relative w-80 h-50 bg-[#0f172a] border border-slate-700/60 p-5 mb-12 overflow-hidden group hover:border-[#DC2626]/50 transition-colors duration-300 rounded-lg">
+                    
+                    {/* Vija dekorative e kuqe lart */}
+                    <div class="absolute top-0 left-0 w-full h-[5px] bg-[#DC2626]"></div>
+
+                    <div class="flex flex-col gap-3 pt-2">
+
+                        {/* Titulli */}
+                        <h4 class="text-white font-serif font-black text-[20px] leading-snug m-0">
+                            Sipas studimeve,{" "}
+                            <span class="text-slate-400">donacionet rrisin inteligjencën.</span>
+                        </h4>
+
+                        {/* Butoni */}
+                        <a 
+                            href="https://www.patreon.com/cw/LemzaNews" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-2 inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-black uppercase tracking-widest text-[11px] px-4 py-3 transition-colors duration-150 no-underline w-fit rounded-sm"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.82 2.41C18.78 2.41 22 5.65 22 9.62c0 3.96-3.22 7.18-7.18 7.18-3.96 0-7.17-3.22-7.17-7.18 0-3.97 3.21-7.21 7.17-7.21M2 21.6h3.5V2.41H2V21.6z"/>
+                            </svg>
+                            Na Mbështet në Patreon
+                        </a>
+                    </div>
+                    
+                    {/* Vija dekorative e këndit */}
+                    <div class="absolute bottom-0 right-0 w-16 h-16 border-b-[3px] border-r-[3px] border-[#DC2626]/20 pointer-events-none"></div>
+                </div>
+
+                {/* ========================================== */}
+                {/* MË TË INJORUARAT                           */}
+                {/* ========================================== */}
                 <div>
                     <div class="flex items-center gap-3 mb-6">
                         <h2 class="text-[15px] md:text-lg font-normal font-sans text-black tracking-tight uppercase shrink-0 m-0">
@@ -416,7 +486,7 @@ const poolForSidebar = allPosts.slice(10).map(post => ({
                 // 2. Nëse nuk ka asgjë për sot, zgjedhim 6 të reja dhe i ruajmë!
                 if (selected.length === 0) {
                     const shuffled = [...poolForSidebar].sort(() => 0.5 - Math.random());
-                    selected = shuffled.slice(0, 6);
+                    selected = shuffled.slice(0, 5);
 
                     try {
                         localStorage.setItem('lemza_sidebar_daily', JSON.stringify({
