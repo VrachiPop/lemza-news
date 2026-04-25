@@ -1,32 +1,39 @@
-// src/pages/rss.xml.js
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 export async function GET(context) {
-  // 1. Marrim të gjitha lajmet dhe i rendisim nga më i riu te më i vjetri
-  const posts = await getCollection('blog');
-  const sortedPosts = posts.sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
+    // 1. Marrim të gjitha lajmet e blogut
+    const posts = await getCollection('blog');
 
-  return rss({
-    // Titulli dhe përshkrimi i Feed-it tënd
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    // URL-ja e faqes (merret automatikisht nga astro.config.mjs)
-    site: context.site,
-    
-    // 2. Kthejmë çdo lajm në një "Item" për RSS
-    items: sortedPosts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.pubDate,
-      description: post.data.description,
-      // KUJDES: Ndrysho pjesën "/blog/" nëse URL-të e tua janë ndryshe (psh. "/lajme/")
-      link: `/blog/${post.slug}/`, 
-    })),
-    
-    // Gjuha e portalit
-    customData: `<language>sq-AL</language>`,
-  });
+    // 2. I rendisim nga më i riu te më i vjetri (Shumë e rëndësishme për Mailchimp)
+    posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+    return rss({
+        title: 'Lemza News',
+        description: 'Lajme satirike. E vërteta dhemb.',
+        site: context.site,
+        
+        items: posts.map((post) => {
+            // Kapim foton (funksionon si me fotot lokale ashtu edhe me linqe të jashtme)
+            const imageUrl = post.data.heroImage?.src || post.data.heroImage || '';
+            
+            // Krijojmë linkun e plotë absolut (psh. https://lemzanews.com/foto.jpg)
+            const absoluteImageUrl = imageUrl ? new URL(imageUrl, context.site).toString() : '';
+
+            // Krijojmë bllokun HTML ku ngjisim Foton + Përshkrimin bashkë
+            const customContent = `
+                ${absoluteImageUrl ? `<img src="${absoluteImageUrl}" alt="${post.data.title}" style="max-width: 100%; border-radius: 8px; margin-bottom: 15px;" />` : ''}
+                <p>${post.data.description}</p>
+            `;
+
+            return {
+                title: post.data.title,
+                pubDate: post.data.pubDate,
+                link: `/${post.slug}/`,
+                // Këtu ndodh magjia: Mailchimp do të lexojë këtë fushë!
+                content: customContent,
+            };
+        }),
+        customData: `<language>sq-AL</language>`,
+    });
 }
