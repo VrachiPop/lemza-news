@@ -8,7 +8,6 @@ description: TIRANË — Për stafin e shërbimit në kryeqytet, sezoni i ri i
   me...
 tags:
   - udhetime
-  - ""
 ---
 **TIRANË** — Për stafin e shërbimit në kryeqytet, sezoni i ri i turizmit ka sjellë një sfidë krejtësisht të panjohur. Përveç turistëve perëndimorë dhe atyre nga diaspora, këtë vit kafenetë e Tiranës po përballen me një fluks masiv të kronoturistëve; udhëtarë të kohës nga Mesjeta dhe Antikiteti, që nuk e njohin sistemin monetar modern dhe këmbëngulin për të paguar llogarinë e kafes me dhi, dele dhe shpendë shtëpiakë.
 
