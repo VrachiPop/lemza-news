@@ -1,7 +1,7 @@
 ---
 title: Kamerieri i bezdisur nga udhëtarët e kohës që paguajnë vetëm me bagëti
 pubDate: 2026-04-30 09:34
-heroImage: ../../assets/images/turisti-delja-large.jpeg
+heroImage: ../../assets/images/turisti-delja-2.jpeg
 description: TIRANË — Për stafin e shërbimit në kryeqytet, sezoni i ri i
   turizmit ka sjellë një sfidë krejtësisht të panjohur. Përveç turistëve
   perëndimorë dhe atyre nga diaspora, këtë vit kafenetë e Tiranës po përballen
