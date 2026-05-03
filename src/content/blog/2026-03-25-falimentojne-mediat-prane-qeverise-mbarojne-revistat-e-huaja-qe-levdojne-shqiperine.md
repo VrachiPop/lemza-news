@@ -2,7 +2,7 @@
 title: Falimentojnë mediat pranë qeverisë / Mbarojnë revistat e huaja që
   lëvdojnë Shqipërinë
 pubDate: 2026-03-25 10:02
-heroImage: ../../assets/images/media-faliment.webp
+heroImage: ../../assets/images/1718201169.jpg
 description: TIRANË — Një panik i paprecedentë ka mbërthyer redaksitë e mediave
   më të mëdha pranë qeverisë mëngjesin e sotëm. Pas vitesh të tëra lulëzimi,
   industria kombëtare e gazetarisë është në prag...
