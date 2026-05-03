@@ -8,6 +8,7 @@ description: Futbolli është quajtur prej kohësh si "opium për masat”, por
 tags:
   - sport
   - op-ed
+author: Met Agronhasani
 ---
 Futbolli është quajtur prej kohësh si "opium për masat”, por sociologët thonë se në Shqipëri ai ka një funksion shumë më fisnik dhe integrues. Gjatë 90 minutave të lojës së Kombëtares, ndodh një fenomen i paprecedentë barazie sociale: shqiptarët bëhen një trup i vetëm, duke fshirë çdo ndarje klasore. Për një natë të vetme, kombi bashkohet në një frymë të shenjtë vëllazërore, duke lënë mënjanë dallimet në babëzi apo në dosje penale.
 
