@@ -11,7 +11,7 @@ tags:
   - teknologji
 quoteOfTheDay: ""
 ---
-**TIRANË** — Në tentativë për të mbajtur zgjuar tifozët dhe për të luftuar braktisjen masive të futbollit, FSHF ka prezantuar sot një risi revolucionare për Abissnet Superiore, që do u japë mundësi shikuesve të shohin ndeshjet me 2x shpejtësi.
+**TIRANË** — Për të luftuar braktisjen masive të futbollit, njëherazi duke përfituar nga fakti që të gjitha ndeshjet janë të fiksuara paraprakisht, FSHF ka prezantuar sot një risi revolucionare për Abissnet Superiore, që do u japë mundësi shikuesve të shohin ndeshjet me 2x shpejtësi.
 
 Duke filluar nga kjo fundjavë, çdo tifoz mund të shtypë një buton në telekomandë që e bën ndeshjen të transmetohet dy herë më shpejt. Qëllimi i këtij inovacioni nuk është vetëm kursimi i kohës, por krijimi i iluzionit optik se po luhet futboll i vërtetë në fushë.
 
