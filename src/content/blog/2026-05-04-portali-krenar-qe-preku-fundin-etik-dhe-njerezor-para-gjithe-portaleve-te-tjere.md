@@ -16,6 +16,6 @@ Ai falënderoi në mënyrë të veçantë montazhierin e turnit të dytë, i cil
 
 Sipas Janinës, lajmi bashkangjitur me videon makabre ka thyer çdo rekord klikimesh. Pavarësisht se mbi 95% e komenteve mallkonin portalin me sharje rrëqethëse, ai theksoi se algoritmit të Facebook-ut nuk i intereson fare morali.
 
-*"Si mund t'i fshehim publikut të vërtetën? Publiku ka të drejtë të traumatizohet brutalisht duke parë çdo detaj me rezolucion të lartë, dhe për këtë jam krenar që ne ishim të parët që e realizuam,”* u shpreh Kiko Janina.
+*"Nuk mund t'ia fshehim publikut të vërtetën. Publiku ka të drejtë të traumatizohet brutalisht duke parë çdo detaj me rezolucion të lartë, dhe për këtë jam krenar që ne ishim të parët që e realizuam,”* u shpreh Kiko Janina.
 
 Edhe pse kanë humbur këtë betejë, portalet e tjera nuk janë dorëzuar dhe shprehen të gatshme të sakrifikojnë çdo lloj grimce njerzillëku që me tragjedinë e parë të radhës.
