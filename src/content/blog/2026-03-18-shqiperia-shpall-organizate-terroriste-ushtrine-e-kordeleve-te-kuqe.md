@@ -1,7 +1,7 @@
 ---
 title: Shqipëria shpall organizatë terroriste Ushtrinë e Kordeleve të Kuqe
-pubDate: 2026-03-18 09:11
-heroImage: ../../assets/images/kuvendi-kordeletekuqe.jpeg
+pubDate: 2026-03-18 10:51
+heroImage: ../../assets/images/kordelet-kuqe.jpeg
 description: TIRANË – Shqipëria bëhet vendi i dytë në botë pas Qytetit të
   Perëndimit që shpall Ushtrinë e Kordeleve të Kuqe (Red Ribbon Army) si
   organizatë terroriste. Me 79 vota pro dhe 1 abstenim...
