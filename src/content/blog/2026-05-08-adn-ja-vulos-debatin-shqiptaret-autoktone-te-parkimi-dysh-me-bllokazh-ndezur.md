@@ -1,7 +1,7 @@
 ---
 title: "ADN-ja vulos debatin: Shqiptarët autoktonë te parkimi dysh me bllokazh ndezur"
 pubDate: 2026-05-08 06:07
-heroImage: ../../assets/images/adn-autokton.jpeg
+heroImage: ../../assets/images/adn-autokton1.jpeg
 description: TIRANË — Një studim i fundit nga Nature Human Behavior ka zbuluar
   se origjina e shqiptarëve daton shumë më herët nga sa mendohej dhe lidhet
   drejtpërdrejt me popullsitë e lashta të parkimit dysh me bllokazh ndezur...
