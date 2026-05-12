@@ -1,7 +1,7 @@
 ---
 title: "Rama: Gjermania mbrapa nesh, përdorin akoma briskun"
 pubDate: 2026-05-12 06:04
-heroImage: ../../assets/images/gjermani-brisk.jpeg
+heroImage: ../../assets/images/gjermani-brisk1.jpeg
 description: TIRANË — KM Edi Rama ka bërë sot një deklaratë tronditëse, duke
   eklipsuar çdo zhvillim tjetër politik në Bruksel. Ndërsa shtetet e tjera të
   BE-së po stërmundohen me prokurimet e mërzitshme...
