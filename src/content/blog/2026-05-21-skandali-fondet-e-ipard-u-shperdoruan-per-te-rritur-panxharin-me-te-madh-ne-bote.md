@@ -12,7 +12,7 @@ quoteOfTheDay: Unë doja një mega patëllxhan epik që të shihej nga hapësira
 ---
 **TIRANË** — Hetimet e Zyrës Evropiane Kundër Mashtrimit (OLAF) mbi fondet e programit IPARD II në Shqipëri kanë nxjerrë në dritë një tjetër abuzim që sfidon jo vetëm ligjin, por edhe biologjinë. Sipas dosjes, 33 milionë euro u avulluan për një projekt tepër specifik dhe absurd: rritjen e një patëllxhani gjigant, me peshë 40 tonë.
 
-Ky projekt fitoi grantin maksimal nga AZHBR duke u paraqitur si zgjidhja përfundimtare për mungesën e hekurit në gjakun e qytetarëve shqiptarë dhe si një atraksion botëror për agroturizmin.
+Ky projekt fitoi grantin maksimal nga AZHBR duke u paraqitur si zgjidhja e përsosur për të shuar nepsin e shqiptarëve për imam bajalldi dhe si një atraksion botëror për agroturizmin.
 
 Dosja hetimore evropiane thekson me detaje se si u kanalizuan paratë e taksapaguesve evropianë për të ushqyer mega zarzavaten e sfungjertë, ndërkohë që fermerët e Myzeqesë hidhnin prodhimin e tyre në kanal nga mungesa e tregut.
 
