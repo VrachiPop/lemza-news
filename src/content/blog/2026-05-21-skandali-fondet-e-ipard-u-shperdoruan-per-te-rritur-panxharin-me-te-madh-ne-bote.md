@@ -1,7 +1,7 @@
 ---
-title: Skandali / Fondet e IPARD u shpërdoruan për të rritur panxharin më të
+title: Skandali / Fondet e IPARD u shpërdoruan për të rritur patëllxhanin më të
   madh në botë
-pubDate: 2026-05-21 09:15
+pubDate: 2026-05-21 09:42
 heroImage: ../../assets/images/1779348075671-019e4968-a58b-7d2b-beaa-426bf74fb3e9-large.jpeg
 description: TIRANË — Hetimet e Zyrës Evropiane Kundër Mashtrimit (OLAF) mbi
   fondet e programit IPARD II në Shqipëri kanë nxjerrë në dritë një tjetër
@@ -10,7 +10,7 @@ tags:
   - kronike
 quoteOfTheDay: Unë doja një mega patëllxhan epik që të shihej nga hapësira.
 ---
-**TIRANË** — Hetimet e Zyrës Evropiane Kundër Mashtrimit (OLAF) mbi fondet e programit IPARD II në Shqipëri kanë nxjerrë në dritë një tjetër abuzim që sfidon jo vetëm ligjin, por edhe biologjinë. Sipas dosjes, 33 milionë euro u avulluan për një projekt tepër specifik dhe absurd: rritjen e një panxhari gjigant, me peshë 40 tonë.
+**TIRANË** — Hetimet e Zyrës Evropiane Kundër Mashtrimit (OLAF) mbi fondet e programit IPARD II në Shqipëri kanë nxjerrë në dritë një tjetër abuzim që sfidon jo vetëm ligjin, por edhe biologjinë. Sipas dosjes, 33 milionë euro u avulluan për një projekt tepër specifik dhe absurd: rritjen e një patëllxhani gjigant, me peshë 40 tonë.
 
 Ky projekt fitoi grantin maksimal nga AZHBR duke u paraqitur si zgjidhja përfundimtare për mungesën e hekurit në gjakun e qytetarëve shqiptarë dhe si një atraksion botëror për agroturizmin.
 
