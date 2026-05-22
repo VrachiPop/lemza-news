@@ -2,7 +2,7 @@
 title: Air Albania shpëton nga falimenti pasi dy kalimtarë ndihmojnë për të
   shtyrë avionin
 pubDate: 2026-05-22 07:27
-heroImage: ../../assets/images/air-albania-lasghusi-copy-large.jpeg
+heroImage: ../../assets/images/image1-large.jpeg
 description: RINAS — Ndërkohë që javët e fundit është përfolur për një kolaps të
   mundshëm financiar dhe bllokim të aseteve, kompania  Air Albania ka shmangur
   zyrtarisht falimentin paraditen e sotme...
