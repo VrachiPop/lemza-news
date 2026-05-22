@@ -1,7 +1,7 @@
 ---
 title: Rama i kërkon homologes japoneze t'i japë borxh bllokun e Death Note
 pubDate: 2026-05-22 15:49
-heroImage: ../../assets/images/blank-blurry-teal-background-b2d33t600is54eyr.jpg
+heroImage: ../../assets/images/1779458021223-019e4ff6-188b-71c5-805f-e086cc3b1129.jpeg
 description: TOKIO — Gjatë takimit me dyer të mbyllura me homologen Sanae
   Takaichi, lideri shqiptar ka injoruar bisedimet për "Strategjinë e
   Indo-Paqësorit", duke i bërë një kërkesë tepër specifike...
