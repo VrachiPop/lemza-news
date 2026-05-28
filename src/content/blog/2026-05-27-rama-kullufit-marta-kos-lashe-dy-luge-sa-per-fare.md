@@ -1,5 +1,5 @@
 ---
-title: "Rama kullufit Marta Kos: Lashë dy lugë sa për farë"
+title: "Rama kollofit Marta Kos: Lashë dy lugë sa për farë"
 pubDate: 2026-05-27 08:18
 heroImage: ../../assets/images/rama-kos.jpeg
 description: BRUKSEL — Gjatë Konferencës Ndërqeveritare të mbajtur mbrëmjen e
