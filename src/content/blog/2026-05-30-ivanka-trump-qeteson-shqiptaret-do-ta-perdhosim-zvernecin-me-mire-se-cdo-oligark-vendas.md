@@ -2,7 +2,7 @@
 title: "Ivanka Trump qetëson shqiptarët: Do ta përdhosim Zvërnecin më mirë se
   çdo oligark vendas"
 pubDate: 2026-05-30 15:39
-heroImage: ../../assets/images/trump-zvrnec.jpeg
+heroImage: ../../assets/images/ivanka-zrvnec.jpeg
 description: UASHINGTON — Pas protestave të vazhdueshme të ambientalistëve dhe
   shoqërisë civile për shkatërrimin e natyrës në Zvërnec, vajza e Presidentit
   amerikan Donald Trump, ka ndërhyrë për të qetësuar gjakrat...
