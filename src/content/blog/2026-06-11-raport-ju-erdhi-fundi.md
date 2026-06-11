@@ -2,14 +2,14 @@
 title: "Raport: Ju erdhi fundi"
 pubDate: 2026-06-11 07:43
 heroImage: ../../assets/images/mtbkk62mrvm6jblm5pf7oukjl4.jpg
-description: TIRANË — Pas javësh matjeje të kujdesshme të protestës qytetare,
+description: TIRANË — Pas ditësh matjesh të kujdesshme të protestës qytetare,
   akademia e shkencave ka dalë në përfundimin se, po, ju erdhi fundi. Sipas
   shkencëtarëve, kjo frazë është shndërruar...
 tags:
   - shkence
   - politike
 ---
-**TIRANË** — Pas javësh matjeje të kujdesshme të protestës qytetare, komuniteti shkencor ka dalë në përfundimin se, po, ju erdhi fundi.
+**TIRANË** — Pas ditësh matjesh të kujdesshme të protestës qytetare, komuniteti shkencor ka dalë në përfundimin se, po, ju erdhi fundi.
 
 Sipas studiuesve, kjo frazë është shndërruar tashmë në një forcë të matshme fizike, e cila po shkakton dekompozimin molekular të pushtetit.
 
