@@ -1,7 +1,7 @@
 ---
 title: "Studimi: Lopët prodhojnë 40% më shumë qumësht me protestën në sfond"
 pubDate: 2026-06-12 07:40
-heroImage: ../../assets/images/flamingo-milk.jpeg
+heroImage: ../../assets/images/flamingo-milk2.jpeg
 description: TIRANË — Universitetit Bujqësor i Tiranës ka publikuar sot një
   studim revolucionar që pritet të ndryshojë përgjithmonë qasjen ndaj blegtorisë
   dhe zhvillimit rural në vend...
