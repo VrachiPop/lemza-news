@@ -1,5 +1,5 @@
 ---
-title: "Rama kritik: Protestat po trenbin kriminelët"
+title: "Rama kritik: Protestat po trembin kriminelët"
 pubDate: 2026-06-13 19:14
 heroImage: ../../assets/images/1780943585_20_2026-06-13_17_13_16.849435.webp
 description: TIRANË — Në një postim në rrjetet sociale, KM Edi Rama ka shprehur
