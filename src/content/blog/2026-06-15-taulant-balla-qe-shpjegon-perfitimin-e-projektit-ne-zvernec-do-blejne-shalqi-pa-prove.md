@@ -1,5 +1,5 @@
 ---
-title: "Taulant Balla që shpjegon përfitimin e projektit në Zvërnec: Do blejnë
+title: "Taulant Balla shpjegon përfitimin e projektit në Zvërnec: Do blejnë
   shalqi pa provë"
 pubDate: 2026-06-15 09:00
 heroImage: ../../assets/images/tat-balla-shalqi.jpeg
