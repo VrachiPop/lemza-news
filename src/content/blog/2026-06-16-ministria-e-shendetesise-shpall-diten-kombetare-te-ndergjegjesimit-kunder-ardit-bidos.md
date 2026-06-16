@@ -20,10 +20,4 @@ Gjatë "Ditës së Ndërgjegjësimit", në të gjitha shkollat dhe institucionet
 
 Në kuadër të kësaj dite, bashkitë në mbarë vendin do të shpërndajnë kuti të ndihmës së parë për qytetarët më të rrezikuar (ata që shikojnë emisione politike pas orës 21:00). 
 
-Kutia përfshin:
-
-1. Dy tapa veshësh prej silikoni të cilësisë së lartë.
-
-2. Një çaj kamomili të përqendruar.
-
-3. Telekomandë universale rezervë nëse telekomanda e tyre befas ndalon së punuari.
+Kutia përfshin tapa veshësh prej silikoni të cilësisë së lartë, një kuti me çaj kamomili, dhe një telekomandë universale rezervë nëse telekomanda e tyre befas ndalon së punuari.
