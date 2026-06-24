@@ -1,6 +1,6 @@
 ---
-title: "Gonxhja shpall ofertën më të fundit për koncertin e Ye: “Bli një biletë,
-  merr 60,000 falas”"
+title: "Gonxhja shpall ofertën më të fundit për koncertin e Ye: Bli një biletë,
+  merr 60,000 falas"
 pubDate: 2026-06-24 14:24
 heroImage: ../../assets/images/gonxhe-ye.jpeg
 description: TIRANË — Pasi kuptoi që strategjia fillestare për të shitur biletat
