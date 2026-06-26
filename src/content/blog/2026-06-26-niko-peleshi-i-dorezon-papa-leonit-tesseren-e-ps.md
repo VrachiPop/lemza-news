@@ -1,5 +1,5 @@
 ---
-title: Niko Peleshi i dorëzon Papa Leonit tesserën e PS
+title: Niko Peleshi i dorëzon Papa Leonit teserën e PS
 pubDate: 2026-06-26 08:32
 heroImage: ../../assets/images/papa-leone-ps.jpeg
 description: VATIKAN — Kryetari i Kuvendit të Shqipërisë, Niko Peleshi, u takua
