@@ -1,5 +1,5 @@
 ---
-title: Erjon Braçe shpëton nga protestuesit duke u fshehur brenda guaskës së një veze
+title: Erion Braçe shpëton nga protestuesit duke u fshehur brenda guaskës së një veze
 pubDate: 2026-06-30 19:02
 heroImage: ../../assets/images/brac-e-veza.jpeg
 description: TIRANË — Ndërsa pjesa tjetër e deputetëve u përballën me
