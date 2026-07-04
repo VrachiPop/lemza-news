@@ -1,5 +1,6 @@
 ---
-title: Patronazhisti zgjohet nga makthi ku kishte 350 llogari fake në vend të 820
+title: Patronazhisti zgjohet nga makthi ku kishte vetëm 350 llogari fake në vend
+  të 820
 pubDate: 2026-07-04 07:49
 heroImage: ../../assets/images/1783144098425-019f2bab-10a3-79d5-975a-208549d475e5.jpeg
 description: TIRANË — Banorët e një pallati në Rrugën e Kavajës u zgjuan të
