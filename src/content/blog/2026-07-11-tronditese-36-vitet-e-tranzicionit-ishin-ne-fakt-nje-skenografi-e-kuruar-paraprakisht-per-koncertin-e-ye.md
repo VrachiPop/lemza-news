@@ -9,8 +9,8 @@ description: TIRANË — Historianët, sociologët dhe miliona qytetarë të lod
 tags:
   - kulture
   - showbiz
-quoteOfTheDay: Nuk jeni viktima të korrupsionit qeveritar, por figurantë të një
-  spektakli hip-hop.
+quoteOfTheDay: Nuk jeni viktima të dështimit të shtetbërjes, por figurantë të
+  një spektakli hip-hop.
 ---
 **TIRANË** — Historianët, sociologët dhe miliona qytetarë të lodhur nga jeta kanë mbetur të shtangur këtë të shtunë pas rrjedhjes së një dokumenti sekret nga studioja krijuese e Ye, Donda Creative. Dokumenti, i cili mban datën Dhjetor 1990, vërteton përfundimisht se ai që quhej tranzicioni i gjatë post-komunist, e që cilësohej si një dështim i shtetbërjes, ishte në fakt një performancë e mirëfilltë e artit kontemporan, ideuar qëllimisht për të krijuar estetikën distopike për koncertin e Ye sot më 11 korrik 2026.
 
@@ -18,6 +18,6 @@ quoteOfTheDay: Nuk jeni viktima të korrupsionit qeveritar, por figurantë të n
 
 Sipas dosjes prej 400 faqesh të zbuluar nga hakerat, pothuajse çdo ngjarje traumatike që ka kaluar Shqipëria në këto tre dekada e gjysmë ishte e përpiluar me kujdes maniakal nga menaxherët e eventeve në Hollywood.
 
-*"Më në fund doli e vërteta,"* tha Rama, i lehtësuar, teksa hoqi xhaketën për të zbuluar një bluzë të stafit Yeezy. *"A e kuptoni tani pse i lamë spitalet të rrënoheshin dhe pse e mbushëm Tiranën me pluhur e kantiere? Apo pse shpopulluam gjysmën e vendit? Gjithçka ishte pjesë e koncertit. Qytetarë të dashur, ju nuk jeni viktima të korrupsionit qeveritar, por figurantë të një spektakli hip-hop.”*
+*"Më në fund doli e vërteta,"* tha Rama, i lehtësuar, teksa hoqi xhaketën për të zbuluar një bluzë të stafit Yeezy. *"A e kuptoni tani pse i lamë spitalet të rrënoheshin dhe pse e mbushëm Tiranën me pluhur e kantiere? Apo pse shpopulluam gjysmën e vendit? Gjithçka ishte pjesë e koncertit. Qytetarë të dashur, ju nuk jeni viktima të dështimit të shtetbërjes, por figurantë të një spektakli hip-hop.”*
 
 Fakti që vitet e humbura në emigracion, mungesa e ujit të pijshëm dhe rrogat mizerabël nuk ishin pasojë e paaftësisë së politikanëve, por kërkesë artistike e një reperi nga Çikago, është pritur me çlirim dhe entuziazëm nga popullata, që në mbarim të koncertit do zbrazë trojet e shtetit shqiptar për t’u përgatitur për eventin e radhës.
