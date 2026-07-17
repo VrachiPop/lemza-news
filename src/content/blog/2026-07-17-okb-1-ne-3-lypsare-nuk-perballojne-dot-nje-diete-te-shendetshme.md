@@ -17,4 +17,4 @@ Të dhënat e OKB-së tregojnë se ndërkohë që sigurimi i kalorive është re
 
 Për komunitetin e lypsarëve, mungesa e theksuar e peshkut të egër, arrave të Brazilit dhe bulmetit cilësor, po shkakton rënie të performancës në lypje.
 
-Sipas Organizatës Botërore të Shëndetësisë, nëse lypsarët vazhdojnë të ushqehen me mbetjet e brumërave të qytetarëve, ata rrezikojnë të preken nga sëmundje kardiovaskulare dhe diabeti, gjë që do t'u ulte në mënyrë drastike jetëgjatësinë dhe do pastronte rrugët tona një herë e mirë, gjë që nuk mund të lejohet kurrsesi..
+Sipas Organizatës Botërore të Shëndetësisë, nëse lypsarët vazhdojnë të ushqehen me mbetjet e brumërave të qytetarëve, ata rrezikojnë të preken nga sëmundje kardiovaskulare dhe diabeti, duke e bërë zanatin e lypjes gati të pamundur për t'u ushtruar.
