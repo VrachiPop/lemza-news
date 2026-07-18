@@ -1,6 +1,7 @@
 ---
 title: Krimi i organizuar distancohet nga qeveria
 pubDate: 2026-07-18 07:16
+heroImage: ../../assets/images/krimi-distancohet.jpeg
 description: TIRANË — Përmes një zëdhënësi të maskuar me kapuç të zi, i cili
   lexoi deklaratën nga një bunker i nëndheshëm, krimi i organizuar shpalli
   distancimin e tij të plotë dhe të parevokueshëm nga...
