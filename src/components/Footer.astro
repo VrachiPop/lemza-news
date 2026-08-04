@@ -4,13 +4,204 @@ const today = new Date();
 
 <footer>
     <div class="newsletter-section">
-        <h2>Mos humbisni asnjë gënjeshtër</h2>
-        <p>Abonohuni në buletinin tonë dhe merrni lajmet më të fundit direkt në inbox-in tuaj. Premtojmë që nuk do t'ju dërgojmë spam (shpesh).</p>
+        <h2>Inboxi juaj meriton spam cilësor</h2>
+        <p>Ngjarjet e javës, përditësime dhe surpriza të tjera.</p>
         
-        <form class="newsletter-form" action="https://formspree.io/f/xbdalqka" method="POST">
-            <input type="email" name="email" placeholder="Vendosni email-in tuaj" required />
-            <button type="submit">ABONOHU</button>
-        </form>
+       <form id="newsletter-form" class="newsletter-form">
+    <input
+        type="hidden"
+        name="access_key"
+        value="3fd9759c-d35a-4de9-94c7-4fceb682018e"
+    />
+
+    <input
+        type="hidden"
+        name="subject"
+        value="Abonim i ri në buletinin e Lemza News"
+    />
+
+    <input
+        type="hidden"
+        name="message"
+        value="Kërkesë e re për abonim në buletin."
+    />
+
+    <input
+        type="email"
+        name="email"
+        placeholder="Vendosni email-in tuaj"
+        required
+    />
+
+    <button type="submit">ABONOHU</button>
+
+    <div id="newsletter-result" aria-live="polite"></div>
+</form>
+
+<script>
+    const form = document.getElementById(
+        "newsletter-form"
+    ) as HTMLFormElement;
+
+    const result = document.getElementById(
+        "newsletter-result"
+    ) as HTMLElement;
+
+    const submitButton = form.querySelector(
+        'button[type="submit"]'
+    ) as HTMLButtonElement;
+
+    const showSuccessAnimation = () => {
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        submitButton.textContent = "✓ U ABONUAT";
+        submitButton.style.backgroundColor = "#16a34a";
+
+        if (!reduceMotion) {
+            submitButton.animate(
+                [
+                    { transform: "scale(1)" },
+                    { transform: "scale(1.1)" },
+                    { transform: "scale(0.97)" },
+                    { transform: "scale(1)" }
+                ],
+                {
+                    duration: 650,
+                    easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+                }
+            );
+
+            const buttonRect =
+                submitButton.getBoundingClientRect();
+
+            const originX =
+                buttonRect.left + buttonRect.width / 2;
+
+            const originY =
+                buttonRect.top + buttonRect.height / 2;
+
+            const colors = [
+                "#DC2626",
+                "#ffffff",
+                "#facc15",
+                "#22c55e"
+            ];
+
+            for (let i = 0; i < 18; i++) {
+                const particle =
+                    document.createElement("span");
+
+                const angle =
+                    (Math.PI * 2 * i) / 18;
+
+                const distance =
+                    55 + Math.random() * 55;
+
+                const size =
+                    5 + Math.random() * 5;
+
+                particle.style.position = "fixed";
+                particle.style.left = `${originX}px`;
+                particle.style.top = `${originY}px`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                particle.style.backgroundColor =
+                    colors[i % colors.length];
+
+                particle.style.borderRadius =
+                    i % 2 === 0 ? "50%" : "2px";
+
+                particle.style.pointerEvents = "none";
+                particle.style.zIndex = "9999";
+
+                document.body.appendChild(particle);
+
+                particle.animate(
+                    [
+                        {
+                            transform:
+                                "translate(-50%, -50%) scale(1) rotate(0deg)",
+                            opacity: 1
+                        },
+                        {
+                            transform: `translate(
+                                calc(-50% + ${
+                                    Math.cos(angle) * distance
+                                }px),
+                                calc(-50% + ${
+                                    Math.sin(angle) * distance + 35
+                                }px)
+                            ) scale(0.3) rotate(${
+                                180 + Math.random() * 360
+                            }deg)`,
+                            opacity: 0
+                        }
+                    ],
+                    {
+                        duration:
+                            850 + Math.random() * 350,
+
+                        easing:
+                            "cubic-bezier(0.15, 0.7, 0.3, 1)",
+
+                        fill: "forwards"
+                    }
+                ).onfinish = () => particle.remove();
+            }
+        }
+
+        window.setTimeout(() => {
+            submitButton.textContent = "ABONOHU";
+            submitButton.style.backgroundColor = "";
+        }, reduceMotion ? 1800 : 2800);
+    };
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        submitButton.disabled = true;
+        submitButton.textContent = "DUKE DËRGUAR...";
+        result.textContent = "";
+
+        try {
+            const response = await fetch(
+                "https://api.web3forms.com/submit",
+                {
+                    method: "POST",
+                    body: new FormData(form)
+                }
+            );
+
+            const data = await response.json();
+
+            if (data.success) {
+                form.reset();
+                showSuccessAnimation();
+            } else {
+                result.textContent =
+                    data.message ||
+                    "Dërgimi dështoi. Provoni përsëri.";
+
+                submitButton.textContent = "ABONOHU";
+            }
+        } catch (error) {
+            console.error(
+                "Web3Forms submission error:",
+                error
+            );
+
+            result.textContent =
+                "Ndodhi një gabim. Provoni përsëri.";
+
+            submitButton.textContent = "ABONOHU";
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+</script>
     </div>
 
     <div class="footer-content">
@@ -144,7 +335,7 @@ const today = new Date();
         margin-bottom: 0.5rem;
         font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: -1px;
+        letter-spacing: 1px;
     }
     .newsletter-section p { margin-bottom: 1.5rem; line-height: 1.6; font-size: 1.1rem; }
 
