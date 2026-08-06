@@ -7,8 +7,8 @@ description: TIRANË — Kriza e zjarreve në Shqipëri ka marrë më në fund n
   nënshkruar një marrëveshje historike ekstradimi me...
 tags:
   - kronike
-quoteOfTheDay: Më mirë të më hajë shkaba mëlçinë deri në pafundësi, se të ndaj
-  qelinë me Ilir Metën.
+quoteOfTheDay: Të ndash qelinë me Ilir Metën është 100 herë më keq se të të hajë
+  shqiponja mëlçinë deri në pafundësi.
 ---
 **TIRANË** — Kriza e zjarreve në Shqipëri ka marrë më në fund një zgjidhje me përmasa epike. Pas disa javësh negociatash, KM Edi Rama ka nënshkruar një marrëveshje historike ekstradimi me Zotin e Qiellit dhe Vetëtimave, Zeusin.
 
@@ -20,4 +20,4 @@ Oficerët e policisë e zgjidhën nga zinxhirët mitologjikë 4500-vjeçarin, dh
 
 Për Lemza News, Prometeu u shpreh i tronditur nga drejtësia shqiptare, duke theksuar se dënimet e Zeusit ishin shumë herë më të drejta.
 
-*“Më mirë të më hajë shkaba mëlçinë deri në pafundësi, se të ndaj qelinë me Ilir Metën,”* është shprehur Titani.
+*“Të ndash qelinë me Ilir Metën është 100 herë më keq se të të hajë shqiponja mëlçinë deri në pafundësi,"* është shprehur Titani.
