@@ -16,7 +16,7 @@ Sipas burimeve, prokurorët janë urdhëruar të dalin në tarracën e godinës 
 
 Sipas manualit të ri përgatitor që u është shpërndarë prokurorëve, qëllimi është verbërimi selektiv i aparatit shikues, ose siç quhet në mjekësi, Miopia Oligarkike. 
 
-Ky dëmtim i retinës do t'i lejojë ata të jenë tërësisht të verbër ndaj krimit të nivelit të lartë, pa prekur ama nervin hetues për shkelësit e vegjël.
+Ky dëmtim i retinës do t'i lejojë ata të vijojnë të jenë të verbër ndaj krimit të nivelit të lartë, pa prekur ama nervin hetues për shkelësit e vegjël.
 
 Klod Spase, prokuror pranë SPAK, i cili po bënte nxemje duke parë nga afër shkëndijat e saldimit në oborrin e Prokurorisë së Posaçme, u shpreh i paduruar për fenomenin natyror.
 
