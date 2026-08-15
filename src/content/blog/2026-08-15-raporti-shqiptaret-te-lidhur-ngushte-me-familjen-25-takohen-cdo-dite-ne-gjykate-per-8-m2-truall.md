@@ -1,6 +1,6 @@
 ---
 title: "Raporti: Shqiptarët të lidhur ngushtë me familjen, 25% takohen çdo ditë
-  në gjykatë për 8 m2 truall"
+  në gjykatë për 8 m² truall"
 pubDate: 2026-08-15 07:32
 heroImage: ../../assets/images/eurostat-lidhje-ngushta.jpeg
 description: TIRANË — Sipas një raporti të fundit të publikuar nga  Eurostat,
