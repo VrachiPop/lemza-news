@@ -1,5 +1,5 @@
 ---
-title: Gjeniu 8 vjeçar di përmendësh çdo gropë të autostradës Tiranë-Durrës
+title: Gjeniu 8 vjeçar di përmendsh çdo gropë të autostradës Tiranë-Durrës
 pubDate: 2026-08-16 07:16
 heroImage: ../../assets/images/gjeniu-autostrada1.jpeg
 description: SHKOZET — Ergi Silla, një 8-vjeçar nga Shkozeti i Durrësit, po
