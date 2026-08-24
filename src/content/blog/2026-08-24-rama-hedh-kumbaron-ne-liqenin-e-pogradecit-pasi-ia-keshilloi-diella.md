@@ -7,7 +7,7 @@ description: POGRADEC — KM Edi Rama nga Pogradeci ka ndarë videon ku shfaqet
   ministren...
 tags:
   - politike
-  - ""
+  - teknologji
 ---
 **POGRADEC** — KM Edi Rama nga Pogradeci ka ndarë videon ku shfaqet duke bashkëbiseduar me Diellën, ndërkohë që e pyet se çfarë mendimi ka për ministren Mirela Kumbaro.
 
