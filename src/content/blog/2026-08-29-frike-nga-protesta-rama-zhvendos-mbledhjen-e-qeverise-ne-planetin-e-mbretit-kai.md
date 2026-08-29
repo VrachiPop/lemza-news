@@ -1,15 +1,15 @@
 ---
 title: "Frikë nga protesta: Rama zhvendos mbledhjen e qeverisë në Planetin e
   Mbretit Kai"
-pubDate: 2026-08-29 08:20
+pubDate: 2026-08-29 08:22
 heroImage: ../../assets/images/king-kai-rama.jpeg
 description: GALAKTIKA E VERIUT — Pas informacioneve se protestuesit ishin
   armatosur me koli vezësh për të goditur selinë rozë, KM Edi Rama vendosi të
-  anulojë  takimin e orës 17:30...
+  anulojë  takimin e djeshëm të orës 17:30...
 tags:
   - politike
 ---
-**GALAKTIKA E VERIUT** — Pas informacioneve se protestuesit ishin armatosur me koli vezësh për të goditur selinë rozë, KM Edi Rama vendosi të anulojë  takimin e orës 17:30.
+**GALAKTIKA E VERIUT** — Pas informacioneve se protestuesit ishin armatosur me koli vezësh për të goditur selinë rozë, KM Edi Rama vendosi të anulojë  takimin e djeshëm të orës 17:30.
 
 Ai urdhëroi të gjithë ministrat dhe drejtuesit e qarqeve të mblidheshin urgjentisht në fund të Rrugës së Gjarprit, në Planetin e Mbretit Kai.
 
