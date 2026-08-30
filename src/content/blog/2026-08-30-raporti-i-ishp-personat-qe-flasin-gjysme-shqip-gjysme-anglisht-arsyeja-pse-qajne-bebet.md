@@ -8,7 +8,7 @@ description: TIRANË — Për breza të tërë, nënat dhe gjyshet shqiptare kan
   pandërprera të foshnjave...
 tags:
   - shendeti
-quoteOfTheDay: Bebja nuk qan prej dhimbjes së barkut, por për të ardhmen e kombit.
+quoteOfTheDay: Bebet nuk qan prej dhimbjes së barkut, por për të ardhmen e kombit.
 ---
 **TIRANË** — Për breza të tërë, nënat dhe gjyshet shqiptare kanë fajësuar daljen e dhëmbëve, syrin e keq, apo gazrat e stomakut për të qarat e pandërprera të foshnjave. 
 
