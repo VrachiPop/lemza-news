@@ -5,7 +5,7 @@ pubDate: 2026-09-04 10:05
 heroImage: ../../assets/images/rockstar-radhima.jpeg
 description: NEW YORK — Pas më shumë se 12 vitesh punë intensive dhe dhjetëra
   miliarda dollarësh të investuar, gjiganti i video lojërave, Rockstar Games, ka
-  tronditur botën duke njoftuar...
+  tronditur botën duke njoftuar anulimin...
 tags:
   - teknologji
   - kronike
