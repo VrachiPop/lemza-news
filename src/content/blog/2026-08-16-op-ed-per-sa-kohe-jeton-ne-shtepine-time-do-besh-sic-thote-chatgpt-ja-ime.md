@@ -1,5 +1,5 @@
 ---
-title: "OP-ED: Për sa kohë jeton në shtëpinë time do bësh siç thotë ChatGPT-ja ime"
+title: Për sa kohë jeton në shtëpinë time do bësh siç thotë ChatGPT-ja ime
 pubDate: 2026-08-16 16:23
 heroImage: ../../assets/images/demandin-baba.jpeg
 description: Pse të lodh kokën për të prindëruar fëmijët e mi të pabindur kur
