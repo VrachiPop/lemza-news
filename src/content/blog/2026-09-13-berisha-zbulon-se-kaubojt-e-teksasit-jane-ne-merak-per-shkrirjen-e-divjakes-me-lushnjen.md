@@ -1,6 +1,6 @@
 ---
-title: Berisha zbulon se kaubojt e Teksasit janë në merak për shkrirjen e
-  Divjakës me Lushnjën
+title: Berisha zbulon se kaubojt e Teksasit janë kundra shkrirjes së Divjakës me
+  Lushnjën
 pubDate: 2026-09-13 08:20
 heroImage: ../../assets/images/berisha-teksas-shba.jpeg
 description: TIRANË — I rikthyer në atdhe pas atij që e cilësoi si "udhëtimin më
