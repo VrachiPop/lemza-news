@@ -1,6 +1,6 @@
 ---
 title: "Rekord në Evropë: 41% e oligarkëve shqiptarë nuk përballojnë dot blerjen
-  e një superjahti me reaktor bërthamore"
+  e një jahti me reaktor bërthamor"
 pubDate: 2026-10-05 08:30
 heroImage: ../../assets/images/reaktor-be-rdhamor-jaht-oligark.jpeg
 description: TIRANË — Ndonëse numri i koncesioneve dhe tenderëve korruptivë që
