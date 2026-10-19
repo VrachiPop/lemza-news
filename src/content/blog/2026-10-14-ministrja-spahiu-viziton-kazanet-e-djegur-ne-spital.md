@@ -1,5 +1,5 @@
 ---
-title: Ministrija Spahiu viziton kazanët e djegur në spital
+title: Ministrja Spahiu viziton kazanët e djegur në spital
 pubDate: 2026-10-14 10:37
 heroImage: ../../assets/images/ministrja-viziton-kazane-t.jpeg
 description: TIRANË — Një ditë pas protestës së ashpër të studentëve në rrugët e
