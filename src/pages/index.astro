@@ -25,7 +25,7 @@ const middlePosts = allPosts.slice(2, 5);
 const rightPosts = allPosts.slice(5, 8); 
 
 // Marrim nga indeksi 8 deri në 38 (max 30 lajme) për të mos rënduar HTML-në me qindra të dhëna
-const poolForIgnored = allPosts.slice(8, 38).map(post => ({
+const poolForIgnored = allPosts.slice(9).map(post => ({
     title: post.data.title,
     slug: getPostUrl(post.slug),
     heroImage: post.data.heroImage ? post.data.heroImage.src : '', 
