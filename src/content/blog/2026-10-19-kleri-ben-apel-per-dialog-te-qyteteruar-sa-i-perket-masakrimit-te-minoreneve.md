@@ -1,5 +1,5 @@
 ---
-title: Kleri bën apel për dialog të qytetëruar sa i përket masakrimit të minoreneve
+title: Kleri bën apel për dialog të qytetëruar sa i përket masakrimit të minorenëve
 pubDate: 2026-10-19 10:02
 heroImage: ../../assets/images/kleri-apel-dialog-masakrim.jpeg
 description: TIRANË — Pas gjashtë ditësh luftë guerrile nëpër rrugët e Tiranës,
