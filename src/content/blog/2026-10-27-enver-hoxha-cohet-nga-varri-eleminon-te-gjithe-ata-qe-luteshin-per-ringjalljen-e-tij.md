@@ -1,5 +1,5 @@
 ---
-title: Enver Hoxha çohet nga varri, eleminon të gjithë ata që luteshin për
+title: Enver Hoxha çohet nga varri, eliminon të gjithë ata që luteshin për
   ringjalljen e tij
 pubDate: 2026-10-27 08:14
 heroImage: ../../assets/images/enver-hoxha-c-ohet-ngavarri.jpeg
