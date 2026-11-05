@@ -1,6 +1,6 @@
 ---
-title: Rama formon një qenush me ambasadoren e BE-së
-pubDate: 2026-11-05 17:42
+title: Rama formon një lepurush me ambasadoren e BE-së
+pubDate: 2026-11-05 17:45
 heroImage: ../../assets/images/rama-formon-lepurush-ambasadore.jpeg
 description: TIRANË — KM Edi Rama dhe ambasadorja e BE-së në Shqipëri, Sofia
   Moreira de Sousa, mbajtën të enjten një konferencë të përbashkët për mediat,
