@@ -10,7 +10,7 @@ tags:
 ---
 **TIRANË** — Duke e thelluar strategjinë e tij të infantilizimit total të elektoratit, KM Edi Rama prezantoi sot platformën më të re qeveritare. 
 
-Ai i bëri thirrje publikut që të mos i zgjidhin më vetë problemet e tyre, por të vijnë duke tek ai sapo t'u bëhet një padrejtësi.
+Ai i bëri thirrje publikut që të mos i zgjidhin më vetë problemet e tyre, por të vijnë tek ai sapo t'u bëhet një padrejtësi.
 
 Platforma e re, ku mund të kyçesh nëpërmjet e-Albania, quhet zyrtarisht: “Thuaji kryeministrit kush të shau."
 
