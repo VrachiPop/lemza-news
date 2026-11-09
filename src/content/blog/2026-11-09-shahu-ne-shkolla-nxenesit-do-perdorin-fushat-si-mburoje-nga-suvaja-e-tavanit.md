@@ -1,6 +1,6 @@
 ---
 title: "Shahu në shkolla: Nxënësit do përdorin fushat si mburojë nga suvaja e tavanit"
-pubDate: 2026-11-09 08:52
+pubDate: 2026-11-09 08:58
 heroImage: ../../assets/images/shahu-shkolla-suvaja-tavanit.jpg
 description: TIRANË — Programi më i ri i qeverisë për futjen e shahut nëpër
   shkolla parashikohet të jetë një sukses i jashtëzakonshëm. Megjithëse testet
