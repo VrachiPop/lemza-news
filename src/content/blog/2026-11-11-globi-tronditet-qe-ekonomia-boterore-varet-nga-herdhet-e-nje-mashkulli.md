@@ -1,6 +1,6 @@
 ---
 title: Globi tronditet që ekonomia botërore varet nga herdhet e një mashkulli
-pubDate: 2026-11-11 08:50
+pubDate: 2026-11-11 08:54
 heroImage: ../../assets/images/ekonomia-globit-varet-nga-herdhet.jpg
 description: SILICON VALLEY — Tregjet globale të aksioneve, analistët e Wall
   Street dhe entuziastët e Inteligjencës Artificiale janë në shok pas zbulimit
@@ -11,7 +11,7 @@ tags:
 ---
 **SILICON VALLEY** — Tregjet globale të aksioneve, analistët e Wall Street dhe entuziastët e Inteligjencës Artificiale janë në shok pas zbulimit tronditës se CEO i Nvidia, Jensen Huang, aludohet se vuri në rrezik sigurinë kombëtare të SHBA-së dhe zinxhirin global të mikroçipave për një romancë me spiunen e dyshuar kineze.
 
-Teksa aksionet e Nvidia pësuan rënie, elita botërore po shpreh një "habi të paimagjinueshme" se si e ardhmja e teknologjisë njerëzore mund të varet tërësisht nga tekat seksuale dhe testosteroni i një 63-vjeçari.
+Teksa aksionet e Nvidia pësuan rënie, elita botërore po shpreh një "habi të paimagjinueshme" se si e ardhmja e teknologjisë njerëzore dhe ekonomisë së globit varet tërësisht nga testosteroni i një 63-vjeçari.
 
 *"Kemi shpenzuar miliarda për siguri kibernetike, kriptografi kuantike dhe mbrojtje me AI,"* deklaroi një analist i lartë i Silicon Valley. *"Ne vërtet besonim se elita jonë e kishte kapërcyer biologjinë! Si është e mundur që i gjithë monopoli global i çipave H200 të cenohet nga një sulm i rëndomtë hormonal? Pse nuk e parashikoi ChatGPT këtë rrezik?!"*
 
