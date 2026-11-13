@@ -1,5 +1,5 @@
 ---
-title: "Zgjidhet Enigma: Sytë e Mona Lizës ndjekin trajektoren e golit të Muçit"
+title: "Zgjidhet enigma: Sytë e Mona Lizës ndjekin trajektoren e golit të Muçit"
 pubDate: 2026-11-13 09:34
 heroImage: ../../assets/images/monaliza-muc-i.jpeg
 description: PARIS – Pas më shumë se pesë shekujsh, studiuesit kanë zgjidhur më
