@@ -1,5 +1,5 @@
 ---
-title: 'Lamtumirë Çim Mekaniku: Burrat ruajnë dashnoren me emrin "e-Gjoba" në telefon'
+title: 'Lamtumirë Çim Mekaniku: Burri ruan dashnoren me emrin "e-Gjoba" në telefon'
 pubDate: 2026-11-25 09:03
 heroImage: ../../assets/images/e-gjoba-dashnorja-telefon.jpeg
 description: TIRANË – Prezantimi i sistemit të ri qeveritar "e-Gjoba", i cili
