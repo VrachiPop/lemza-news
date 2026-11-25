@@ -15,6 +15,6 @@ quoteOfTheDay: Pamë një vilë të madhe, me pemë rreth e rrotull dhe menduam 
 
 Sipas tyre, cilësimi si "hajdutë ordinerë" nga mediat britanike cenon reputacionin e tyre profesional dhe nderin e familjes në Shqipëri. Ata theksojnë se gjatë minutave që qëndruan në oborr nuk prekën asnjë send me vlerë, por u fokusuan vetëm te lartësia e tavanit, izolimi termik dhe pozicioni i sahatit të dritave.
 
-*"Ne jemi njerëz të punës, nuk jemi rrugaçë që vjedhim lugë argjendi e piktura,"* thuhet në reagimin e dy të rinjve. *"Pamë një vilë të madhe, me pemë rreth e rrotull dhe menduam ta kthenim në shtëpi bari. As nuk e dinim që ishte e Princit."*
+*"Ne jemi njerëz të punës, nuk jemi rrugaçë që vjedhim lugë argjendi dhe piktura,"* thuhet në reagimin e dy të rinjve. *"Pamë një vilë të madhe, me pemë rreth e rrotull dhe menduam ta kthenim në shtëpi bari. As nuk e dinim që ishte e Princit."*
 
 Edhe pse operacioni policor u mbyll me prangosjen e tyre, dy shqiptarët bëjnë me dije se vila mbretërore gjithsesi nuk i kishte kaluar standardet e tyre minimale. Sipas vlerësimit paraprak, rezidenca vuante nga lagështira e lartë dhe kishte një rrjet elektrik tepër të amortizuar.
