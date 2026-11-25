@@ -2,6 +2,7 @@
 title: "Reagojnë dy shqiptarët e dyshuar për vjedhje në vilën e Princit William:
   Pamë a i plotësonte kushtet për shtëpi bari"
 pubDate: 2026-11-25 14:21
+heroImage: ../../assets/images/shqip-vila-princ-shtpibari.jpeg
 description: NORFOLK – Dy shtetasit shqiptarë të arrestuar mbrëmjen e së hënës
   brenda territorit të rezidencës mbretërore Sandringham Estate në Britaninë e
   Madhe...
